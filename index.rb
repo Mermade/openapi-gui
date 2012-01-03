@@ -5,3 +5,8 @@ require 'haml'
 get '/' do
   haml :index, :format => :html5
 end
+
+post '/:config' do
+  
+  @parsed = JSON.parse()
+end
