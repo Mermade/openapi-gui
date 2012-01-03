@@ -1,19 +1,16 @@
 %html
-  %head
-    %title I/O Doctor - GUI for generating I/O Docs configurations
-	%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
-  %body
-	.topbar
-	  .fill
-	    .container
-	      %a.brand{:href => "#"} I/O Doctor
-	      %ul.nav
-	        %li.active
-	          %a{:href => "#"} Home
-	        %li
-	          %a{:href => "#about"} About
-	      %form.pull-right{:action => ""}
-	        %input.input-small{:placeholder => "Username", :type => "text"}
-	          %input.input-small{:placeholder => "Password", :type => "password"}
-	            %button.btn{:type => "submit"} Sign in	
-    =yield
+	%head
+		%title I/O Doctor - GUI for I/O Docs configurations
+		%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
+	%body
+		.topbar
+			.fill
+				.container
+					%a.brand{:href => "#"} I/O Doctor
+					%ul.nav
+						%li.active
+							%a{:href => "#"} Home
+						%li
+							%a{:href => "#about"} About
+					
+		=yield
