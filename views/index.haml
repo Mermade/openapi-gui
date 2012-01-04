@@ -1,4 +1,38 @@
-%form(method="post" enctype='multipart/form-data')
-      %input(type='file' name='config')
-      %br
-      %input(type='submit' value='Upload!')
+%html
+	%head
+		%title I/O Doctor - GUI for I/O Docs configurations
+		%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
+		%link{:href => "/css/default.css", :rel => "stylesheet"}
+	%body
+		.topbar
+			.fill
+				.container
+					%a.brand{:href => "#"} I/O Doctor
+					%ul.nav
+						%li.active
+							%a{:href => "#"} Home
+						%li
+							%a{:href => "#about"} About
+
+		.container	
+			.content
+				.hero-unit
+					%h2 Easily edit your I/O Docs JSON files
+					%br/
+					%p 
+						Upload your existing JSON file... 
+						
+						%form(method="post" enctype='multipart/form-data')
+						
+							%br/
+							.row
+								.span5
+									%input(type='file' name='file')
+									%input.btn.primary(type='submit' value='Edit Existing')
+
+								.span7
+									\...or create a new configuration to get started.
+									%br/
+									%br/
+									%input.btn.primary(type='submit' value='new')
+				

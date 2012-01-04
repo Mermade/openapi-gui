@@ -5,25 +5,20 @@
 		%link{:href => "/css/default.css", :rel => "stylesheet"}
 	%body
 		.topbar
-			.topbar-inner
-				.container-fluid
+			.fill
+				.container
 					%a.brand{:href => "#"} I/O Doctor
 					%ul.nav
 						%li.active
 							%a{:href => "#"} Home
 						%li
 							%a{:href => "#about"} About
-						%li
-							%a{:href => "#contact"} Contact
-		.container-fluid
-			.sidebar
-				.well
-					%h5 Sidebar
-					
+
+		.container	
 			.content
 				.hero-unit
-					%h1 This is the big callout
+					%h2 Easily edit your I/O Docs JSON files
 					%br/
 					%p 
-						%a.btn.large.primary This is a button!
+						Upload your existing JSON file or create a new configuration to get started.
 				=yield
