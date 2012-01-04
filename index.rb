@@ -1,7 +1,8 @@
-require 'rubygems'
+require "bundler/setup"
 require 'sinatra'
 require 'haml'
 require 'json'
+require 'hashie'
 
 get '/' do
   haml :index, :format => :html5
@@ -20,21 +21,15 @@ post '/' do
    end
 
    contents = tmpfile.read
-   result = JSON.parse(contents)
-  
-   result['endpoints'].each do |endpoint|
-    puts endpoint
+   
+   result = JSON(contents)  
+   mash = Hashie::Mash.new(result)
+   output = ""
+
+   
+   mash.endpoints.each do |e|
+     output << "#{e.name} <br/>"
    end
-  
-   if result.has_key? 'Error'
-      "Error parsing JSON. Try validating it with JSON Lint."
-   else
-     #now we've got a parsed config
-     #for each endpoint in endpoints
-     result['endpoints'].each do |endpoint|
-      puts endpoint
-     end
-     
- 
-    end
- end
+   
+   return output
+end
