@@ -5,11 +5,7 @@ require 'json'
 require 'hashie'
 
 get '/' do
-  haml :index, :format => :html5
-end
-
-post '/:config' do
-  @parsed = JSON.parse()
+  haml :start, :format => :html5
 end
 
 post '/' do
@@ -23,13 +19,6 @@ post '/' do
    contents = tmpfile.read
    
    result = JSON(contents)  
-   mash = Hashie::Mash.new(result)
-   output = ""
-
-   
-   mash.endpoints.each do |e|
-     output << "#{e.name} <br/>"
-   end
-   
-   return output
+   @result = Hashie::Mash.new(result)
+   haml :endpoints
 end
