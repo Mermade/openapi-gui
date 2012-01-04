@@ -18,9 +18,23 @@ post '/' do
      @error = "No file selected"
      return haml(:index)
    end
-   STDERR.puts "Uploading file, original name #{name.inspect}"
+
    contents = tmpfile.read
-   parsed = JSON.parse(contents)
+   result = JSON.parse(contents)
+  
+   result['endpoints'].each do |endpoint|
+    puts endpoint
+   end
+  
+   if result.has_key? 'Error'
+      "Error parsing JSON. Try validating it with JSON Lint."
+   else
+     #now we've got a parsed config
+     #for each endpoint in endpoints
+     result['endpoints'].each do |endpoint|
+      puts endpoint
+     end
      
-   "Upload complete #{parsed.inspect}"
+ 
+    end
  end
