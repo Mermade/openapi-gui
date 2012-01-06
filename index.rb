@@ -1,8 +1,11 @@
 require "bundler/setup"
 require 'sinatra'
+require './partials'
 require 'haml'
 require 'json'
 require 'hashie'
+
+helpers Sinatra::Partials
 
 get '/' do
   haml :start, :format => :html5

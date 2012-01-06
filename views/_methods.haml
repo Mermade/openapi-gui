@@ -1,7 +1,5 @@
--e.inspect
-
 -method_count = 0
-- e["methods"].each do |m|
+- endpoint["methods"].each do |m|
 -method_count=method_count+1
 	%legend
 		Method: #{m.MethodName}
@@ -27,4 +25,4 @@
 		.input 
 			%input{:name => "RequiresOAuth#{method_count}", :id => "RequiresOAuth#{method_count}", :value => "#{m.RequiresOAuth}"}
 			
-	- haml :parameters, :locals => {:m => m}
+	= partial :parameters, :locals => {:m => m}

@@ -25,5 +25,5 @@
 							.input
 								%input{:name => "name#{count}", :id => "name#{count}", :value => "#{e.name}"}
 						
-						- haml :methods, :locals => {:e => e}
+						= partial :methods, :locals => {:endpoint => e}
 					
