@@ -1,0 +1,30 @@
+-e.inspect
+
+-method_count = 0
+- e["methods"].each do |m|
+-method_count=method_count+1
+	%legend
+		Method: #{m.MethodName}
+	%br/
+	.clearfix
+		%label{:for => "MethodName#{method_count}"} Method Name
+		.input
+			%input{:name => "MethodName#{method_count}", :id => "MethodName#{method_count}", :value => "#{m.MethodName}"}
+	.clearfix
+		%label{:for => "Synopsis#{method_count}"} Synopsis
+		.input
+			%input{:name => "Synopsis#{method_count}", :id => "Synopsis#{method_count}", :value => "#{m.Synopsis}"}
+	.clearfix
+		%label{:for => "HTTPMethod#{method_count}"} HTTP Method (GET, POST, PUT, etc)
+		.input 
+			%input{:name => "HTTPMethod#{method_count}", :id => "HTTPMethod#{method_count}", :value => "#{m.HTTPMethod}"}
+	.clearfix
+		%label{:for => "URI#{method_count}"} URI
+		.input 
+			%input{:name => "URI#{method_count}", :id => "URI#{method_count}", :value => "#{m.URI}"}							
+	.clearfix
+		%label{:for => "RequiresOAuth#{method_count}"} Requires OAuth? (Y or N)
+		.input 
+			%input{:name => "RequiresOAuth#{method_count}", :id => "RequiresOAuth#{method_count}", :value => "#{m.RequiresOAuth}"}
+			
+	- haml :parameters, :locals => {:m => m}
