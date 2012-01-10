@@ -13,18 +13,17 @@
 								%li #{m.MethodName}
 					
 	.content
-		%form
+		%form#config
 			-count=0
 			- @result.endpoints.each do |e|
 				-count=count+1
 				.endpoint.hidden{:id => "ep#{count}"} 
 					%h2	Endpoint: #{e.name}
-					%fieldset
-					
+					%fieldset			
 						.clearfix
-							%label{:for => "name#{count}"} Endpoint Name
+							%label{:for => "endpoints[#{count}].name"} Endpoint Name
 							.input
-								%input{:name => "name#{count}", :id => "name#{count}", :value => "#{e.name}"}
+								%input{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 						
-						= partial :methods, :locals => {:endpoint => e}
+						= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					

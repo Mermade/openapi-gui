@@ -6,6 +6,7 @@
 		%link{:href => "/css/default.css", :rel => "stylesheet"}
 		%script{:src => "/js/jquery-1.7.1.min.js"}
 		%script{:src => "/js/default.js"}
+		%script{:src => "/js/form2js.js"}
 	%body
 		.topbar
 			.fill
@@ -19,4 +20,5 @@
 
 		.container	
 			.content
+				%input.btn#debug{:value => "DEBUG Output"}
 				=yield(:content)

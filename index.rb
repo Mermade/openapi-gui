@@ -8,20 +8,21 @@ require 'hashie'
 helpers Sinatra::Partials
 
 get '/' do
-  haml :start, :format => :html5
+	haml :start, :format => :html5
 end
 
 post '/' do
-   unless params[:file] &&
-          (tmpfile = params[:file][:tempfile]) &&
-          (name = params[:file][:filename])
-     @error = "No file selected"
-     return haml(:index)
-   end
+	 unless params[:file] &&
+					(tmpfile = params[:file][:tempfile]) &&
+					(name = params[:file][:filename])
+		 @error = "No file selected"
+		 return haml(:index)
+	 end
 
-   contents = tmpfile.read
-   
-   result = JSON(contents)  
-   @result = Hashie::Mash.new(result)
-   haml :endpoints
+	 contents = tmpfile.read
+	 
+	 result = JSON(contents)	
+	 @result = Hashie::Mash.new(result)
+	 
+	 haml :endpoints
 end

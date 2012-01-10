@@ -5,24 +5,24 @@
 		Method: #{m.MethodName}
 	%br/
 	.clearfix
-		%label{:for => "MethodName#{method_count}"} Method Name
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} Method Name
 		.input
-			%input{:name => "MethodName#{method_count}", :id => "MethodName#{method_count}", :value => "#{m.MethodName}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName", :id => "endpoints.endpoint[#{endpointIndex}].methods[#{method_count}].MethodName", :value => "#{m.MethodName}"}
 	.clearfix
-		%label{:for => "Synopsis#{method_count}"} Synopsis
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} Synopsis
 		.input
-			%input{:name => "Synopsis#{method_count}", :id => "Synopsis#{method_count}", :value => "#{m.Synopsis}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :value => "#{m.Synopsis}"}
 	.clearfix
-		%label{:for => "HTTPMethod#{method_count}"} HTTP Method (GET, POST, PUT, etc)
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} HTTP Method (GET, POST, PUT, etc)
 		.input 
-			%input{:name => "HTTPMethod#{method_count}", :id => "HTTPMethod#{method_count}", :value => "#{m.HTTPMethod}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :value => "#{m.HTTPMethod}"}
 	.clearfix
-		%label{:for => "URI#{method_count}"} URI
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} URI
 		.input 
-			%input{:name => "URI#{method_count}", :id => "URI#{method_count}", :value => "#{m.URI}"}							
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
 	.clearfix
-		%label{:for => "RequiresOAuth#{method_count}"} Requires OAuth? (Y or N)
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth? (Y or N)
 		.input 
-			%input{:name => "RequiresOAuth#{method_count}", :id => "RequiresOAuth#{method_count}", :value => "#{m.RequiresOAuth}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :value => "#{m.RequiresOAuth}"}
 			
-	= partial :parameters, :locals => {:m => m}
+	= partial :parameters, :locals => {:m => m, :methodIndex => method_count}

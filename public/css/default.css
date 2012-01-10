@@ -9,3 +9,9 @@ body {
 .clickable {
 	cursor: pointer;
 }
+
+.string { color: green; }
+.number { color: darkorange; }
+.boolean { color: blue; }
+.null { color: magenta; }
+.key { color: red; }
