@@ -25,4 +25,4 @@
 		.input 
 			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :value => "#{m.RequiresOAuth}"}
 			
-	= partial :parameters, :locals => {:m => m, :methodIndex => method_count}
+	= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
