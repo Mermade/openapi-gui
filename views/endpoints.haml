@@ -3,8 +3,10 @@
 		.well
 			%h3 Endpoints
 			%ul
+				-count=0
 				- @result.endpoints.each do |e|
-					%li 
+					-count=count+1
+					%li.endpointActuator.clickable{:id => "endpointActuator#{count}"}
 						#{e.name}
 						%ul
 							- e["methods"].each do |m|
@@ -15,9 +17,8 @@
 			-count=0
 			- @result.endpoints.each do |e|
 				-count=count+1
-				.endpoint{:id => "ep#{count}"} 
-					%h2
-						Endpoint: #{e.name}
+				.endpoint.hidden{:id => "ep#{count}"} 
+					%h2	Endpoint: #{e.name}
 					%fieldset
 					
 						.clearfix
