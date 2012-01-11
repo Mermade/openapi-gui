@@ -16,7 +16,7 @@ post '/' do
 					(tmpfile = params[:file][:tempfile]) &&
 					(name = params[:file][:filename])
 		 @error = "No file selected"
-		 return haml(:index)
+		 return haml(:start)
 	 end
 
 	 contents = tmpfile.read

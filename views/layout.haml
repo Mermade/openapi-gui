@@ -7,18 +7,18 @@
 		%script{:src => "/js/jquery-1.7.1.min.js"}
 		%script{:src => "/js/default.js"}
 		%script{:src => "/js/form2js.js"}
+		%script{:src => "/js/bootstrap-modal.js"}
 	%body
 		.topbar
 			.fill
 				.container
-					%a.brand{:href => "#"} I/O Doctor
+					%span.brand I/O Doctor
 					%ul.nav
 						%li.active
-							%a{:href => "#"} Home
+							%a{:href => "/"} Start Over
 						%li
-							%a{:href => "#about"} About
+							%a.viewOutput{:href => "", :'data-controls-modal' => "outputModal"} View Output
 
 		.container	
 			.content
-				%input.btn#debug{:value => "DEBUG Output"}
 				=yield(:content)

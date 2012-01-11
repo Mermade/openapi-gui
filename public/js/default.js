@@ -1,8 +1,10 @@
 $(function() {
-	$('#debug').click(function(){
-		var formdata = form2js('config', '.')
-		var json = JSON.stringify(formdata, undefined, 2);
-		console.log(json);
+	$('.viewOutput').click(function(e){
+		var formdata = form2js('config', '.');
+		var json = syntaxHighlight(JSON.stringify(formdata, undefined, 2));
+		$('#outputModal').html(json);
+		
+		//figure out a good way to display it
 	})
 	
 	$('.endpointActuator').click(function(actuator) {
