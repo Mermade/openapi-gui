@@ -1,11 +1,21 @@
 $(function() {
+	$('.tabs').tabs();	
+	
+	$('.tabs').bind('change', function (e) {
+	  var prevTab = $('#' + $(e.relatedTarget).attr('tab'));
+	  prevTab.hide(); // previous tab
+	  
+	  var newTab =  $('#' + $(e.target).attr('tab'));
+	  newTab.show(); // activated tab
+	})
+	
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');
-		var json = syntaxHighlight(JSON.stringify(formdata, undefined, 2));
+		var json = JSON.stringify(formdata, undefined, 2);
+		var syntaxHighlightedJson = syntaxHighlight(json);
 		
-		$('#outputModal').html('<pre>' + json + '</pre>');
-		e.preventDefault();
-		//figure out a good way to display it
+		$('#output').html('<pre>' + syntaxHighlightedJson + '</pre>');
+		$('#json').val(json);
 	})
 	
 	$('.endpointActuator').click(function(actuator) {

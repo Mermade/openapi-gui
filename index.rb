@@ -26,3 +26,9 @@ post '/' do
 	 
 	 haml :endpoints
 end
+
+post '/file' do 
+  content_type 'application/json'
+  attachment 'config.json'
+  response.write params[:json]
+end

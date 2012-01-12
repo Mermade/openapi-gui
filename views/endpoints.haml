@@ -1,5 +1,16 @@
-#outputModal
-.container-fluid
+%ul.tabs
+	%li.active
+		%a{:tab => "editor", :href => "#editor"} Editor
+	%li
+		%a.viewOutput{:tab => "output-container", :href => "#output-container"} Output	
+
+.hidden#output-container
+	%form{:method => "post", :action => "/file"}
+		%input#json{:type => "hidden", :name => "json", :value => " "}
+		%input.btn{:type => "submit", :value => "Save File"}
+	#output
+	
+.container-fluid#editor
 	.sidebar
 		.well
 			%h3 Endpoints
