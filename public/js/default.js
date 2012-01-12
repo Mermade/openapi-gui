@@ -2,8 +2,9 @@ $(function() {
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');
 		var json = syntaxHighlight(JSON.stringify(formdata, undefined, 2));
-		$('#outputModal').html(json);
 		
+		$('#outputModal').html('<pre>' + json + '</pre>');
+		e.preventDefault();
 		//figure out a good way to display it
 	})
 	
