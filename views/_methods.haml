@@ -2,7 +2,7 @@
 - endpoint["methods"].each do |m|
 -method_count=method_count+1
 	%legend
-		Method: #{m.MethodName}
+		%a{:name => "endpoint#{endpointIndex}method#{method_count}"} Method: #{m.MethodName}
 	%br/
 	.clearfix
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} Method Name

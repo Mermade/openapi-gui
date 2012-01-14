@@ -12,19 +12,24 @@
 	
 .container-fluid#editor
 	.sidebar
-		.well
-			%h3 Endpoints
+		.well#tree
 			%ul
 				-count=0
 				- @result.endpoints.each do |e|
 					-count=count+1
-					%li.endpointActuator.clickable{:id => "endpointActuator#{count}"}
-						#{e.name}
+					%li
+						%a.endpointActuator{:href => "#", :id => "endpointActuator#{count}"} #{e.name}
 						%ul
-							- e["methods"].each do |m|
-								%li #{m.MethodName}
+							-method_count = 0
+							-e["methods"].each do |m|
+							-method_count=method_count+1
+								%li 
+									%a.methodActuator{:href => "#endpoint#{count}method#{method_count}"} #{m.MethodName}
 					
 	.content
+		#start
+			%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
+			
 		%form#config
 			-count=0
 			- @result.endpoints.each do |e|

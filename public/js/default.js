@@ -9,6 +9,28 @@ $(function() {
 	  newTab.show(); // activated tab
 	})
 	
+	$("#tree")
+		.jstree({ "plugins" : ["themes","html_data","ui"] })
+		.delegate("a.endpointActuator", "click", function(e) {
+			console.log('endpoint clicked');
+			e.preventDefault();
+			var actuator = e.target;
+			var id = actuator.id.replace("endpointActuator","");
+			var div = $('#ep' + id);
+
+			$('#start').hide();
+
+			//if the clicked div is already showing, do nothing
+			if(div.is(":visible"))
+				return;
+
+			//hide all divs
+			$('.endpoint').hide();
+
+			//show the div corresponding to what was clicked
+			$('#ep' + id).show('slow');
+		})
+	
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');
 		var json = JSON.stringify(formdata, undefined, 2);
@@ -18,21 +40,7 @@ $(function() {
 		$('#json').val(json);
 	})
 	
-	$('.endpointActuator').click(function(actuator) {
-		var actuator = event.target;
-		var id = actuator.id.replace("endpointActuator","");
-		var div = $('#ep' + id);
-		
-		//if the clicked div is already showing, do nothing
-		if(div.is(":visible"))
-			return;
-		
-		//hide all divs
-		$('.endpoint').hide();
-		
-		//show the div corresponding to what was clicked
-		$('#ep' + id).show('slow');
-	})
+	
 });
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
