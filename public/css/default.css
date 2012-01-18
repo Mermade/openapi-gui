@@ -15,3 +15,7 @@ body {
 .boolean { color: blue; }
 .null { color: magenta; }
 .key { color: red; }
+
+.container-fluid > .content {
+	margin-left: 280px;
+}

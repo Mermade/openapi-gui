@@ -12,7 +12,7 @@
 	%body
 		.topbar
 			.fill
-				.container
+				.container-fluid
 					%span.brand I/O Doctor
 					%ul.nav
 						%li.active
@@ -20,6 +20,5 @@
 						%li
 							%a{:href => "/"} About						
 
-		.container	
-			.content
-				=yield(:content)
+		.container-fluid	
+			=yield(:content)
