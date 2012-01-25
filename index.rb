@@ -15,8 +15,14 @@ post '/' do
 	 unless params[:file] &&
 					(tmpfile = params[:file][:tempfile]) &&
 					(name = params[:file][:filename])
-		 @error = "No file selected"
-		 return haml(:start)
+					
+		 if params[:load]
+			  return haml :start
+     end
+     
+		 @result = Hash.new
+		 @result["endpoints"] = Hash.new
+		 return haml(:endpoints)
 	 end
 
 	 contents = tmpfile.read

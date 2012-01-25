@@ -1,0 +1,12 @@
+Build HTML templates for for blank endpoint, blank method, and blank parameter, which we will clone to add new ones
+
+Add hidden inputs that track: total number of endpoints, total number of methods per endpoint
+
+when adding an endpoint: 
+	increment total number of endpoints
+	clone endpoint template
+	update the names/IDs to correspond to the new endpoints index (for now, the last one)
+
+http://stackoverflow.com/questions/8018132/jquery-clone-form-fields-and-increment-id
+
+http://stackoverflow.com/questions/4359804/dynamically-add-remove-rows-using-jquery

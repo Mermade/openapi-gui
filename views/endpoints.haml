@@ -14,7 +14,7 @@
 	.sidebar.well#tree
 		%ul
 			-count=0
-			- @result.endpoints.each do |e|
+			- @result["endpoints"].each do |e|
 				-count=count+1
 				%li
 					%a.endpointActuator{:href => "#", :id => "endpointActuator#{count}"} #{e.name}
@@ -31,7 +31,7 @@
 			
 		%form#config
 			-count=0
-			- @result.endpoints.each do |e|
+			- @result["endpoints"].each do |e|
 				-count=count+1
 				.endpoint.hidden{:id => "ep#{count}"} 
 					%h2	Endpoint: #{e.name}
