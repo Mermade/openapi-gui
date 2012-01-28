@@ -23,11 +23,11 @@
 				-count=count+1
 				.endpoint.hidden{:id => "ep#{count}"} 
 					%h2	Endpoint: #{e.name}
+					%label{:for => "endpoints[#{count}].name"} Endpoint Name
+					.input
+						%input{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
+					%br/
+					
 					%fieldset			
-						.clearfix
-							%label{:for => "endpoints[#{count}].name"} Endpoint Name
-							.input
-								%input{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
-						
 						= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					

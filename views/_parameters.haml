@@ -7,20 +7,39 @@
 	.clearfix
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName", :id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName", :value => "#{p.Name}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName", |
+				:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName",      |
+				:value => "#{p.Name}"} |
 	.clearfix
-		-#make this a textarea
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} Description
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description", :id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description", :value => "#{p.Description}"}
+			%textarea{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description", |
+			 	:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} |
+				#{p.Description} |
 	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required"} Required? (Y or N)
+		%label Required?
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", :id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", :value => "#{p.Required}"}
+			%ul.inputs-list
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
+							:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.Yes", |
+							:value => "Y", |
+							:checked => p.Required == "Y"}
+						%span Yes
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
+							:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.No", |
+							:value => "N", |
+							:checked => p.Required == "N"} 
+						%span No
 	.clearfix
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default"} Default value
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default", :id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default", :value => "#{p.Default}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default", | 
+			:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default",          |
+			:value => "#{p.Default}"} |
 	
 	-#this is where logic is needed to hide/display fields based on type
 	.clearfix
