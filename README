@@ -6,7 +6,20 @@ when adding an endpoint:
 	increment total number of endpoints
 	clone endpoint template
 	update the names/IDs to correspond to the new endpoints index (for now, the last one)
+	
+requirements:
+	Endpoints must have at least one method
+	Methods don't necessarily have parameters
+	
 
 http://stackoverflow.com/questions/8018132/jquery-clone-form-fields-and-increment-id
 
 http://stackoverflow.com/questions/4359804/dynamically-add-remove-rows-using-jquery
+
+todo:
+	correct field types (dropdowns, textareas, etc)
+	validation on fields
+	get links to methods working
+	
+future:
+	drag and drop tree nodes to reorder things?
