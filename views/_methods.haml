@@ -21,8 +21,22 @@
 		.input 
 			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
 	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth? (Y or N)
+		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth?
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", :value => "#{m.RequiresOAuth}"}
+			%ul.inputs-list
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.Yes", |
+							:value => "Y", |
+							:checked => m.RequiresOAuth == "Y"}
+						%span Yes
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.No", |
+							:value => "N", |
+							:checked => m.RequiresOAuth == "N"} 
+						%span No
 			
 	= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}

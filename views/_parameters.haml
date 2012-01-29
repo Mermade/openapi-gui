@@ -46,4 +46,10 @@
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type"} Data type
 		-#should be a dropdown
 		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", :id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", :value => "#{p.Type}"}
+			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+			:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
+			:value => "#{p.Type}"} 
+			
+			%span.help-block
+				Can be an aribitrary value, e.g. string or int. Values "boolean" and "enumerated" will render a dropdown.
+			
