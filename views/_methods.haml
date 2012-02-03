@@ -1,42 +1,44 @@
--method_count = 0
--endpoint["methods"].each do |m|
-	-method_count=method_count+1
-	%legend
-		%a{:name => "endpoint#{endpointIndex}method#{method_count}"} Method: #{m.MethodName}
-	%br/
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} Method Name
-		.input
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName", :id => "endpoints.endpoint[#{endpointIndex}].methods[#{method_count}].MethodName", :value => "#{m.MethodName}"}
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} Synopsis
-		.input
-			%textarea{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"}#{m.Synopsis}
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} HTTP Method (GET, POST, PUT, etc)
-		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :value => "#{m.HTTPMethod}"}
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} URI
-		.input 
-			%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth?
-		.input 
-			%ul.inputs-list
-				%li
-					%label
-						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
-							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.Yes", |
-							:value => "Y", |
-							:checked => m.RequiresOAuth == "Y"}
-						%span Yes
-				%li
-					%label
-						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
-							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.No", |
-							:value => "N", |
-							:checked => m.RequiresOAuth == "N"} 
-						%span No
-			
-	= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
+%fieldset
+	-method_count = 0
+	-endpoint["methods"].each do |m|
+		-method_count=method_count+1
+		%legend
+			%a{:name => "endpoint#{endpointIndex}method#{method_count}"} Method: #{m.MethodName}
+		%br/
+		.clearfix
+			%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} Method Name
+			.input
+				%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName", :id => "endpoints.endpoint[#{endpointIndex}].methods[#{method_count}].MethodName", :value => "#{m.MethodName}"}
+		.clearfix
+			%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} Synopsis
+			.input
+				%textarea{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"}#{m.Synopsis}
+		.clearfix
+			%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} HTTP Method (GET, POST, PUT, etc)
+			.input 
+				%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :value => "#{m.HTTPMethod}"}
+		.clearfix
+			%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} URI
+			.input 
+				%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
+		.clearfix
+			%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth?
+			.input 
+				%ul.inputs-list
+					%li
+						%label
+							%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+								:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.Yes", |
+								:value => "Y", |
+								:checked => m.RequiresOAuth == "Y"}
+							%span Yes
+					%li
+						%label
+							%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+								:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.No", |
+								:value => "N", |
+								:checked => m.RequiresOAuth == "N"} 
+							%span No
+		= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
+	%input{:type=>"hidden", :value => method_count, :id=>"endpoint#{endpointIndex}MethodCounter"}
+		

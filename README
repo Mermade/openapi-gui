@@ -1,7 +1,5 @@
 Build HTML templates for for blank endpoint, blank method, and blank parameter, which we will clone to add new ones
 
-Add hidden inputs that track: total number of endpoints, total number of methods per endpoint
-
 when adding an endpoint: 
 	increment total number of endpoints
 	clone endpoint template

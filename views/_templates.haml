@@ -1,0 +1,46 @@
+-#These are the DOM elements that we will clone and manipulate to add endpoints, methods, and parameters
+
+.template.hidden{:id => "endpointTemplate"} 
+	.endpoint{:id => "epBlank"} 
+		%h2.endpointName Endpoint: 
+		%label{:for => "endpoints[blank].name"} Endpoint Name
+		.input
+			%input{:name => "endpoints[blank].name", :id => "endpoints[blank].name"}
+		%br/
+
+.template.hidden{:id => "methodTemplate"} 	
+	%legend.methodName
+		%a{:name => "endpointendpointIndexmethodmethodIndex"} Method: 
+	%br/
+	.clearfix
+		%label{:for => "endpoints[endpointIndex].methods[methodIndex].MethodName"} Method Name
+		.input
+			%input{:name => "endpoints[endpointIndex].methods[methodIndex].MethodName", :id => "endpoints.endpoint[endpointIndex].methods[methodIndex].MethodName"}
+	.clearfix
+		%label{:for => "endpoints[endpointIndex].methods[methodIndex].Synopsis"} Synopsis
+		.input
+			%textarea{:name => "endpoints[endpointIndex].methods[methodIndex].Synopsis", :id => "endpoints[endpointIndex].methods[methodIndex].Synopsis"}
+	.clearfix
+		%label{:for => "endpoints[endpointIndex].methods[methodIndex].HTTPMethod"} HTTP Method (GET, POST, PUT, etc)
+		.input 
+			%input{:name => "endpoints[endpointIndex].methods[methodIndex].HTTPMethod", :id => "endpoints[endpointIndex].methods[methodIndex].HTTPMethod"}
+	.clearfix
+		%label{:for => "endpoints[endpointIndex].methods[methodIndex].URI"} URI
+		.input 
+			%input{:name => "endpoints[endpointIndex].methods[methodIndex].URI", :id => "endpoints[endpointIndex].methods[methodIndex].URI"}							
+	.clearfix
+		%label{:for => "endpoints[endpointIndex].methods[methodIndex].RequiresOAuth"} Requires OAuth?
+		.input 
+			%ul.inputs-list
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[endpointIndex].methods[methodIndex].RequiresOAuth", |
+							:id => "endpoints[endpointIndex].methods[methodIndex].RequiresOAuth.Yes", |
+							:value => "Y"}
+						%span Yes
+				%li
+					%label
+						%input{:type => "radio", :name => "endpoints[endpointIndex].methods[methodIndex].RequiresOAuth", |
+							:id => "endpoints[endpointIndex].methods[methodIndex].RequiresOAuth.No", |
+							:value => "N"} 
+						%span No

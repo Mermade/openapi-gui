@@ -16,7 +16,9 @@
 	.content.forms
 		#start
 			%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
-			
+		
+		%input.btn(type='submit' value='Add Endpoint' id="addEndpoint")
+		
 		%form#config
 			-count=0
 			- @result["endpoints"].each do |e|
@@ -28,6 +30,7 @@
 						%input{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 					%br/
 					
-					%fieldset			
-						= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
-					
+					= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
+			%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}
+
+= partial :templates

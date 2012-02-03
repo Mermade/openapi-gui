@@ -41,7 +41,6 @@
 			:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default",          |
 			:value => "#{p.Default}"} |
 	
-	-#this is where logic is needed to hide/display fields based on type
 	.clearfix
 		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type"} Data type
 		-#should be a dropdown
@@ -52,4 +51,6 @@
 			
 			%span.help-block
 				Can be an aribitrary value, e.g. string or int. Values "boolean" and "enumerated" will render a dropdown.
-			
+				-#this is where logic is needed to hide/display fields based on type
+
+%input{:type=>"hidden", :value => param_count, :id=>"endpoint#{endpointIndex}Method#{methodIndex}ParameterCounter"}

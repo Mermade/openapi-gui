@@ -40,11 +40,11 @@ $(function() {
 		$('#json').val(json);
 	})
 	
-	
+	$('#addEndpoint').click(addEndpoint)
 });
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
-function syntaxHighlight(json) {
+var syntaxHighlight = function(json) {
     json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
         var cls = 'number';
@@ -62,3 +62,15 @@ function syntaxHighlight(json) {
         return '<span class="' + cls + '">' + match + '</span>';
     });
 }
+
+
+//TODO make a Endpoint object to contain these methods
+var addEndpoint = function(){
+	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
+	newEndpoint = intializeEndpoint(newEndpoint);
+	
+	newEndpoint.appendTo('#config');
+	console.log(newEndpoint);
+}
+
+var initializeEndpoint 
