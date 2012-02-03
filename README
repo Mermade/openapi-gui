@@ -9,7 +9,6 @@ requirements:
 	Endpoints must have at least one method
 	Methods don't necessarily have parameters
 	
-
 http://stackoverflow.com/questions/8018132/jquery-clone-form-fields-and-increment-id
 
 http://stackoverflow.com/questions/4359804/dynamically-add-remove-rows-using-jquery

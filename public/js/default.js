@@ -12,7 +12,6 @@ $(function() {
 	$("#tree")
 		.jstree({ "plugins" : ["themes","html_data","ui"] })
 		.delegate("a.endpointActuator", "click", function(e) {
-			console.log('endpoint clicked');
 			e.preventDefault();
 			var actuator = e.target;
 			var id = actuator.id.replace("endpointActuator","");
@@ -40,7 +39,7 @@ $(function() {
 		$('#json').val(json);
 	})
 	
-	$('#addEndpoint').click(addEndpoint)
+	$('#addEndpoint').click(addEndpoint);
 });
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
@@ -73,4 +72,14 @@ var addEndpoint = function(){
 	console.log(newEndpoint);
 }
 
-var initializeEndpoint 
+var initializeEndpoint = function(endpoint){
+	//get the count of endpoints
+	//increment it, use new value to for id replacement
+	//update the id of all the child elements in the template to use the new id
+	//update the for attr of 	%label.nameLabel{:for => "endpoints[blank].name"}
+	//update id of all inputs
+}
+
+var updateEndpointNamesAndIds = function(endpoint, newId) {
+	//for child input of root replace "blank" with newId in all ids and names
+}
