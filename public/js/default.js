@@ -66,13 +66,17 @@ var syntaxHighlight = function(json) {
 //TODO make a Endpoint object to contain these methods
 var addEndpoint = function(){
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
-	newEndpoint = intializeEndpoint(newEndpoint);
+	newEndpoint = initializeEndpoint(newEndpoint);
 	
 	newEndpoint.appendTo('#config');
 	console.log(newEndpoint);
 }
 
 var initializeEndpoint = function(endpoint){
+	newId = parseInt($('#endpointCounter').val()) + 1;
+	$('#endpointCounter').val(newId);
+	return updateEndpoint(endpoint, newId);
+	
 	//get the count of endpoints
 	//increment it, use new value to for id replacement
 	//update the id of all the child elements in the template to use the new id
@@ -80,6 +84,17 @@ var initializeEndpoint = function(endpoint){
 	//update id of all inputs
 }
 
-var updateEndpointNamesAndIds = function(endpoint, newId) {
-	//for child input of root replace "blank" with newId in all ids and names
+var updateEndpoint = function(endpoint, newId) {
+	endpoint.attr('id', 'ep' + newId);
+	
+	endpoint.find('input').each(function(){
+		$(this).attr('id', $(this).attr('id').replace('blank', newId));
+		$(this).attr('name', $(this).attr('name').replace('blank', newId));
+	});
+	
+	endpoint.find('label').each(function(){
+		$(this).attr('for', $(this).attr('for').replace('blank', newId));
+	});
+	
+	return endpoint;
 }
