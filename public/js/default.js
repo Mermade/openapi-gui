@@ -40,7 +40,16 @@ $(function() {
 	})
 	
 	$('#addEndpoint').click(addEndpoint);
+	
+	$('input.endpointName').live('change', updateEndpointName)
 });
+
+var updateEndpointName = function(e) {
+	var span = $(e.target).closest('.endpoint').find('.endpointNameSpan');
+	span.html($(e.target).val());
+	
+	
+}
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
 var syntaxHighlight = function(json) {
@@ -63,12 +72,18 @@ var syntaxHighlight = function(json) {
 }
 
 
-//TODO make a Endpoint object to contain these methods
+//TODO refactor these methods into 3 objects - endpoint, method, parameter
 var addEndpoint = function(){
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
 	newEndpoint = initializeEndpoint(newEndpoint);
 	
 	newEndpoint.appendTo('#config');
+	
+	//all endpoints must have at least one method, so add a blank method here
+	
+	//add the new Endpoint to the menu (and possibly refresh the tree?)
+	
+	
 	console.log(newEndpoint);
 }
 
@@ -76,12 +91,6 @@ var initializeEndpoint = function(endpoint){
 	newId = parseInt($('#endpointCounter').val()) + 1;
 	$('#endpointCounter').val(newId);
 	return updateEndpoint(endpoint, newId);
-	
-	//get the count of endpoints
-	//increment it, use new value to for id replacement
-	//update the id of all the child elements in the template to use the new id
-	//update the for attr of 	%label.nameLabel{:for => "endpoints[blank].name"}
-	//update id of all inputs
 }
 
 var updateEndpoint = function(endpoint, newId) {
@@ -98,3 +107,11 @@ var updateEndpoint = function(endpoint, newId) {
 	
 	return endpoint;
 }
+
+//Deleting an endpoint :-
+//nuke all child parameters and methods
+//update the endpointXMethodCounter after removing all the methods
+//select all the endpoints that had an index higher than the one removed, and decrease each index by 1
+
+
+

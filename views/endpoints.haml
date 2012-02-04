@@ -24,10 +24,12 @@
 			- @result["endpoints"].each do |e|
 				-count=count+1
 				.endpoint.hidden{:id => "ep#{count}"} 
-					%h2	Endpoint: #{e.name}
+					%h2	
+						Endpoint: 
+						%span.endpointNameSpan #{e.name}
 					%label{:for => "endpoints[#{count}].name"} Endpoint Name
 					.input
-						%input{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
+						%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 					%br/
 					
 					= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}

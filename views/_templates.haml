@@ -2,7 +2,9 @@
 
 .template.hidden{:id => "endpointTemplate"} 
 	.endpoint{:id => "epBlank"} 
-		%h2 Endpoint: 
+		%h2 
+			Endpoint:
+			%span.endpointNameSpan
 		%label.nameLabel{:for => "endpoints[blank].name"} Endpoint Name
 		.input
 			%input{:name => "endpoints[blank].name", :id => "endpoints[blank].name"}
