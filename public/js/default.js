@@ -75,7 +75,6 @@ var syntaxHighlight = function(json) {
     });
 }
 
-
 //TODO refactor these methods into 3 objects - endpoint, method, parameter
 var addEndpoint = function(){
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
@@ -100,11 +99,13 @@ var initializeEndpoint = function(endpoint){
 var updateEndpoint = function(endpoint, newId) {
 	endpoint.attr('id', 'ep' + newId);
 	
+	//update the name and id of each child input
 	endpoint.find('input').each(function(){
 		$(this).attr('id', $(this).attr('id').replace('blank', newId));
 		$(this).attr('name', $(this).attr('name').replace('blank', newId));
 	});
 	
+	//update the for attribute of each child label
 	endpoint.find('label').each(function(){
 		$(this).attr('for', $(this).attr('for').replace('blank', newId));
 	});
