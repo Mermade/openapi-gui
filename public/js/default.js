@@ -7,29 +7,8 @@ $(function() {
 	  
 	  var newTab =  $('#' + $(e.target).attr('tab'));
 	  newTab.show(); // activated tab
-	})
-	
-	$("#tree")
-		.jstree({ "plugins" : ["themes","html_data","ui"] })
-		.delegate("a.endpointActuator", "click", function(e) {
-			e.preventDefault();
-			var actuator = e.target;
-			var id = actuator.id.replace("endpointActuator","");
-			var div = $('#ep' + id);
+	});
 
-			$('#start').hide();
-
-			//if the clicked div is already showing, do nothing
-			if(div.is(":visible"))
-				return;
-
-			//hide all divs
-			$('.endpoint').hide();
-
-			//show the div corresponding to what was clicked
-			$('#ep' + id).show('slow');
-		})
-	
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');
 		var json = JSON.stringify(formdata, undefined, 2);
@@ -37,22 +16,56 @@ $(function() {
 		
 		$('#output').html('<pre>' + syntaxHighlightedJson + '</pre>');
 		$('#json').val(json);
-	})
+	});
+	
+	$('.endpointActuator').live('click', showEndpoint);
 	
 	$('#addEndpoint').click(addEndpoint);
 	
 	$('input.endpointName').live('change', updateEndpointName)
+	$('input.methodName').live('change', updateMethodName)
+	//$('input.parameterName').live('change', updateParameterName)
 });
 
+var showEndpoint = function(e) {
+	e.preventDefault();
+	var actuator = e.target;
+	var id = actuator.id.replace("endpointActuator","");
+	var div = $('#ep' + id);
+
+	$('#start').hide();
+
+	//if the clicked div is already showing, do nothing
+	if(div.is(":visible"))
+		return;
+
+	//hide all divs
+	$('.endpoint').hide();
+
+	//show the div corresponding to what was clicked
+	$('#ep' + id).show('slow');
+};
+
 var updateEndpointName = function(e) {
-	var span = $(e.target).closest('.endpoint').find('.endpointNameSpan');
-	span.html($(e.target).val());
+	var input = $(e.target);
+	var span = input.closest('.endpoint').find('.endpointNameSpan');
+	span.html(input.val());
 	
-	var endpointIndex = $(e.target).closest('.endpoint').attr('id').replace('ep','');
+	var endpointIndex = input.closest('.endpoint').attr('id').replace('ep','');
 	var menuItem = $('#endpointActuator' + endpointIndex);
 
-	var menuIcon = '<ins class="jstree-icon">&nbsp;</ins>';
-	menuItem.html(menuIcon + $(e.target).val());
+	menuItem.html(input.val());
+}
+
+var updateMethodName = function(e) {
+	var span = $(e.target).closest('.methodContainer').find('.methodNameSpan');
+	span.html($(e.target).val());
+	
+	var methodIndex = $(e.target).closest('.methodContainer').attr('methodIndex');
+	var endpointIndex = $(e.target).closest('.methodContainer').attr('endpointIndex');
+	var menuItem = $('#endpoint' + endpointIndex + 'method' + methodIndex +'Actuator');
+
+	menuItem.html($(e.target).val());
 }
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
@@ -85,7 +98,7 @@ var addEndpoint = function(){
 	//all endpoints must have at least one method, so add a blank method here
 	
 	//add the new Endpoint to the menu (and possibly refresh the tree?)
-	
+	var newMenuItem = $("#endpointMenuTemplate").clone()
 	
 	console.log(newEndpoint);
 }

@@ -10,4 +10,4 @@
 					-e["methods"].each do |m|
 					-method_count=method_count+1
 						%li 
-							%a.methodActuator{:href => "#endpoint#{count}method#{method_count}"} #{m.MethodName}
+							%a.methodActuator{:href => "#endpoint#{count}method#{method_count}", :id => "endpoint#{count}method#{method_count}Actuator"} #{m.MethodName}
