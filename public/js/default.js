@@ -48,7 +48,11 @@ var updateEndpointName = function(e) {
 	var span = $(e.target).closest('.endpoint').find('.endpointNameSpan');
 	span.html($(e.target).val());
 	
-	
+	var endpointIndex = $(e.target).closest('.endpoint').attr('id').replace('ep','');
+	var menuItem = $('#endpointActuator' + endpointIndex);
+
+	var menuIcon = '<ins class="jstree-icon">&nbsp;</ins>';
+	menuItem.html(menuIcon + $(e.target).val());
 }
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript
