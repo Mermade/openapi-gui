@@ -1,6 +1,6 @@
 -#These are the DOM elements that we will clone and manipulate to add endpoints, methods, and parameters
 
-.template.hidden{:id => "endpointTemplate"} 
+.template.hide{:id => "endpointTemplate"} 
 	.endpoint{:id => "epBlank"} 
 		%h2 
 			Endpoint:
@@ -10,7 +10,7 @@
 			%input{:name => "endpoints[blank].name", :id => "endpoints[blank].name"}
 		%br/
 
-.template.hidden{:id => "methodTemplate"} 	
+.template.hide{:id => "methodTemplate"} 	
 	%legend.methodName
 		%a{:name => "endpointendpointIndexmethodmethodIndex"} Method: 
 	%br/
@@ -47,6 +47,6 @@
 							:value => "N"} 
 						%span No
 						
-.template.hidden{:id => "endpointMenuTemplate"}
+.template.hide{:id => "endpointMenuTemplate"}
 	%li
 		%a.endpointActuator{:href => "#", :id => "endpointActuatorblank"}
