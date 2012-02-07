@@ -1,8 +1,12 @@
 body {
-   padding-top: 60px;
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+.sidebar-nav {
+  padding: 9px 0;
 }
 
-.hidden {
+.hide {
 	display:none;
 }
 
@@ -15,7 +19,3 @@ body {
 .boolean { color: blue; }
 .null { color: magenta; }
 .key { color: red; }
-
-.container-fluid > .content {
-	margin-left: 280px;
-}

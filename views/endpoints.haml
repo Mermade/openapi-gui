@@ -1,38 +1,40 @@
-%ul.tabs
-	%li.active
-		%a{:tab => "editor", :href => "#editor"} Editor
-	%li
-		%a.viewOutput{:tab => "output-container", :href => "#output-container"} Output	
+.row-fluid
+	%ul.tabs.nav.nav-tabs
+		%li.active
+			%a(href="#editor" data-toggle="tab") Editor
+		%li
+			%a.viewOutput(href="#output-container" data-toggle="tab") Output	
 
-.hidden#output-container
-	%form{:method => "post", :action => "/file"}
-		%input#json{:type => "hidden", :name => "json", :value => " "}
-		%input.btn{:type => "submit", :value => "Save File"}
-	#output
+	.tab-content
+		#output-container.tab-pane
+			%form{:method => "post", :action => "/file"}
+				%input#json{:type => "hidden", :name => "json", :value => " "}
+				%input.btn{:type => "submit", :value => "Save File"}
+			#output
+
+		#editor.tab-pane.active
+			= partial :menu, :locals => {:result => @result}
+			
+			.content.forms.span8
+				#start
+					%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
 	
-.container-fluid#editor
-	= partial :menu, :locals => {:result => @result}
+				%input.btn(type='submit' value='Add Endpoint' id="addEndpoint")
+	
+				%form#config
+					-count=0
+					- @result["endpoints"].each do |e|
+						-count=count+1
+						.endpoint.hide{:id => "ep#{count}"} 
+							%h2	
+								Endpoint: 
+								%span.endpointNameSpan #{e.name}
+							%label{:for => "endpoints[#{count}].name"} Endpoint Name
+							.input
+								%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
+							%br/
 				
-	.content.forms
-		#start
-			%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
-		
-		%input.btn(type='submit' value='Add Endpoint' id="addEndpoint")
-		
-		%form#config
-			-count=0
-			- @result["endpoints"].each do |e|
-				-count=count+1
-				.endpoint.hidden{:id => "ep#{count}"} 
-					%h2	
-						Endpoint: 
-						%span.endpointNameSpan #{e.name}
-					%label{:for => "endpoints[#{count}].name"} Endpoint Name
-					.input
-						%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
-					%br/
-					
-					= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
-			%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}
+							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
+					%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}
 
 = partial :templates

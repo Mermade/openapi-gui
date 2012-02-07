@@ -11,6 +11,10 @@ get '/' do
 	haml :start, :format => :html5
 end
 
+get '/about' do
+  haml :about
+end 
+
 post '/' do
 	 unless params[:file] &&
 					(tmpfile = params[:file][:tempfile]) &&

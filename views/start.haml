@@ -7,14 +7,14 @@
 	
 	%form(method="post" enctype='multipart/form-data')
 		.row
-			.span6
+			.span4
 				%p 
 					Upload your existing JSON file...
 				%input(type='file' name='file')
 				%br/
 				%input.btn.primary.large(type='submit' value='Load JSON' name="load")
 
-			.span7
+			.span4
 				%p 
 					\...or create a new configuration to get started.
 				%input.btn.primary.large(type='submit' value='New' name="new")

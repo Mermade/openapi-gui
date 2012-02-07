@@ -1,13 +1,14 @@
-.sidebar.well#tree
-	%ul
-		-count=0
-		- result["endpoints"].each do |e|
-			-count=count+1
-			%li
-				%a.endpointActuator{:href => "#", :id => "endpointActuator#{count}"} #{e.name}
-				%ul
-					-method_count = 0
-					-e["methods"].each do |m|
-					-method_count=method_count+1
-						%li 
-							%a.methodActuator{:href => "#endpoint#{count}method#{method_count}", :id => "endpoint#{count}method#{method_count}Actuator"} #{m.MethodName}
+.span3
+	.sidebar-nav.well
+		%ul
+			-count=0
+			- result["endpoints"].each do |e|
+				-count=count+1
+				%li
+					%a.endpointActuator{:href => "#", :id => "endpointActuator#{count}"} #{e.name}
+					%ul
+						-method_count = 0
+						-e["methods"].each do |m|
+						-method_count=method_count+1
+							%li 
+								%a.methodActuator{:href => "#endpoint#{count}method#{method_count}", :id => "endpoint#{count}method#{method_count}Actuator"} #{m.MethodName}

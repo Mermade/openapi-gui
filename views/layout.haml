@@ -3,21 +3,28 @@
 	%head
 		%title I/O Doctor - GUI for I/O Docs configurations
 		%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
+		%link{:href => "/css/bootstrap-responsive.min.css", :rel => "stylesheet"}
 		%link{:href => "/css/default.css", :rel => "stylesheet"}
-		%script{:src => "/js/jquery-1.7.1.min.js"}
-		%script{:src => "/js/default.js"}
-		%script{:src => "/js/form2js.js"}
-		%script{:src => "/js/bootstrap-tabs.js"}
-	%body
-		.topbar
-			.fill
-				.container-fluid
-					%span.brand I/O Doctor
-					%ul.nav
-						%li.active
-							%a{:href => "/"} Start Over
-						%li
-							%a{:href => "/"} About						
 
-		.container-fluid	
+	%body
+		.navbar.navbar-fixed-top
+			.navbar-inner
+				.container-fluid
+					%a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
+						%span.icon-bar
+						%span.icon-bar         
+					%span.brand I/O Doctor
+					.nav-collapse
+						%ul.nav
+							%li
+								%a{:href => "/"} Start Over
+							%li
+								%a{:href => "/about"} About						
+		.container-fluid
 			=yield(:content)
+
+%script{:src => "/js/jquery-1.7.1.min.js"}
+%script{:src => "/js/bootstrap.min.js"}
+%script{:src => "/js/default.js"}
+%script{:src => "/js/form2js.js"}
+%script{:src => "/js/bootstrap-tab.js"}
