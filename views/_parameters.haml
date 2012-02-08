@@ -4,22 +4,22 @@
 	%legend
 		Parameter: #{p.Name}
 	%br/
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
-		.input 
+	.control-group
+		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
+		.controls 
 			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName", |
 				:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName",      |
 				:value => "#{p.Name}"} |
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} Description
-		.input 
+	.control-group
+		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} Description
+		.controls 
 			%textarea{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description", |
 			 	:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} |
 				#{p.Description} |
-	.clearfix
+	.control-group
 		%label Required?
-		.input 
-			%ul.inputs-list
+		.controls 
+			%ul.controlss-list
 				%li
 					%label
 						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
@@ -34,22 +34,22 @@
 							:value => "N", |
 							:checked => p.Required == "N"} 
 						%span No
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default"} Default value
-		.input 
+	.control-group
+		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default"} Default value
+		.controls 
 			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default", | 
 			:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default",          |
 			:value => "#{p.Default}"} |
 	
-	.clearfix
-		%label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type"} Data type
+	.control-group
+		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type"} Data type
 		-#should be a dropdown
-		.input 
+		.controls 
 			%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
 			:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
 			:value => "#{p.Type}"} 
 			
-			%span.help-block
+			%p.help-block
 				Can be an aribitrary value, e.g. string or int. Values "boolean" and "enumerated" will render a dropdown.
 				-#this is where logic is needed to hide/display fields based on type
 
