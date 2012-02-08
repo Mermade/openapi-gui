@@ -21,7 +21,7 @@
 	
 				%input.btn(type='submit' value='Add Endpoint' id="addEndpoint")
 	
-				%form#config
+				%form.form-horizontal#config
 					-count=0
 					- @result["endpoints"].each do |e|
 						-count=count+1
@@ -29,10 +29,11 @@
 							%h2	
 								Endpoint: 
 								%span.endpointNameSpan #{e.name}
-							%label{:for => "endpoints[#{count}].name"} Endpoint Name
-							.input
-								%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
-							%br/
+							.control-group
+								%label.control-label{:for => "endpoints[#{count}].name"} Endpoint Name
+								.controls
+									.input
+										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 				
 							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}

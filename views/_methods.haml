@@ -7,41 +7,42 @@
 				%a{:name => "endpoint#{endpointIndex}method#{method_count}"} 
 					Method: 
 					%span.methodNameSpan #{m.MethodName}
-			%br/
-			.clearfix
-				%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} Method Name
-				.input
+			.control-group
+				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} 
+					Method Name
 					%input.methodName{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName", :id => "endpoints.endpoint[#{endpointIndex}].methods[#{method_count}].MethodName", :value => "#{m.MethodName}"}
-			.clearfix
-				%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} Synopsis
-				.input
+			
+			.control-group
+				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} 
+					Synopsis
 					%textarea{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"}#{m.Synopsis}
-			.clearfix
-				%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} HTTP Method (GET, POST, PUT, etc)
-				.input 
+		
+			.control-group
+				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} 
+					HTTP Method (GET, POST, PUT, etc)
 					%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :value => "#{m.HTTPMethod}"}
-			.clearfix
-				%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} URI
-				.input 
+			
+			.control-group
+				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} 
+					URI
 					%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
-			.clearfix
-				%label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} Requires OAuth?
-				.input 
-					%ul.inputs-list
-						%li
-							%label
-								%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
-									:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.Yes", |
-									:value => "Y", |
-									:checked => m.RequiresOAuth == "Y"}
-								%span Yes
-						%li
-							%label
-								%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
-									:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.No", |
-									:value => "N", |
-									:checked => m.RequiresOAuth == "N"} 
-								%span No
+		
+			.control-group
+				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth"} 
+					Requires OAuth?
+				.controls
+					%label.radio
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.Yes", |
+							:value => "Y", |
+							:checked => m.RequiresOAuth == "Y"}
+							%span Yes
+					%label.radio
+						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth", |
+							:id => "endpoints[#{endpointIndex}].methods[#{method_count}].RequiresOAuth.No", |
+							:value => "N", |
+							:checked => m.RequiresOAuth == "N"} 
+							%span No
 			= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
 		%input{:type=>"hidden", :value => method_count, :id=>"endpoint#{endpointIndex}MethodCounter"}
 		
