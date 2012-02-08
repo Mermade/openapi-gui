@@ -3,7 +3,6 @@
 	-param_count=param_count+1
 	%legend
 		Parameter: #{p.Name}
-	%br/
 	.control-group
 		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
 		.controls 
@@ -17,23 +16,21 @@
 			 	:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} |
 				#{p.Description} |
 	.control-group
-		%label Required?
+		%label.control-label Required?
 		.controls 
-			%ul.controlss-list
-				%li
-					%label
-						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
-							:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.Yes", |
-							:value => "Y", |
-							:checked => p.Required == "Y"}
-						%span Yes
-				%li
-					%label
-						%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
-							:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.No", |
-							:value => "N", |
-							:checked => p.Required == "N"} 
-						%span No
+			%label.radio
+				%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
+					:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.Yes", |
+					:value => "Y", |
+					:checked => p.Required == "Y"}
+					Yes
+					
+			%label.radio
+				%input{:type => "radio", :name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required", |
+					:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Required.No", |
+					:value => "N", |
+					:checked => p.Required == "N"} 
+					No
 	.control-group
 		%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Default"} Default value
 		.controls 
