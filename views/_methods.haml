@@ -10,6 +10,7 @@
 			.control-group
 				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} 
 					Method Name
+				.controls
 					%input.methodName{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName", :id => "endpoints.endpoint[#{endpointIndex}].methods[#{method_count}].MethodName", :value => "#{m.MethodName}"}
 			
 			.control-group
