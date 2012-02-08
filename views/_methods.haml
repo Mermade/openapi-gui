@@ -15,16 +15,19 @@
 			.control-group
 				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"} 
 					Synopsis
+				.controls
 					%textarea{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].Synopsis"}#{m.Synopsis}
 		
 			.control-group
 				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod"} 
 					HTTP Method (GET, POST, PUT, etc)
+				.controls
 					%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].HTTPMethod", :value => "#{m.HTTPMethod}"}
 			
 			.control-group
 				%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].URI"} 
 					URI
+				.controls
 					%input{:name => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :id => "endpoints[#{endpointIndex}].methods[#{method_count}].URI", :value => "#{m.URI}"}							
 		
 			.control-group
