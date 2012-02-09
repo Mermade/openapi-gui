@@ -3,23 +3,18 @@
 	%head
 		%title I/O Doctor - GUI for I/O Docs configurations
 		%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
-		%link{:href => "/css/bootstrap-responsive.min.css", :rel => "stylesheet"}
 		%link{:href => "/css/default.css", :rel => "stylesheet"}
 
 	%body
 		.navbar.navbar-fixed-top
 			.navbar-inner
-				.container-fluid
-					%a.btn.btn-navbar(data-toggle="collapse" data-target=".nav-collapse")
-						%span.icon-bar
-						%span.icon-bar         
+				.container-fluid    
 					%span.brand I/O Doctor
-					.nav-collapse
-						%ul.nav
-							%li
-								%a{:href => "/"} Start Over
-							%li
-								%a{:href => "/about"} About						
+					%ul.nav
+						%li
+							%a{:href => "/"} Start Over
+						%li
+							%a{:href => "http://www.github.com/brandonmwest/iodoctor"} About						
 		.container-fluid
 			=yield(:content)
 
@@ -28,3 +23,4 @@
 %script{:src => "/js/default.js"}
 %script{:src => "/js/form2js.js"}
 %script{:src => "/js/bootstrap-tab.js"}
+%script{:src => "/js/bootstrap-collapse.js"}
