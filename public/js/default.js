@@ -38,8 +38,6 @@ var showEndpoint = function(e) {
 
 var updateEndpointName = function(e) {
 	var input = $(e.target);
-	var span = input.closest('.endpoint').find('.endpointNameSpan');
-	span.html(input.val());
 	
 	var endpointIndex = input.closest('.endpoint').attr('id').replace('ep','');
 	var menuItem = $('#endpointActuator' + endpointIndex);
@@ -48,11 +46,11 @@ var updateEndpointName = function(e) {
 }
 
 var updateMethodName = function(e) {
-	var span = $(e.target).closest('.methodContainer').find('.methodNameSpan');
+	var span = $(e.target).closest('.method').find('.methodNameSpan');
 	span.html($(e.target).val());
 	
-	var methodIndex = $(e.target).closest('.methodContainer').attr('methodIndex');
-	var endpointIndex = $(e.target).closest('.methodContainer').attr('endpointIndex');
+	var methodIndex = $(e.target).closest('.method').attr('methodIndex');
+	var endpointIndex = $(e.target).closest('.method').attr('endpointIndex');
 	var menuItem = $('#endpoint' + endpointIndex + 'method' + methodIndex +'Actuator');
 
 	menuItem.html($(e.target).val());

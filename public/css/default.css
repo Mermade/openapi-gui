@@ -19,3 +19,45 @@ body {
 .boolean { color: blue; }
 .null { color: magenta; }
 .key { color: red; }
+
+.content li {
+  list-style: none;
+  margin-left: 0;
+}
+
+.methods {
+  padding-left:12px;
+  padding-bottom:8px;
+  
+}
+
+.method legend img{
+  height:19px;
+  top:3px;
+  left:8px;
+  margin-right:4px;
+  position: relative;
+}
+
+.method {
+  padding-left:5px;
+  font-size: 14px;
+  border: 1px solid #029DE7;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px 0;
+  /*    &.authrequired .http-method {
+          background-image: url(/images/lock.png);
+          background-repeat: no-repeat;
+          background-position: 7px 50%;
+      }*/
+   background-color:#E7F0F7;
+}
+
+.method legend {
+	margin-bottom:0;
+}

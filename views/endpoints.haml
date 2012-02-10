@@ -26,11 +26,10 @@
 					- @result["endpoints"].each do |e|
 						-count=count+1
 						.endpoint.hide{:id => "ep#{count}"} 
-							%h2	
-								Endpoint: 
-								%span.endpointNameSpan #{e.name}
+							
 							.control-group
-								%label.control-label{:for => "endpoints[#{count}].name"} Endpoint Name
+								%label.control-label{:for => "endpoints[#{count}].name"} 
+									Endpoint Name:
 								.controls
 									.input
 										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
