@@ -12,7 +12,7 @@ get '/' do
 end
 
 get '/about' do
-  haml :about
+	haml :about
 end 
 
 post '/' do
@@ -21,9 +21,9 @@ post '/' do
 					(name = params[:file][:filename])
 					
 		 if params[:load]
-			  return haml :start
-     end
-     
+				return haml :start
+		 end
+		 
 		 @result = Hash.new
 		 @result["endpoints"] = Hash.new
 		 return haml(:endpoints)
@@ -38,7 +38,7 @@ post '/' do
 end
 
 post '/file' do 
-  content_type 'application/json'
-  attachment 'config.json'
-  response.write params[:json]
+	content_type 'application/json'
+	attachment 'config.json'
+	response.write params[:json]
 end

@@ -3,8 +3,8 @@
 	-endpoint["methods"].each do |m|
 		-method_count=method_count+1
 		
-		%li.method{:id => "method#{endpointIndex}method#{method_count}", :endpointIndex => endpointIndex, :methodIndex => method_count}
-			%legend.clickable{"data-toggle" => "collapse", "data-target" => "#endpoint#{endpointIndex}method#{method_count}"}
+		%li.method{:endpointIndex => endpointIndex, :methodIndex => method_count}
+			%legend.clickable{"data-toggle" => "collapse", "data-parent" => "#ep#{endpointIndex}", "data-target" => "#endpoint#{endpointIndex}method#{method_count}"}
 				%a{:name => "endpoint#{endpointIndex}method#{method_count}"} 
 					Method: 
 					%span.methodNameSpan #{m.MethodName}
