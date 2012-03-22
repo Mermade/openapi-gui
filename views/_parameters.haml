@@ -4,10 +4,11 @@
 		-param_count=param_count+1
 		
 		%li.parameter{:endpointIndex => endpointIndex, :methodIndex => methodIndex, :parameterIndex => param_count}
-			%legend.clickable{"data-toggle" => "collapse", "data-parent" => "#endpoint#{endpointIndex}method#{methodIndex}", "data-target" => "#endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
-				Parameter: #{p.Name}
+			%legend
+				.section.clickable{"parent" => "#endpoint#{endpointIndex}method#{methodIndex}", "target" => "#endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
+					Parameter: #{p.Name}
 		
-				.parameterContainer.collapse{:id => "endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
+				.parameterContainer.hide{:id => "endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
 					.control-group
 						%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
 						.controls 

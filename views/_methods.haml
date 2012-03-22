@@ -4,12 +4,13 @@
 		-method_count=method_count+1
 		
 		%li.method{:endpointIndex => endpointIndex, :methodIndex => method_count}
-			%legend.clickable{"data-toggle" => "collapse", "data-parent" => "#ep#{endpointIndex}", "data-target" => "#endpoint#{endpointIndex}method#{method_count}"}
-				%a{:name => "endpoint#{endpointIndex}method#{method_count}"} 
-					Method: 
-					%span.methodNameSpan #{m.MethodName}
+			%legend
+				.section.clickable{"parent" => "#ep#{endpointIndex}", "target" => "#endpoint#{endpointIndex}method#{method_count}"}
+					%a{:name => "endpoint#{endpointIndex}method#{method_count}"} 
+						Method: 
+						%span.methodNameSpan #{m.MethodName}
 				
-				.methodContainer.collapse{:id => "endpoint#{endpointIndex}method#{method_count}"}
+				.methodContainer.hide{:id => "endpoint#{endpointIndex}method#{method_count}"}
 					.control-group
 						%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} 
 							Method Name

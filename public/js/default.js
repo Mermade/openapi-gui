@@ -14,8 +14,18 @@ $(function() {
 	
 	$('input.endpointName').live('change', updateEndpointName)
 	$('input.methodName').live('change', updateMethodName)
+	$('.section.clickable').live('click', toggleSection)
+	
 	//$('input.parameterName').live('change', updateParameterName)
 });
+
+var toggleSection = function(e) {
+	var clicked = $(e.target);
+	var target = clicked.attr('target');
+	console.log(target);
+	
+	$(target).slideToggle();
+}
 
 var showEndpoint = function(e) {
 	e.preventDefault();

@@ -1,9 +1,9 @@
 .row-fluid
 	%ul.tabs.nav.nav-tabs
 		%li.active
-			%a(href="#editor" data-toggle="tab") Editor
+			%a{:"data-toggle" => "tab", :href => "#editor"} Editor
 		%li
-			%a.viewOutput(href="#output-container" data-toggle="tab") Output	
+			%a.viewOutput{:"data-toggle" => "tab", :href => "#output-container"} Output	
 
 	.tab-content
 		#output-container.tab-pane
