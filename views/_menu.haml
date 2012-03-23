@@ -1,6 +1,7 @@
 .span3
 	.sidebar-nav.well
-		%ul
+		%input.btn.btn-info.addButton(type='submit' value='+' id="addEndpoint")
+		%ul#endpointList
 			-count=0
 			- result["endpoints"].each do |e|
 				-count=count+1

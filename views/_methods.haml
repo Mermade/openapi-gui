@@ -5,7 +5,7 @@
 		
 		%li.method{:endpointIndex => endpointIndex, :methodIndex => method_count}
 			%legend
-				.section.clickable{"parent" => "#ep#{endpointIndex}", "target" => "#endpoint#{endpointIndex}method#{method_count}"}
+				.section.clickable{"target" => "#endpoint#{endpointIndex}method#{method_count}"}
 					%a{:name => "endpoint#{endpointIndex}method#{method_count}"} 
 						Method: 
 						%span.methodNameSpan #{m.MethodName}

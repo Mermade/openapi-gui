@@ -18,9 +18,7 @@
 			.content.forms.span8
 				#start
 					%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
-	
-				-#%input.btn(type='submit' value='Add Endpoint' id="addEndpoint")
-	
+					
 				%form.form-horizontal#config
 					-count=0
 					- @result["endpoints"].each do |e|

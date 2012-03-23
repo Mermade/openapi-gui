@@ -88,23 +88,32 @@ var syntaxHighlight = function(json) {
 
 //TODO refactor these methods into 3 objects - endpoint, method, parameter
 var addEndpoint = function(){
+	var endpointIndex = getEndpointIndex();
+	
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
-	newEndpoint = initializeEndpoint(newEndpoint);
+	newEndpoint = updateEndpoint(newEndpoint, newId);
 	
 	newEndpoint.appendTo('#config');
 	
 	//all endpoints must have at least one method, so add a blank method here
 	
-	//add the new Endpoint to the menu (and possibly refresh the tree?)
-	var newMenuItem = $("#endpointMenuTemplate").clone()
+	//add the new Endpoint to the menu
+	var newMenuItem = $("#endpointMenuTemplate").children('li').first().clone();
+	newMenuItem = updateEndpointMenuItem(newMenuItem, newId);
+	newMenuItem.appendTo('#endpointList');
 	
-	console.log(newEndpoint);
+	console.log(newMenuItem);
+}
+
+var getEndpointIndex = function() { 
+	newId = parseInt($('#endpointCounter').val()) + 1;
+	$('#endpointCounter').val(newId);	
+	return newId;
 }
 
 var initializeEndpoint = function(endpoint){
 	newId = parseInt($('#endpointCounter').val()) + 1;
 	$('#endpointCounter').val(newId);
-	return updateEndpoint(endpoint, newId);
 }
 
 var updateEndpoint = function(endpoint, newId) {
@@ -122,6 +131,13 @@ var updateEndpoint = function(endpoint, newId) {
 	});
 	
 	return endpoint;
+}
+
+var updateEndpointMenuItem = function(menuItem, newId) {
+	link = menuItem.children('a').first();
+	link.attr('id', link.attr('id').replace('blank', newId));
+	link.text("New Endpoint");
+	return menuItem;
 }
 
 //Deleting an endpoint :-
