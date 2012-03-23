@@ -52,5 +52,5 @@
 									:checked => m.RequiresOAuth == "N"} 
 									%span No
 					= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
-		%input{:type=>"hidden", :value => method_count, :id=>"endpoint#{endpointIndex}MethodCounter"}
+	%input{:type=>"hidden", :value => method_count, :id=>"endpoint#{endpointIndex}MethodCounter"}
 		

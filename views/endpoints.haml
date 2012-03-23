@@ -23,7 +23,8 @@
 					-count=0
 					- @result["endpoints"].each do |e|
 						-count=count+1
-						.endpoint.hide{:id => "ep#{count}"} 
+						.endpoint.hide{:id => "ep#{count}"}
+							%input.btn.btn-info.addButton.addMethod(value='Add Method')
 							.control-group
 								%label.control-label{:for => "endpoints[#{count}].name"} 
 									Endpoint Name:

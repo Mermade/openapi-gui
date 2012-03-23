@@ -11,10 +11,11 @@ $(function() {
 	$('.endpointActuator').live('click', showEndpoint);
 	
 	$('#addEndpoint').click(addEndpoint);
+	$('.addMethod').live('click', addMethod);
 	
-	$('input.endpointName').live('change', updateEndpointName)
-	$('input.methodName').live('change', updateMethodName)
-	$('.section.clickable').live('click', toggleSection)
+	$('input.endpointName').live('change', updateEndpointName);
+	$('input.methodName').live('change', updateMethodName);
+	$('.section.clickable').live('click', toggleSection);
 	
 	//$('input.parameterName').live('change', updateParameterName)
 });
@@ -100,7 +101,7 @@ var addEndpoint = function(){
 	newMenuItem.appendTo('#endpointList');
 
 	//all endpoints must have at least one method, so add a blank method here
-	addMethod(endpointIndex);
+	addFirstMethod(endpointIndex);
 	
 	//hide the initial instructions
 	$('#start').hide();
@@ -128,8 +129,13 @@ var updateEndpoint = function(endpoint, newId) {
 	
 	//update the name and id of each child input
 	endpoint.find('input').each(function(){
-		$(this).attr('id', $(this).attr('id').replace('blank', newId));
-		$(this).attr('name', $(this).attr('name').replace('blank', newId));
+		if($(this).attr('id')) {
+			$(this).attr('id', $(this).attr('id').replace('blank', newId));
+		}
+		
+		if($(this).attr('name')) {
+			$(this).attr('name', $(this).attr('name').replace('blank', newId));
+		}
 	});
 	
 	//update the for attribute of each child label
@@ -147,7 +153,7 @@ var updateEndpointMenuItem = function(menuItem, newId) {
 	return menuItem;
 }
 
-var addMethod = function(endpointIndex) {
+var addFirstMethod = function(endpointIndex) {
 	var newMethod = $('#methodTemplate').children('li').first().clone();
 		
 	methodIndex = getMethodIndex(endpointIndex);
@@ -158,9 +164,22 @@ var addMethod = function(endpointIndex) {
 
 }
 
+var addMethod = function(e) {
+	var endpoint = $(e.target).parent();
+	var endpointIndex = endpoint.attr('id').replace('ep','');
+	
+	var newMethod = $('#methodTemplate').children('li').first().clone();
+		
+	methodIndex = getMethodIndex(endpointIndex);
+	updateMethod(newMethod, endpointIndex, methodIndex);
+	
+	var methodList = $('#ep' + endpointIndex).children('ul').first();
+	newMethod.appendTo(methodList);
+}
+
 var getMethodIndex = function(endpointIndex) {
 	//if this is the first method for the endpoint, we need to add a method counter
-	if(!'#endpoint' + endpointIndex + 'MethodCounter') {
+	if($('#endpoint' + endpointIndex + 'MethodCounter').length == 0) {
 		counterTemplate = $('#methodCounterTemplate').children('input').first().clone();
 		counterTemplate.attr('id', counterTemplate.attr('id').replace('!endpoint!', endpointIndex));
 		counterTemplate.appendTo('#config');
@@ -168,13 +187,24 @@ var getMethodIndex = function(endpointIndex) {
 	
 	counter = $("#endpoint" + endpointIndex + "MethodCounter");
 	index = parseInt(counter.val()) + 1;
-	$("#endpoint" + endpointIndex + "MethodCounter").val(index);
+	counter.val(index);
 	return index;
 }
 
 var updateMethod = function(method, endpointIndex, methodIndex) {
 	//update the name and id of each child input
 	method.find('input').each(function(){
+		if($(this).attr('id')) {
+			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
+			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+		}
+		if($(this).attr('name')) {
+			$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
+			$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+		}
+	});
+	
+	method.find('textarea').each(function(){
 		$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
 		$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
 		$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
