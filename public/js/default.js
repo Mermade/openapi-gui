@@ -102,7 +102,14 @@ var addEndpoint = function(){
 	newMenuItem = updateEndpointMenuItem(newMenuItem, newId);
 	newMenuItem.appendTo('#endpointList');
 	
-	console.log(newMenuItem);
+	//hide the initial instructions
+	$('#start').hide();
+		
+	//hide all divs
+	$('.endpoint').hide();
+
+	//show the div corresponding to what was clicked
+	$('#ep' + endpointIndex).show('slow');
 }
 
 var getEndpointIndex = function() { 
