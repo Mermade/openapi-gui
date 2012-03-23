@@ -8,56 +8,61 @@
 			.controls
 				.input
 					%input.endpointName{:name => "endpoints[blank].name", :id => "endpoints[blank].name", :value => "New Endpoint"}
+		%ul.methods
+			
 
+.template.hide{:id => "methodTemplate"} 
+	%li.method	
+		%legend
+			.section.clickable{"target" => "#endpoint!endpoint!method!method!"}
+				%a{:name => "endpoint!endpoint!method!method!"} 
+					Method: 
+					%span.methodNameSpan
+						New Method
 
-.template.hide{:id => "methodTemplate"} 	
-	%legend
-		.section.clickable{"target" => "#endpoint!endpoint!method!method!"}
-			%a{:name => "endpoint!endpoint!method!method!"} 
-				Method: 
-				%span.methodNameSpan
+			.methodContainer.hide{:id => "endpoint!endpoint!method!method!"}
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].MethodName"} 
+						Method Name
+					.controls
+						%input.methodName{:name => "endpoints[!endpoint!].methods[!method!].MethodName", :id => "endpoints.endpoint[!endpoint!].methods[!method!].MethodName"}
 
-		.methodContainer.hide{:id => "endpoint!endpoint!method!method!"}
-			.control-group
-				%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].MethodName"} 
-					Method Name
-				.controls
-					%input.methodName{:name => "endpoints[!endpoint!].methods[!method!].MethodName", :id => "endpoints.endpoint[!endpoint!].methods[!method!].MethodName"}
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].Synopsis"} 
+						Synopsis
+					.controls
+						%textarea{:name => "endpoints[!endpoint!].methods[!method!].Synopsis", :id => "endpoints[!endpoint!].methods[!method!].Synopsis"}
 
-			.control-group
-				%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].Synopsis"} 
-					Synopsis
-				.controls
-					%textarea{:name => "endpoints[!endpoint!].methods[!method!].Synopsis", :id => "endpoints[!endpoint!].methods[!method!].Synopsis"}
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].HTTPMethod"} 
+						HTTP Method (GET, POST, PUT, etc)
+					.controls
+						%input{:name => "endpoints[!endpoint!].methods[!method!].HTTPMethod", :id => "endpoints[!endpoint!].methods[!method!].HTTPMethod"}
 
-			.control-group
-				%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].HTTPMethod"} 
-					HTTP Method (GET, POST, PUT, etc)
-				.controls
-					%input{:name => "endpoints[!endpoint!].methods[!method!].HTTPMethod", :id => "endpoints[!endpoint!].methods[!method!].HTTPMethod"}
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].URI"} 
+						URI
+					.controls
+						%input{:name => "endpoints[!endpoint!].methods[!method!].URI", :id => "endpoints[!endpoint!].methods[!method!].URI"}							
 
-			.control-group
-				%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].URI"} 
-					URI
-				.controls
-					%input{:name => "endpoints[!endpoint!].methods[!method!].URI", :id => "endpoints[!endpoint!].methods[!method!].URI"}							
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].RequiresOAuth"} 
+						Requires OAuth?
+					.controls
+						%label.radio
+							%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].RequiresOAuth", |
+								:id => "endpoints[!endpoint!].methods[!method!].RequiresOAuth.Yes", |
+								:value => "Y"}
+								%span Yes
+						%label.radio
+							%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].RequiresOAuth", |
+								:id => "endpoints[!endpoint!].methods[!method!].RequiresOAuth.No", |
+								:value => "N"} 
+								%span No
 
-			.control-group
-				%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].RequiresOAuth"} 
-					Requires OAuth?
-				.controls
-					%label.radio
-						%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].RequiresOAuth", |
-							:id => "endpoints[!endpoint!].methods[!method!].RequiresOAuth.Yes", |
-							:value => "Y"}
-							%span Yes
-					%label.radio
-						%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].RequiresOAuth", |
-							:id => "endpoints[!endpoint!].methods[!method!].RequiresOAuth.No", |
-							:value => "N"} 
-							%span No
-
-						
+.template.hide{:id => "methodCounterTemplate"}		
+	%input{:type=>"hidden", :value => "0", :id=>"endpoint!endpoint!MethodCounter"}
+	
 .template.hide{:id => "endpointMenuTemplate"}
 	%li
 		%a.endpointActuator{:href => "#", :id => "endpointActuatorblank"}

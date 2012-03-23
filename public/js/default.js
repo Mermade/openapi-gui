@@ -22,7 +22,6 @@ $(function() {
 var toggleSection = function(e) {
 	var clicked = $(e.target);
 	var target = clicked.attr('target');
-	console.log(target);
 	
 	$(target).slideToggle();
 }
@@ -95,12 +94,13 @@ var addEndpoint = function(){
 	
 	newEndpoint.appendTo('#config');
 	
-	//all endpoints must have at least one method, so add a blank method here
-	
 	//add the new Endpoint to the menu
 	var newMenuItem = $("#endpointMenuTemplate").children('li').first().clone();
 	newMenuItem = updateEndpointMenuItem(newMenuItem, newId);
 	newMenuItem.appendTo('#endpointList');
+
+	//all endpoints must have at least one method, so add a blank method here
+	addMethod(endpointIndex);
 	
 	//hide the initial instructions
 	$('#start').hide();
@@ -145,6 +145,63 @@ var updateEndpointMenuItem = function(menuItem, newId) {
 	link.attr('id', link.attr('id').replace('blank', newId));
 	link.text("New Endpoint");
 	return menuItem;
+}
+
+var addMethod = function(endpointIndex) {
+	var newMethod = $('#methodTemplate').children('li').first().clone();
+		
+	methodIndex = getMethodIndex(endpointIndex);
+	updateMethod(newMethod, endpointIndex, methodIndex);
+	
+	var methodList = $('#ep' + endpointIndex).children('ul').first();
+	newMethod.appendTo(methodList);
+
+}
+
+var getMethodIndex = function(endpointIndex) {
+	//if this is the first method for the endpoint, we need to add a method counter
+	if(!'#endpoint' + endpointIndex + 'MethodCounter') {
+		counterTemplate = $('#methodCounterTemplate').children('input').first().clone();
+		counterTemplate.attr('id', counterTemplate.attr('id').replace('!endpoint!', endpointIndex));
+		counterTemplate.appendTo('#config');
+	}
+	
+	counter = $("#endpoint" + endpointIndex + "MethodCounter");
+	index = parseInt(counter.val()) + 1;
+	$("#endpoint" + endpointIndex + "MethodCounter").val(index);
+	return index;
+}
+
+var updateMethod = function(method, endpointIndex, methodIndex) {
+	//update the name and id of each child input
+	method.find('input').each(function(){
+		$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
+		$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+		$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
+		$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+	});
+	
+	method.find('div').each(function(){
+		if($(this).attr('id')) {
+			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
+			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+		}
+	});
+	
+	
+	//update the for attribute of each child label
+	method.find('label').each(function(){
+		if($(this).attr('for')) {
+			$(this).attr('for', $(this).attr('for').replace('!endpoint!', endpointIndex));
+			$(this).attr('for', $(this).attr('for').replace('!method!', methodIndex));
+		}
+	});
+	
+	section = method.find(".section").first();
+	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
+	section.attr('target', section.attr('target').replace('!method!', methodIndex));
+	
+	return method;
 }
 
 //Deleting an endpoint :-
