@@ -21,8 +21,8 @@ TODO
 ----
 * Finish JavaScript for adding and removing Endpoints, Methods, Parameters
 * When a method in the menu is clicked, make sure the parent endpoint is visible
-* Update form formatting to reflect the hierarchy (endpoint -> methods -> parameters)
-* Add code to show/hide methods for an endpoint, and parameters for a method
+* <del>Update form formatting to reflect the hierarchy (endpoint -> methods -> parameters)</del>
+* <del>Add code to show/hide methods for an endpoint, and parameters for a method</del>
 * Add validation on form fields
 * Ability to reorder nodes
 * Refactor JavaScript
