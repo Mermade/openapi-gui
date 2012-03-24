@@ -31,6 +31,7 @@
 								.controls
 									.input
 										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
+								%input.btn.btn-danger.removeEndpoint(value='Delete Endpoint');
 				
 							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}

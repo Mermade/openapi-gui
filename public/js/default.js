@@ -11,6 +11,8 @@ $(function() {
 	$('.endpointActuator').live('click', showEndpoint);
 	
 	$('#addEndpoint').click(addEndpoint);
+	
+	($'.removeEndpoint').live('click', removeEndpoint);
 	$('.addMethod').live('click', addMethod);
 	
 	$('input.endpointName').live('change', updateEndpointName);
@@ -113,6 +115,19 @@ var addEndpoint = function(){
 	$('#ep' + endpointIndex).show('slow');
 }
 
+var removeEndpoint = function(e) {
+	var endpoint = $(e.target).parent();
+	var index = parseInt(endpoint.attr('id').replace('ep',''));
+	var endpoints = $('.endpoint');
+	
+	//-1 to each endpoint index for indices > index being removed
+	for(var i=index; i < endpoints.length; i++) {
+		endpoints[i].attr('id','ep' + i-1);
+	}
+	
+	endpoint.remove();
+}
+
 var getEndpointIndex = function() { 
 	newId = parseInt($('#endpointCounter').val()) + 1;
 	$('#endpointCounter').val(newId);	
@@ -124,6 +139,7 @@ var initializeEndpoint = function(endpoint){
 	$('#endpointCounter').val(newId);
 }
 
+//This is a bad function name. Rename.
 var updateEndpoint = function(endpoint, newId) {
 	endpoint.attr('id', 'ep' + newId);
 	
@@ -193,6 +209,7 @@ var getMethodIndex = function(endpointIndex) {
 
 var updateMethod = function(method, endpointIndex, methodIndex) {
 	//update the name and id of each child input
+	//
 	method.find('input').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
@@ -217,7 +234,6 @@ var updateMethod = function(method, endpointIndex, methodIndex) {
 			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
 		}
 	});
-	
 	
 	//update the for attribute of each child label
 	method.find('label').each(function(){
