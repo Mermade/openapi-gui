@@ -15,11 +15,12 @@ Click an item from the menu on the left to begin editing. View the JSON output a
 
 ### Technology
 
-I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 1.0, and jQuery, and uses [form2js](https://github.com/maxatwork/form2js) for structured, hierarchical HTML form data. 
+I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.0, and jQuery, and uses [form2js](https://github.com/maxatwork/form2js) for structured, hierarchical HTML form data. 
 
 TODO
 ----
-* Finish JavaScript for adding and removing Endpoints, Methods, Parameters
+* Finish JavaScript for adding <del>Endpoints, Methods,</del> Parameters
+* Finish JavaScript for removing Endpoints, Methods, Parameters
 * When a method in the menu is clicked, make sure the parent endpoint is visible
 * <del>Update form formatting to reflect the hierarchy (endpoint -> methods -> parameters)</del>
 * <del>Add code to show/hide methods for an endpoint, and parameters for a method</del>
