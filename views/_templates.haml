@@ -1,14 +1,16 @@
 -#These are the DOM elements that we will clone and manipulate to add endpoints, methods, and parameters
 
 .template.hide{:id => "endpointTemplate"} 
-	.endpoint.hide{:id => "ep[blank]"} 
-		%input.btn.btn-info.addButton.addMethod(value='Add Method')
-		.control-group
+	.endpointTemplate.hide{:id => "ep[blank]"} 
+		.control-group.span5
 			%label.control-label{:for => "endpoints[blank].name"} 
 				Endpoint Name:
 			.controls
 				.input
 					%input.endpointName{:name => "endpoints[blank].name", :id => "endpoints[blank].name", :value => "New Endpoint"}
+		%span.endpoint-controls 
+			%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
+			%input.btn.btn-danger.removeEndpoint(type="button" value='Delete Endpoint')
 		%ul.methods
 			
 

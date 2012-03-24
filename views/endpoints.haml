@@ -16,23 +16,23 @@
 			= partial :menu, :locals => {:result => @result}
 			
 			.content.forms.span8
-				#start
-					%h3 Click on a Endpoint or Method from the list on the left, or add a new Endpoint to get started.
-					
+
 				%form.form-horizontal#config
 					-count=0
 					- @result["endpoints"].each do |e|
 						-count=count+1
 						.endpoint.hide{:id => "ep#{count}"}
-							%input.btn.btn-info.addButton.addMethod(value='Add Method')
-							.control-group
+							
+							.control-group.span5
 								%label.control-label{:for => "endpoints[#{count}].name"} 
 									Endpoint Name:
 								.controls
 									.input
 										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
-								%input.btn.btn-danger.removeEndpoint(value='Delete Endpoint');
-				
+							
+							%span.endpoint-controls 
+								%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
+								%input.btn.btn-danger.removeEndpoint(type="button" value='Delete Endpoint')
 							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}
 

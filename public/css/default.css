@@ -74,3 +74,16 @@ body {
 	float:right;
 	margin-right:9px;
 }
+
+.endpoint > .control-group {
+	margin-bottom:0px;
+}
+
+.endpoint > .control-group > label {
+	width: auto;
+	text-align: left;
+}
+
+.endpoint > .control-group > .controls {
+	margin-left:100px;
+}

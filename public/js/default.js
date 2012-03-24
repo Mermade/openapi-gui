@@ -12,14 +12,15 @@ $(function() {
 	
 	$('#addEndpoint').click(addEndpoint);
 	
-	($'.removeEndpoint').live('click', removeEndpoint);
+	$('.removeEndpoint').live('click', removeEndpoint);
 	$('.addMethod').live('click', addMethod);
 	
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
 	$('.section.clickable').live('click', toggleSection);
-	
 	//$('input.parameterName').live('change', updateParameterName)
+
+	$($('.endpoint')[0]).show();
 });
 
 var toggleSection = function(e) {
@@ -34,8 +35,6 @@ var showEndpoint = function(e) {
 	var actuator = e.target;
 	var id = actuator.id.replace("endpointActuator","");
 	var div = $('#ep' + id);
-
-	$('#start').hide();
 
 	//if the clicked div is already showing, do nothing
 	if(div.is(":visible"))
@@ -94,7 +93,8 @@ var addEndpoint = function(){
 	
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
 	newEndpoint = updateEndpoint(newEndpoint, newId);
-	
+	newEndpoint.addClass('endpoint');
+	newEndpoint.removeClass('endpointTemplate');
 	newEndpoint.appendTo('#config');
 	
 	//add the new Endpoint to the menu
@@ -104,9 +104,6 @@ var addEndpoint = function(){
 
 	//all endpoints must have at least one method, so add a blank method here
 	addFirstMethod(endpointIndex);
-	
-	//hide the initial instructions
-	$('#start').hide();
 		
 	//hide all divs
 	$('.endpoint').hide();
@@ -116,16 +113,29 @@ var addEndpoint = function(){
 }
 
 var removeEndpoint = function(e) {
-	var endpoint = $(e.target).parent();
+	var endpoint = $(e.target).closest('.endpoint');
 	var index = parseInt(endpoint.attr('id').replace('ep',''));
 	var endpoints = $('.endpoint');
 	
-	//-1 to each endpoint index for indices > index being removed
-	for(var i=index; i < endpoints.length; i++) {
-		endpoints[i].attr('id','ep' + i-1);
+	if(confirm("Are you sure you want to delete this Endpoint?")) {
+		//-1 to each endpoint index for indices > index being removed
+		for(var i=endpoints.length-1; i > index ; i--) {
+			updateEndpoint($(endpoints[i-1]), i - 1, i);
+			
+			menuItem = $('#endpointActuator' + i).closest('li');
+			updateEndpointMenuItem(menuItem, i - 1, i);
+		}
+		
+		//remove the menuItem
+		$('#endpointActuator' + index).closest('li').remove();
+		
+		//remove the endpoint from the DOM
+		endpoint.remove();
+		
+		//update the counter
+		count = parseInt($('#endpointCounter').val());
+		$('#endpointCounter').val(count - 1);	
 	}
-	
-	endpoint.remove();
 }
 
 var getEndpointIndex = function() { 
@@ -140,32 +150,48 @@ var initializeEndpoint = function(endpoint){
 }
 
 //This is a bad function name. Rename.
-var updateEndpoint = function(endpoint, newId) {
+var updateEndpoint = function(endpoint, newId, oldId) {
+	
+	if(typeof(oldId) != 'undefined')
+		placeholder = oldId;
+	else
+		placeholder = 'blank';
+
 	endpoint.attr('id', 'ep' + newId);
 	
 	//update the name and id of each child input
 	endpoint.find('input').each(function(){
 		if($(this).attr('id')) {
-			$(this).attr('id', $(this).attr('id').replace('blank', newId));
+			$(this).attr('id', $(this).attr('id').replace(placeholder, newId));
 		}
 		
 		if($(this).attr('name')) {
-			$(this).attr('name', $(this).attr('name').replace('blank', newId));
+			$(this).attr('name', $(this).attr('name').replace(placeholder, newId));
 		}
 	});
 	
 	//update the for attribute of each child label
 	endpoint.find('label').each(function(){
-		$(this).attr('for', $(this).attr('for').replace('blank', newId));
+		if($(this).attr('for')) {
+			$(this).attr('for', $(this).attr('for').replace(placeholder, newId));
+		}
 	});
 	
 	return endpoint;
 }
 
-var updateEndpointMenuItem = function(menuItem, newId) {
+var updateEndpointMenuItem = function(menuItem, newId, oldId) {
+	if(typeof(oldId) != 'undefined')
+		placeholder = oldId;
+	else
+		placeholder = 'blank';
+	
 	link = menuItem.children('a').first();
-	link.attr('id', link.attr('id').replace('blank', newId));
-	link.text("New Endpoint");
+	link.attr('id', link.attr('id').replace(placeholder, newId));
+	
+	if(link.text().length == 0)
+		link.text("New Endpoint");
+
 	return menuItem;
 }
 
