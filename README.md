@@ -3,7 +3,7 @@ I/O Doctor
 
 I/O Doctor is a GUI for creating and editing JSON config files that are used with [I/O Docs](https://github.com/mashery/iodocs), an interactive API documentation system from [Mashery](http://www.mashery.com).
 
-This project is still under active development. You should be able to edit existing Endpoints just fine, but adding/removing them from the GUI is still in the works. I/O Doctor is not currently a hosted application.
+This project is still under active development. I/O Doctor is not currently a hosted application.
 
 Description
 -----------
