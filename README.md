@@ -26,4 +26,4 @@ TODO
 * <del>Add code to show/hide methods for an endpoint, and parameters for a method</del>
 * Add validation on form fields
 * Ability to reorder nodes
-* Refactor JavaScript
+* Refactor JavaScript (probably use backbone.js)
