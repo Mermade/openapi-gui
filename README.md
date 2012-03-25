@@ -19,6 +19,7 @@ I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.
 
 TODO
 ----
+* JavaScript for editing option lists for Parameters marked as enumerated
 * Finish JavaScript for adding <del>Endpoints, Methods,</del> Parameters
 * Finish JavaScript for removing <del>Endpoint</del>, Methods, Parameters
 * When a method in the menu is clicked, make sure the parent endpoint is visible
