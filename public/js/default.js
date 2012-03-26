@@ -27,22 +27,25 @@ $(function() {
 
 var updateParameterDataType = function(e) {
 	var clicked = $(e.target);
-	console.log(clicked.val());
 	
 	switch(clicked.val()) {
 		case "custom":
 			clicked.next('.custom').show();
-				clicked.parent().closest('.controls').find('.enumeratedList').hide();
+			clicked.parent().closest('.controls').find('.enumeratedList').hide();
+			if (clicked.next('.custom').val() == 'boolean' || clicked.next('.custom').val() == 'enumerated')
+				clicked.next('.custom').val('');
 			break;
 		
 		case "enumerated":
 			clicked.next('.enumeratedList').show();
 			clicked.parent().closest('.controls').find('.custom').hide();
+			clicked.parent().closest('.controls').find('.custom').val('enumerated');
 			break;
 		
 		case "boolean":
 			clicked.parent().closest('.controls').find('.enumeratedList').hide();
 			clicked.parent().closest('.controls').find('.custom').hide();
+			clicked.parent().closest('.controls').find('.custom').val('boolean');
 			break;			
 	}
 }

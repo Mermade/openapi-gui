@@ -78,6 +78,6 @@
 								%input.custom{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
 									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
 									:value => "#{p.Type}", |
-									:style => p.Type != "custom" ? 'display:none;' : ''} 
+									:style => p.Type == "boolean" && p.Type == "enumerated" ? 'display:none;' : ''} 
 			
 %input{:type=>"hidden", :value => param_count, :id=>"endpoint#{endpointIndex}Method#{methodIndex}ParameterCounter"}
