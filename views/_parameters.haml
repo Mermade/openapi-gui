@@ -48,12 +48,36 @@
 						%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type"} Data type
 						-#should be a dropdown
 						.controls 
-							%input{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
-							:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
-							:value => "#{p.Type}"} 
+							%label.radio
+								%input.dataType{:type => "radio", |
+									:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type.Boolean", |
+									:value => "boolean", |
+									:checked => p.Type == "boolean"}
+									Boolean
+								
+							%label.radio
+								%input.dataType{:type => "radio", |
+								 	:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type.Enumerated", |
+									:value => "enumerated", |
+									:checked => p.Type == "enumerated"}
+									Enumerated
+								
+								.enumeratedList{:style => p.Type != "enumerated" ? 'display:none;' : ''} 
+									This is where the list of options will be.
+							
+							%label.radio
+								%input.dataType{:type => "radio", |
+								 	:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type.Custom", |
+									:value => "custom", |
+									:checked => p.Type != "boolean" && p.Type != "enumerated"}
+									Custom
+								
+								%input.custom{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
+									:value => "#{p.Type}", |
+									:style => p.Type != "custom" ? 'display:none;' : ''} 
 			
-							%p.help-block
-								Can be an arbitrary value, e.g. string or int. Values "boolean" and "enumerated" will render a dropdown.
-								-#this is where logic is needed to hide/display fields based on type
-
 %input{:type=>"hidden", :value => param_count, :id=>"endpoint#{endpointIndex}Method#{methodIndex}ParameterCounter"}

@@ -20,8 +20,32 @@ $(function() {
 	$('.section.clickable').live('click', toggleSection);
 	//$('input.parameterName').live('change', updateParameterName)
 
+	$('input.dataType').live('change', updateParameterDataType);
+
 	$($('.endpoint')[0]).show();
 });
+
+var updateParameterDataType = function(e) {
+	var clicked = $(e.target);
+	console.log(clicked.val());
+	
+	switch(clicked.val()) {
+		case "custom":
+			clicked.next('.custom').show();
+				clicked.parent().closest('.controls').find('.enumeratedList').hide();
+			break;
+		
+		case "enumerated":
+			clicked.next('.enumeratedList').show();
+			clicked.parent().closest('.controls').find('.custom').hide();
+			break;
+		
+		case "boolean":
+			clicked.parent().closest('.controls').find('.enumeratedList').hide();
+			clicked.parent().closest('.controls').find('.custom').hide();
+			break;			
+	}
+}
 
 var toggleSection = function(e) {
 	var clicked = $(e.target);
