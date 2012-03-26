@@ -69,6 +69,8 @@
 										:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].EnumeratedList", | 
 										:value => "#{p.EnumeratedList}", |
 										:style => p.Type != "enumerated" ? 'display:none' : ''}
+										
+									%span.help-inline JSON-encoded options, e.g. ["option1","option2"]
 							
 							%label.radio
 								%input.dataType{:type => "radio", |
