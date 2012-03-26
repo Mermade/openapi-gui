@@ -207,7 +207,7 @@ var addFirstMethod = function(endpointIndex) {
 }
 
 var addMethod = function(e) {
-	var endpoint = $(e.target).parent();
+	var endpoint = $(e.target).closest('.endpoint');
 	var endpointIndex = endpoint.attr('id').replace('ep','');
 	
 	var newMethod = $('#methodTemplate').children('li').first().clone();
@@ -217,6 +217,8 @@ var addMethod = function(e) {
 	
 	var methodList = $('#ep' + endpointIndex).children('ul').first();
 	newMethod.appendTo(methodList);
+	
+	//add it to the menu
 }
 
 var getMethodIndex = function(endpointIndex) {
@@ -274,6 +276,21 @@ var updateMethod = function(method, endpointIndex, methodIndex) {
 	section.attr('target', section.attr('target').replace('!method!', methodIndex));
 	
 	return method;
+}
+
+var updateMethodMenuItem = function(menuItem, endpointId, newId, oldId) {
+	if(typeof(oldId) != 'undefined')
+		placeholder = oldId;
+	else
+		placeholder = 'blank';
+	
+	link = menuItem.children('a').first();
+	link.attr('id', link.attr('id').replace(placeholder, newId));
+	
+	if(link.text().length == 0)
+		link.text("New Endpoint");
+
+	return menuItem;
 }
 
 //Deleting an endpoint :-
