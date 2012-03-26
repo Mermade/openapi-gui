@@ -27,25 +27,31 @@ $(function() {
 
 var updateParameterDataType = function(e) {
 	var clicked = $(e.target);
-	
 	switch(clicked.val()) {
 		case "custom":
-			clicked.next('.custom').show();
-			clicked.parent().closest('.controls').find('.enumeratedList').hide();
-			if (clicked.next('.custom').val() == 'boolean' || clicked.next('.custom').val() == 'enumerated')
-				clicked.next('.custom').val('');
+			clicked.closest('.controls').find('.customInput').attr('disabled',false);
+			clicked.closest('.controls').find('.customInput').show();
+			clicked.closest('.controls').find('.enumeratedInput').hide();
+			clicked.closest('.controls').find('.enumeratedInput').attr('disabled',true);
+			if (clicked.closest('.controls').find('.customInput').val() == 'boolean' || clicked.closest('.controls').find('.customInput').val() == 'enumerated') {
+				clicked.closest('.controls').find('.customInput').val('');
+			}
 			break;
 		
 		case "enumerated":
-			clicked.next('.enumeratedList').show();
-			clicked.parent().closest('.controls').find('.custom').hide();
-			clicked.parent().closest('.controls').find('.custom').val('enumerated');
+			clicked.closest('.controls').find('.customInput').hide();
+			clicked.closest('.controls').find('.customInput').attr('disabled',true);
+			clicked.closest('.controls').find('.customInput').val('enumerated');
+			clicked.closest('.controls').find('.enumeratedInput').show();
+			clicked.closest('.controls').find('.enumeratedInput').attr('disabled',false);
 			break;
 		
 		case "boolean":
-			clicked.parent().closest('.controls').find('.enumeratedList').hide();
-			clicked.parent().closest('.controls').find('.custom').hide();
-			clicked.parent().closest('.controls').find('.custom').val('boolean');
+			clicked.closest('.controls').find('.customInput').attr('disabled',true);
+			clicked.closest('.controls').find('.customInput').attr('disabled',true);
+			clicked.closest('.controls').find('.enumeratedInput').hide();
+			clicked.closest('.controls').find('.customInput').hide();
+			clicked.closest('.controls').find('.customInput').val('boolean');
 			break;			
 	}
 }

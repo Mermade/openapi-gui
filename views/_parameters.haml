@@ -64,8 +64,11 @@
 									:checked => p.Type == "enumerated"}
 									Enumerated
 								
-								.enumeratedList{:style => p.Type != "enumerated" ? 'display:none;' : ''} 
-									This is where the list of options will be.
+								.enumeratedList
+									%input.enumeratedInput{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].EnumeratedList", |
+										:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].EnumeratedList", | 
+										:value => "#{p.EnumeratedList}", |
+										:style => p.Type != "enumerated" ? 'display:none' : ''}
 							
 							%label.radio
 								%input.dataType{:type => "radio", |
@@ -75,9 +78,10 @@
 									:checked => p.Type != "boolean" && p.Type != "enumerated"}
 									Custom
 								
-								%input.custom{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
-									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
-									:value => "#{p.Type}", |
-									:style => p.Type == "boolean" && p.Type == "enumerated" ? 'display:none;' : ''} 
+								.custom
+									%input.customInput{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
+										:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", | 
+										:value => "#{p.Type}" , |
+										:style => p.Type == "boolean" || p.Type == "enumerated" ? 'display:none' : ''} 
 			
 %input{:type=>"hidden", :value => param_count, :id=>"endpoint#{endpointIndex}Method#{methodIndex}ParameterCounter"}
