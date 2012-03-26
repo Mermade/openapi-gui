@@ -203,7 +203,6 @@ var addFirstMethod = function(endpointIndex) {
 	
 	var methodList = $('#ep' + endpointIndex).children('ul').first();
 	newMethod.appendTo(methodList);
-
 }
 
 var addMethod = function(e) {
@@ -219,6 +218,10 @@ var addMethod = function(e) {
 	newMethod.appendTo(methodList);
 	
 	//add it to the menu
+	var methodMenu = $('#methodMenuTemplate').children('li').first().clone();
+
+	updateMethodMenuItem(methodMenu, endpointIndex, methodIndex);
+	methodMenu.appendTo($('#endpointActuator' + endpointIndex).next('ul'));
 }
 
 var getMethodIndex = function(endpointIndex) {
@@ -237,7 +240,8 @@ var getMethodIndex = function(endpointIndex) {
 
 var updateMethod = function(method, endpointIndex, methodIndex) {
 	//update the name and id of each child input
-	//
+	
+	//doing these replaces is probably dumb, should just write the attrs each time.
 	method.find('input').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
@@ -271,6 +275,9 @@ var updateMethod = function(method, endpointIndex, methodIndex) {
 		}
 	});
 	
+	method.attr('endpointIndex', endpointIndex);
+	method.attr('methodIndex', methodIndex);
+	
 	section = method.find(".section").first();
 	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
 	section.attr('target', section.attr('target').replace('!method!', methodIndex));
@@ -278,25 +285,18 @@ var updateMethod = function(method, endpointIndex, methodIndex) {
 	return method;
 }
 
-var updateMethodMenuItem = function(menuItem, endpointId, newId, oldId) {
+var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 	if(typeof(oldId) != 'undefined')
 		placeholder = oldId;
 	else
-		placeholder = 'blank';
+		placeholder = '!method!';
 	
 	link = menuItem.children('a').first();
-	link.attr('id', link.attr('id').replace(placeholder, newId));
+	link.attr('id', 'endpoint' + endpointIndex + 'method' + newId + 'Actuator');
+	link.attr('href', 'endpoint' + endpointIndex + 'method' + newId );
 	
 	if(link.text().length == 0)
-		link.text("New Endpoint");
+		link.text("New Method");
 
 	return menuItem;
 }
-
-//Deleting an endpoint :-
-//nuke all child parameters and methods
-//update the endpointXMethodCounter after removing all the methods
-//select all the endpoints that had an index higher than the one removed, and decrease each index by 1
-
-
-
