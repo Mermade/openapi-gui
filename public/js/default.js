@@ -165,7 +165,7 @@ var removeEndpoint = function(e) {
 		//remove the menuItem
 		$('#endpointActuator' + index).closest('li').remove();
 		
-		//remove the endpoint from the DOM
+		//remove the endpoint from the DOMgit commit
 		endpoint.remove();
 		
 		//update the counter
@@ -396,7 +396,7 @@ var removeParameter = function(e) {
 	if(confirm("Are you sure you want to delete this Parameter?")) {
 		//-1 to each parameter index for indices > index being removed
 		for(var i=siblingParameters.length; i > parameterIndex ; i--) {
-			updateParameter($(siblingMethods[i-1]), endpointIndex, methodIndex, i-1, i);
+			updateParameter($(siblingParameters[i-1]), endpointIndex, methodIndex, i-1, i);
 		}
 		
 		//remove the parameter from the DOM
@@ -406,4 +406,59 @@ var removeParameter = function(e) {
 		count = parseInt($( '#endpoint' + endpointIndex + 'method' + methodIndex + 'ParameterCounter').val());
 		$( '#endpoint' + endpointIndex + 'method' + methodIndex + 'ParameterCounter').val(count - 1);	
 	}
+}
+
+var updateParameter = function(parameter, endpointIndex, methodIndex, parameterIndex, oldParameterIndex) {
+	//update the name and id of each child input
+	if(typeof(oldParameterIndex) != 'undefined')
+		parameterIndexPlaceholder = 'parameters[' + oldParameterIndex + ']';
+	else
+		parameterIndexPlaceholder = 'parameters[!parameter!]';
+	
+	parameterIndexString = 'parameters[' + parameterIndex + ']';
+	
+	//this mess of replaces also updates any child parameters. good times!
+	
+	//doing these replaces is probably dumb, should just write the attrs each time.
+	parameter.find('input').each(function(){
+		if($(this).attr('id')) {
+			$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+		}
+		if($(this).attr('name')) {
+			$(this).attr('name', $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString));
+		}
+	});
+	
+	parameter.find('textarea').each(function(){
+		$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+		$(this).attr('name', $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString));
+	});
+	
+	parameter.find('div').each(function(){
+		if($(this).attr('id')) {
+			$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+		}
+	});
+	
+	//update the for attribute of each child label
+	parameter.find('label').each(function(){
+		if($(this).attr('for')) {
+			$(this).attr('for', $(this).attr('for').replace(parameterIndexPlaceholder, parameterIndexString));
+		}
+	});
+	
+	parameter.attr('endpointIndex', endpointIndex);
+	parameter.attr('methodIndex', methodIndex);
+	parameter.attr('parameterIndex', parameterIndex);	
+	
+	parameterContainer = parameter.find('.parameterContainer').first();
+	parameterContainer.attr('id', 'endpoint' + endpointIndex + 'method' + methodIndex + 'parameter' + parameterIndex);
+	 
+	section = parameter.find(".section").first();
+	section.attr('target', section.attr('target').replace('parameter' + oldParameterIndex, 'parameter' + parameterIndex));
+	section.attr('target', section.attr('target').replace('!parameter!', methodIndex));
+	
+	section.next('a').attr('name','endpoint' + endpointIndex + 'method' + parameterIndex);
+	
+	return parameter;
 }
