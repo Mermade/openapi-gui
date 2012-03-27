@@ -17,6 +17,8 @@ $(function() {
 	$('.addMethod').live('click', addMethod);
 	$('.removeMethod').live('click', removeMethod);
 	
+	$('.removeParameter').live('click', removeParameter);
+	
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
 	$('.section.clickable').live('click', toggleSection);
@@ -60,10 +62,7 @@ var updateParameterDataType = function(e) {
 
 var toggleSection = function(e) {
 	var clicked = $(e.target);
-	console.log(clicked);
 	var target = clicked.attr('target');
-	console.log(target);
-	console.log($(target));
 	$(target).slideToggle();
 }
 
@@ -358,8 +357,14 @@ var updateMethod = function(method, endpointIndex, methodIndex, oldMethodIndex) 
 	section = method.find(".section").first();
 	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
 	section.attr('target', section.attr('target').replace('method' + oldMethodIndex, 'method' + methodIndex));
+	section.attr('target', section.attr('target').replace('!method!', methodIndex));
 	
 	section.next('a').attr('name','endpoint' + endpointIndex + 'method' + methodIndex);
+	
+	//need to update parameter count element
+	var paramCounter = $('#endpoint' + endpointIndex + 'method' + oldMethodIndex + 'ParameterCounter');
+	if (paramCounter.length > 0)
+		paramCounter.attr('id', '#endpoint' + endpointIndex + 'method' + methodIndex + 'ParameterCounter');
 	
 	return method;
 }
@@ -378,4 +383,27 @@ var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 		link.text("New Method");
 
 	return menuItem;
+}
+
+var removeParameter = function(e) {
+	var parameter = $(e.target).closest('.parameter');
+	var parameterIndex = parameter.attr('parameterIndex');
+	var methodIndex = parameter.attr('methodIndex');
+	var endpointIndex = parameter.attr('endpointIndex');
+
+	var siblingParameters = $('.parameter[endpointIndex=' + endpointIndex + '][methodIndex=' + methodIndex + ']');
+	
+	if(confirm("Are you sure you want to delete this Parameter?")) {
+		//-1 to each parameter index for indices > index being removed
+		for(var i=siblingParameters.length; i > parameterIndex ; i--) {
+			updateParameter($(siblingMethods[i-1]), endpointIndex, methodIndex, i-1, i);
+		}
+		
+		//remove the parameter from the DOM
+		parameter.remove();
+		
+		//update the counter
+		count = parseInt($( '#endpoint' + endpointIndex + 'method' + methodIndex + 'ParameterCounter').val());
+		$( '#endpoint' + endpointIndex + 'method' + methodIndex + 'ParameterCounter').val(count - 1);	
+	}
 }
