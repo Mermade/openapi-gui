@@ -1,3 +1,5 @@
+//SO MUCH SPAGHETTI!
+
 $(function() {
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');
@@ -11,9 +13,9 @@ $(function() {
 	$('.endpointActuator').live('click', showEndpoint);
 	
 	$('#addEndpoint').click(addEndpoint);
-	
 	$('.removeEndpoint').live('click', removeEndpoint);
 	$('.addMethod').live('click', addMethod);
+	$('.removeMethod').live('click', removeMethod);
 	
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
@@ -58,8 +60,10 @@ var updateParameterDataType = function(e) {
 
 var toggleSection = function(e) {
 	var clicked = $(e.target);
+	console.log(clicked);
 	var target = clicked.attr('target');
-	
+	console.log(target);
+	console.log($(target));
 	$(target).slideToggle();
 }
 
@@ -257,6 +261,35 @@ var addMethod = function(e) {
 	methodMenu.appendTo($('#endpointActuator' + endpointIndex).next('ul'));
 }
 
+var removeMethod = function(e) {
+	var method = $(e.target).closest('.method');
+	var methodIndex = method.attr('methodindex');
+	var endpointIndex = method.attr('endpointindex');
+
+	var siblingMethods = $('.method[endpointindex=' + endpointIndex + ']');
+	
+	if(confirm("Are you sure you want to delete this Method?")) {
+		//-1 to each method index for indices > index being removed
+		for(var i=siblingMethods.length; i > methodIndex ; i--) {
+			updateMethod($(siblingMethods[i-1]), endpointIndex, i-1, i);
+			
+			menuItem = $('#endpoint' + endpointIndex + 'method' + i + 'Actuator').closest('li');
+			updateMethodMenuItem(menuItem, endpointIndex, i - 1, i);
+		}
+		
+		//remove the menuItem
+		console.log($('#endpoint' + endpointIndex + 'method' + methodIndex + 'Actuator'));
+		$('#endpoint' + endpointIndex + 'method' + methodIndex + 'Actuator').closest('li').remove();
+		
+		//remove the method from the DOM
+		method.remove();
+		
+		//update the counter
+		count = parseInt($('#endpoint' + endpointIndex + 'MethodCounter').val());
+		$('#endpoint' + endpointIndex + 'MethodCounter').val(count - 1);	
+	}
+}
+
 var getMethodIndex = function(endpointIndex) {
 	//if this is the first method for the endpoint, we need to add a method counter
 	if($('#endpoint' + endpointIndex + 'MethodCounter').length == 0) {
@@ -271,32 +304,40 @@ var getMethodIndex = function(endpointIndex) {
 	return index;
 }
 
-var updateMethod = function(method, endpointIndex, methodIndex) {
+var updateMethod = function(method, endpointIndex, methodIndex, oldMethodIndex) {
 	//update the name and id of each child input
+	if(typeof(oldMethodIndex) != 'undefined')
+		methodIndexPlaceholder = 'methods[' + oldMethodIndex + ']';
+	else
+		methodIndexPlaceholder = 'method[!method!]';
+	
+	methodIndexString = 'methods[' + methodIndex + ']';
+	
+	//this mess of replaces also updates any child parameters. good times!
 	
 	//doing these replaces is probably dumb, should just write the attrs each time.
 	method.find('input').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
-			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+			$(this).attr('id', $(this).attr('id').replace(methodIndexPlaceholder, methodIndexString));	
 		}
 		if($(this).attr('name')) {
 			$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
-			$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+			$(this).attr('name', $(this).attr('name').replace(methodIndexPlaceholder, methodIndexString));
 		}
 	});
 	
 	method.find('textarea').each(function(){
 		$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
-		$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+		$(this).attr('id', $(this).attr('id').replace(methodIndexPlaceholder, methodIndexString));	
 		$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
-		$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+		$(this).attr('name', $(this).attr('name').replace(methodIndexPlaceholder, methodIndexString));
 	});
 	
 	method.find('div').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
-			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));	
+			$(this).attr('id', $(this).attr('id').replace(methodIndexPlaceholder, methodIndexString));	
 		}
 	});
 	
@@ -304,16 +345,21 @@ var updateMethod = function(method, endpointIndex, methodIndex) {
 	method.find('label').each(function(){
 		if($(this).attr('for')) {
 			$(this).attr('for', $(this).attr('for').replace('!endpoint!', endpointIndex));
-			$(this).attr('for', $(this).attr('for').replace('!method!', methodIndex));
+			$(this).attr('for', $(this).attr('for').replace(methodIndexPlaceholder, methodIndexString));
 		}
 	});
 	
 	method.attr('endpointIndex', endpointIndex);
 	method.attr('methodIndex', methodIndex);
 	
+	methodContainer = method.find('.methodContainer').first();
+	methodContainer.attr('id', 'endpoint' + endpointIndex + 'method' + methodIndex);
+	 
 	section = method.find(".section").first();
 	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
-	section.attr('target', section.attr('target').replace('!method!', methodIndex));
+	section.attr('target', section.attr('target').replace('method' + oldMethodIndex, 'method' + methodIndex));
+	
+	section.next('a').attr('name','endpoint' + endpointIndex + 'method' + methodIndex);
 	
 	return method;
 }

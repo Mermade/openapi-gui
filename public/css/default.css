@@ -87,3 +87,8 @@ body {
 .endpoint > .control-group > .controls {
 	margin-left:100px;
 }
+
+.removeMethod {
+	float:right;
+	margin-right:10px;
+}

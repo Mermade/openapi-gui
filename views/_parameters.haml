@@ -62,18 +62,14 @@
 									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type.Enumerated", |
 									:value => "enumerated", |
 									:checked => p.Type == "enumerated"}
-									Enumerated
-								
-								-#%span.help-inline JSON-encoded options, e.g. ["option1","option2"]
-								
+									Enumerated ( JSON list of options, e.g. ["option1","option2"] )
+															
 								.enumeratedList
 									%input.enumeratedInput{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].EnumeratedList", |
 										:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].EnumeratedList", | 
 										:value => "#{p.EnumeratedList}", |
 										:style => p.Type != "enumerated" ? 'display:none' : ''}
 										
-
-							
 							%label.radio
 								%input.dataType{:type => "radio", |
 								 	:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Type", |
