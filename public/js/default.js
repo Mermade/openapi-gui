@@ -155,7 +155,7 @@ var removeEndpoint = function(e) {
 	
 	if(confirm("Are you sure you want to delete this Endpoint?")) {
 		//-1 to each endpoint index for indices > index being removed
-		for(var i=endpoints.length-1; i > index ; i--) {
+		for(var i=index + 1; i <= endpoints.length-1; i++) {
 			updateEndpoint($(endpoints[i-1]), i - 1, i);
 			
 			menuItem = $('#endpointActuator' + i).closest('li');
@@ -262,14 +262,14 @@ var addMethod = function(e) {
 
 var removeMethod = function(e) {
 	var method = $(e.target).closest('.method');
-	var methodIndex = method.attr('methodindex');
+	var methodIndex = parseInt(method.attr('methodindex'));
 	var endpointIndex = method.attr('endpointindex');
 
 	var siblingMethods = $('.method[endpointindex=' + endpointIndex + ']');
 	
 	if(confirm("Are you sure you want to delete this Method?")) {
 		//-1 to each method index for indices > index being removed
-		for(var i=siblingMethods.length; i > methodIndex ; i--) {
+		for(var i=methodIndex + 1; i <= siblingMethods.length ; i++) {
 			updateMethod($(siblingMethods[i-1]), endpointIndex, i-1, i);
 			
 			menuItem = $('#endpoint' + endpointIndex + 'method' + i + 'Actuator').closest('li');
@@ -277,7 +277,6 @@ var removeMethod = function(e) {
 		}
 		
 		//remove the menuItem
-		console.log($('#endpoint' + endpointIndex + 'method' + methodIndex + 'Actuator'));
 		$('#endpoint' + endpointIndex + 'method' + methodIndex + 'Actuator').closest('li').remove();
 		
 		//remove the method from the DOM
@@ -387,7 +386,7 @@ var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 
 var removeParameter = function(e) {
 	var parameter = $(e.target).closest('.parameter');
-	var parameterIndex = parameter.attr('parameterIndex');
+	var parameterIndex = parseInt(parameter.attr('parameterIndex'));
 	var methodIndex = parameter.attr('methodIndex');
 	var endpointIndex = parameter.attr('endpointIndex');
 
@@ -395,7 +394,7 @@ var removeParameter = function(e) {
 	
 	if(confirm("Are you sure you want to delete this Parameter?")) {
 		//-1 to each parameter index for indices > index being removed
-		for(var i=siblingParameters.length; i > parameterIndex ; i--) {
+		for(var i = parameterIndex+1; i <= siblingParameters.length ; i++) {
 			updateParameter($(siblingParameters[i-1]), endpointIndex, methodIndex, i-1, i);
 		}
 		
@@ -420,12 +419,13 @@ var updateParameter = function(parameter, endpointIndex, methodIndex, parameterI
 	//this mess of replaces also updates any child parameters. good times!
 	
 	//doing these replaces is probably dumb, should just write the attrs each time.
-	parameter.find('input').each(function(){
+	parameter.find('input').each(function(){		
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
 		}
 		if($(this).attr('name')) {
-			$(this).attr('name', $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString));
+			var name = $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString);
+			$(this).attr('name', name);
 		}
 	});
 	
