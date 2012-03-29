@@ -62,9 +62,91 @@
 								:id => "endpoints[!endpoint!].methods[!method!].RequiresOAuth.No", |
 								:value => "N"} 
 								%span No
+					%span.method-controls
+						%input.btn.btn-info.addParameter(type="button" value='Add Parameter')
+				%ul.parameters
+								
+
+.template.hide{:id => "parameterTemplate"} 
+	%li.parameter
+		%legend
+			.section.clickable{"target" => "#endpoint!endpoint!method!method!parameter!parameter!"}
+				Parameter: New Parameter
+
+			.parameterContainer.hide{:id => "endpoint!endpoint!method!method!parameter!parameter!"}
+				%span.method-controls 
+					%input.btn.btn-danger.removeParameter(type="button" value='Delete Parameter')
+
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName"} Parameter Name
+					.controls 
+						%input{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName", |
+							:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName", |
+							:value => "New Parameter"}
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Description"} Description
+					.controls 
+						%textarea{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Description", |
+						 	:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Description"} |
+				.control-group
+					%label.control-label Required?
+					.controls 
+						%label.radio
+							%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Required", |
+								:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Required.Yes", |
+								:value => "Y"}
+								Yes
+
+						%label.radio
+							%input{:type => "radio", :name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Required", |
+								:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Required.No", |
+								:value => "N"} 
+								No
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Default"} Default value
+					.controls 
+						%input{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Default", | 
+						:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Default"} |
+
+				.control-group
+					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type"} Data type
+					-#should be a dropdown
+					.controls 
+						%label.radio
+							%input.dataType{:type => "radio", |
+								:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type", |
+								:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type.Boolean", |
+								:value => "boolean"}
+								Boolean
+
+						%label.radio
+							%input.dataType{:type => "radio", |
+							 	:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type", |
+								:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type.Enumerated", |
+								:value => "enumerated"}
+								Enumerated ( JSON list of options, e.g. ["option1","option2"] )
+
+							.enumeratedList
+								%input.enumeratedInput{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].EnumeratedList", |
+									:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].EnumeratedList"}
+
+						%label.radio
+							%input.dataType{:type => "radio", |
+							 	:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type", |
+								:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type.Custom", |
+								:value => "custom"}
+								Custom
+
+							.custom
+								%input.customInput{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type", |
+									:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].Type"}
 
 .template.hide{:id => "methodCounterTemplate"}		
 	%input{:type=>"hidden", :value => "0", :id=>"endpoint!endpoint!MethodCounter"}
+	
+.template.hide{:id => "parameterCounterTemplate"}		
+	%input{:type=>"hidden", :value => "0", :id=>"endpoint!endpoint!Method!method!ParameterCounter"}
+
 	
 .template.hide{:id => "endpointMenuTemplate"}
 	%li

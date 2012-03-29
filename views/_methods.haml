@@ -54,6 +54,10 @@
 									:value => "N", |
 									:checked => m.RequiresOAuth == "N"} 
 									%span No
+								
+						%span.method-controls
+							%input.btn.btn-info.addParameter(type="button" value='Add Parameter')
+									
 					= partial :parameters, :locals => {:m => m, :methodIndex => method_count, :endpointIndex => endpointIndex}
 	%input{:type=>"hidden", :value => method_count, :id=>"endpoint#{endpointIndex}MethodCounter"}
 		

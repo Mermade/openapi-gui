@@ -17,12 +17,13 @@ $(function() {
 	$('.addMethod').live('click', addMethod);
 	$('.removeMethod').live('click', removeMethod);
 	
+	$('.addParameter').live('click', addParameter);	
 	$('.removeParameter').live('click', removeParameter);
 	
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
 	$('.section.clickable').live('click', toggleSection);
-	//$('input.parameterName').live('change', updateParameterName)
+
 
 	$('input.dataType').live('change', updateParameterDataType);
 
@@ -384,6 +385,34 @@ var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 	return menuItem;
 }
 
+var getParameterIndex = function(endpointIndex, methodIndex) {
+	//if this is the first parameter for the method, we need to add a parameter counter
+	if($('#endpoint' + endpointIndex + 'Method' + methodIndex + 'ParameterCounter').length == 0) {
+		counterTemplate = $('#parameterCounterTemplate').children('input').first().clone();
+		counterTemplate.attr('id', counterTemplate.attr('id').replace('!endpoint!', endpointIndex));
+		counterTemplate.attr('id', counterTemplate.attr('id').replace('!method!', methodIndex));
+		counterTemplate.appendTo('#config');
+	}
+	
+	counter = $('#endpoint' + endpointIndex + 'Method' + methodIndex + 'ParameterCounter');
+	index = parseInt(counter.val()) + 1;
+	counter.val(index);
+	return index;
+}
+
+var addParameter = function(e) {
+	var method = $(e.target).closest('.method');
+	var endpointIndex = method.attr('endpointIndex');
+	var methodIndex = method.attr('methodIndex');
+	var newParameter = $('#parameterTemplate').children('li').first().clone();
+		
+	parameterIndex = getParameterIndex(endpointIndex, methodIndex);
+	updateParameter(newParameter, endpointIndex, methodIndex, parameterIndex);
+
+	var parameterList = $('.method[endpointIndex=' + endpointIndex + '][methodIndex=' + methodIndex + ']').find('.parameters').first();
+	newParameter.appendTo(parameterList);
+}
+
 var removeParameter = function(e) {
 	var parameter = $(e.target).closest('.parameter');
 	var parameterIndex = parseInt(parameter.attr('parameterIndex'));
@@ -408,6 +437,7 @@ var removeParameter = function(e) {
 }
 
 var updateParameter = function(parameter, endpointIndex, methodIndex, parameterIndex, oldParameterIndex) {
+	console.log(parameter);
 	//update the name and id of each child input
 	if(typeof(oldParameterIndex) != 'undefined')
 		parameterIndexPlaceholder = 'parameters[' + oldParameterIndex + ']';
@@ -457,6 +487,8 @@ var updateParameter = function(parameter, endpointIndex, methodIndex, parameterI
 	section = parameter.find(".section").first();
 	section.attr('target', section.attr('target').replace('parameter' + oldParameterIndex, 'parameter' + parameterIndex));
 	section.attr('target', section.attr('target').replace('!parameter!', methodIndex));
+	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
+	section.attr('target', section.attr('target').replace('!parameter!', parameterIndex));
 	
 	section.next('a').attr('name','endpoint' + endpointIndex + 'method' + parameterIndex);
 	
