@@ -254,6 +254,12 @@ var addFirstMethod = function(endpointIndex) {
 	
 	var methodList = $('#ep' + endpointIndex).children('ul').first();
 	newMethod.appendTo(methodList);
+	
+	//add the menuitem
+	var methodMenu = $('#methodMenuTemplate').children('li').first().clone();
+
+	updateMethodMenuItem(methodMenu, endpointIndex, methodIndex);
+	methodMenu.appendTo($('#endpointActuator' + endpointIndex).next('ul'));
 }
 
 var addMethod = function(e) {
@@ -391,7 +397,7 @@ var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 	
 	link = menuItem.children('a').first();
 	link.attr('id', 'endpoint' + endpointIndex + 'method' + newId + 'Actuator');
-	link.attr('href', 'endpoint' + endpointIndex + 'method' + newId );
+	link.attr('href', '#endpoint' + endpointIndex + 'method' + newId );
 	
 	if(link.text().length == 0)
 		link.text("New Method");
