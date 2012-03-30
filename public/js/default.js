@@ -192,7 +192,6 @@ var initializeEndpoint = function(endpoint){
 
 //This is a bad function name. Rename.
 var updateEndpoint = function(endpoint, newId, oldId) {
-	
 	if(typeof(oldId) != 'undefined')
 		placeholder = oldId;
 	else
@@ -218,6 +217,9 @@ var updateEndpoint = function(endpoint, newId, oldId) {
 		}
 	});
 	
+	//method menu items are not being updated when endpoints are being removed
+	
+	
 	return endpoint;
 }
 
@@ -232,7 +234,15 @@ var updateEndpointMenuItem = function(menuItem, newId, oldId) {
 	
 	if(link.text().length == 0)
 		link.text("New Endpoint");
+	
+	//update all the child menuitems
+	var children = menuItem.find('.methodActuator');
 
+	for(i=0; i<children.length; i++) {
+		child = $(children[i]).closest('li');
+		updateMethodMenuItem(child, newId, i+1)
+	}
+	
 	return menuItem;
 }
 
