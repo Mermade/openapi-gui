@@ -19,14 +19,13 @@ I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.
 
 TODO
 ----
-* Finish JavaScript for adding <del>Endpoints, Methods,</del> Parameters
-
-* Ability to reorder nodes
-* Add validation on form fields
-* When a method in the menu is clicked, make sure the parent endpoint is visible
 * Highlight selected Endpoint in the menu
+* Wire up the Method links in the menu
+* Add validation on form fields
 * Refactor JavaScript
+* Ability to reorder nodes
 
+* <del>Finish JavaScript for adding Endpoints, Methods, Parameters</del>
 * <del>Finish JavaScript for removing Endpoint, Methods, Parameters</del>
 * <del>Update form formatting to reflect the hierarchy (endpoint -> methods -> parameters)</del>
 * <del>Add code to show/hide methods for an endpoint, and parameters for a method</del>
