@@ -22,6 +22,7 @@ $(function() {
 	
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
+	$('input.parameterName').live('change', updateParameterName);
 	$('.section.clickable').live('click', toggleSection);
 
 
@@ -102,6 +103,11 @@ var updateMethodName = function(e) {
 	var menuItem = $('#endpoint' + endpointIndex + 'method' + methodIndex +'Actuator');
 
 	menuItem.html($(e.target).val());
+}
+
+var updateParameterName = function(e){
+	var span = $(e.target).closest('.parameter').find('.parameterNameSpan')
+	span.html($(e.target).val());;
 }
 
 //from http://stackoverflow.com/questions/4810841/json-pretty-print-using-javascript

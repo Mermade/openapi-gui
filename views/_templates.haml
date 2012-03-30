@@ -71,7 +71,8 @@
 	%li.parameter
 		%legend
 			.section.clickable{"target" => "#endpoint!endpoint!method!method!parameter!parameter!"}
-				Parameter: New Parameter
+				Parameter: 
+				%span.parameterNameSpan New Parameter
 
 			.parameterContainer.hide{:id => "endpoint!endpoint!method!method!parameter!parameter!"}
 				%span.method-controls 
@@ -80,7 +81,7 @@
 				.control-group
 					%label.control-label{:for => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName"} Parameter Name
 					.controls 
-						%input{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName", |
+						%input.parameterName{:name => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName", |
 							:id => "endpoints[!endpoint!].methods[!method!].parameters[!parameter!].ParameterName", |
 							:value => "New Parameter"}
 				.control-group
