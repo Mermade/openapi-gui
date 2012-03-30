@@ -1,5 +1,3 @@
-//SO MUCH SPAGHETTI!
-
 $(function() {
 	$('.viewOutput').click(function(e){
 		var formdata = form2js('config', '.');

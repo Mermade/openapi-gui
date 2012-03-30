@@ -23,14 +23,14 @@
 						-count=count+1
 						.endpoint.hide{:id => "ep#{count}"}
 							
-							.control-group.span5
+							.control-group.span5.endpointHead
 								%label.control-label{:for => "endpoints[#{count}].name"} 
-									Endpoint Name:
+									Endpoint:
 								.controls
 									.input
 										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 							
-							%span.endpoint-controls 
+							.offset5.endpoint-controls 
 								%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
 								%input.btn.btn-danger.removeEndpoint(type="button" value='Delete Endpoint')
 							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}

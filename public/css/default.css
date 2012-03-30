@@ -82,6 +82,11 @@ body {
 .endpoint > .control-group > label {
 	width: auto;
 	text-align: left;
+	font-size:19.5px;
+}
+
+.endpoint > .control-group > .controls > .input > input {
+	font-size:19.5px;
 }
 
 .endpoint > .control-group > .controls {
@@ -93,4 +98,4 @@ body {
 	margin-right:10px;
 }
 
-.parameters { clear:both; }
+.parameters { clear:both;}
