@@ -437,7 +437,6 @@ var removeParameter = function(e) {
 }
 
 var updateParameter = function(parameter, endpointIndex, methodIndex, parameterIndex, oldParameterIndex) {
-	console.log(parameter);
 	//update the name and id of each child input
 	if(typeof(oldParameterIndex) != 'undefined')
 		parameterIndexPlaceholder = 'parameters[' + oldParameterIndex + ']';
@@ -449,24 +448,35 @@ var updateParameter = function(parameter, endpointIndex, methodIndex, parameterI
 	//this mess of replaces also updates any child parameters. good times!
 	
 	//doing these replaces is probably dumb, should just write the attrs each time.
-	parameter.find('input').each(function(){		
+	parameter.find('input').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));
+			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
 		}
 		if($(this).attr('name')) {
 			var name = $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString);
 			$(this).attr('name', name);
+			$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+			$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
 		}
 	});
 	
 	parameter.find('textarea').each(function(){
 		$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+		$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));
+		$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));
+		
 		$(this).attr('name', $(this).attr('name').replace(parameterIndexPlaceholder, parameterIndexString));
+		$(this).attr('name', $(this).attr('name').replace('!method!', methodIndex));
+		$(this).attr('name', $(this).attr('name').replace('!endpoint!', endpointIndex));
 	});
 	
 	parameter.find('div').each(function(){
 		if($(this).attr('id')) {
 			$(this).attr('id', $(this).attr('id').replace(parameterIndexPlaceholder, parameterIndexString));	
+			$(this).attr('id', $(this).attr('id').replace('!method!', methodIndex));
+			$(this).attr('id', $(this).attr('id').replace('!endpoint!', endpointIndex));			
 		}
 	});
 	
@@ -474,6 +484,8 @@ var updateParameter = function(parameter, endpointIndex, methodIndex, parameterI
 	parameter.find('label').each(function(){
 		if($(this).attr('for')) {
 			$(this).attr('for', $(this).attr('for').replace(parameterIndexPlaceholder, parameterIndexString));
+			$(this).attr('for', $(this).attr('for').replace('!method!', methodIndex));
+			$(this).attr('for', $(this).attr('for').replace('!endpoint!', endpointIndex));
 		}
 	});
 	
@@ -486,8 +498,8 @@ var updateParameter = function(parameter, endpointIndex, methodIndex, parameterI
 	 
 	section = parameter.find(".section").first();
 	section.attr('target', section.attr('target').replace('parameter' + oldParameterIndex, 'parameter' + parameterIndex));
-	section.attr('target', section.attr('target').replace('!parameter!', methodIndex));
 	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
+	section.attr('target', section.attr('target').replace('!method!', methodIndex));
 	section.attr('target', section.attr('target').replace('!parameter!', parameterIndex));
 	
 	section.next('a').attr('name','endpoint' + endpointIndex + 'method' + parameterIndex);
