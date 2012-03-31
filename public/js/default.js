@@ -325,13 +325,15 @@ var getMethodIndex = function(endpointIndex) {
 
 var updateMethod = function(method, endpointIndex, methodIndex, oldMethodIndex) {
 	//update the name and id of each child input
+
+
 	if(typeof(oldMethodIndex) != 'undefined')
 		methodIndexPlaceholder = 'methods[' + oldMethodIndex + ']';
 	else
-		methodIndexPlaceholder = 'method[!method!]';
+		methodIndexPlaceholder = 'methods[!method!]';
 	
 	methodIndexString = 'methods[' + methodIndex + ']';
-	
+
 	//this mess of replaces also updates any child parameters. good times!
 	
 	//doing these replaces is probably dumb, should just write the attrs each time.

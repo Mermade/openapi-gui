@@ -11,12 +11,12 @@
 				Create a new I/O Docs configuration...
 			
 			%form.form-inline(method="post")
-				%input.btn-success(type='submit' value='New' name="new")
+				%input.btn-success.btn-large(type='submit' value='New' name="new")
 	
 		.span5
 			%p 
 				\...or upload and edit your existing JSON file
 			%form.form-inline(method="post" enctype='multipart/form-data')
 				%input.input-file(type='file' name='file')
-				%input.btn-primary(type='submit' value='Load JSON' name="load")
+				%input.btn-primary.btn-large(type='submit' value='Load JSON' name="load")
 
