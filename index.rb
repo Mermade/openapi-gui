@@ -15,7 +15,7 @@ get '/' do
 end
 
 post '/' do
-  	 @version = settings.version
+    @version = settings.version
     @show_bottom_bar = true
 	 unless params[:file] &&
 					(tmpfile = params[:file][:tempfile]) &&

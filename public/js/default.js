@@ -6,7 +6,11 @@ $(function() {
 	$('.endpointActuator').live('click', showEndpoint);
 	
 	//tooltip for add endpoint button
-	$('#addEndpoint').hover(toggleTooltip, toggleTooltip)
+	if($('.endpoint').length==0) {
+		$('#addEndpoint').popover({"trigger":"manual", "content":"Get started by adding your first endpoint!"});
+		$('#addEndpoint').popover('show');
+		$('#addEndpoint').click(hideEndpointPopover);
+	}
 	
 	//save file button
 	$('.save-file').click(saveFile);
@@ -40,8 +44,8 @@ var saveFile = function(){
 	$('#outputForm').submit();
 }
 
-var toggleTooltip = function(e){
-	$(e.target).tooltip('toggle');
+var hideEndpointPopover = function(e){
+	$("#addEndpoint").popover('hide');
 }
 
 var showAbout = function() {
