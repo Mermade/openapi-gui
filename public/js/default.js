@@ -7,7 +7,7 @@ $(function() {
 	
 	//tooltip for add endpoint button
 	if($('.endpoint').length==0) {
-		$('#addEndpoint').popover({"trigger":"manual", "content":"Get started by adding your first endpoint!"});
+		$('#addEndpoint').popover({"trigger":"manual", "content":"Get started by adding your first endpoint!", "placement":"bottom"});
 		$('#addEndpoint').popover('show');
 		$('#addEndpoint').click(hideEndpointPopover);
 	}
