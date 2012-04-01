@@ -1,6 +1,7 @@
 .span3
 	.sidebar-nav.well
-		%input.btn.btn-info.addButton(type='button' value='+' id="addEndpoint" title="Add Endpoint")
+		%a.btn.btn-info.addButton#addEndpoint(title="Add Endpoint")
+			%i.icon-plus.icon-white
 		%br
 		%ul#endpointList
 			-count=0

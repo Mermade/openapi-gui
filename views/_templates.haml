@@ -9,7 +9,10 @@
 				.input
 					%input.endpointName{:name => "endpoints[blank].name", :id => "endpoints[blank].name", :value => "New Endpoint"}
 		.offset5.endpoint-controls 
-			%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
+			%a.btn.btn-info.addButton.addMethod
+				%i.icon-plus.icon-white
+				Add Method
+				
 			%a.btn.btn-danger.removeEndpoint
 				%i.icon-trash.icon-white 
 				Delete Endpoint
@@ -70,7 +73,9 @@
 								:value => "N"} 
 								%span No
 					%span.method-controls
-						%input.btn.btn-info.addParameter(type="button" value='Add Parameter')
+						%a.btn.btn-info.addParameter
+							%i.icon-plus.icon-white
+							Add Parameter
 				%ul.parameters
 								
 

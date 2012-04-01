@@ -38,7 +38,10 @@
 										%input.endpointName{:name => "endpoints[#{count}].name", :id => "endpoints[#{count}].name", :value => "#{e.name}"}
 							
 							.offset5.endpoint-controls 
-								%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
+								%a.btn.btn-info.addButton.addMethod
+									%i.icon-plus.icon-white
+									Add Method
+								
 								%a.btn.btn-danger.removeEndpoint
 									%i.icon-trash.icon-white 
 									Delete Endpoint
