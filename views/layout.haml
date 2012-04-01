@@ -4,8 +4,9 @@
 		%title I/O Doctor - GUI for I/O Docs configurations
 		%link{:href => "/css/bootstrap.min.css", :rel => "stylesheet"}
 		%link{:href => "/css/default.css", :rel => "stylesheet"}
-
+		%link{:href => "/css/ribbon.css", :rel => "stylesheet"}
 	%body
+		
 		.navbar.navbar-fixed-top
 			.navbar-inner
 				.container-fluid    
@@ -14,10 +15,52 @@
 						%li
 							%a{:href => "/"} Start Over
 						%li
-							%a{:href => "http://www.github.com/brandonmwest/iodoctor"} About						
+							%a.about.clickable About						
 		.container-fluid
 			=yield(:content)
 
+		.hide#about.modal
+			.modal-header
+				%h3
+					About I/O Doctor
+				
+				.modal-body
+					.right.ribbon-holder
+						%a.white.ribbon(href="http://github.com/brandonmwest/iodoctor")
+							%span.text 
+								Fork me on GitHub
+				 
+					%h4 
+						What is I/O Doctor?
+					%br
+					%p 
+						I/O Doctor is a GUI for creating and updating  
+						%a(href="https://github.com/mashery/iodocs")
+							I/O Docs	
+						Configuration files. 
+					
+					%h4 How does I/O Doctor work?
+					%br
+					%p
+						%strong Upload 
+						an existing config, or 
+						%strong create 
+						a new config and start adding Endpoints, Methods, and Parameters. When an existing config is used, it is parsed and forms for editing each Endpoint, Method, and Parameter will be created. 
+					%p
+						Click an item from the menu on the left to begin editing. View the JSON output at any time by hitting the "output" tab. When finished, click "Save File" to download the JSON file. I/O Doctor does not store any data. Make sure you save your JSON output.
+					
+				.modal-footer
+					.btn.close Close
+			
+		-if @show_bottom_bar	
+			.bottom-bar
+				.bottombar-inner
+					.container-fluid
+						%hr
+						Version: 
+						=@version
+							
+		
 %script{:src => "/js/jquery-1.7.1.min.js"}
 %script{:src => "/js/bootstrap.min.js"}
 %script{:src => "/js/default.js"}

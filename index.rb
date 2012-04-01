@@ -1,9 +1,12 @@
 require "bundler/setup"
 require 'sinatra'
+require 'sinatra/config_file'
 require './partials'
 require 'haml'
 require 'json'
 require 'hashie'
+
+config_file 'iodoctor.yml'
 
 helpers Sinatra::Partials
 
@@ -11,11 +14,9 @@ get '/' do
 	haml :start, :format => :html5
 end
 
-get '/about' do
-	haml :about
-end 
-
 post '/' do
+  	 @version = settings.version
+    @show_bottom_bar = true
 	 unless params[:file] &&
 					(tmpfile = params[:file][:tempfile]) &&
 					(name = params[:file][:filename])
@@ -33,7 +34,7 @@ post '/' do
 	 
 	 result = JSON(contents)	
 	 @result = Hashie::Mash.new(result)
-	 
+
 	 haml :endpoints
 end
 

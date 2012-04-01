@@ -1,33 +1,51 @@
 $(function() {
-	$('.viewOutput').click(function(e){
-		var formdata = form2js('config', '.');
-		var json = JSON.stringify(formdata, undefined, 2);
-		var syntaxHighlightedJson = syntaxHighlight(json);
-		
-		$('#output').html('<pre>' + syntaxHighlightedJson + '</pre>');
-		$('#json').val(json);
-	});
+	//output tab
+	$('.viewOutput').click(printJsonOutput);
 	
+	//menu actuators for endpoints
 	$('.endpointActuator').live('click', showEndpoint);
 	
+	//buttons to add new endpoints, methods, parameters
 	$('#addEndpoint').click(addEndpoint);
-	$('.removeEndpoint').live('click', removeEndpoint);
 	$('.addMethod').live('click', addMethod);
-	$('.removeMethod').live('click', removeMethod);
+	$('.addParameter').live('click', addParameter);
 	
-	$('.addParameter').live('click', addParameter);	
+	//buttons to remove endpoints, methods, parameters
+	$('.removeEndpoint').live('click', removeEndpoint);
+	$('.removeMethod').live('click', removeMethod);
 	$('.removeParameter').live('click', removeParameter);
 	
+	//when name inputs change, update name in menu and title section
 	$('input.endpointName').live('change', updateEndpointName);
 	$('input.methodName').live('change', updateMethodName);
 	$('input.parameterName').live('change', updateParameterName);
+	
 	$('.section.clickable').live('click', toggleSection);
-
-
+	
+	//navbar about link
+	$('a.about').click(showAbout);
+	$('#about .close').click(hideAbout);
+	
 	$('input.dataType').live('change', updateParameterDataType);
-
 	$($('.endpoint')[0]).show();
 });
+
+var showAbout = function() {
+	$('#about').modal();
+}
+
+var hideAbout = function() {
+	$('#about').modal('hide');
+}
+
+var printJsonOutput = function(e){
+	var formdata = form2js('config', '.');
+	var json = JSON.stringify(formdata, undefined, 2);
+	var syntaxHighlightedJson = syntaxHighlight(json);
+	
+	$('#output').html('<pre>' + syntaxHighlightedJson + '</pre>');
+	$('#json').val(json);
+}
 
 var updateParameterDataType = function(e) {
 	var clicked = $(e.target);

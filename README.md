@@ -19,6 +19,7 @@ I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.
 
 TODO
 ----
+* Titles are not currently clicking
 * Highlight selected Endpoint in the menu
 * Wire up the Method links in the menu
 * Add validation on form fields

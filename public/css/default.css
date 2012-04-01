@@ -6,6 +6,16 @@ body {
   padding: 9px 0;
 }
 
+.bottom-bar {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+.bottom-bar hr {
+	margin:5px 0px;
+}
+
 .hide {
 	display:none;
 }

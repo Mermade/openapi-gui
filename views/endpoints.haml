@@ -32,7 +32,9 @@
 							
 							.offset5.endpoint-controls 
 								%input.btn.btn-info.addButton.addMethod(type="button" value='Add Method')
-								%input.btn.btn-danger.removeEndpoint(type="button" value='Delete Endpoint')
+								%a.btn.btn-danger.removeEndpoint
+									%i.icon-trash.icon-white 
+									Delete Endpoint
 							= partial :methods, :locals => {:endpoint => e, :endpointIndex => count}
 					%input{:type=>"hidden", :value=>count, :id=>"endpointCounter"}
 
