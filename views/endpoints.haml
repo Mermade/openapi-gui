@@ -1,18 +1,25 @@
 .row-fluid
 	%ul.tabs.nav.nav-tabs
 		%li.active
-			%a{:"data-toggle" => "tab", :href => "#editor"} Editor
+			%a{:"data-toggle" => "tab", :href => "#editor"}
+				%i.icon-edit 
+				Editor
 		%li
-			%a.viewOutput{:"data-toggle" => "tab", :href => "#output-container"} Output	
+			%a.viewOutput{:"data-toggle" => "tab", :href => "#output-container"} 
+				%i.icon-file 
+				Output	
 
 	.tab-content
 		#output-container.tab-pane
-			%form{:method => "post", :action => "/file"}
+			%form#outputForm{:method => "post", :action => "/file"}
 				%input#json{:type => "hidden", :name => "json", :value => " "}
-				%input.btn-success{:type => "submit", :value => "Save File"}
+				
+				%a.btn.btn-success.save-file
+					%i.icon-download-alt.icon-white
+					Save File
 			#output
 
-		#editor.tab-pane.active
+		#editor.tab-pane.active.row
 			= partial :menu, :locals => {:result => @result}
 			
 			.content.forms.span8

@@ -8,6 +8,9 @@ $(function() {
 	//tooltip for add endpoint button
 	$('#addEndpoint').hover(toggleTooltip, toggleTooltip)
 	
+	//save file button
+	$('.save-file').click(saveFile);
+	
 	//buttons to add new endpoints, methods, parameters
 	$('#addEndpoint').click(addEndpoint);
 	$('.addMethod').live('click', addMethod);
@@ -32,6 +35,10 @@ $(function() {
 	$('input.dataType').live('change', updateParameterDataType);
 	$($('.endpoint')[0]).show();
 });
+
+var saveFile = function(){
+	$('#outputForm').submit();
+}
 
 var toggleTooltip = function(e){
 	$(e.target).tooltip('toggle');
