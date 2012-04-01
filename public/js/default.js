@@ -31,6 +31,7 @@ $(function() {
 	$('input.parameterName').live('change', updateParameterName);
 	
 	$('.section.clickable').live('click', toggleSection);
+	$('.section.clickable > span').live('click', toggleSection);
 	
 	//navbar about link
 	$('a.about').click(showAbout);
@@ -99,6 +100,9 @@ var updateParameterDataType = function(e) {
 var toggleSection = function(e) {
 	var clicked = $(e.target);
 	var target = clicked.attr('target');
+	if(typeof(target)=="undefined")
+		target = clicked.closest('.section').attr('target');
+		
 	$(target).slideToggle();
 }
 
