@@ -5,11 +5,19 @@ $(function() {
 	//menu actuators for endpoints
 	$('.endpointActuator').live('click', showEndpoint);
 	
-	//tooltip for add endpoint button
-	if($('.endpoint').length==0) {
-		$('#addEndpoint').popover({"trigger":"manual", "content":"Get started by adding your first endpoint!", "placement":"bottom"});
-		$('#addEndpoint').popover('show');
-		$('body').click(hideEndpointPopover);
+	//add a new endpoint by default for new configs
+	if($('.endpoint').length==0 && $('#config').length == 1) {
+		addEndpoint(true);
+	
+		firstMethod = $('#ep1 > .methods > .method');
+		
+		firstMethod.popover({"trigger":"manual", 
+								"title":"Edit this Method",
+								"content":"Get started by editing this method! Click on the method title bar to show the form.", 
+								"placement":"bottom"});
+								
+		firstMethod.popover('show');
+		$('body').click(hideMethodPopover);
 	}
 	
 	//save file button
@@ -31,7 +39,6 @@ $(function() {
 	$('input.parameterName').live('change', updateParameterName);
 	
 	$('.section.clickable').live('click', toggleSection);
-	$('.section.clickable > span').live('click', toggleSection);
 	
 	//navbar about link
 	$('a.about').click(showAbout);
@@ -45,8 +52,8 @@ var saveFile = function(){
 	$('#outputForm').submit();
 }
 
-var hideEndpointPopover = function(e){
-	$("#addEndpoint").popover('hide');
+var hideMethodPopover = function(e){
+	$('#ep1 > .methods > .method').popover('hide');
 }
 
 var showAbout = function() {
@@ -169,7 +176,7 @@ var syntaxHighlight = function(json) {
 }
 
 //TODO refactor these methods into 3 objects - endpoint, method, parameter
-var addEndpoint = function(){
+var addEndpoint = function(instant){
 	var endpointIndex = getEndpointIndex();
 	
 	var newEndpoint = $('#endpointTemplate').children('div').first().clone();
@@ -189,8 +196,12 @@ var addEndpoint = function(){
 	//hide all divs
 	$('.endpoint').hide();
 
-	//show the div corresponding to what was clicked
-	$('#ep' + endpointIndex).show('slow');
+	if(instant==true) 
+		speed='';
+	else
+		speed = 'slow';
+		
+	$('#ep' + endpointIndex).show(speed);
 }
 
 var removeEndpoint = function(e) {
