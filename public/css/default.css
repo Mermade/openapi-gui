@@ -11,6 +11,8 @@ body {
 	bottom: 0;
 	left: 0;
 	right: 0;
+	background-color:white;
+	text-align:right;
 }
 .bottom-bar hr {
 	margin:5px 0px;

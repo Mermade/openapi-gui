@@ -13,10 +13,14 @@
 					%span.brand I/O Doctor
 					%ul.nav
 						%li
-							%a{:href => "/"} Start Over
+							%a{:href => "/"} 
+								%i.icon-off.icon-white
+								Start Over
 						%li
-							%a.about.clickable About						
-		.container-fluid
+							%a.about.clickable 
+								%i.icon-info-sign.icon-white
+								About						
+		.container-fluid(role="main")
 			=yield(:content)
 
 		.hide#about.modal
