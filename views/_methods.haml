@@ -12,7 +12,9 @@
 				
 				.methodContainer.hide{:id => "endpoint#{endpointIndex}method#{method_count}"}
 					%span.method-controls 
-						%input.btn.btn-danger.removeMethod(type="button" value='Delete Method')
+						%a.btn.btn-danger.removeMethod
+							%i.icon-trash.icon-white 
+							Delete Method
 					
 					.control-group
 						%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{method_count}].MethodName"} 

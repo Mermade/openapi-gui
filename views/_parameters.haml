@@ -11,7 +11,10 @@
 		
 				.parameterContainer.hide{:id => "endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
 					%span.method-controls 
-						%input.btn.btn-danger.removeParameter(type="button" value='Delete Parameter')
+						%span.method-controls 
+							%a.btn.btn-danger.removeParameter
+								%i.icon-trash.icon-white 
+								Delete Parameter
 						
 					.control-group
 						%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name

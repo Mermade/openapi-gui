@@ -5,6 +5,9 @@ $(function() {
 	//menu actuators for endpoints
 	$('.endpointActuator').live('click', showEndpoint);
 	
+	//tooltip for add endpoint button
+	$('#addEndpoint').hover(toggleTooltip, toggleTooltip)
+	
 	//buttons to add new endpoints, methods, parameters
 	$('#addEndpoint').click(addEndpoint);
 	$('.addMethod').live('click', addMethod);
@@ -29,6 +32,10 @@ $(function() {
 	$('input.dataType').live('change', updateParameterDataType);
 	$($('.endpoint')[0]).show();
 });
+
+var toggleTooltip = function(e){
+	$(e.target).tooltip('toggle');
+}
 
 var showAbout = function() {
 	$('#about').modal();
@@ -343,8 +350,6 @@ var getMethodIndex = function(endpointIndex) {
 
 var updateMethod = function(method, endpointIndex, methodIndex, oldMethodIndex) {
 	//update the name and id of each child input
-
-
 	if(typeof(oldMethodIndex) != 'undefined')
 		methodIndexPlaceholder = 'methods[' + oldMethodIndex + ']';
 	else
@@ -393,7 +398,10 @@ var updateMethod = function(method, endpointIndex, methodIndex, oldMethodIndex) 
 	
 	methodContainer = method.find('.methodContainer').first();
 	methodContainer.attr('id', 'endpoint' + endpointIndex + 'method' + methodIndex);
-	 
+	
+	if(typeof(oldMethodIndex) == 'undefined') {
+		method.find('.methodName').val('New Method');
+	}
 	section = method.find(".section").first();
 	section.attr('target', section.attr('target').replace('!endpoint!', endpointIndex));
 	section.attr('target', section.attr('target').replace('method' + oldMethodIndex, 'method' + methodIndex));

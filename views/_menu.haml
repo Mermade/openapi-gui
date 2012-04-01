@@ -1,6 +1,7 @@
 .span3
 	.sidebar-nav.well
-		%input.btn.btn-info.addButton(type='button' value='+' id="addEndpoint")
+		%input.btn.btn-info.addButton(type='button' value='+' id="addEndpoint" title="Add Endpoint")
+		%br
 		%ul#endpointList
 			-count=0
 			- result["endpoints"].each do |e|
