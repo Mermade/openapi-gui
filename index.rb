@@ -75,7 +75,7 @@ post '/email' do
   Pony.mail(:to => params[:to_address],
             :from => "json@iodoctor.net",
             :subject => "I/O Doctor JSON Output",
-            :body => body,
+            :body => "Thanks for using I/O Doctor. Your .json file is attached.",
             :attachments => {"iodoctor.json" => json})
 end
 
