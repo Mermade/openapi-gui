@@ -53,15 +53,13 @@ post '/' do
 end
 
 post '/email' do
-  body = "Thanks for using I/O Doctor! Your JSON output is attached."
-  
-  puts params
+  body = params[:json];
   
   Pony.mail(:to => params[:to_address],
+            :from => "json@iodoctor.net"
             :subject => "I/O Doctor JSON Output",
             :html_body => body,
-            :body => body,
-            :attachments => {"output.json" => params[:json]})
+            :body => body)
 end
 
 post '/file' do 
