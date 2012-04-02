@@ -473,9 +473,9 @@ var updateMethodMenuItem = function(menuItem, endpointIndex, newId, oldId) {
 	else
 		placeholder = '!method!';
 	
-	link = menuItem.children('a').first();
+	link = menuItem.children('span').first();
 	link.attr('id', 'endpoint' + endpointIndex + 'method' + newId + 'Actuator');
-	link.attr('href', '#endpoint' + endpointIndex + 'method' + newId );
+	//link.attr('href', '#endpoint' + endpointIndex + 'method' + newId );
 	
 	if(link.text().length == 0)
 		link.text("New Method");
