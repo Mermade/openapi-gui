@@ -1,9 +1,9 @@
 I/O Doctor
 ==========
 
-I/O Doctor is a GUI for creating and editing JSON config files that are used with [I/O Docs](https://github.com/mashery/iodocs), an interactive API documentation system from [Mashery](http://www.mashery.com).
+You can now use I/O Doctor as a hosted application via [iodoctor.net](http://www.iodoctor.net).
 
-This project is still under active development. I/O Doctor is not currently a hosted application.
+I/O Doctor is a GUI for creating and editing JSON config files that are used with [I/O Docs](https://github.com/mashery/iodocs), an interactive API documentation system from [Mashery](http://www.mashery.com).
 
 Description
 -----------
@@ -19,15 +19,8 @@ I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.
 
 TODO
 ----
-* Titles are not currently clicking
+* Refactor to use a Javascript MVC framework
 * Highlight selected Endpoint in the menu
 * Wire up the Method links in the menu
 * Add validation on form fields
-* Refactor JavaScript
 * Ability to reorder nodes
-
-* <del>Finish JavaScript for adding Endpoints, Methods, Parameters</del>
-* <del>Finish JavaScript for removing Endpoint, Methods, Parameters</del>
-* <del>Update form formatting to reflect the hierarchy (endpoint -> methods -> parameters)</del>
-* <del>Add code to show/hide methods for an endpoint, and parameters for a method</del>
-* <del>JavaScript for editing option lists for Parameters marked as enumerated</del>
