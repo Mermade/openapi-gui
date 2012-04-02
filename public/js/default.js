@@ -48,7 +48,7 @@ $(function() {
 	
 	//navbar about link
 	$('a.about').click(showAbout);
-	$('#about .close').click(hideAbout);
+	$('#about .close-about').click(hideAbout);
 	
 	$('input.dataType').live('change', updateParameterDataType);
 	$($('.endpoint')[0]).show();

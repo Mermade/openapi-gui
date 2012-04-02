@@ -24,16 +24,15 @@
 			=yield(:content)
 
 		.hide#about.modal
+			.right.ribbon-holder
+				%a.white.ribbon(href="http://github.com/brandonmwest/iodoctor")
+					%span.text 
+						Fork me on GitHub
 			.modal-header
 				%h3
 					About I/O Doctor
 				
-			.modal-body
-				.right.ribbon-holder
-					%a.white.ribbon(href="http://github.com/brandonmwest/iodoctor")
-						%span.text 
-							Fork me on GitHub
-			 
+			.modal-body			 
 				%h4 
 					What is I/O Doctor?
 				%br
@@ -54,7 +53,7 @@
 					Click an item from the menu on the left to begin editing. View the JSON output at any time by hitting the "output" tab. When finished, click "Save File" to download the JSON file. I/O Doctor does not store any data. Make sure you save your JSON output.
 				
 			.modal-footer
-				.btn.btn-primary.close Close
+				.btn.btn-primary.close-about Close
 
 		.hide#email-modal.modal
 			.modal-header
