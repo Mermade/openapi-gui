@@ -56,7 +56,7 @@ post '/email' do
   body = params[:json];
   
   Pony.mail(:to => params[:to_address],
-            :from => "json@iodoctor.net"
+            :from => "json@iodoctor.net",
             :subject => "I/O Doctor JSON Output",
             :html_body => body,
             :body => body)
