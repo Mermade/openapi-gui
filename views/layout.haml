@@ -28,34 +28,51 @@
 				%h3
 					About I/O Doctor
 				
+			.modal-body
+				.right.ribbon-holder
+					%a.white.ribbon(href="http://github.com/brandonmwest/iodoctor")
+						%span.text 
+							Fork me on GitHub
+			 
+				%h4 
+					What is I/O Doctor?
+				%br
+				%p 
+					I/O Doctor is a GUI for creating and updating  
+					%a(href="https://github.com/mashery/iodocs")
+						I/O Docs	
+					Configuration files. 
+				
+				%h4 How does I/O Doctor work?
+				%br
+				%p
+					%strong Upload 
+					an existing config, or 
+					%strong create 
+					a new config and start adding Endpoints, Methods, and Parameters. When an existing config is used, it is parsed and forms for editing each Endpoint, Method, and Parameter will be created. 
+				%p
+					Click an item from the menu on the left to begin editing. View the JSON output at any time by hitting the "output" tab. When finished, click "Save File" to download the JSON file. I/O Doctor does not store any data. Make sure you save your JSON output.
+				
+			.modal-footer
+				.btn.btn-primary.close Close
+
+		.hide#email-modal.modal
+			.modal-header
+				%h3
+					Email Output
+
 				.modal-body
-					.right.ribbon-holder
-						%a.white.ribbon(href="http://github.com/brandonmwest/iodoctor")
-							%span.text 
-								Fork me on GitHub
-				 
-					%h4 
-						What is I/O Doctor?
-					%br
-					%p 
-						I/O Doctor is a GUI for creating and updating  
-						%a(href="https://github.com/mashery/iodocs")
-							I/O Docs	
-						Configuration files. 
+				.control-group
+					%label.control-label{:for => "email"} 
+						Email Address:
+					.controls
+						.input
+							%input{:name => "email", :id => "email", :value => ""}
 					
-					%h4 How does I/O Doctor work?
-					%br
-					%p
-						%strong Upload 
-						an existing config, or 
-						%strong create 
-						a new config and start adding Endpoints, Methods, and Parameters. When an existing config is used, it is parsed and forms for editing each Endpoint, Method, and Parameter will be created. 
-					%p
-						Click an item from the menu on the left to begin editing. View the JSON output at any time by hitting the "output" tab. When finished, click "Save File" to download the JSON file. I/O Doctor does not store any data. Make sure you save your JSON output.
-					
-				.modal-footer
-					.btn.btn-primary.close Close
-			
+			.modal-footer
+				%a.btn.cancel{:href => "#"} Cancel
+				%a.btn.send.btn-primary{:href => "#"} Send Email
+
 		-if @show_bottom_bar	
 			.bottom-bar
 				.bottombar-inner
@@ -69,3 +86,4 @@
 %script{:src => "/js/bootstrap.min.js"}
 %script{:src => "/js/default.js"}
 %script{:src => "/js/form2js.js"}
+%script{:src => "/js/jquery.jeditable.min.js"}

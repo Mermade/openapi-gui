@@ -5,8 +5,21 @@ require './partials'
 require 'haml'
 require 'json'
 require 'hashie'
+require 'pony'
 
 config_file 'iodoctor.yml'
+Pony.options = {
+  :via => :smtp,
+  :via_options => {
+    :address => 'smtp.sendgrid.net',
+    :port => '587',
+    :domain => 'iodoctor.net',
+    :user_name => ENV['SENDGRID_USERNAME'],
+    :password => ENV['SENDGRID_PASSWORD'],
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+}
 
 helpers Sinatra::Partials
 
@@ -27,6 +40,7 @@ post '/' do
 		 
 		 @result = Hash.new
 		 @result["endpoints"] = Hash.new
+		
 		 return haml(:endpoints)
 	 end
 
@@ -36,6 +50,18 @@ post '/' do
 	 @result = Hashie::Mash.new(result)
 
 	 haml :endpoints
+end
+
+post '/email' do
+  body = "Thanks for using I/O Doctor! Your JSON output is attached."
+  
+  puts params
+  
+  Pony.mail(:to => params[:to_address],
+            :subject => "I/O Doctor JSON Output",
+            :html_body => body,
+            :body => body,
+            :attachments => {"output.json" => params[:json]})
 end
 
 post '/file' do 

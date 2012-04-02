@@ -13,10 +13,15 @@
 		#output-container.tab-pane
 			%form#outputForm{:method => "post", :action => "/file"}
 				%input#json{:type => "hidden", :name => "json", :value => " "}
-				
-				%a.btn.btn-success.save-file
-					%i.icon-download-alt.icon-white
-					Save File
+				%input#to_address{:type => "hidden", :name => "to_address", :value => " "}
+				%a.btn.btn.email-output
+					%i.icon-envelope
+					Email
+
+				%a.btn.btn.save-file
+					%i.icon-download-alt
+					Save as File
+					
 			#output
 
 		#editor.tab-pane.active.row

@@ -13,7 +13,7 @@ $(function() {
 		
 		firstMethod.popover({"trigger":"manual", 
 								"title":"Edit this Method",
-								"content":"Get started by editing this method! Click on the method title bar to show the form.", 
+								"content":"Get started by editing this method! Click on this title bar to show the form for editing this method.", 
 								"placement":"bottom"});
 								
 		firstMethod.popover('show');
@@ -22,6 +22,12 @@ $(function() {
 	
 	//save file button
 	$('.save-file').click(saveFile);
+	
+	//email button
+	$('.email-output').click(showEmailForm);
+	
+	$('#email-modal').find('.cancel').click(hideEmailForm);
+	$('#email-modal').find('.send').click(emailOutput);
 	
 	//buttons to add new endpoints, methods, parameters
 	$('#addEndpoint').click(addEndpoint);
@@ -47,6 +53,24 @@ $(function() {
 	$('input.dataType').live('change', updateParameterDataType);
 	$($('.endpoint')[0]).show();
 });
+
+var showEmailForm = function() {
+	$('#email-modal').modal();
+}
+
+var hideEmailForm = function() {
+	$('#email-modal').modal('hide');
+}
+
+var emailOutput = function(value, settings){
+	hideEmailForm();
+	email = $('#email').val();
+	$('#to_address').val(email);
+	console.log($('#to_address'));
+	formData = $("#outputForm").serialize();
+	$.post("/email", formData);
+	return;
+}
 
 var saveFile = function(){
 	$('#outputForm').submit();
