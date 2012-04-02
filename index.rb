@@ -8,18 +8,34 @@ require 'hashie'
 require 'pony'
 
 config_file 'iodoctor.yml'
-Pony.options = {
-  :via => :smtp,
-  :via_options => {
-    :address => 'smtp.sendgrid.net',
-    :port => '587',
-    :domain => 'iodoctor.net',
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :authentication => :plain,
-    :enable_starttls_auto => true
+
+configure :development do
+  Pony.options = {
+    :via => :smtp,
+    :via_options => {
+      :address => 'localhost',
+      :port => '2525',
+      :domain => 'iodoctor.net'
+    }
   }
-}
+end
+
+configure :production do
+  Pony.options = {
+    :via => :smtp,
+    :via_options => {
+      :address => 'smtp.sendgrid.net',
+      :port => '587',
+      :domain => 'iodoctor.net',
+      :user_name => ENV['SENDGRID_USERNAME'],
+      :password => ENV['SENDGRID_PASSWORD'],
+      :authentication => :plain,
+      :enable_starttls_auto => true
+    }
+  }
+end
+
+
 
 helpers Sinatra::Partials
 
@@ -53,14 +69,14 @@ post '/' do
 end
 
 post '/email' do
-  body = params[:json]
-  puts body
+  json = params[:json]
+  body = "Thanks for using I/O Doctor. Your .json file is attached."
   
   Pony.mail(:to => params[:to_address],
             :from => "json@iodoctor.net",
             :subject => "I/O Doctor JSON Output",
-            :html_body => body,
-            :body => body)
+            :body => body,
+            :attachments => {"iodoctor.json" => json})
 end
 
 post '/file' do 
