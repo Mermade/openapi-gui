@@ -56,6 +56,7 @@ $(function() {
 
 var showEmailForm = function() {
 	$('#email-modal').modal();
+	$('#email').focus();
 }
 
 var hideEmailForm = function() {
@@ -66,7 +67,6 @@ var emailOutput = function(value, settings){
 	hideEmailForm();
 	email = $('#email').val();
 	$('#to_address').val(email);
-	console.log($('#to_address'));
 	formData = $("#outputForm").serialize();
 	$.post("/email", formData);
 	return;
