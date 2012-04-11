@@ -19,8 +19,13 @@ I/O Doctor is built on [Sinatra](http://www.sinatrarb.com), Twitter Bootstrap 2.
 
 TODO
 ----
+
 * Refactor to use a Javascript MVC framework
 * Highlight selected Endpoint in the menu
 * Wire up the Method links in the menu
 * Add validation on form fields
 * Ability to reorder nodes
+* Ability to edit JSON directly on output tab - GUI v Source view
+* Ability to copy a node
+* Add Parameter buttons both above and below the list of parameters
+* Default the paramater data type to be custom: string

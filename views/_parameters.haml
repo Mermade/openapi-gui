@@ -8,7 +8,7 @@
 				%legend
 					.section.clickable{"parent" => "#endpoint#{endpointIndex}method#{methodIndex}", "target" => "#endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
 						Parameter: 
-						%span.parameterNameSpan #{p.ParameterName}
+						%span.parameterNameSpan #{p.Name}
 		
 					.parameterContainer.hide{:id => "endpoint#{endpointIndex}method#{methodIndex}parameter#{param_count}"}
 						%span.method-controls 
@@ -18,11 +18,11 @@
 									Delete Parameter
 						
 						.control-group
-							%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName"} Parameter Name
+							%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Name"} Parameter Name
 							.controls 
-								%input.parameterName{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName", |
-									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].ParameterName",      |
-									:value => "#{p.ParameterName}"} |
+								%input.name{:name => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Name", |
+									:id => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Name",      |
+									:value => "#{p.Name}"} |
 						.control-group
 							%label.control-label{:for => "endpoints[#{endpointIndex}].methods[#{methodIndex}].parameters[#{param_count}].Description"} Description
 							.controls 
