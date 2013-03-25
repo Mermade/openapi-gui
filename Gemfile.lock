@@ -1,38 +1,41 @@
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
-    backports (2.5.1)
-    eventmachine (0.12.10)
-    haml (3.1.4)
-    hashie (1.2.0)
-    i18n (0.6.0)
-    json (1.6.5)
-    mail (2.4.4)
+    backports (3.1.1)
+    eventmachine (1.0.3)
+    haml (4.0.1)
+      tilt
+    hashie (2.0.3)
+    i18n (0.6.4)
+    json (1.7.7)
+    mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.18)
+    mime-types (1.21)
     polyglot (0.3.3)
     pony (1.4)
       mail (> 2.0)
-    rack (1.4.1)
-    rack-protection (1.2.0)
+    rack (1.5.2)
+    rack-protection (1.5.0)
       rack
-    rack-test (0.6.1)
+    rack-test (0.6.2)
       rack (>= 1.0)
-    sinatra (1.3.2)
-      rack (~> 1.3, >= 1.3.6)
-      rack-protection (~> 1.2)
+    shotgun (0.9)
+      rack (>= 1.0)
+    sinatra (1.3.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.3)
       tilt (~> 1.3, >= 1.3.3)
-    sinatra-contrib (1.3.1)
+    sinatra-contrib (1.3.2)
       backports (>= 2.0)
       eventmachine
       rack-protection
       rack-test
       sinatra (~> 1.3.0)
       tilt (~> 1.3)
-    tilt (1.3.3)
-    treetop (1.4.10)
+    tilt (1.3.6)
+    treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
 
@@ -44,5 +47,6 @@ DEPENDENCIES
   hashie
   json
   pony
+  shotgun
   sinatra
   sinatra-contrib
