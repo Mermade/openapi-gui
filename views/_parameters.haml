@@ -1,6 +1,6 @@
 %ul.parameters
 	-param_count = 0
-	-if m.parameters.length > 0
+	-if defined?(:m.parameters) && m.parameters.length > 0
 		-m.parameters.each do |p|
 			-param_count=param_count+1
 		
