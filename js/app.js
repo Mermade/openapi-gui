@@ -92,6 +92,17 @@ function Parameter(koData)
     self.availableLocations = ['query', 'header'];
 
     ko.mapping.fromJS(koData, knockoutMapping, this);
+
+    self.typeInput = ko.computed( function() 
+    {
+        if ( self.Type() == 'other' || 
+             jQuery.inArray(self.Type(), self.availableTypes) == -1 )
+        {
+            return 'freeform-parameter-type-input';
+        }
+
+        return 'list-parameter-type-input';
+    });
 }
 
 function SchemaParameter(koData)
@@ -220,6 +231,7 @@ function cleanUp(obj)
             delete obj[i].__ko_mapping__;
             delete obj[i].supportedHTTPMethods;
             delete obj[i].availableLocations;
+            delete obj[i].typeInput;
 
             cleanUp(obj[i]);
         }

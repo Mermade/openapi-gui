@@ -337,8 +337,11 @@
     </div>
     <div class='control-group'>
         <label class='control-label'> Data Type </label>
-        <div class='controls'>
+        <div class='controls' data-bind="template: { name: typeInput }">
             <select data-bind="{ 'options': availableTypes, 'value': Type }"></select>
+            <!-- ko if: showOtherTypeInput -->
+            <input data-bind="value: Type" />
+            <!-- /ko -->
         </div>
     </div>
     <!-- ko if: typeof(Location) != 'undefined' -->
@@ -350,6 +353,15 @@
     </div>
     <!-- /ko -->
 
+</script>
+
+
+<script type="text/html" id='list-parameter-type-input'>
+    <select data-bind="{ 'options': availableTypes, 'value': Type }"></select>
+</script>
+
+<script type="text/html" id='freeform-parameter-type-input'>
+    <input data-bind="value: Type" />
 </script>
 
 </div>
