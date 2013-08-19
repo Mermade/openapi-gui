@@ -3,7 +3,9 @@
 <head>
     <title>IO Doctor - The Doctor is in</title>
 
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+
     <link href="css/default.css" rel="stylesheet">
     <link href="css/ribbon.css" rel="stylesheet">
     <link href="css/prettify.css" rel="stylesheet">
@@ -15,14 +17,16 @@
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js'></script>
 
+    <script type='text/javascript' src='js/run.js'></script>
     <script type='text/javascript' src='js/app.js'></script>
+    <script type='text/javascript' src='js/ZeroClipboard.min.js'></script>
 </head>
 
 <body>
     <div class='navbar navbar-inverse navbar-fixed-top'>
       <div class='navbar-inner'>
         <div class='container-fluid'>
-          <span class='brand'>I/O Doc Knock</span>
+          <span class='brand'>I/O Doctor</span>
         </div>
       </div>
     </div>
@@ -56,13 +60,17 @@
             <div class="tab-pane active" id="input">
                 <textarea id="service-definition" class="span12 service-input"></textarea>
                 <a class='btn btn-primary pull-right' id="load-definition">
-                <i class='icon-upload icon-white'></i>
-                Load Service Definition
+                    <i class='icon-upload icon-white'></i>
+                    Load Service Definition
                 </a>
             </div>
 
             <div class="tab-pane" id="output">
-                <div><pre id="jsonOutput" class="prettyprint">The Output will go here<pre></div>
+                <a class='btn btn-primary pull-right' id="copy-output" data-clipboard-target="json-output">
+                    <i class='icon-copy icon-white'></i>
+                    Copy Output
+                </a>
+                <div><pre id="json-output" class="prettyprint">The Output will go here<pre></div>
             </div>
           
             <div class='tab-pane row-fluid' id='editor'>
