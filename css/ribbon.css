@@ -1,0 +1,152 @@
+/* http://raw.github.com/jbalogh/ribbons/master/ribbon.css */
+
+@font-face {
+  font-family: Collegiate;
+  src: url("Collegiate.ttf");
+}
+
+.ribbon-holder {
+  position: absolute;
+  overflow: hidden;
+  height: 10em;
+  top: 0;
+}
+
+.right.ribbon-holder {
+  right: 0;
+}
+
+.left.ribbon-holder {
+  left: 0;
+}
+
+.ribbon, .ribbon:hover {
+  text-decoration: none !important;
+}
+
+.ribbon {
+  font-family: Collegiate, sans-serif;
+  letter-spacing: -.1px;
+  opacity: 0.95;
+
+  padding: 0.25em 0;
+  position: relative;
+  display: block;
+  top: 2.5em;
+
+  /* Defaults friendly for white pages. */
+  -webkit-box-shadow: 0 0 13px #888;
+  -moz-box-shadow: 0 0 13px #888;
+  -ms-box-shadow: 0 0 13px #888;
+  -o-box-shadow: 0 0 13px #888;
+  box-shadow: 0 0 13px #888;
+  color: #FFF;
+}
+
+.ribbon .text {
+  padding: 0.1em 3em;
+}
+
+.right .ribbon {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  right: -2.5em;
+}
+
+.left .ribbon {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  left: -2.5em;
+}
+
+.white.ribbon {
+  color: #111;
+  background-color: #F5F5F5;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f3f3f3), color-stop(100%,#ffffff));
+  background: -webkit-linear-gradient(top, #f3f3f3 0%,#ffffff 100%);
+  background: -moz-linear-gradient(top, #f3f3f3 0%, #ffffff 100%); 
+  background: -ms-linear-gradient(top, #f3f3f3 0%,#ffffff 100%);
+  background: -o-linear-gradient(top, #f3f3f3 0%,#ffffff 100%);
+  background: linear-gradient(top, #f3f3f3 0%,#ffffff 100%);
+  -webkit-box-shadow: 0 0 13px #999;
+  -moz-box-shadow: 0 0 13px #999;
+  -ms-box-shadow: 0 0 13px #999;
+  -o-box-shadow: 0 0 13px #999;
+  box-shadow: 0 0 13px #999;
+  text-shadow: 0 0 .05em;
+}
+
+.white.ribbon .text {
+  border: 1px solid #cecece;
+}
+
+.red.ribbon {
+  background-color: #9a0000;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9a0000), color-stop(100%,#a90000));
+  background: -webkit-linear-gradient(top, #9a0000 0%,#a90000 100%);
+  background: -moz-linear-gradient(top, #9a0000 0%, #a90000 100%); 
+  background: -ms-linear-gradient(top, #9a0000 0%,#a90000 100%);
+  background: -o-linear-gradient(top, #9a0000 0%,#a90000 100%);
+  background: linear-gradient(top, #9a0000 0%,#a90000 100%);
+}
+
+.red.ribbon .text {
+  border: 1px solid #bf6060;
+}
+
+.green.ribbon {
+  background-color: #006e00;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#006e00), color-stop(100%,#007200));
+  background: -webkit-linear-gradient(top, #006e00 0%,#007200 100%);
+  background: -moz-linear-gradient(top, #006e00 0%, #007200 100%); 
+  background: -ms-linear-gradient(top, #006e00 0%,#007200 100%);
+  background: -o-linear-gradient(top, #006e00 0%,#007200 100%);
+  background: linear-gradient(top, #006e00 0%,#007200 100%);
+}
+
+.green.ribbon .text {
+  border: 1px solid #6bac6b;
+}
+
+.darkblue.ribbon {
+  background-color: #121621;
+  color: #ecedee;
+}
+
+.darkblue.ribbon .text {
+  border: 1px solid #53565e;
+}
+
+.orange.ribbon {
+  background-color: #E57504;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dc7202), color-stop(100%,#ee7906));
+  background: -webkit-linear-gradient(top, #dc7202 0%,#ee7906 100%);
+  background: -moz-linear-gradient(top, #dc7202 0%, #ee7906 100%); 
+  background: -ms-linear-gradient(top, #dc7202 0%,#ee7906 100%);
+  background: -o-linear-gradient(top, #dc7202 0%,#ee7906 100%);
+  background: linear-gradient(top, #dc7202 0%,#ee7906 100%);
+}
+
+.orange.ribbon .text {
+  border: 1px solid #ebaa65;
+}
+
+.gray.ribbon {
+  background-color: #6d6d6d;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6a6a6a), color-stop(100%,#6d6d6d));
+  background: -webkit-linear-gradient(top, #6a6a6a 0%,#6d6d6d 100%);
+  background: -moz-linear-gradient(top, #6a6a6a 0%, #6d6d6d 100%); 
+  background: -ms-linear-gradient(top, #6a6a6a 0%,#6d6d6d 100%);
+  background: -o-linear-gradient(top, #6a6a6a 0%,#6d6d6d 100%);
+  background: linear-gradient(top, #6a6a6a 0%,#6d6d6d 100%);
+}
+
+.gray.ribbon .text {
+  border: 1px solid #a4a4a4;
+}

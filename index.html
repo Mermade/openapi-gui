@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IO Doctor - The Doctor is in</title>
+
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <link href="css/default.css" rel="stylesheet">
+    <link href="css/ribbon.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/knockout.mapping/2.3.5/knockout.mapping.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+    <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
+    <script type='text/javascript'src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"></script>
+
+    <script type='text/javascript' src='js/app.js'></script>
+</head>
+
+<body>
+    <div class='navbar navbar-inverse navbar-fixed-top'>
+      <div class='navbar-inner'>
+        <div class='container-fluid'>
+          <span class='brand'>I/O Doc Knock</span>
+        </div>
+      </div>
+    </div>
+
+    <div class='container-fluid' role='main'>
+      <div class='row-fluid'>
+
+        <ul id="section-tabs" class='tabs nav nav-tabs'>
+            <li class='active'>
+            <a data-toggle='tab' href='#input' id="input-tab">
+              <i class='icon-upload'></i>
+              Load
+            </a>
+          </li>
+          <li>
+            <a data-toggle='tab' href='#editor' id="editor-tab">
+              <i class='icon-edit'></i>
+              Edit
+            </a>
+          </li>
+          <li>
+            <a data-toggle='tab' href='#output' id="output-tab">
+              <i class='icon-file'></i>
+              Output
+            </a>
+          </li>
+        </ul>
+
+        <div class='tab-content'>
+
+            <div class="tab-pane active" id="input">
+                <textarea id="service-definition" class="span12 service-input"></textarea>
+                <a class='btn btn-primary pull-right' id="load-definition">
+                <i class='icon-upload icon-white'></i>
+                Load Service Definition
+                </a>
+            </div>
+
+            <div class="tab-pane" id="output">
+                <div><pre id="jsonOutput" class="prettyprint">The Output will go here<pre></div>
+            </div>
+          
+            <div class='tab-pane row-fluid' id='editor'>
+
+                <div class='span3'>
+                    <div class='sidebar-nav well'>
+                        <a class='btn btn-info addButton' id='addEndpoint' title='Add Endpoint'>
+                            <i class='icon-plus icon-white'></i>
+                        </a>
+                        <br/>
+                        <ul id='endpointList' data-bind="foreach: endpoints">
+                        <a href="#" data-bind="text: name"></a>
+                            <ul data-bind="foreach: methods">
+                                <li data-bind="text: MethodName"></li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content forms span9">
+                    <form class="form-horizontal" id="config">
+                        <div class="endpoints" data-bind="template: { name: 'endpointTemplate', foreach: endpoints, as: 'endpoint' }"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id='endpointTemplate'>
+    <div class="endpoint" data-bind="attr: { id: 'ep[' + $index() + ']' }">
+        <div class="header">
+            <div class='control-group span6'>
+                <label class='control-label'>
+                    Endpoint:
+                </label>
+                <div class='controls'>
+                    <div class='input'>
+                        <input data-bind="value: name">
+                    </div>
+                </div>
+            </div>
+            <div class='pull-right span6'>
+                <a data-bind="click: $parent.deleteEndpoint, attr: { 'array-loc': $index() }" class='btn btn-danger pull-right'>
+                    <i class='icon-trash icon-white'></i>
+                    Delete Endpoint
+                </a>
+                <a data-bind="click: addMethod" class='btn btn-info pull-right'>
+                    <i class='icon-plus icon-white'></i> 
+                    Add Method 
+                </a>
+            </div>
+        </div>
+        <div class="accordion span12" style="margin-left:0px" data-bind="attr: { id: 'ep-accordion-'+$index() }">
+            <div data-bind="template: { name: 'methodTemplate', foreach: methods, as: 'method' }">
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="methodTemplate">
+<div>
+    <div class="accordion-group" data-bind="attr: { 'id': 'agp-'+id() }">
+        <div class='accordion-heading'> 
+            <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': 'agp-'+id(), href: '#a-'+id() }" >
+                Method: <span class='methodNameSpan' data-bind="text: MethodName"></span>
+            </a>
+        </div>
+        <div class="accordion-body collapse" data-bind="attr: { id: 'a-'+id() }">
+            <div class="accordion-inner">
+                <div class="pull-right">
+                    <a data-bind="click: addParameter" class='btn btn-info'>
+                        <i class='icon-plus icon-white'></i>
+                        Add Param
+                    </a>
+                    
+                    <a data-bind="click: addContentSection" class='btn btn-info'>
+                        <i class='icon-plus icon-white'></i>
+                        Add Body
+                    </a>
+
+                    <a class='btn btn-danger' data-bind="click: endpoint.deleteMethod, attr: { 'array-loc': $index() }">
+                        <i class='icon-trash icon-white'></i>
+                        Delete Method
+                    </a>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Method Name </label>
+                    <div class='controls'>
+                        <input class='methodName' data-bind="value: MethodName" />
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Synopsis </label>
+                    <div class='controls'>
+                        <textarea class="span8" data-bind="text: Synopsis"></textarea>
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
+                    <div class='controls'>
+                        <select data-bind="{ 'options': endpoint.supportedHTTPMethods, 'value': HTTPMethod }"></select>
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> URI </label>
+                    <div class='controls'>
+                        <input data-bind="value: URI" />
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Requires OAuth? </label>
+                    <div class='controls'>
+                        <label class='checkbox'>
+                            <input data-bind="value: RequiresOAuth" type='checkbox' />
+                        </label>
+                    </div>
+
+                    <!-- Then render all the parameters (not-nestable) -->
+                    <div data-bind="template: { name: 'simple-schema', foreach: parameters, as: 'parameter' }" id='parameters'></div>
+
+                    <!-- Finally render the content section (which may have infinately nested parameters) -->
+                    <!-- ko if: typeof(content()) == 'object' && content() != null -->
+                        <div data-bind="template: { name: 'content-section', data: content }"></div>
+                    <!-- /ko -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/html" id='content-section'>
+<div class="accordion content-section" data-bind="attr: { id: 'agp-'+id() }" >
+    <div class="accordion-group">
+        <div class='accordion-heading'> 
+            <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': 'agp-'+id(), href: '#a-'+id() }" >
+                Body Content
+            </a>
+        </div>
+        <div class="accordion-body collapse in" data-bind="attr: { id: 'a-' +id() }">
+            <div class="accordion-inner">
+                <span class="pull-right">
+                    <a class='btn btn-danger' data-bind="click: $parent.deleteContentSection ">
+                        <i class='icon-trash icon-white'></i>
+                        Delete
+                    </a>
+                </span>
+                <span class='pull-right'>
+                    <a data-bind="click: addParameter" class='btn btn-info'>
+                        <i class='icon-plus icon-white'></i>
+                        Add Param
+                    </a>
+                </span>
+
+                <div class='control-group'>
+                    <label class='control-label'> Content Type </label>
+                    <div class='controls'>
+                        <input data-bind="value: contentType" />
+                    </div>
+                </div>
+
+                <!-- Finally render all parameters for this content section (parameters are infinately nestable) -->
+                <div data-bind="foreach: parameters">
+                    <div data-bind="template: { name: displayTemplate }"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</script>
+
+<script type="text/html" id='complex-schema'>
+
+<div class="accordion parameter" data-bind="attr: { id: 'ac-' + id() }" >
+    <div class="accordion-group">
+        <div class='accordion-heading'> 
+            <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
+                Parameter: <span data-bind="text: Name"></span>
+            </a>
+        </div>
+        <div class="accordion-body collapse in" data-bind="attr: { id: id() }">
+            <div class="accordion-inner">
+                <span class="pull-right">
+                    <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
+                        <i class='icon-trash icon-white'></i>
+                        Delete
+                    </a>
+                </span>
+                <span class='pull-right'>
+                    <a data-bind="click: addParameter" class='btn btn-info'>
+                        <i class='icon-plus icon-white'></i>
+                        Add
+                    </a>
+                </span>
+
+                <!-- First we render this elements top-level attributes -->
+                <div data-bind="template: { name: 'data-node' }"></div>
+
+                <!-- Finally render all the elements parameters (infinately nestable) -->
+                <div data-bind="foreach: parameters">
+                    <div data-bind="template: { name: displayTemplate }"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</script>
+
+<script type="text/html" id='simple-schema'>
+
+<div class="accordion parameter" data-bind="attr: { id: 'ac-' + id() }" >
+    <div class="accordion-group">
+        <div class='accordion-heading'> 
+            <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
+                Parameter: <span class='methodNameSpan' data-bind="text: Name"></span>
+            </a>
+        </div>
+        <div class="accordion-body collapse" data-bind="attr: { id: id() }">
+            <div class="accordion-inner">
+                <span class="pull-right">
+                    <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
+                        <i class='icon-trash icon-white'></i>
+                        Delete
+                    </a>
+                </span>
+
+                <div data-bind="template: { name: 'data-node' }"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</script>
+
+<script type="text/html" id='data-node'>
+
+    <div class='control-group'>
+        <label class='control-label'> Parameter Name </label>
+        <div class='controls'>
+            <input data-bind="value: Name" />
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Description </label>
+        <div class='controls'>
+            <textarea data-bind="value: Description" class="span8"></textarea>
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Required </label>
+        <div class='controls'>
+            <input data-bind="value: Required" />
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Default Value </label>
+        <div class='controls'>
+            <input data-bind="value: Default" />
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Data Type </label>
+        <div class='controls'>
+            <select data-bind="{ 'options': availableTypes, 'value': Type }"></select>
+        </div>
+    </div>
+    <!-- ko if: typeof(Location) != 'undefined' -->
+    <div class='control-group'>
+        <label class='control-label'> Location </label>
+        <div class='controls'>
+            <select data-bind="{ 'options': availableLocations, 'value': Location }"></select>
+        </div>
+    </div>
+    <!-- /ko -->
+
+</script>
+
+</div>
+</body>
