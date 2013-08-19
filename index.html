@@ -337,12 +337,7 @@
     </div>
     <div class='control-group'>
         <label class='control-label'> Data Type </label>
-        <div class='controls' data-bind="template: { name: typeInput }">
-            <select data-bind="{ 'options': availableTypes, 'value': Type }"></select>
-            <!-- ko if: showOtherTypeInput -->
-            <input data-bind="value: Type" />
-            <!-- /ko -->
-        </div>
+        <div class='controls' data-bind="template: { name: typeInput }"></div>
     </div>
     <!-- ko if: typeof(Location) != 'undefined' -->
     <div class='control-group'>

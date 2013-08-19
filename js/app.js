@@ -139,6 +139,17 @@ function SchemaParameter(koData)
 
         return "simple-schema";
     }
+
+    self.typeInput = ko.computed( function() 
+    {
+        if ( self.Type() == 'other' || 
+             jQuery.inArray(self.Type(), self.availableTypes) == -1 )
+        {
+            return 'freeform-parameter-type-input';
+        }
+
+        return 'list-parameter-type-input';
+    });
 }
 
 function ContentSection(koData) 
