@@ -1,8 +1,6 @@
 I/O Doctor
 ==========
 
-You can now use I/O Doctor as a hosted application via [iodoctor.net](http://www.iodoctor.net).
-
 I/O Doctor is a GUI for creating and editing JSON config files that are used with [I/O Docs](https://github.com/mashery/iodocs), an interactive API documentation system from [Mashery](http://www.mashery.com).
 
 I/O Doctor builds valid service description JSON for the stock I/O Doctor however it also supports defining an HTTP request payload (referred to as 'Body Content' within IODocs) for POST, PUT, or DELETE requests as implemented by [I/O Docs/dgc-wh](https://github.com/dgc-wh/iodocs).

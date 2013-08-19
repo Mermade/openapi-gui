@@ -1,3 +1,6 @@
+// Contains the "plumbing" required to run the application (e.g. bind UI to 
+// objects, bind events, etc...)
+
 $(document).ready(function() {
     // Activates knockout.js
     viewModel = new AppViewModel();
@@ -16,8 +19,13 @@ $(document).ready(function() {
         displayViewModel = jQuery.parseJSON(ko.toJSON(viewModel));
         cleanUp(displayViewModel);
 
+        // Unfortunately there's a known issue with dynamicly writing to pretty 
+        // print managed <pre> blocks. To solve for this I create a new randomly 
+        // ID'd pre block and write to it.
+        codeContainerId = 'output-'+ Math.floor(Math.random()*10000000);
+        $('#json-output').html('<pre class="prettyprint" id="'+codeContainerId+'"></pre>');
         json = JSON.stringify(displayViewModel, undefined, 4);
-        $('#json-output').html( json );
+        $('#'+codeContainerId).html( json );
 
         prettyPrint();
     });
