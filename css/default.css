@@ -25,6 +25,7 @@ body {
     width: auto;
     text-align: left;
     font-size:19.5px;
+    padding-right: 10px;
 }
 
 .endpoint > .header > .control-group > .controls  {
@@ -65,4 +66,37 @@ body {
 
 .service-input {
     height:400px;
+}
+
+
+.accordion-heading  {
+    display:table;
+    width:100%;
+}
+.accordion-heading > .accordion-toggle {
+    display:table-cell;
+    padding: 10px;
+    width:100%;
+    vertical-align: middle;
+}
+
+.accordion-heading > .accordion-buttons {
+    display:table-cell;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+.block-container {
+    display: block;
+    white-space:nowrap;
+}
+
+.accordion-buttons > .block-container > .btn {
+    opacity:0.1;
+    filter:alpha(opacity=10); /* For IE8 and earlier */
+}
+
+.accordion-buttons > .block-container > .btn:hover {
+    opacity:1;
+    filter:alpha(opacity=100); /* For IE8 and earlier */
 }

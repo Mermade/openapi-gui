@@ -86,14 +86,14 @@ function Method(koData)
 
     /**
      * I am somewhat novice/intermediate when it comes to Javascript so the 
-     * whole prototype / referencing modle somewhat baffles me. I tride a 
+     * whole prototype / referencing modle somewhat baffles me. I tried a 
      * couple of more elegent ways to implement the clone function but in the 
      * end I always wound up with unwanted references to the original objects.
      * So I brute forced it... if anybody wants to school me I'm all ears.
      */
     self.clone = function()
     {
-        method = new Method()
+        var method = new Method()
         
         method.MethodName = ko.observable( self.MethodName() );
         method.Synopsis = ko.observable( self.Synopsis() );
@@ -111,7 +111,7 @@ function Method(koData)
 
         if( self.parameters() instanceof Array ) 
         {
-            for (i=0; i<self.parameters().length; i++) 
+            for (var i=0; i<self.parameters().length; i++) 
             {
                 parameter = new Parameter();
 
@@ -154,7 +154,7 @@ function Parameter(koData)
 
     self.clone = function()
     {
-        parameter = new Parameter();
+        var parameter = new Parameter();
 
         parameter.Name = ko.observable( self.Name() );
         parameter.Description = ko.observable( self.Description() );
@@ -215,7 +215,7 @@ function SchemaParameter(koData)
 
     self.clone = function()
     {
-        parameter = new SchemaParameter();
+        var parameter = new SchemaParameter();
 
         parameter.Name = ko.observable( self.Name() );
         parameter.Description = ko.observable( self.Description() );
@@ -226,7 +226,7 @@ function SchemaParameter(koData)
 
         if( self.parameters() instanceof Array ) 
         {
-            for (i=0; i<self.parameters().length; i++) 
+            for( var i=0; i<self.parameters().length; i++ ) 
             {
                 parameter.parameters()[i] = self.parameters()[i].clone();
             }
@@ -260,20 +260,16 @@ function ContentSection(koData)
 
     self.clone = function()
     {
-        section = new ContentSection();
+        var section = new ContentSection();
 
         section.contentType = ko.observableArray( self.contentType() );
         section.parameters = ko.observableArray();
 
         if( self.parameters() instanceof Array ) 
         {
-            // um scoping...? so apparently the call to 
-            // self.parameters()[e].clone() (which itself has a for loop) 
-            // overwrote the variable i and put me into an infinate loop (bad).
-            // So I substuted e and all is well - that seems crazy to me.
-            for (e=0; e<self.parameters().length; e++) 
+            for (var i=0; i<self.parameters().length; i++) 
             {
-                section.parameters()[e] = self.parameters()[e].clone();
+                section.parameters()[i] = self.parameters()[i].clone();
             }
         }
 

@@ -138,10 +138,9 @@
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': 'agp-'+id(), href: '#a-'+id() }" >
                 Method: <span class='methodNameSpan' data-bind="text: MethodName"></span>
             </a>
-        </div>
-        <div class="accordion-body collapse" data-bind="attr: { id: 'a-'+id() }">
-            <div class="accordion-inner">
-                <div class="pull-right">
+
+            <div class="accordion-buttons">
+                <div class="block-container">
                     <a data-bind="click: addParameter" class='btn btn-info'>
                         <i class='icon-plus icon-white'></i>
                         Param
@@ -163,16 +162,21 @@
                     </a>
 
                 </div>
+            </div>
+        </div>
+        <div class="accordion-body collapse" data-bind="attr: { id: 'a-'+id() }">
+            <div class="accordion-inner">
+                
                 <div class='control-group'>
                     <label class='control-label'> Method Name </label>
                     <div class='controls'>
-                        <input class='methodName' data-bind="value: MethodName" />
+                        <input class='methodName' data-bind="value: MethodName, valueUpdate: 'afterkeydown'" />
                     </div>
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Synopsis </label>
                     <div class='controls'>
-                        <textarea class="span8" data-bind="text: Synopsis"></textarea>
+                        <textarea class="span8" data-bind="value: Synopsis, valueUpdate: 'afterkeydown'"></textarea>
                     </div>
                 </div>
                 <div class='control-group'>
@@ -216,21 +220,25 @@
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': 'agp-'+id(), href: '#a-'+id() }" >
                 Body Content
             </a>
+            <div class="accordion-buttons">
+                <div class="block-container">
+                    <span class="pull-right">
+                        <a class='btn btn-danger' data-bind="click: $parent.deleteContentSection ">
+                            <i class='icon-trash icon-white'></i>
+                            Delete
+                        </a>
+                    </span>
+                    <span class='pull-right'>
+                        <a data-bind="click: addParameter" class='btn btn-info'>
+                            <i class='icon-plus icon-white'></i>
+                            Add Param
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="accordion-body collapse in" data-bind="attr: { id: 'a-' +id() }">
             <div class="accordion-inner">
-                <span class="pull-right">
-                    <a class='btn btn-danger' data-bind="click: $parent.deleteContentSection ">
-                        <i class='icon-trash icon-white'></i>
-                        Delete
-                    </a>
-                </span>
-                <span class='pull-right'>
-                    <a data-bind="click: addParameter" class='btn btn-info'>
-                        <i class='icon-plus icon-white'></i>
-                        Add Param
-                    </a>
-                </span>
 
                 <div class='control-group'>
                     <label class='control-label'> Content Type </label>
@@ -258,21 +266,26 @@
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
                 Parameter: <span data-bind="text: Name"></span>
             </a>
+
+            <div class="accordion-buttons">
+                <div class="block-container">
+                    <span class="pull-right">
+                        <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
+                            <i class='icon-trash icon-white'></i>
+                            Delete
+                        </a>
+                    </span>
+                    <span class='pull-right'>
+                        <a data-bind="click: addParameter" class='btn btn-info'>
+                            <i class='icon-plus icon-white'></i>
+                            Add
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="accordion-body collapse in" data-bind="attr: { id: id() }">
             <div class="accordion-inner">
-                <span class="pull-right">
-                    <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
-                        <i class='icon-trash icon-white'></i>
-                        Delete
-                    </a>
-                </span>
-                <span class='pull-right'>
-                    <a data-bind="click: addParameter" class='btn btn-info'>
-                        <i class='icon-plus icon-white'></i>
-                        Add
-                    </a>
-                </span>
 
                 <!-- First we render this elements top-level attributes -->
                 <div data-bind="template: { name: 'data-node' }"></div>
@@ -297,16 +310,21 @@
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
                 Parameter: <span class='methodNameSpan' data-bind="text: Name"></span>
             </a>
+
+            <div class="accordion-buttons">
+                <div class="block-container">
+                    <span class="pull-right">
+                        <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
+                            <i class='icon-trash icon-white'></i>
+                            Delete
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="accordion-body collapse" data-bind="attr: { id: id() }">
             <div class="accordion-inner">
-                <span class="pull-right">
-                    <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
-                        <i class='icon-trash icon-white'></i>
-                        Delete
-                    </a>
-                </span>
-
+                
                 <div data-bind="template: { name: 'data-node' }"></div>
 
             </div>
