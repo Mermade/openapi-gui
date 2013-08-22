@@ -1,5 +1,6 @@
 // This is a simple *viewmodel* - JavaScript that defines the data and 
-// behavior of our UI via KnockoutJS
+// behavior of our UI via KnockoutJS. For more about knockout see 
+// http://knockoutjs.com/
 
 function AppViewModel() 
 {
@@ -38,6 +39,14 @@ function Endpoint(koData)
         methodId = $(event.target).attr('array-loc');
         self.methods.splice(methodId,1);
     }
+
+    self.duplicateMethod = function( item, event ) 
+    {
+        methodId = $(event.target).attr('array-loc');
+        method = self.methods()[methodId].clone();
+        
+        self.methods.push(method);
+    }
 }
 
 function Method(koData)
@@ -74,6 +83,45 @@ function Method(koData)
     {
         self.content(null);
     }
+
+    /**
+     * I am somewhat novice/intermediate when it comes to Javascript so the 
+     * whole prototype / referencing modle somewhat baffles me. I tride a 
+     * couple of more elegent ways to implement the clone function but in the 
+     * end I always wound up with unwanted references to the original objects.
+     * So I brute forced it... if anybody wants to school me I'm all ears.
+     */
+    self.clone = function()
+    {
+        method = new Method()
+        
+        method.MethodName = ko.observable( self.MethodName() );
+        method.Synopsis = ko.observable( self.Synopsis() );
+        method.HTTPMethod = ko.observable( self.HTTPMethod() );
+        method.URI = ko.observable( self.URI() );
+        method.RequiresOAuth = ko.observable( self.RequiresOAuth() );
+
+        method.content = ko.observable();
+        method.parameters = ko.observableArray();
+
+        if( self.content() instanceof ContentSection ) 
+        {
+            method.content( self.content().clone() );
+        }
+
+        if( self.parameters() instanceof Array ) 
+        {
+            for (i=0; i<self.parameters().length; i++) 
+            {
+                parameter = new Parameter();
+
+                method.parameters()[i] = self.parameters()[i].clone();
+            }
+        }
+
+        return method;
+    }
+
 }
 
 function Parameter(koData) 
@@ -103,6 +151,20 @@ function Parameter(koData)
 
         return 'list-parameter-type-input';
     });
+
+    self.clone = function()
+    {
+        parameter = new Parameter();
+
+        parameter.Name = ko.observable( self.Name() );
+        parameter.Description = ko.observable( self.Description() );
+        parameter.Default = ko.observable( self.Default() );
+        parameter.Required = ko.observable( self.Required() );
+        parameter.Type = ko.observable( self.Type() );
+        parameter.Location = ko.observable( self.Location() );
+
+        return parameter;
+    }
 }
 
 function SchemaParameter(koData)
@@ -150,6 +212,28 @@ function SchemaParameter(koData)
 
         return 'list-parameter-type-input';
     });
+
+    self.clone = function()
+    {
+        parameter = new SchemaParameter();
+
+        parameter.Name = ko.observable( self.Name() );
+        parameter.Description = ko.observable( self.Description() );
+        parameter.Default = ko.observable( self.Default() );
+        parameter.Required = ko.observable ( self.Required() );
+        parameter.Type = ko.observable( self.Type() );
+        parameter.parameters = ko.observableArray();
+
+        if( self.parameters() instanceof Array ) 
+        {
+            for (i=0; i<self.parameters().length; i++) 
+            {
+                parameter.parameters()[i] = self.parameters()[i].clone();
+            }
+        }
+
+        return parameter;
+    }
 }
 
 function ContentSection(koData) 
@@ -172,6 +256,28 @@ function ContentSection(koData)
     {
         id = $(event.target).attr('array-loc');
         self.parameters.splice(id,1);
+    }
+
+    self.clone = function()
+    {
+        section = new ContentSection();
+
+        section.contentType = ko.observableArray( self.contentType() );
+        section.parameters = ko.observableArray();
+
+        if( self.parameters() instanceof Array ) 
+        {
+            // um scoping...? so apparently the call to 
+            // self.parameters()[e].clone() (which itself has a for loop) 
+            // overwrote the variable i and put me into an infinate loop (bad).
+            // So I substuted e and all is well - that seems crazy to me.
+            for (e=0; e<self.parameters().length; e++) 
+            {
+                section.parameters()[e] = self.parameters()[e].clone();
+            }
+        }
+
+        return section;
     }
 }
 

@@ -20,6 +20,7 @@
     <script type='text/javascript' src='js/run.js'></script>
     <script type='text/javascript' src='js/app.js'></script>
     <script type='text/javascript' src='js/ZeroClipboard.min.js'></script>
+    <!-- <script type='text/javascript' src='js/object.js'></script> -->
 </head>
 
 <body>
@@ -143,18 +144,24 @@
                 <div class="pull-right">
                     <a data-bind="click: addParameter" class='btn btn-info'>
                         <i class='icon-plus icon-white'></i>
-                        Add Param
+                        Param
                     </a>
                     
                     <a data-bind="click: addContentSection" class='btn btn-info'>
                         <i class='icon-plus icon-white'></i>
-                        Add Body
+                        Body
+                    </a>
+
+                    <a class='btn btn-info' data-bind="click: endpoint.duplicateMethod, attr: { 'array-loc': $index() }">
+                        <i class='icon-copy icon-white'></i>
+                        Duplicate
                     </a>
 
                     <a class='btn btn-danger' data-bind="click: endpoint.deleteMethod, attr: { 'array-loc': $index() }">
                         <i class='icon-trash icon-white'></i>
-                        Delete Method
+                        Delete
                     </a>
+
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Method Name </label>
