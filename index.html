@@ -20,7 +20,6 @@
     <script type='text/javascript' src='js/run.js'></script>
     <script type='text/javascript' src='js/app.js'></script>
     <script type='text/javascript' src='js/ZeroClipboard.min.js'></script>
-    <!-- <script type='text/javascript' src='js/object.js'></script> -->
 </head>
 
 <body>
@@ -364,7 +363,7 @@
         <label class='control-label'> Data Type </label>
         <div class='controls' data-bind="template: { name: typeInput }"></div>
     </div>
-    <!-- ko if: typeof(Location) != 'undefined' -->
+    <!-- ko if: $data instanceof Parameter -->
     <div class='control-group'>
         <label class='control-label'> Location </label>
         <div class='controls'>
