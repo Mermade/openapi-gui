@@ -73,6 +73,13 @@ body {
     display:table;
     width:100%;
 }
+
+.accordion-heading > .accordion-handle {
+    display:table-cell;
+    padding: 10px;
+    vertical-align: middle;
+}
+
 .accordion-heading > .accordion-toggle {
     display:table-cell;
     padding: 10px;

@@ -17,6 +17,7 @@
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js'></script>
     <script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/js/bootstrap.min.js'></script>
 
+    <script type='text/javascript' src='js/knockout-sortable.min.js'></script>
     <script type='text/javascript' src='js/run.js'></script>
     <script type='text/javascript' src='js/app.js'></script>
     <script type='text/javascript' src='js/ZeroClipboard.min.js'></script>
@@ -82,9 +83,11 @@
                         </a>
                         <br/>
                         <ul id='endpointList' data-bind="foreach: endpoints">
-                        <a href="#" data-bind="text: name"></a>
+                        <strong><a href="#" data-bind="{text: name, attr: { 'href': '#'+id() } }"></a></strong>
                             <ul data-bind="foreach: methods">
-                                <li data-bind="text: MethodName"></li>
+                                <a data-bind="attr: { 'href': '#agp-'+id(), 'onClick': '$(\'#a-' + id() +'\').collapse(\'show\')' }">
+                                    <li data-bind="text: MethodName"></li>
+                                </a>
                             </ul>
                         </ul>
                     </div>
@@ -101,7 +104,7 @@
 </div>
 
 <script type="text/html" id='endpointTemplate'>
-    <div class="endpoint" data-bind="attr: { id: 'ep[' + $index() + ']' }">
+    <div class="endpoint" data-bind="attr: { 'id': id }">
         <div class="header">
             <div class='control-group span6'>
                 <label class='control-label'>
@@ -125,15 +128,17 @@
             </div>
         </div>
         <div class="accordion span12" style="margin-left:0px" data-bind="attr: { id: 'ep-accordion-'+$index() }">
-            <div data-bind="template: { name: 'methodTemplate', foreach: methods, as: 'method' }">
+            <div class="sortable-accordion" data-bind="sortable: { template: 'methodTemplate', data: methods, options: {'axis': 'y', handle: '.method-handle', containment: 'parent' } }">
         </div>
     </div>
 </script>
 
 <script type="text/html" id="methodTemplate">
-<div>
     <div class="accordion-group" data-bind="attr: { 'id': 'agp-'+id() }">
-        <div class='accordion-heading'> 
+        <div class='accordion-heading'>
+
+            <i class="icon-reorder accordion-handle method-handle"></i>
+
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': 'agp-'+id(), href: '#a-'+id() }" >
                 Method: <span class='methodNameSpan' data-bind="text: MethodName"></span>
             </a>
@@ -199,7 +204,7 @@
                     </div>
 
                     <!-- Then render all the parameters (not-nestable) -->
-                    <div data-bind="template: { name: 'simple-schema', foreach: parameters, as: 'parameter' }" id='parameters'></div>
+                    <div class="sortable-params" data-bind="sortable: { template: 'simple-schema', data: parameters, options: {'axis': 'y', handle: '.param-handle', containment: 'parent' } }" id='parameters'></div>
 
                     <!-- Finally render the content section (which may have infinately nested parameters) -->
                     <!-- ko if: typeof(content()) == 'object' && content() != null -->
@@ -209,7 +214,7 @@
             </div>
         </div>
     </div>
-</div>
+
 </script>
 
 <script type="text/html" id='content-section'>
@@ -220,19 +225,18 @@
                 Body Content
             </a>
             <div class="accordion-buttons">
-                <div class="block-container">
-                    <span class="pull-right">
+                <div>
+                    <div class="block-container">
+                        <a data-bind="click: addParameter" class='btn btn-info'>
+                            <i class='icon-plus icon-white'></i>
+                            Param
+                        </a>
+
                         <a class='btn btn-danger' data-bind="click: $parent.deleteContentSection ">
                             <i class='icon-trash icon-white'></i>
                             Delete
                         </a>
-                    </span>
-                    <span class='pull-right'>
-                        <a data-bind="click: addParameter" class='btn btn-info'>
-                            <i class='icon-plus icon-white'></i>
-                            Add Param
-                        </a>
-                    </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -247,7 +251,7 @@
                 </div>
 
                 <!-- Finally render all parameters for this content section (parameters are infinately nestable) -->
-                <div data-bind="foreach: parameters">
+                <div class="sortable-content-params" data-bind="sortable: { data:parameters, options: {'axis': 'y', handle: '.param-handle', containment: 'parent' } }">
                     <div data-bind="template: { name: displayTemplate }"></div>
                 </div>
 
@@ -262,24 +266,22 @@
 <div class="accordion parameter" data-bind="attr: { id: 'ac-' + id() }" >
     <div class="accordion-group">
         <div class='accordion-heading'> 
+            <i class="icon-reorder accordion-handle param-handle"></i>
+
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
                 Parameter: <span data-bind="text: Name"></span>
             </a>
 
             <div class="accordion-buttons">
                 <div class="block-container">
-                    <span class="pull-right">
-                        <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
-                            <i class='icon-trash icon-white'></i>
-                            Delete
-                        </a>
-                    </span>
-                    <span class='pull-right'>
+                    <div>
                         <a data-bind="click: addParameter" class='btn btn-info'>
-                            <i class='icon-plus icon-white'></i>
-                            Add
+                            <i class='icon-plus icon-white'></i> Add
                         </a>
-                    </span>
+                        <a class='btn btn-danger' data-bind="click: $parent.deleteParameter, attr: { 'array-loc': $index() }">
+                            <i class='icon-trash icon-white'></i> Delete
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -306,6 +308,9 @@
 <div class="accordion parameter" data-bind="attr: { id: 'ac-' + id() }" >
     <div class="accordion-group">
         <div class='accordion-heading'> 
+    
+            <i class="icon-reorder accordion-handle param-handle"></i>
+
             <a class="accordion-toggle" data-toggle="collapse" data-bind="attr: { 'data-parent': '#ac-'+id(), href: '#'+id() }" >
                 Parameter: <span class='methodNameSpan' data-bind="text: Name"></span>
             </a>
@@ -350,7 +355,7 @@
     <div class='control-group'>
         <label class='control-label'> Required </label>
         <div class='controls'>
-            <input data-bind="value: Required" />
+            <select data-bind="{ 'options': ['true', 'false'], 'value': Required }"></select>
         </div>
     </div>
     <div class='control-group'>
