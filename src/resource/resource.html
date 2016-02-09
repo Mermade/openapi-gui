@@ -1,0 +1,27 @@
+<div class="resource" id="{{$ctrl.resource.id}}">
+    <div class="header">
+        <div class='control-group span6'>
+            <label class='control-label'>
+                Resource:
+            </label>
+            <div class='controls'>
+                <div class='input'>
+                    <input ng-model="$ctrl.resource.name">
+                </div>
+            </div>
+        </div>
+        <div class='pull-right span6'>
+            <a ng-click="$ctrl.delete()" class='btn btn-danger pull-right'>
+                <i class='icon-trash icon-white'></i>
+                Delete Resource
+            </a>
+            <a ng-click="$ctrl.addMethod()" class='btn btn-info pull-right'>
+                <i class='icon-plus icon-white'></i> 
+                Add Method 
+            </a>
+        </div>
+    </div>
+    <div class="accordion span12" style="margin-left:0px" ng-repeat="method in $ctrl.resource.methods track by method.id">
+        <api-method method="method"></api-method>
+    </div>
+</div>

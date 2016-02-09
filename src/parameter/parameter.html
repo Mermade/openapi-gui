@@ -1,0 +1,78 @@
+<div class="accordion parameter">
+    <div class="accordion-group">
+        <div class='accordion-heading'> 
+    
+            <i class="icon-reorder accordion-handle param-handle"></i>
+
+            <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
+                Parameter: <span class='methodNameSpan'>{{$ctrl.parameter.title}}</span>
+            </a>
+
+            <div class="accordion-buttons">
+                <div class="block-container">
+                    <div>
+                        <a ng-if="$ctrl.complexDataType" class='btn btn-info' ng-click="$ctrl.addSubParameter()">
+                            <i class='icon-plus icon-white'></i>
+                            Add
+                        </a>
+                        <a class='btn btn-danger' ng-click="$ctrl.delete(this)">
+                            <i class='icon-trash icon-white'></i>
+                            Delete
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-body collapse" id="{{$ctrl.parameter.id}}">
+            <div class="accordion-inner">
+                
+                <div class='control-group'>
+                    <label class='control-label'> Parameter Name </label>
+                    <div class='controls'>
+                        <input ng-model="$ctrl.parameter.title" />
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Description </label>
+                    <div class='controls'>
+                        <textarea ng-model="$ctrl.parameter.description" class="span8"></textarea>
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Required </label>
+                    <div class='controls'>
+                        <select ng-model="$ctrl.parameter.required">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Default Value </label>
+                    <div class='controls'>
+                        <input ng-model="$ctrl.parameter.defaultValue" />
+                    </div>
+                </div>
+                <div class='control-group'>
+                    <label class='control-label'> Data Type </label>
+                    <div class='controls'>
+                        <select ng-model="$ctrl.parameter.dataType">
+                            <option value="boolean">boolean</option>
+                            <option value="string">string</option>
+                            <option value="integer">integer</option>
+                            <option value="enumerated">enumerated</option>
+                            <option value="object">object</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class='control-group'>
+                   <div class="sortable-params" ng-repeat="parameter in $ctrl.parameter.parameters track by parameter.id">
+                        <api-parameter parameter="parameter"></api-parameter>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

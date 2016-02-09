@@ -1,0 +1,69 @@
+<div class="accordion-group">
+    <div class='accordion-heading'>
+
+        <i class="icon-reorder accordion-handle method-handle"></i>
+
+        <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
+            Method: <span class='methodNameSpan'>{{$ctrl.method.name}}</span>
+        </a>
+
+        <div class="accordion-buttons">
+            <div class="block-container">
+                <a ng-click="$ctrl.addParameter()" class='btn btn-info'>
+                    <i class='icon-plus icon-white'></i>
+                    Param
+                </a>
+                
+                <a class='btn btn-info' ng-click="$ctrl.duplicateMethod(this)">
+                    <i class='icon-copy icon-white'></i>
+                    Duplicate
+                </a>
+
+                <a class='btn btn-danger' ng-click="$ctrl.deleteMethod(this)">
+                    <i class='icon-trash icon-white'></i>
+                    Delete
+                </a>
+
+            </div>
+        </div>
+    </div>
+    <div class="accordion-body collapse" id="{{$ctrl.method.id}}">
+        <div class="accordion-inner">
+            
+            <div class='control-group'>
+                <label class='control-label'> Method Name </label>
+                <div class='controls'>
+                    <input class='methodName' ng-model="$ctrl.method.name" />
+                </div>
+            </div>
+            <div class='control-group'>
+                <label class='control-label'> Description </label>
+                <div class='controls'>
+                    <textarea class="span8" ng-model="$ctrl.method.description"></textarea>
+                </div>
+            </div>
+            <div class='control-group'>
+                <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
+                <div class='controls'>
+                    <select ng-select="$ctrl.method.httpMethod">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                    </select>
+                </div>
+            </div>
+            <div class='control-group'>
+                <label class='control-label'> Path </label>
+                <div class='controls'>
+                    <input ng-model="$ctrl.method.path" />
+                </div>
+            </div>
+            <div class='control-group'>
+                <div class="sortable-params" ng-repeat="parameter in $ctrl.method.parameters track by parameter.id">
+                    <api-parameter parameter="parameter"></api-parameter>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

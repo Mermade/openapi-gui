@@ -1,0 +1,74 @@
+<div class='navbar navbar-inverse navbar-fixed-top'>
+  <div class='navbar-inner'>
+    <div class='container-fluid'>
+      <span class='brand'>I/O Doctor</span>
+    </div>
+  </div>
+</div>
+
+<div class='container-fluid' role='main'>
+  <div class='row-fluid'>
+
+    <ul id="section-tabs" class='tabs nav nav-tabs'>
+        <li>
+        <a data-toggle='tab' href='#input' id="input-tab">
+          <i class='icon-upload'></i>
+          Load
+        </a>
+      </li>
+      <li class='active'>
+        <a data-toggle='tab' href='#editor' id="editor-tab">
+          <i class='icon-edit'></i>
+          Edit
+        </a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#output' id="output-tab">
+          <i class='icon-file'></i>
+          Output
+        </a>
+      </li>
+    </ul>
+
+    <div class='tab-content'>
+
+        <div class="tab-pane" id="input">
+            <textarea class="span12 service-input" ng-model="$ctrl.importSchema"></textarea>
+            <a class='btn btn-primary pull-right' id="load-definition" ng-click="$ctrl.loadSchema()">
+                <i class='icon-upload icon-white'></i>
+                Load Schema
+            </a>
+        </div>
+
+        <div class="tab-pane" id="output">
+            <api-definition config="$ctrl.apiConfig"/>
+        </div>
+      
+        <div class='tab-pane row-fluid active' id='editor'>
+
+            <div class='span3'>
+                <div class='sidebar-nav well'>
+                    <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'></i>
+                    <br/>
+                    <ul id='resourceList' ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
+                    <strong><a ng-href="'#'+resource.id"></a></strong>
+                        <ul>
+                            <a href="#" ng-click="resource.collapse('show')">
+                                <li>{{resource.name}}</li>
+                            </a>
+                        </ul>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content forms span9">
+                <form class="form-horizontal" id="config">
+                    <div class="resources" ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
+                      <api-resource resource="resource"></api-resource>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
