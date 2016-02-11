@@ -19,8 +19,8 @@ Resource.prototype.render = function() {
     methods = {}
 
     angular.forEach(this.methods, function(method) {
-        methodName = method.name.replace(/[^\w]/gi, '')
-        this[methodName] = method.render();
+        var key = method.name.replace(/[^\w]/gi, '');
+        this[key] = method.render();
     }, methods);
 
     return {

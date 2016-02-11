@@ -1,43 +1,43 @@
 angular.module('components')
  
-.component('apiParameter', {
-    templateUrl: 'src/parameter/parameter.html',
+.component('apiProperty', {
+    templateUrl: 'src/property/property.html',
     bindings: {
-      parameter: '=',
+      property: '=',
     },
     controller: function($scope, $element) {
 
       /**
-       * Remove a specific parameter from the array of parameters associated
+       * Remove a specific property from the array of properties associated
        * with this property
        * 
-       * @param  String parameterId parameter identifier (e.g P123)
+       * @param  String propertyId property identifier
        * @return Void No return value
        */
       $scope.$on( 'deleteProperty', function(event, propertyId) {
-        var result = jQuery.grep($scope.$ctrl.parameter.properties, function(value) {
+        var result = jQuery.grep($scope.$ctrl.property.properties, function(value) {
           return value.id != propertyId;
         });
 
-        $scope.$ctrl.parameter.properties = result;
+        $scope.$ctrl.property.properties = result;
       } );
 
       $scope.$watch( function() {
-        return $scope.$ctrl.parameter.type;
+        return $scope.$ctrl.property.type;
       }, 
       function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 
       $scope.$watch( function() {
-        return $scope.$ctrl.parameter.arrayType;
+        return $scope.$ctrl.property.arrayType;
       }, 
       function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 
       this.getCollapseTarget = function () {
-        return '#'+this.parameter.id;
+        return '#'+this.property.id;
       }
 
       this.toggleBodyDisplay = function() {
@@ -45,21 +45,21 @@ angular.module('components')
       }
 
       this.delete = function($element) {
-        $scope.$emit('deleteParameter', $element.$ctrl.parameter.id);
+        $scope.$emit('deleteProperty', $element.$ctrl.property.id);
       }
 
       this.isComplex = function() {
-        if ( this.parameter.type === 'object' || 
-             this.parameter.arrayType === 'object' ||
-             this.parameter.arrayType === 'array' ) {
+        if ( this.property.type === 'object' || 
+             this.property.arrayType === 'object' ||
+             this.property.arrayType === 'array' ) {
           return true;
         }
 
         return false;
       }
 
-      this.addProperty = function() {
-        this.parameter.properties.push( new Property('New Property') );
+      this.addSubProperty = function() {
+        this.property.properties.push( new Property('New property') );
       }
     },
   }

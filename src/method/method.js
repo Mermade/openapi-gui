@@ -4,7 +4,7 @@ function Method (name) {
     this.description = '';
     this.httpMethod = 'GET';
     this.path = '/';
-    this.parameters = [ new Parameter('New Parameter') ];
+    this.parameters = [];
 
     this.load = function(methodDefinition) {
 
@@ -24,7 +24,8 @@ function Method (name) {
         var parameters = {}
 
         angular.forEach(this.parameters, function(parameter) {
-            this[parameter.title] = parameter.render();
+            var key = parameter.title.replace(/[^\w]/gi, '')
+            this[key] = parameter.render();
         }, parameters);
 
         return {

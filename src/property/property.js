@@ -1,6 +1,5 @@
-function Parameter (title) {
-    this.id = generateId();
-    this.location = 'body';
+function Property (title) {
+    this.id = generateId()
     this.title = title;
     this.description = '';
     this.required = 'false';
@@ -8,25 +7,14 @@ function Parameter (title) {
     this.type = 'string';
     this.properties = [];
 
-    this.load = function(parameterDefinition) {
-        this.description = parameterDefinition.description;
-        this.required = parameterDefinition.required ? 'true' : 'false';
-        this.default = parameterDefinition.default;
-        this.type = parameterDefinition.type;
-        this.location = parameterDefinition.location;
+    this.load = function(propertyDefinition) {
+        this.description = propertyDefinition.description;
+        this.required = propertyDefinition.required ? 'true' : 'false';
+        this.default = propertyDefinition.default;
+        this.type = propertyDefinition.type;
         this.properties = [];
 
-        var properties = [];
-
-        if ( this.type === 'array' && parameterDefinition.items !== undefined ) {
-            this.arrayType = parameterDefinition.items.type;
-            var properties = parameterDefinition.items.properties;
-        }
-        else {
-            var properties = parameterDefinition.properties;
-        }
-
-        angular.forEach(properties, function(propertyDefinition) {
+        angular.forEach(propertyDefinition.properties, function(propertyDefinition) {
             var property = new Property(propertyDefinition.title);
             property.load(propertyDefinition);
             this.push( property );
