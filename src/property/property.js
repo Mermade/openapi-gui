@@ -14,7 +14,20 @@ function Property (title) {
         this.type = propertyDefinition.type;
         this.properties = [];
 
-        angular.forEach(propertyDefinition.properties, function(propertyDefinition) {
+        if ( this.type === 'array' && propertyDefinition.items !== undefined ) {
+            groupingProperty = new Property( propertyDefinition.items.title )
+            groupingProperty.description = propertyDefinition.items.description;
+            groupingProperty.required = propertyDefinition.items.required;
+            groupingProperty.default = propertyDefinition.items.default;
+            groupingProperty.type = propertyDefinition.items.type;
+            groupingProperty.properties = propertyDefinition.items.properties;
+            var properties = [groupingProperty];
+        }
+        else {
+            var properties = propertyDefinition.properties;
+        }
+
+        angular.forEach(properties, function(propertyDefinition) {
             var property = new Property(propertyDefinition.title);
             property.load(propertyDefinition);
             this.push( property );
@@ -41,12 +54,18 @@ function Property (title) {
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {
-                val.items = {};
-                val.items.type = this.arrayType;
-                val.items.properties = properties;
+                // Unfortunately IO/Docs doesn't fully support json schema v4
+                // so this hack sets the first element in the list to be the
+                // only item
+                val.items = this.properties[0].render() ;
             }
             else {
-                val.properties = properties;
+                val.properties = {};
+
+                angular.forEach(this.properties, function(property) {
+                    var key = property.title.replace(/[^\w]/gi, '');
+                    this[key] = property.render();
+                }, val.properties);
             }
         }
 

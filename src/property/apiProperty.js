@@ -50,8 +50,7 @@ angular.module('components')
 
       this.isComplex = function() {
         if ( this.property.type === 'object' || 
-             this.property.arrayType === 'object' ||
-             this.property.arrayType === 'array' ) {
+             this.property.type === 'array' ) {
           return true;
         }
 

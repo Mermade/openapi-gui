@@ -29,13 +29,6 @@ angular.module('components')
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 
-      $scope.$watch( function() {
-        return $scope.$ctrl.parameter.arrayType;
-      }, 
-      function(newVal, oldVal) {
-        $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
-      });
-
       this.getCollapseTarget = function () {
         return '#'+this.parameter.id;
       }
@@ -50,8 +43,7 @@ angular.module('components')
 
       this.isComplex = function() {
         if ( this.parameter.type === 'object' || 
-             this.parameter.arrayType === 'object' ||
-             this.parameter.arrayType === 'array' ) {
+             this.parameter.type === 'array' ) {
           return true;
         }
 

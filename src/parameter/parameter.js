@@ -19,8 +19,13 @@ function Parameter (title) {
         var properties = [];
 
         if ( this.type === 'array' && parameterDefinition.items !== undefined ) {
-            this.arrayType = parameterDefinition.items.type;
-            var properties = parameterDefinition.items.properties;
+            groupingProperty = new Property( parameterDefinition.items.title )
+            groupingProperty.description = parameterDefinition.items.description;
+            groupingProperty.required = parameterDefinition.items.required;
+            groupingProperty.default = parameterDefinition.items.default;
+            groupingProperty.type = parameterDefinition.items.type;
+            groupingProperty.properties = parameterDefinition.items.properties;
+            var properties = [groupingProperty];
         }
         else {
             var properties = parameterDefinition.properties;
@@ -34,13 +39,6 @@ function Parameter (title) {
     }
 
     this.render = function() {
-
-        var properties = {};
-
-        angular.forEach(this.properties, function(property) {
-            var key = property.title.replace(/[^\w]/gi, '');
-            this[key] = property.render();
-        }, properties);
             
         var val = {
             title: this.title,
@@ -53,12 +51,18 @@ function Parameter (title) {
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {
-                val.items = {};
-                val.items.type = this.arrayType;
-                val.items.properties = properties;
+                // Unfortunately IO/Docs doesn't fully support json schema v4
+                // so this hack sets the first element in the list to be the
+                // only item
+                val.items = this.properties[0].render() ;
             }
             else {
-                val.properties = properties;
+                val.properties = {};
+
+                angular.forEach(this.properties, function(property) {
+                    var key = property.title.replace(/[^\w]/gi, '');
+                    this[key] = property.render();
+                }, val.properties);
             }
         }
 
