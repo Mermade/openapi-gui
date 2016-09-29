@@ -2,6 +2,6 @@
   "name": "Arapaho",
   "description": "Micro HTTP server",
   "repository": "https://github.com/mermade/arapaho",
-  "logo": "http://mermade.github.io/arapaho/logo.png",
+  "logo": "http://mermade.github.io/arapaho/logo.jpg",
   "keywords": ["http"]
 }
