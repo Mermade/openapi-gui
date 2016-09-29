@@ -26,7 +26,7 @@ function Endpoint(koData)
     self.id = ko.observable(Math.floor(Math.random()*10000000));
     self.name = ko.observable("Endpoint Name");
     self.methods = ko.observableArray([ new Method() ]);
-    self.supportedHTTPMethods = ['GET','POST','PUT','DELETE'];
+    self.supportedHTTPMethods = ['GET','POST','PUT','DELETE','HEAD','PATCH','OPTIONS'];
 
     ko.mapping.fromJS(koData, knockoutMapping, this);
  
