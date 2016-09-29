@@ -19,7 +19,7 @@ Click an item from the menu on the left to begin editing. View the JSON output a
 
 ### Technology
 
-I/O Doctor runs entirely client side using a couple of javascript frameworks including jQuery, Twitter Bootstrap, and (KnockoutJS)[http://knockoutjs.com/] as well as Ryan Niemeyer's [Knockout Sortable plugin](https://github.com/rniemeyer/knockout-sortable) for KnockoutJS. 
+I/O Doctor runs entirely client side using a couple of javascript frameworks including jQuery, Twitter Bootstrap, and [KnockoutJS](http://knockoutjs.com/) as well as Ryan Niemeyer's [Knockout Sortable plugin](https://github.com/rniemeyer/knockout-sortable) for KnockoutJS. 
 
 To get the app up and running just clone the repo and load index.html into a browser - couldn't be simpler.
 
