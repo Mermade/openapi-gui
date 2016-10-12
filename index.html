@@ -36,10 +36,16 @@
       <div class='row-fluid'>
 
         <ul id="section-tabs" class='tabs nav nav-tabs'>
-            <li class='active'>
+          <li class='active'>
             <a data-toggle='tab' href='#input' id="input-tab">
               <i class='icon-upload'></i>
               Load
+            </a>
+          </li>
+          <li>
+            <a data-toggle='tab' href='#info' id="info-tab">
+              <i class='icon-info'></i>
+              Header
             </a>
           </li>
           <li>
@@ -54,6 +60,12 @@
               Output
             </a>
           </li>
+          <li>
+            <a data-toggle='tab' href='#about' id="about-tab">
+              <i class='icon-help'></i>
+              About
+            </a>
+          </li>
         </ul>
 
         <div class='tab-content'>
@@ -64,6 +76,14 @@
                     <i class='icon-upload icon-white'></i>
                     Load Service Definition
                 </a>
+            </div>
+            
+            <div class="tab-pane" id="about">
+                <span>About IO Doctor</span>
+            </div>
+
+            <div class="tab-pane" id="info">
+                <textarea id="yaml-editor" class="span12"></textarea>
             </div>
 
             <div class="tab-pane" id="output">
@@ -206,7 +226,7 @@
                     <!-- Then render all the parameters (not-nestable) -->
                     <div class="sortable-params" data-bind="sortable: { template: 'simple-schema', data: parameters, options: {'axis': 'y', handle: '.param-handle', containment: 'parent' } }" id='parameters'></div>
 
-                    <!-- Finally render the content section (which may have infinately nested parameters) -->
+                    <!-- Finally render the content section (which may have infinitely nested parameters) -->
                     <!-- ko if: typeof(content()) == 'object' && content() != null -->
                         <div data-bind="template: { name: 'content-section', data: content }"></div>
                     <!-- /ko -->
@@ -250,7 +270,7 @@
                     </div>
                 </div>
 
-                <!-- Finally render all parameters for this content section (parameters are infinately nestable) -->
+                <!-- Finally render all parameters for this content section (parameters are infinitely nestable) -->
                 <div class="sortable-content-params" data-bind="sortable: { data:parameters, options: {'axis': 'y', handle: '.param-handle', containment: 'parent' } }">
                     <div data-bind="template: { name: displayTemplate }"></div>
                 </div>
@@ -291,7 +311,7 @@
                 <!-- First we render this elements top-level attributes -->
                 <div data-bind="template: { name: 'data-node' }"></div>
 
-                <!-- Finally render all the elements parameters (infinately nestable) -->
+                <!-- Finally render all the elements parameters (infinitely nestable) -->
                 <div data-bind="foreach: parameters">
                     <div data-bind="template: { name: displayTemplate }"></div>
                 </div>
@@ -387,6 +407,6 @@
 <script type="text/html" id='freeform-parameter-type-input'>
     <input data-bind="value: Type" />
 </script>
-
-</div>
+<!-- </div> -->
 </body>
+</html>
