@@ -1,7 +1,7 @@
 {
-  "name": "Arapaho",
-  "description": "Micro HTTP server",
-  "repository": "https://github.com/mermade/arapaho",
-  "logo": "http://mermade.github.io/arapaho/logo.png",
-  "keywords": ["http"]
+  "name": "OpenApi-gui",
+  "description": "GUI for OpenApi / Swagger definitions",
+  "repository": "https://github.com/mermade/openapi-gui",
+  "logo": "http://mermade.github.io/arapaho/logo.jpg",
+  "keywords": ["openapi", "swagger", "api", "documentation", "docs", "gui", "editor"]
 }
