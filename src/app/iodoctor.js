@@ -66,7 +66,12 @@ angular.module('components')
 
       this.renderOutputYaml = function() {
         $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
-        output = jsyaml.safeDump(this.transformConfig());
+        try {
+		  output = jsyaml.dump(this.transformConfig());
+		}
+		catch (ex) {
+		  alert(ex.message);
+		}
         $('#pretty-yaml').html( output );
         clippy = new Clipboard('#copy-output');
         prettyPrint();
