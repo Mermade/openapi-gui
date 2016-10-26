@@ -37,6 +37,14 @@ angular.module('components')
         prettyPrint();
       }
 
+      this.renderOutputYaml = function() {
+        $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
+        output = jsyaml.safeDump(this.transformConfig());
+        $('#pretty-yaml').html( output );
+        clippy = new Clipboard('#copy-output');
+        prettyPrint();
+      }
+
       this.transformConfig = function() {
         var transformedConfig = {};
 

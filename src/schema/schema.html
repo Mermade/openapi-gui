@@ -23,10 +23,10 @@
         <div class="accordion-body collapse in" data-bind="attr: { id: id() }">
             <div class="accordion-inner">
 
-                <!-- First we render this elements top-level attributes -->
+                <!-- First we render this element's top-level attributes -->
                 <div data-bind="template: { name: 'data-node' }"></div>
 
-                <!-- Finally render all the elements parameters (infinately nestable) -->
+                <!-- Finally render all the elements parameters (infinitely nestable) -->
                 <div data-bind="foreach: parameters">
                     <div data-bind="template: { name: displayTemplate }"></div>
                 </div>

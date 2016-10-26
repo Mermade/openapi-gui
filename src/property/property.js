@@ -56,7 +56,7 @@ function Property (title) {
             if ( this.type === 'array' ) {
                 // Unfortunately IO/Docs doesn't fully support json schema v4
                 // so this hack sets the first element in the list to be the
-                // only item
+                // only item TODO remove
                 val.items = this.properties[0].render() ;
             }
             else {
