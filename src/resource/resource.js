@@ -10,7 +10,7 @@ Resource.prototype.load = function(resourceDefinition) {
     
     angular.forEach(resourceDefinition.methods, function(methodDefinition) {
         method = new Method(methodDefinition.name);
-        method.load(methodDefinition);
+        method.load(methodDefinition, methodDefinition.name);
         this.push( method );
     }, this.methods);
 };

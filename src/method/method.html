@@ -4,14 +4,14 @@
         <i class="icon-reorder accordion-handle method-handle"></i>
 
         <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
-            Method: <span class='methodNameSpan'>{{$ctrl.method.name}}</span>
+            Operation: <span class='methodNameSpan'>{{$ctrl.method.name}}</span>
         </a>
 
         <div class="accordion-buttons">
             <div class="block-container">
                 <a ng-click="$ctrl.addParameter()" class='btn btn-info'>
                     <i class='icon-plus icon-white'></i>
-                    Param
+                    Parameter
                 </a>
                 
                 <a class='btn btn-info' ng-click="$ctrl.duplicateMethod(this)">
@@ -31,7 +31,7 @@
         <div class="accordion-inner">
             
             <div class='control-group'>
-                <label class='control-label'> Method Name </label>
+                <label class='control-label'> OperationId </label>
                 <div class='controls'>
                     <input class='methodName' ng-model="$ctrl.method.name" />
                 </div>
@@ -56,12 +56,12 @@
                     </select>
                 </div>
             </div>
-            <div class='control-group'>
+            <!-- <div class='control-group'>
                 <label class='control-label'> Path </label>
                 <div class='controls'>
                     <input ng-model="$ctrl.method.path" />
                 </div>
-            </div>
+            </div> -->
             <div class='control-group'>
                 <div class="sortable-params" ng-repeat="parameter in $ctrl.method.parameters track by parameter.id">
                     <api-parameter parameter="parameter"></api-parameter>

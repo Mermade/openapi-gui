@@ -4,22 +4,36 @@ angular.module('components')
     controller: function() {
       this.importSchema = "";
       this.apiConfig = {
-        resources: [ new Resource('New Resource') ],
+	    swagger: "2.0",
+        resources: [ new Resource('/') ],
         schemas: []
       };
 
       this.addResource = function() {
-        this.apiConfig.resources.push( new Resource('New Resource') );
+        this.apiConfig.resources.push( new Resource('/newPath') );
       }
 
       this.loadSchema = function() {
-        var schema = JSON.parse( this.importSchema );
+        var schema;
+		try {
+		  schema = JSON.parse( this.importSchema );
+		  alert('JSON definition loaded successfully');
+		}
+		catch (ex) {
+		  try {
+		    schema = jsyaml.safeLoad( this.importSchema );
+			alert('YAML definiton loaded successfully');
+		  }
+		  catch (ex) {
+		    alert('The definition could not be parsed');
+		  }
+		}
 
         this.apiConfig = {
           resources: []
         };
 
-        angular.forEach(schema, function(def, name) {
+        angular.forEach(schema.paths, function(def, name) {
           resource = new Resource(name);
           resource.load(def);
           this.push( resource );

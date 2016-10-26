@@ -30,7 +30,7 @@ angular.module('components')
       }
 
       this.addParameter = function() {
-        this.method.parameters.push( new Parameter('New Parameter') );
+        this.method.parameters.push( new Parameter('newParameter') );
       }
 
       this.toggleBodyDisplay = function() {
