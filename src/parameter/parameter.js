@@ -13,7 +13,7 @@ function Parameter (name) {
         this.required = parameterDefinition.required ? 'true' : 'false';
         this.default = parameterDefinition.default;
         this.type = parameterDefinition.type;
-        this.in = parameterDefinition.location;
+        this.in = parameterDefinition.in;
         this.properties = [];
 
         var properties = [];

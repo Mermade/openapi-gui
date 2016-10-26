@@ -21,11 +21,13 @@ Resource.prototype.render = function() {
     methods = {}
 
     angular.forEach(this.methods, function(method) {
-        var key = method.name.replace(/[^\w]/gi, '');
+        //var key = method.name.replace(/[^\w]/gi, '');
+        var key = method.httpMethod.toLowerCase();
         this[key] = method.render();
     }, methods);
 
-    return {
-        methods: methods
-    };
+    //return {
+    //    methods: methods
+    //};
+	return methods;
 }
