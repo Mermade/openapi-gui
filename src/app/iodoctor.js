@@ -1,12 +1,13 @@
 angular.module('components')
  
 .component('ioDoctor', {
-    controller: function() {
+    controller: function($scope, $rootScope) {
       this.importSchema = "";
       this.apiConfig = {
         resources: [],
         schemas: []
       };
+	  var apiConfig = this.apiConfig;
       angular.forEach(petstore.paths, function(def, name) {
         resource = new Resource(name);
         resource.load(def, name);
@@ -26,7 +27,7 @@ angular.module('components')
 		catch (ex) {
 		  try {
 		    schema = jsyaml.safeLoad( this.importSchema );
-			alert('YAML definiton loaded successfully');
+			alert('YAML definition loaded successfully');
 		  }
 		  catch (ex) {
 		    alert('The definition could not be parsed');
@@ -43,6 +44,14 @@ angular.module('components')
           this.push( resource );
         }, this.apiConfig.resources);
       }
+
+	  $rootScope.$on('removeResource', function(event, id) {
+		var result = jQuery.grep(apiConfig.resources, function(value) {
+		  return value.id != id;
+		});
+
+	    apiConfig.resources = result;
+	  });
 
       this.renderOutput = function() {
         // Pretty print has an issue correctly rendering output when we modify

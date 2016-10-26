@@ -4,7 +4,7 @@ angular.module('components')
     bindings: {
       resource: '=',
     },
-    controller: function($scope) {
+    controller: function($scope, $rootScope) {
 
       /**
        * Remove a specific method from the array of methods associated
@@ -30,6 +30,11 @@ angular.module('components')
       this.addMethod = function() {
         this.resource.methods.push( new Method('newOperation') );
       }
+
+	  this.removeResource = function($element) {
+	     $rootScope.$emit('removeResource', $element.$ctrl.resource.id);
+	  }
+
     },
     templateUrl: 'src/resource/resource.html'
   }
