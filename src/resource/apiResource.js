@@ -28,7 +28,7 @@ angular.module('components')
       } );
 
       this.addMethod = function() {
-        this.resource.methods.push( new Method('New Method') );
+        this.resource.methods.push( new Method('newOperation') );
       }
     },
     templateUrl: 'src/resource/resource.html'

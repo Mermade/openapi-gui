@@ -5,7 +5,7 @@
             <i class="icon-reorder accordion-handle param-handle"></i>
 
             <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
-                Parameter: <span class='methodNameSpan'>{{$ctrl.parameter.title}}</span>
+                Parameter: <span class='methodNameSpan'>{{$ctrl.parameter.name}}</span>
             </a>
 
             <div class="accordion-buttons">
@@ -29,7 +29,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Parameter Name </label>
                     <div class='controls'>
-                        <input ng-model="$ctrl.parameter.title" />
+                        <input ng-model="$ctrl.parameter.name" />
                     </div>
                 </div>
                 <div class='control-group'>
@@ -56,7 +56,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Location </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.location">
+                        <select ng-model="$ctrl.parameter.in">
                             <option value="query">Query</option>
                             <option value="body">Body</option>
                             <option value="header">Header</option>

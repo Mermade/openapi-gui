@@ -1,7 +1,7 @@
-function Parameter (title) {
+function Parameter (name) {
     this.id = generateId();
-    this.location = 'body';
-    this.title = title;
+    this.in = 'query';
+    this.name = name;
     this.description = '';
     this.required = 'false';
     this.default ='';
@@ -13,7 +13,7 @@ function Parameter (title) {
         this.required = parameterDefinition.required ? 'true' : 'false';
         this.default = parameterDefinition.default;
         this.type = parameterDefinition.type;
-        this.location = parameterDefinition.location;
+        this.in = parameterDefinition.location;
         this.properties = [];
 
         var properties = [];
@@ -41,19 +41,19 @@ function Parameter (title) {
     this.render = function() {
             
         var val = {
-            title: this.title,
+            name: this.name,
             description: this.description,
             required: this.required == "true",
             default: this.default,
             type: this.type,
-            location: this.location
+            in: this.in
         };
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {
                 // Unfortunately IO/Docs doesn't fully support json schema v4
                 // so this hack sets the first element in the list to be the
-                // only item
+                // only item TODO remove
                 val.items = this.properties[0].render() ;
             }
             else {

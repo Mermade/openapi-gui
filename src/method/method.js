@@ -3,18 +3,16 @@ function Method (name) {
     this.name = name;
     this.description = '';
     this.httpMethod = 'GET';
-    //this.path = '/';
     this.parameters = [];
 
-    this.load = function(methodDefinition, name) {
+    this.load = function(methodDefinition, httpMethod) {
 
         this.description = methodDefinition.description;
-        this.httpMethod = name; //methodDefinition.httpMethod;
-        //this.path = methodDefinition.path;
+        this.httpMethod = httpMethod;
         this.parameters = [];
 
         angular.forEach(methodDefinition.parameters, function(parameterDefinition) {
-            parameter = new Parameter(parameterDefinition.title);
+            parameter = new Parameter(parameterDefinition.name);
             parameter.load(parameterDefinition);
             this.push( parameter );
         }, this.parameters);
