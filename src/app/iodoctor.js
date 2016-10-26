@@ -3,11 +3,12 @@ angular.module('components')
 .component('ioDoctor', {
     controller: function($scope, $rootScope) {
       this.importSchema = "";
-      this.apiConfig = {
-        resources: [],
-        schemas: []
-      };
+
+	  this.apiConfig = angular.copy(petstore);
+	  this.apiConfig.resources = [];
+	  this.apiConfig.schemas = [];
 	  var apiConfig = this.apiConfig;
+
       angular.forEach(petstore.paths, function(def, name) {
         resource = new Resource(name);
         resource.load(def, name);
@@ -34,9 +35,8 @@ angular.module('components')
 		  }
 		}
 
-        this.apiConfig = {
-          resources: []
-        };
+        this.apiConfig = schema;
+		this.apiConfig.resources = [];
 
         angular.forEach(schema.paths, function(def, name) {
           resource = new Resource(name);
@@ -73,13 +73,16 @@ angular.module('components')
       }
 
       this.transformConfig = function() {
-        var transformedConfig = {};
+        var transformedConfig = angular.copy(this.apiConfig);
+		transformedConfig.paths = {};
 
         angular.forEach(this.apiConfig.resources, function(resource) {
-          transformedConfig[resource.name] = resource.render();
+          transformedConfig.paths[resource.name] = resource.render();
         });
 
-        return transformedConfig;
+		delete transformedConfig.resources;
+		delete transformedConfig.schemas;
+		return transformedConfig;
 
       };
     },

@@ -19,7 +19,7 @@ function Method (name) {
     }
 
     this.render = function() {
-        var parameters = {}
+        var parameters = {};
 
         angular.forEach(this.parameters, function(parameter) {
             var key = parameter.name.replace(/[^\w]/gi, '')
