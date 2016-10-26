@@ -4,10 +4,14 @@ angular.module('components')
     controller: function() {
       this.importSchema = "";
       this.apiConfig = {
-	    swagger: "2.0",
-        resources: [ new Resource('/') ],
+        resources: [],
         schemas: []
       };
+      angular.forEach(petstore.paths, function(def, name) {
+        resource = new Resource(name);
+        resource.load(def, name);
+        this.push( resource );
+      }, this.apiConfig.resources);
 
       this.addResource = function() {
         this.apiConfig.resources.push( new Resource('/newPath') );
