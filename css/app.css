@@ -99,8 +99,8 @@ body {
 }
 
 .accordion-buttons > .block-container > .btn {
-    opacity:0.1;
-    filter:alpha(opacity=10); /* For IE8 and earlier */
+    opacity:0.9;
+    filter:alpha(opacity=90); /* For IE8 and earlier */
 }
 
 .accordion-buttons > .block-container > .btn:hover {
