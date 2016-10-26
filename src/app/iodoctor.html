@@ -1,19 +1,33 @@
 <div class='navbar navbar-inverse navbar-fixed-top'>
   <div class='navbar-inner'>
     <div class='container-fluid'>
-      <span class='brand'>I/O Doctor</span>
+      <span class='brand'>OpenApi-GUI</span>
     </div>
   </div>
 </div>
+
+<a href="https://github.com/mermade/openapi-gui"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
 
 <div class='container-fluid' role='main'>
   <div class='row-fluid'>
 
     <ul id="section-tabs" class='tabs nav nav-tabs'>
-        <li>
+      <li>
+        <a data-toggle='tab' href='#about' id="about-tab">
+          <i class='icon-info'></i>
+          About
+        </a>
+      </li>
+      <li>
         <a data-toggle='tab' href='#input' id="input-tab">
           <i class='icon-upload'></i>
           Load
+        </a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#header' id="header-tab">
+          <i class='icon-details'></i>
+          Header 
         </a>
       </li>
       <li class='active'>
@@ -25,12 +39,31 @@
       <li>
         <a data-toggle='tab' href='#output' id="output-tab" ng-click="$ctrl.renderOutput()">
           <i class='icon-file'></i>
-          Export
+          Export JSON
+        </a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#yaml' id="yaml-tab" ng-click="$ctrl.renderOutput()">
+          <i class='icon-file'></i>
+          Export YAML
         </a>
       </li>
     </ul>
 
     <div class='tab-content'>
+
+		<div class="tab-pane" id="about">
+<h1>What is OpenApi-gui?</h1>
+<br/>
+OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
+<br/>
+<h2>How does OpenApi-gui work?</h2>
+<br>
+Upload an existing definition, or create a new one and start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path, Operation and Parameter will be created.
+<br/>
+<br/>
+Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the "Export" tabs. When finished, click "Copy" to copy the output to your clipboard. OpenApi-gui does not currently store any data. Make sure you save your JSON/YAML output.
+		</div>
 
         <div class="tab-pane" id="input">
             <textarea class="span12 service-input" ng-model="$ctrl.importSchema"></textarea>
@@ -40,7 +73,17 @@
             </a>
         </div>
 
+        <div class="tab-pane" id="header">
+			<div>
+				<h1>Header settings</h1>
+			</div>
+        </div>
+      
         <div class="tab-pane" id="output">
+            <api-definition config="$ctrl.apiConfig"/>
+        </div>
+      
+        <div class="tab-pane" id="yaml">
             <api-definition config="$ctrl.apiConfig"/>
         </div>
       
@@ -68,6 +111,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
   </div>
