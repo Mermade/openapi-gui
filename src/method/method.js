@@ -22,7 +22,7 @@ function Method (name) {
         var parameters = [];
 
         angular.forEach(this.parameters, function(parameter) {
-            var key = parameter.name.replace(/[^\w]/gi, '')
+            //var key = parameter.name.replace(/[^\w]/gi, '')
             //this[key] = parameter.render();
 			this.push(parameter.render());
         }, parameters);

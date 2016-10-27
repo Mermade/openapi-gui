@@ -6,6 +6,8 @@ function Parameter (name) {
     this.required = 'false';
     this.default ='';
     this.type = 'string';
+	this.format = '';
+	this.availableFormats = ['date','date-time'];
     this.properties = [];
 
     this.load = function(parameterDefinition) {
@@ -13,6 +15,7 @@ function Parameter (name) {
         this.required = parameterDefinition.required ? 'true' : 'false';
         this.default = parameterDefinition.default;
         this.type = parameterDefinition.type;
+		this.format = parameterDefinition.format;
         this.in = parameterDefinition.in;
         this.properties = [];
 
@@ -46,8 +49,13 @@ function Parameter (name) {
             required: this.required == "true",
             default: this.default,
             type: this.type,
+			format: this.format,
             in: this.in
         };
+
+		if (!val.description) delete val.description;
+		if (!val.default) delete val.default;
+		if (!val.format) delete val.format;
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {

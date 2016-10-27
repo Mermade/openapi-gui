@@ -29,7 +29,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Parameter Name </label>
                     <div class='controls'>
-                        <input ng-model="$ctrl.parameter.name" />
+                        <input ng-model="$ctrl.parameter.name" required/>
                     </div>
                 </div>
                 <div class='control-group'>
@@ -41,7 +41,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Required </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.required">
+                        <select ng-model="$ctrl.parameter.required" required>
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -56,7 +56,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Location </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.in">
+                        <select ng-model="$ctrl.parameter.in" required>
                             <option value="query">Query</option>
                             <option value="body">Body</option>
                             <option value="header">Header</option>
@@ -66,7 +66,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Data Type </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.type">
+                        <select ng-model="$ctrl.parameter.type" required>
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
@@ -75,6 +75,13 @@
                         </select>
                     </div>
                 </div>
+                <div class='control-group'>
+                    <label class='control-label'> Format </label>
+                    <div class='controls'>
+                        <select ng-model="$ctrl.parameter.format">
+                          <option ng-repeat="option in $ctrl.parameter.availableFormats" value="{{option}}">{{option}}</option>
+                        </select>
+                    </div>
 
                 <div class='control-group'>
                    <div class="sortable-params" ng-repeat="property in $ctrl.parameter.properties track by property.id">
