@@ -62,6 +62,9 @@ angular.module('components')
         $('#pretty-json').html( output );
         clippy = new Clipboard('#copy-output');
         prettyPrint();
+		var data = "text/json;charset=utf-8," + encodeURIComponent(output);
+		$('#download-output').attr('href','data:' + data);
+		$('#download-output').attr('download','swagger.json');
       }
 
       this.renderOutputYaml = function() {
@@ -75,6 +78,9 @@ angular.module('components')
         $('#pretty-yaml').html( output );
         clippy = new Clipboard('#copy-output');
         prettyPrint();
+		var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
+		$('#download-yaml').attr('href','data:' + data);
+		$('#download-yaml').attr('download','swagger.yaml');
       }
 
       this.transformConfig = function() {

@@ -82,9 +82,16 @@
                           <option ng-repeat="option in $ctrl.parameter.availableFormats" value="{{option}}">{{option}}</option>
                         </select>
                     </div>
-
+				</div>
+                <div class='control-group' ng-if="$ctrl.parameter.type == 'string'">
+                    <label class='control-label'> Pattern </label>
+                    <div class='controls'>
+                        <input ng-model="$ctrl.parameter.pattern" />
+                    </div>
+                </div>
                 <div class='control-group'>
-                   <div class="sortable-params" ng-repeat="property in $ctrl.parameter.properties track by property.id">
+				   <!-- TODO was sortable-params -->
+                   <div class="sortable-properties" ng-repeat="property in $ctrl.parameter.properties track by property.id">
                         <api-property property="property"></api-property>
                     </div>
                 </div>

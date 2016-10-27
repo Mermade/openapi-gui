@@ -1,4 +1,11 @@
 function Parameter (name) {
+	
+	this.availableFormatsFor = function(type) {
+	  if (type === 'string') return ['','date','date-time'];
+      if (type === 'integer') return ['','int32','int64'];
+      return [''];
+    }
+
     this.id = generateId();
     this.in = 'query';
     this.name = name;
@@ -7,7 +14,8 @@ function Parameter (name) {
     this.default ='';
     this.type = 'string';
 	this.format = '';
-	this.availableFormats = ['date','date-time'];
+	this.pattern = '';
+	this.availableFormats = this.availableFormatsFor(this.type);
     this.properties = [];
 
     this.load = function(parameterDefinition) {
@@ -15,7 +23,9 @@ function Parameter (name) {
         this.required = parameterDefinition.required ? 'true' : 'false';
         this.default = parameterDefinition.default;
         this.type = parameterDefinition.type;
+		this.availableFormats = this.availableFormatsFor(this.type);
 		this.format = parameterDefinition.format;
+		this.pattern = parameterDefinition.pattern;
         this.in = parameterDefinition.in;
         this.properties = [];
 
@@ -50,12 +60,14 @@ function Parameter (name) {
             default: this.default,
             type: this.type,
 			format: this.format,
+			pattern: this.pattern,
             in: this.in
         };
 
 		if (!val.description) delete val.description;
 		if (!val.default) delete val.default;
 		if (!val.format) delete val.format;
+		if (!val.pattern) delete val.pattern;
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {

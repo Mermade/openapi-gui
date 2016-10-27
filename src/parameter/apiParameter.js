@@ -27,6 +27,8 @@ angular.module('components')
       }, 
       function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
+		console.log('type now: '+newVal);
+	    this.parameter.availableFormats = this.parameter.availableFormatsFor(newVal);
       });
 
       this.getCollapseTarget = function () {
