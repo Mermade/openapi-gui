@@ -28,6 +28,12 @@
           Header 
         </a>
       </li>
+      <li>
+        <a data-toggle='tab' href='#tags' id="header-tags">
+          <i class='icon-text'></i>
+          Tags
+        </a>
+      </li>
       <li class='active'>
         <a data-toggle='tab' href='#editor' id="editor-tab">
           <i class='icon-edit'></i>
@@ -75,9 +81,6 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
         </div>
 
         <div class="tab-pane" id="header">
-			<div>
-				<h1>Header settings</h1>
-			</div>
             <div class="content forms span9">
               <form class="form-horizontal" id="frmHeader">
 
@@ -99,12 +102,76 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                       <textarea class="span6" ng-model="$ctrl.apiConfig.info.description"></textarea>
                   </div>
                 </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Host </label>
+                  <div class='controls'>
+                      <input class="span4" ng-model="$ctrl.apiConfig.host"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> BasePath </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.basePath"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Contact Name </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.info.contact.name"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Contact Email </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.info.contact.email"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Contact URL </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.info.contact.url"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Terms of Service </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.info.termsOfService"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> License Name </label>
+                  <div class='controls'>
+                      <input class="span4" ng-model="$ctrl.apiConfig.info.license.name"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> License URL </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.info.license.url"></input>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> External Docs </label>
+                  <div class='controls'>
+                      <textarea class="span6" ng-model="$ctrl.apiConfig.externalDocs.description"></textarea>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Documentation URL </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="$ctrl.apiConfig.externalDocs.url"></input>
+                  </div>
+                </div>	
 
 			  </form>
             </div>	
         </div>
       
-        <div class="tab-pane" id="output">
+        <div class="tab-pane" id="tags">
+			<h1>Tags</h1>
+        </div>
+        
+		<div class="tab-pane" id="output">
             <api-definition config="$ctrl.apiConfig"/>
         </div>
       
