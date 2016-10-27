@@ -3,7 +3,7 @@ OpenApi-gui
 
 ## Work in Progress
 
-Outputting to OpenApi format is not yet supported.
+Outputting to OpenApi format is still in flux, and will not preserve all data of a loaded definition.
 
 OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML definitions. 
 
