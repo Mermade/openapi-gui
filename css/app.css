@@ -36,6 +36,11 @@ body {
     font-size:19.5px;
 }
 
+input:required {
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
 .parameter {
   padding-left:5px;
   font-size: 14px;
