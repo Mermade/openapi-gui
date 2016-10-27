@@ -18,6 +18,10 @@ angular.module('components')
       this.addResource = function() {
         this.apiConfig.resources.push( new Resource('/newPath') );
       }
+      
+	  this.removeAll = function() {
+        this.apiConfig.resources = [];
+      }
 
       this.loadSchema = function() {
         var schema;

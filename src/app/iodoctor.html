@@ -92,6 +92,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 
             <div class='span3'>
                 <div class='sidebar-nav well'>
+                    <i ng-click="$ctrl.removeAll()" class='btn btn-danger remButton icon-eraser icon-white'></i>
                     <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'></i>
                     <br/>
                     <ul id='resourceList' ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
