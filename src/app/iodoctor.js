@@ -30,22 +30,25 @@ angular.module('components')
 	  }
       
 	  this.removeAll = function() {
-        this.apiConfig.resources = [];
+	    bootbox.confirm('Remove all paths, are you sure?', function(result) {
+          if (result) apiConfig.resources = [];
+          $scope.$apply();
+		});
       }
 
       this.loadSchema = function() {
         var schema;
 		try {
 		  schema = JSON.parse( this.importSchema );
-		  alert('JSON definition loaded successfully');
+		  bootbox.alert('JSON definition loaded successfully');
 		}
 		catch (ex) {
 		  try {
 		    schema = jsyaml.safeLoad( this.importSchema );
-			alert('YAML definition loaded successfully');
+			bootbox.alert('YAML definition loaded successfully');
 		  }
 		  catch (ex) {
-		    alert('The definition could not be parsed');
+		    bootbox.alert('The definition could not be parsed');
 		  }
 		}
 
