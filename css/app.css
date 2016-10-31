@@ -4,7 +4,7 @@ body {
 }
 
 .resource {
-	position: relative;
+	clear: both;
 }
 
 .resource > .header {

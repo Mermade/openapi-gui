@@ -1,7 +1,7 @@
 angular.module('components')
  
 .component('ioDoctor', {
-    controller: function($scope, $rootScope, $timeout, $location, $anchorScroll) {
+    controller: function($scope, $rootScope, $timeout, $location) {
       this.importSchema = "";
 
 	  this.apiConfig = angular.copy(petstore);
@@ -21,11 +21,7 @@ angular.module('components')
 
 	  this.showResource = function(resource) {
         $timeout(function(){
-		  $location.hash(resource.id);
-		  $anchorScroll();
-		  $location.hash(null);
-		  var elem = document.getElementById(resource.id);
-		  elem.innerHTML = resource.id + elem.innerHTML;
+		  $location.hash =resource.id;
 		});
 	  }
       

@@ -190,7 +190,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 					<strong>
 					  <ul id="resourceList">
                         <li ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
-					      <a href="#/{{resource.id}}" ng-click="$ctrl.showResource(resource)">
+					      <a href="#{{resource.id}}" target="_self" ng-clock"$ctrl.showResource(resource)">
                             {{resource.name}}
 					      </a>
 						</li>
