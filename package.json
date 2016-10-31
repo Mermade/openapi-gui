@@ -16,7 +16,7 @@
   ],
   "author": "Mike Ralphson",
   "license": "BSD-3-Clause",
-  "dependencies": {
+  "optionalDependencies": {
     "compression": "^1.6.2",
     "ejs": "^2.5.1"
   }

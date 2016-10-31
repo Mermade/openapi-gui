@@ -2,6 +2,7 @@
   <div class='navbar-inner'>
     <div class='container-fluid'>
       <span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
+	  <span class='pull-right'><a href="#editor">Top</a></span>
     </div>
   </div>
 </div>
@@ -186,21 +187,22 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                     <i ng-click="$ctrl.removeAll()" class='btn btn-danger remButton icon-eraser icon-white'></i>
                     <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'></i>
                     <br/>
-                    <ul id='resourceList' ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
-                    <strong><a ng-href="'#'+resource.id"></a></strong>
-                        <ul>
-                            <a href="#" ng-click="resource.collapse('show')">
-                                <li>{{resource.name}}</li>
-                            </a>
-                        </ul>
-                    </ul>
+					<strong>
+					  <ul id="resourceList">
+                        <li ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
+					      <a href="#/{{resource.id}}" ng-click="$ctrl.showResource(resource)">
+                            {{resource.name}}
+					      </a>
+						</li>
+                      </ul>
+					</strong>
                 </div>
             </div>
 
             <div class="content forms span9">
                 <form class="form-horizontal" id="config">
                     <div class="resources" ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
-                      <api-resource resource="resource"></api-resource>
+					  <api-resource resource="resource"></api-resource>
                     </div>
                 </form>
             </div>

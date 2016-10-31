@@ -41,7 +41,7 @@
                 <div class='control-group'>
                     <label class='control-label'> Required </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.required" required>
+                        <select ng-model="$ctrl.parameter.required" required size="2">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -56,29 +56,33 @@
                 <div class='control-group'>
                     <label class='control-label'> Location </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.in" required>
+                        <select ng-model="$ctrl.parameter.in" required size="3">
+                            <option value="path">Path</option>
                             <option value="query">Query</option>
-                            <option value="body">Body</option>
                             <option value="header">Header</option>
+                            <option value="body">Body</option>
+                            <option value="form">Form</option>
                         </select>
                     </div>
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Data Type </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.type" required>
+                        <select ng-model="$ctrl.parameter.type" required size="5">
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
+                            <option value="number">number</option>
                             <option value="array">array</option>
+                            <option value="file">file</option>
                             <option value="object">object</option>
                         </select>
                     </div>
                 </div>
-                <div class='control-group'>
+                <div class='control-group' ng-if="$ctrl.parameter.availableFormats.length">
                     <label class='control-label'> Format </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.parameter.format">
+                        <select ng-model="$ctrl.parameter.format" size="{{$ctrl.parameter.availableFormats.length}}">
                           <option ng-repeat="option in $ctrl.parameter.availableFormats" value="{{option}}">{{option}}</option>
                         </select>
                     </div>

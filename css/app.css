@@ -3,6 +3,10 @@ body {
   padding-bottom: 40px;
 }
 
+.resource {
+	position: relative;
+}
+
 .resource > .header {
     margin-bottom: 10px
 }
@@ -52,7 +56,7 @@ input:required {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   margin: 10px 5px;
-   background-color: #E7F0F7;   
+   background-color: #E7F0F7;
 }
 
 .content-section {
@@ -66,13 +70,12 @@ input:required {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   margin: 10px 5px;
-   background-color: #D7E0E7;   
+   background-color: #D7E0E7;
 }
 
 .service-input {
     height:400px;
 }
-
 
 .accordion-heading  {
     display:table;

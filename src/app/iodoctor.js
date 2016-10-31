@@ -1,7 +1,7 @@
 angular.module('components')
  
 .component('ioDoctor', {
-    controller: function($scope, $rootScope) {
+    controller: function($scope, $rootScope, $timeout, $location, $anchorScroll) {
       this.importSchema = "";
 
 	  this.apiConfig = angular.copy(petstore);
@@ -11,13 +11,23 @@ angular.module('components')
 
       angular.forEach(petstore.paths, function(def, name) {
         resource = new Resource(name);
-        resource.load(def, name);
+        resource.load(def, name, petstore);
         this.push( resource );
       }, this.apiConfig.resources);
 
       this.addResource = function() {
         this.apiConfig.resources.push( new Resource('/newPath') );
       }
+
+	  this.showResource = function(resource) {
+        $timeout(function(){
+		  $location.hash(resource.id);
+		  $anchorScroll();
+		  $location.hash(null);
+		  var elem = document.getElementById(resource.id);
+		  elem.innerHTML = resource.id + elem.innerHTML;
+		});
+	  }
       
 	  this.removeAll = function() {
         this.apiConfig.resources = [];
@@ -44,8 +54,8 @@ angular.module('components')
 
         angular.forEach(schema.paths, function(def, name) {
           resource = new Resource(name);
-          resource.load(def);
-          this.push( resource );
+          resource.load(def, schema);
+          this.push(resource);
         }, this.apiConfig.resources);
       }
 
@@ -64,7 +74,7 @@ angular.module('components')
         $('#json-output').html('<pre class="prettyprint" id="pretty-json"></pre>');
         output = JSON.stringify(this.transformConfig(), undefined, 4);
         $('#pretty-json').html( output );
-        clippy = new Clipboard('#copy-output');
+        clippy = new Clipboard('#copy-json');
         prettyPrint();
 		var data = "text/json;charset=utf-8," + encodeURIComponent(output);
 		$('#download-output').attr('href','data:' + data);
@@ -80,7 +90,7 @@ angular.module('components')
 		  alert(ex.message);
 		}
         $('#pretty-yaml').html( output );
-        clippy = new Clipboard('#copy-output');
+        clippy = new Clipboard('#copy-yaml');
         prettyPrint();
 		var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
 		$('#download-yaml').attr('href','data:' + data);

@@ -22,7 +22,7 @@ function Parameter (name) {
         this.description = parameterDefinition.description;
         this.required = parameterDefinition.required ? 'true' : 'false';
         this.default = parameterDefinition.default;
-        this.type = parameterDefinition.type;
+        this.type = parameterDefinition.type ? parameterDefinition.type : 'object';
 		this.availableFormats = this.availableFormatsFor(this.type);
 		this.format = parameterDefinition.format;
 		this.pattern = parameterDefinition.pattern;

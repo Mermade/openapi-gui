@@ -5,13 +5,16 @@ function Method (name) {
     this.httpMethod = 'GET';
     this.parameters = [];
 
-    this.load = function(methodDefinition, httpMethod) {
+    this.load = function(methodDefinition, httpMethod, openApi) {
 
         this.description = methodDefinition.description;
         this.httpMethod = httpMethod;
         this.parameters = [];
 
         angular.forEach(methodDefinition.parameters, function(parameterDefinition) {
+		    if (parameterDefinition["$ref"]) {
+			  parameterDefinition = jptr.get(openApi, parameterDefinition["$ref"]);
+			}
             parameter = new Parameter(parameterDefinition.name);
             parameter.load(parameterDefinition);
             this.push( parameter );

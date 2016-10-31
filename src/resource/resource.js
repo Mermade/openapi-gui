@@ -4,16 +4,18 @@ function Resource (name) {
     this.methods = [ new Method('newOperation') ];
 }
 
-Resource.prototype.load = function(resourceDefinition, path) {
+Resource.prototype.load = function(resourceDefinition, path, openApi) {
     // Clean the slate before we load in data
     this.methods = [];
     
     angular.forEach(resourceDefinition, function(methodDefinition, index) {
-		var opId = methodDefinition.operationId ? methodDefinition.operationId : 
-		  index + path.split('/').join('_');
-        method = new Method(opId);
-        method.load(methodDefinition, index.toUpperCase());
-        this.push( method );
+	    if (index != 'parameters') {
+		  var opId = methodDefinition.operationId ? methodDefinition.operationId : 
+  		    index + path.split('/').join('_');
+          method = new Method(opId);
+          method.load(methodDefinition, index.toUpperCase(), openApi);
+          this.push( method );
+		}
     }, this.methods);
 };
 
@@ -31,3 +33,4 @@ Resource.prototype.render = function() {
     //};
 	return methods;
 }
+
