@@ -2,9 +2,12 @@
   <div class='navbar-inner'>
     <div class='container-fluid'>
       <span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
-	  <i class='pull-right btn btn-info icon-white icon-arrow-up'>&nbsp;Top</i>
-	  <i class='pull-right btn btn-info icon-white icon-save'>&nbsp;Save</i>
-	  <i class='pull-right btn btn-info icon-white icon-undo'>&nbsp;Undo</i>
+	  <a href="#editor"><i class='pull-right btn btn-info icon-white icon-arrow-up'>&nbsp;Top</i></a>
+	  <a href="" ng-click="$ctrl.save()"><i class='pull-right btn btn-info icon-white icon-save'> Save </i></a>
+	  <a href="" ng-click="$ctrl.undo()"><i class='pull-right btn btn-info icon-white icon-undo'> Undo </i></a>
+	  <a href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%20%23Swagger%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='pull-right btn btn-info icon-white icon-twitter'> Tweet </i></a>
+	  <a href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='pull-right btn btn-info icon-white icon-twitter'> Follow </i></a>
+	  <a href="https://github.com/mermade/openapi-gui"><i class='pull-right btn btn-info icon-white icon-github'> GitHub </i></a>
     </div>
   </div>
 </div>
@@ -15,7 +18,7 @@
     <ul id="section-tabs" class='tabs nav nav-tabs'>
       <li>
         <a data-toggle='tab' href='#about' id="about-tab">
-          <i class='icon-info'></i>
+          <i class='icon-info-sign'></i>
           About
         </a>
       </li>
@@ -27,7 +30,7 @@
       </li>
       <li>
         <a data-toggle='tab' href='#header' id="header-tab">
-          <i class='icon-comment'></i>
+          <i class='icon-h-sign'></i>
           Header 
         </a>
       </li>
@@ -196,8 +199,8 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 
             <div class='span3'>
                 <div class='sidebar-nav well'>
-                    <i ng-click="$ctrl.removeAll()" class='btn btn-danger remButton icon-eraser icon-white'></i>
-                    <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'></i>
+                    <i ng-click="$ctrl.removeAll()" class='btn btn-danger remButton icon-eraser icon-white'> Remove All</i>
+                    <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'> Add Path</i>
                     <br/>
 					<strong>
 					  <ul id="resourceList">

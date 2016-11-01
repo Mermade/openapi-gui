@@ -14,7 +14,12 @@ function Method (name) {
         angular.forEach(methodDefinition.parameters, function(parameterDefinition) {
 		    if (parameterDefinition["$ref"]) {
 			  var ptr = parameterDefinition["$ref"].substr(1);
-			  parameterDefinition = new JSONPointer(ptr).get(openApi);
+			  try {
+			    parameterDefinition = new JSONPointer(ptr).get(openApi);
+			  }
+			  catch (ex) {
+			    bootbox.alert('Could not find $ref: '+parameterDefinition["$ref"]);
+			  }
 			}
             parameter = new Parameter(parameterDefinition.name);
             parameter.load(parameterDefinition);

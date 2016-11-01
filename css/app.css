@@ -18,6 +18,7 @@ body {
 .sidebar-nav {
     padding: 9px 0;
     min-height: 300px;
+	word-wrap : break-word;
 }
 
 .addButton {

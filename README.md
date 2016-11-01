@@ -21,13 +21,16 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 
 OpenApi-gui runs entirely client-side using a number of Javascript frameworks including jQuery, Twitter Bootstrap, and AngularJS.
 
-To get the app up and running just browse to [the GitHub.io page](https://github.io/mermade/openapi-gui), deploy to Heroku using the button below, or clone the repo and load index.html into a browser / host it locally - couldn't be simpler.
+To get the app up and running just browse to [the GitHub.io page](https://github.io/mermade/openapi-gui), deploy to Heroku using the button below, or clone the repo and load index.html into a browser / host it yourself - couldn't be simpler.
+
+You only need to `npm install` the Node.js modules if you wish to use the `Arapaho` embedded web server, otherwise they are only there for Heroku deploys.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ### Limitations
 
-OpenApi-gui will de-reference shared parameters. For publication, you may wish to pass your OpenApi definition through a tool such as [OpenApi-optimise](https://githhub.com/mermade/openapi_optimise).
+* OpenApi-gui will de-reference shared parameters. For publication, you may wish to pass your OpenApi definition through a tool such as [OpenApi-optimise](https://githhub.com/mermade/openapi_optimise).
+* OpenApi-gui will not preserve comments from definitions imported in YAML format.
 
 TODO
 ----

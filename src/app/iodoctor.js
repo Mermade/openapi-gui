@@ -26,21 +26,36 @@ angular.module('components')
       }, this.apiConfig.resources);
 
       this.addResource = function() {
-        this.apiConfig.resources.push(new Resource('/newPath'));
+	    var newResource = new Resource('/newPath');
+        this.apiConfig.resources.push(newResource);
+		$location.hash(newResource.id);
       }
 
 	  this.showResource = function(resource) {
-        $timeout(function(){
-		  $location.hash = resource.id;
-		});
+		$location.hash(resource.id);
 	  }
       
 	  this.removeAll = function() {
 	    bootbox.confirm('Remove all paths, are you sure?', function(result) {
-          if (result) apiConfig.resources = [];
-          $scope.$apply();
+          if (result) {
+		    if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
+		    apiConfig.resources = [];
+            $scope.$apply();
+		  }
 		});
       }
+
+	  this.save = function() {
+	    if (window.localStorage) {
+		  window.localStorage.setItem('swagger2',JSON.stringify(this.apiConfig));
+		}
+	  }
+
+	  this.undo = function() {
+	    if (window.localStorage) {
+		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
+		}
+	  }
 
       this.loadSchema = function() {
         var schema;
@@ -64,16 +79,16 @@ angular.module('components')
 
         angular.forEach(schema.paths, function(def, name) {
           resource = new Resource(name);
-          resource.load(def, schema);
+          resource.load(def, name, schema);
           this.push(resource);
         }, this.apiConfig.resources);
       }
 
 	  $rootScope.$on('removeResource', function(event, id) {
+		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		var result = jQuery.grep(apiConfig.resources, function(value) {
 		  return value.id != id;
 		});
-
 	    apiConfig.resources = result;
 	  });
 
