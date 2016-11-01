@@ -4,24 +4,34 @@ angular.module('components')
     controller: function($scope, $rootScope, $timeout, $location) {
       this.importSchema = "";
 
-	  this.apiConfig = angular.copy(petstore);
+	  if ((window.localStorage) && (window.localStorage.getItem('swagger2'))) {
+	    try {
+		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
+		}
+		catch (ex) {}
+	  }
+	  else {
+	    this.apiConfig = angular.copy(petstore);
+	  }
+	  this.importSchema = JSON.stringify(this.apiConfig,null,2);
+
 	  this.apiConfig.resources = [];
 	  this.apiConfig.schemas = [];
 	  var apiConfig = this.apiConfig;
 
-      angular.forEach(petstore.paths, function(def, name) {
+      angular.forEach(apiConfig.paths, function(def, name) {
         resource = new Resource(name);
-        resource.load(def, name, petstore);
-        this.push( resource );
+        resource.load(def, name, apiConfig);
+        this.push(resource);
       }, this.apiConfig.resources);
 
       this.addResource = function() {
-        this.apiConfig.resources.push( new Resource('/newPath') );
+        this.apiConfig.resources.push(new Resource('/newPath'));
       }
 
 	  this.showResource = function(resource) {
         $timeout(function(){
-		  $location.hash =resource.id;
+		  $location.hash = resource.id;
 		});
 	  }
       
@@ -35,12 +45,12 @@ angular.module('components')
       this.loadSchema = function() {
         var schema;
 		try {
-		  schema = JSON.parse( this.importSchema );
+		  schema = JSON.parse(this.importSchema);
 		  bootbox.alert('JSON definition loaded successfully');
 		}
 		catch (ex) {
 		  try {
-		    schema = jsyaml.safeLoad( this.importSchema );
+		    schema = jsyaml.safeLoad(this.importSchema);
 			bootbox.alert('YAML definition loaded successfully');
 		  }
 		  catch (ex) {
@@ -49,6 +59,7 @@ angular.module('components')
 		}
 
         this.apiConfig = schema;
+		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(schema));
 		this.apiConfig.resources = [];
 
         angular.forEach(schema.paths, function(def, name) {

@@ -2,7 +2,9 @@
   <div class='navbar-inner'>
     <div class='container-fluid'>
       <span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
-	  <span class='pull-right'><a href="#editor">Top</a></span>
+	  <i class='pull-right btn btn-info icon-white icon-arrow-up'>&nbsp;Top</i>
+	  <i class='pull-right btn btn-info icon-white icon-save'>&nbsp;Save</i>
+	  <i class='pull-right btn btn-info icon-white icon-undo'>&nbsp;Undo</i>
     </div>
   </div>
 </div>
@@ -31,8 +33,14 @@
       </li>
       <li>
         <a data-toggle='tab' href='#tags' id="header-tags">
-          <i class='icon-text'></i>
+          <i class='icon-tag'></i>
           Tags
+        </a>
+      </li>
+      <li>
+        <a data-toggle='tab' href='#security' id="header-security">
+          <i class='icon-lock'></i>
+         Security 
         </a>
       </li>
       <li class='active'>
@@ -169,7 +177,11 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
         </div>
       
         <div class="tab-pane" id="tags">
-			<h1>Tags</h1>
+			<h1>Tags - TODO</h1>
+        </div>
+        
+		<div class="tab-pane" id="security">
+			<h1>Security - TODO</h1>
         </div>
         
 		<div class="tab-pane" id="output">
@@ -190,7 +202,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 					<strong>
 					  <ul id="resourceList">
                         <li ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
-					      <a href="#{{resource.id}}" target="_self" ng-clock"$ctrl.showResource(resource)">
+					      <a href="#{{resource.id}}" target="_self" ng-click"$ctrl.showResource(resource)">
                             {{resource.name}}
 					      </a>
 						</li>

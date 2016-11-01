@@ -13,11 +13,12 @@ function Method (name) {
 
         angular.forEach(methodDefinition.parameters, function(parameterDefinition) {
 		    if (parameterDefinition["$ref"]) {
-			  parameterDefinition = jptr.get(openApi, parameterDefinition["$ref"]);
+			  var ptr = parameterDefinition["$ref"].substr(1);
+			  parameterDefinition = new JSONPointer(ptr).get(openApi);
 			}
             parameter = new Parameter(parameterDefinition.name);
             parameter.load(parameterDefinition);
-            this.push( parameter );
+            this.push(parameter);
         }, this.parameters);
     }
 
