@@ -1,4 +1,4 @@
-var app = angular.module('app', ['components'])
+var app = angular.module('app', ['components', 'checklist-model'])
 .controller('MainController', function() {
 });
 

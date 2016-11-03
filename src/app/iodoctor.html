@@ -113,25 +113,33 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                   <div class='controls'>
                       <textarea class="span6" ng-model="$ctrl.apiConfig.info.description"></textarea>
                   </div>
-                </div>	
+                </div>
+				<div class='control-group'>
+					<label class='control-label'> Protocol </label>
+					<div class='controls'>
+ 						<div class="checkbox" ng-repeat="s in $ctrl.schemes">
+							<input type="checkbox" checklist-model="$ctrl.apiConfig.schemes" checklist-value="s">{{s}}</input>
+					    </div>
+					</div>
+				</div>
 	        	<div class='control-group'>
                   <label class='control-label'> Host </label>
                   <div class='controls'>
                       <input class="span4" ng-model="$ctrl.apiConfig.host"></input>
                   </div>
-                </div>	
+                </div>
 	        	<div class='control-group'>
                   <label class='control-label'> BasePath </label>
                   <div class='controls'>
                       <input class="span6" ng-model="$ctrl.apiConfig.basePath"></input>
                   </div>
-                </div>	
+                </div>
 	        	<div class='control-group'>
                   <label class='control-label'> Contact Name </label>
                   <div class='controls'>
                       <input class="span6" ng-model="$ctrl.apiConfig.info.contact.name"></input>
                   </div>
-                </div>	
+                </div>
 	        	<div class='control-group'>
                   <label class='control-label'> Contact Email </label>
                   <div class='controls'>

@@ -17,6 +17,7 @@ angular.module('components')
 
 	  this.apiConfig.resources = [];
 	  this.apiConfig.schemas = [];
+	  this.schemes = ['http','https','soap'];
 	  var apiConfig = this.apiConfig;
 
       angular.forEach(apiConfig.paths, function(def, name) {

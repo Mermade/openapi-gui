@@ -38,5 +38,4 @@ TODO
 * Add validation on form fields
 * Security definitions
 * Tags
-* Protocol schemes
 
