@@ -95,6 +95,9 @@ angular.module('components')
 
 	  this.addTag = function() {
 	    var newTag = { name: 'New Tag', description: 'Description' };
+		if (!this.apiConfig.tags) {
+			this.apiConfig.tags = [];
+		}
 	    this.apiConfig.tags.push(newTag);
 	  };
 
@@ -104,6 +107,19 @@ angular.module('components')
 		  if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		  this.apiConfig.tags.splice(index,1);
 		}
+	  };
+
+	  this.addSecurityDefinition = function() {
+	    var newSD = { name: 'newSecurity', type: 'apiKey', description: 'Description' };
+		if (!this.apiConfig.securityDefinitions) {
+			this.apiConfig.securityDefinitions = {};
+		}
+	    this.apiConfig.securityDefinitions['newSecurity'] = newSD;
+	  };
+
+	  this.removeSecurityDefinition = function(sdName) {
+		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
+		delete this.apiConfig.securityDefinitions[sdName];
 	  };
 
       this.renderOutput = function() {

@@ -228,7 +228,83 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
         </div>
         
 		<div class="tab-pane" id="security">
-			<h1>Security - TODO</h1>
+            <div class="content forms span9">
+            <form class="plain-form form-horizontal" id="frmSecurity">
+	    	<div>
+				<i ng-click="$ctrl.addSecurityDefinition()" class='btn btn-info icon-plus icon-white'></i>
+			</div>
+ 			<div ng-repeat="(sName, sd) in $ctrl.apiConfig.securityDefinitions track by sName">
+	        	<div class='control-group'>
+                  <label class='control-label'> Name </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="sName"></input>
+                  </div>
+				  <div>
+				    <i ng-click="$ctrl.removeSecurityDefinition(sName)" class='btn btn-danger icon-eraser icon-white'></i>
+				  </div>
+				</div>  
+	        	<div class='control-group'>
+					<label class='control-label' for="singleSelect"> Type </label>
+                    <div class='controls'>
+    					<select name="singleSelect" ng-model="sd.type">
+      						<option value="apiKey">API Key</option>
+      						<option value="oauth2">oAuth2</option>
+      						<option value="basic">Basic Authentication</option>
+    					</select>
+                  </div>
+				</div>
+	        	<div class='control-group'>
+					<label class='control-label' for="singleSelect"> Apply to all paths </label>
+                    <div class='controls'>
+						<input type='checkbox'></input>
+					</div>
+				</div>
+				<div ng-if="sd.type == 'apiKey'" class='animate-if'>
+					<div class='control-group'>
+                  		<label class='control-label'> Parameter Name </label>
+                  		<div class='controls'>
+                      		<input class="span6" ng-model="sd.name"></input>
+                  		</div>
+					</div>
+					<div class='control-group'>
+                  		<label class='control-label'> Location </label>
+                  		<div class='controls'>
+    						<select name="singleSelect" ng-model="sd.in">
+      							<option value="header">Header</option>
+      							<option value="query">Query</option>
+    						</select>
+                  		</div>
+					</div>
+				</div>
+				<div ng-if="sd.type == 'oauth2'" class='animate-if'>
+					<div class='control-group'>
+                  		<label class='control-label'> Flow </label>
+                  		<div class='controls'>
+    						<select name="singleSelect" ng-model="sd.flow">
+      							<option value="implicit">Implicit</option>
+      							<option value="password">Password</option>
+      							<option value="application">Application</option>
+      							<option value="accessCode">AccessCode</option>
+    						</select>
+						</div>
+					</div>
+					<div class='control-group'>
+                  		<label class='control-label'> Authorization URL </label>
+                  		<div class='controls'>
+                      		<input class="span6" ng-model="sd.authorizationUrl"></input>
+                  		</div>
+					</div>
+					<div class='control-group'>
+                  		<label class='control-label'> Token URL </label>
+                  		<div class='controls'>
+                      		<input class="span6" ng-model="sd.tokenUrl"></input>
+                  		</div>
+					</div>
+				</div>
+				<hr/>
+			</div>
+			</form>
+			</div>
         </div>
         
 		<div class="tab-pane" id="output">
