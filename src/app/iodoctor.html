@@ -188,7 +188,43 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
         </div>
       
         <div class="tab-pane" id="tags">
-			<h1>Tags - TODO</h1>
+            <div class="content forms span9">
+            <form class="plain-form form-horizontal" id="frmTags">
+	    	<div>
+				<i ng-click="$ctrl.addTag()" class='btn btn-info icon-plus icon-white'></i>
+			</div>
+ 			<div ng-repeat="t in $ctrl.apiConfig.tags track by t.name">
+	        	<div class='control-group'>
+                  <label class='control-label'> Name </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="t.name"></input>
+                  </div>
+				  <div>
+				    <i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-eraser icon-white'></i>
+				  </div>
+                </div>
+	        	<div class='control-group'>
+                  <label class='control-label'> Description </label>
+                  <div class='controls'>
+                      <textarea class="span6" ng-model="t.description"></textarea>
+                  </div>
+                </div>
+	        	<div class='control-group'>
+                  <label class='control-label'> External Docs </label>
+                  <div class='controls'>
+                      <textarea class="span6" ng-model="t.externalDocs.description"></textarea>
+                  </div>
+                </div>	
+	        	<div class='control-group'>
+                  <label class='control-label'> Docs URL </label>
+                  <div class='controls'>
+                      <input class="span6" ng-model="t.externalDocs.url"></input>
+                  </div>
+                </div>	
+				<hr/>
+			</div>
+			</form>
+			</div>
         </div>
         
 		<div class="tab-pane" id="security">
