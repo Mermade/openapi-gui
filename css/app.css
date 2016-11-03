@@ -116,3 +116,7 @@ input:required {
     opacity:1;
     filter:alpha(opacity=100); /* For IE8 and earlier */
 }
+
+.plain-form > .control-group > label {
+  font-weight: bold;
+}
