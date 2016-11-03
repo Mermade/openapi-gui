@@ -231,16 +231,14 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
             <div class="content forms span9">
             <form class="plain-form form-horizontal" id="frmSecurity">
 	    	<div>
-				<i ng-click="$ctrl.addSecurityDefinition()" class='btn btn-info icon-plus icon-white'></i>
+				<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i>Add Security Definition</a>
 			</div>
- 			<div ng-repeat="(sName, sd) in $ctrl.apiConfig.securityDefinitions track by sName">
+ 			<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
 	        	<div class='control-group'>
                   <label class='control-label'> Name </label>
                   <div class='controls'>
-                      <input class="span6" ng-model="sName"></input>
-                  </div>
-				  <div>
-				    <i ng-click="$ctrl.removeSecurityDefinition(sName)" class='btn btn-danger icon-eraser icon-white'></i>
+                      <input class="span6" ng-model="sdName"></input>
+				      <i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-eraser icon-white'></i>
 				  </div>
 				</div>  
 	        	<div class='control-group'>
@@ -299,6 +297,24 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                   		<div class='controls'>
                       		<input class="span6" ng-model="sd.tokenUrl"></input>
                   		</div>
+					</div>
+	    			<div>
+						<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i>Add Scope</a>
+					</div>
+ 					<div ng-repeat="(sName, sDesc) in sd.scopes track by sName">
+						<div class='control-group'>
+                  			<label class='control-label'> Scope Name </label>
+                  			<div class='controls'>
+                   	  	 		<input class="span6" ng-model="sName"></input>
+				      			<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-eraser icon-white'></i>
+                  			</div>
+						</div>
+						<div class='control-group'>
+                  			<label class='control-label'> Description </label>
+                  			<div class='controls'>
+                   	   			<input class="span6" ng-model="sDesc"></input>
+                  			</div>
+						</div>
 					</div>
 				</div>
 				<hr/>

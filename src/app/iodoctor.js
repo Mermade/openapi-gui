@@ -122,6 +122,18 @@ angular.module('components')
 		delete this.apiConfig.securityDefinitions[sdName];
 	  };
 
+	  this.addScope = function(sdName) {
+		if (!this.apiConfig.securityDefinitions[sdName].scopes) {
+			this.apiConfig.securityDefinitions[sdName].scopes = {};
+		}
+	    this.apiConfig.securityDefinitions[sdName].scopes['newScope'] = 'Description';
+	  };
+
+	  this.removeScope = function(sdName, sName) {
+		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
+		delete this.apiConfig.securityDefinitions[sdName].scopes[sName];
+	  };
+
       this.renderOutput = function() {
         // Pretty print has an issue correctly rendering output when we modify
         // the content in an already "prettified" element. This hack creates a
