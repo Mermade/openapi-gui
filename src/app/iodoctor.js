@@ -11,7 +11,7 @@ angular.module('components')
 		catch (ex) {}
 	  }
 	  else {
-	    this.apiConfig = angular.copy(petstore);
+	    this.apiConfig = angular.extend({},petstore);
 	  }
 	  this.importSchema = JSON.stringify(this.apiConfig,null,2);
 
@@ -124,7 +124,7 @@ angular.module('components')
       }
 
       this.transformConfig = function() {
-        var transformedConfig = angular.copy(this.apiConfig);
+        var transformedConfig = angular.extend({},this.apiConfig);
 		transformedConfig.paths = {};
 
         angular.forEach(this.apiConfig.resources, function(resource) {
