@@ -93,6 +93,19 @@ angular.module('components')
 	    apiConfig.resources = result;
 	  });
 
+	  this.addTag = function() {
+	    var newTag = { name: 'New Tag', description: 'Description' };
+	    this.apiConfig.tags.push(newTag);
+	  };
+
+	  this.removeTag = function(tag) {
+	    var index = this.apiConfig.tags.indexOf(tag);
+		if (index>=0) {
+		  if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
+		  this.apiConfig.tags.splice(index,1);
+		}
+	  };
+
       this.renderOutput = function() {
         // Pretty print has an issue correctly rendering output when we modify
         // the content in an already "prettified" element. This hack creates a
