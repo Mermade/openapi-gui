@@ -233,6 +233,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 	    	<div>
 				<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
 				<br/>
+				<br/>
 			</div>
  			<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
 	        	<div class='control-group'>
@@ -303,7 +304,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                   		</div>
 					</div>
 	    			<div>
-						<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i>Add Scope</a>
+						<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
 					</div>
  					<div ng-repeat="(sName, sDesc) in sd.scopes track by sName">
 						<div class='control-group'>
