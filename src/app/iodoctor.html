@@ -193,6 +193,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
             <form class="plain-form form-horizontal" id="frmTags">
 	    	<div>
 				<a ng-click="$ctrl.addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
+				<br/>
 			</div>
  			<div ng-repeat="t in $ctrl.apiConfig.tags track by t.name">
 	        	<div class='control-group'>
@@ -231,6 +232,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
             <form class="plain-form form-horizontal" id="frmSecurity">
 	    	<div>
 				<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
+				<br/>
 			</div>
  			<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
 	        	<div class='control-group'>
@@ -244,9 +246,9 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 				  </div>
 				</div>  
 	        	<div class='control-group'>
-					<label class='control-label' for="singleSelect"> Type </label>
+					<label class='control-label' for="selSdType"> Type </label>
                     <div class='controls'>
-    					<select name="singleSelect" ng-model="sd.type">
+    					<select name="selSdType" ng-model="sd.type">
       						<option value="apiKey">API Key</option>
       						<option value="oauth2">oAuth2</option>
       						<option value="basic">Basic Authentication</option>
@@ -254,9 +256,9 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
                   </div>
 				</div>
 	        	<div class='control-group'>
-					<label class='control-label' for="singleSelect"> Apply to all paths </label>
+					<label class='control-label'> Apply to all paths </label>
                     <div class='controls'>
-						<input type='checkbox'></input>
+						<input type='checkbox' ng-checked='$ctrl.getApplyAll(sdName)' ng-click='$ctrl.toggleApplyAll(sdName)'></input>
 					</div>
 				</div>
 				<div ng-if="sd.type == 'apiKey'" class='animate-if'>
@@ -269,7 +271,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 					<div class='control-group'>
                   		<label class='control-label'> Location </label>
                   		<div class='controls'>
-    						<select name="singleSelect" ng-model="sd.in">
+    						<select name="selLocation" ng-model="sd.in">
       							<option value="header">Header</option>
       							<option value="query">Query</option>
     						</select>
@@ -280,7 +282,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 					<div class='control-group'>
                   		<label class='control-label'> Flow </label>
                   		<div class='controls'>
-    						<select name="singleSelect" ng-model="sd.flow">
+    						<select name="selFlow" ng-model="sd.flow">
       							<option value="implicit">Implicit</option>
       							<option value="password">Password</option>
       							<option value="application">Application</option>
@@ -340,15 +342,20 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 
             <div class='span3'>
                 <div class='sidebar-nav well'>
-                    <a class="btn btn-danger remButton" ng-click="$ctrl.removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
-                    <a ng-click="$ctrl.addResource()" class='btn btn-info addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+                    <a class="btn btn-danger remButton pull-right" ng-click="$ctrl.removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
+                    <a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
                     <br/>
 					<strong>
 					  <ul id="resourceList">
                         <li ng-repeat="resource in $ctrl.apiConfig.resources track by resource.id">
-					      <a href="#{{resource.id}}" target="_self" ng-click"$ctrl.showResource(resource)">
+					      <a href="#{{resource.id}}" target="_self" ng-click="$ctrl.showResource(resource)">
                             {{resource.name}}
 					      </a>
+						  <!--<ul>
+						  	<li ng-repeat="m in resource.methods track by $index">
+							<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" ng-click="$ctrl.showMethod(method)">{{m.httpMethod}}</a>
+							</li>
+						  </ul>-->
 						</li>
                       </ul>
 					</strong>

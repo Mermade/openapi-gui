@@ -123,15 +123,47 @@ angular.module('components')
 	  };
 
 	  this.renameSecurityDefinition = function(oldName, newName) {
-	    if (newName != oldName) {
+	    if ((newName != oldName) && (newName != '')) {
 	      this.apiConfig.securityDefinitions[newName] = this.apiConfig.securityDefinitions[oldName];
 		  delete this.apiConfig.securityDefinitions[oldName];
+		}
+	  };
+
+	  this.getApplyAll = function(sdName) {
+		for (var s in this.apiConfig.security) {
+		  var entry = this.apiConfig.security[s];
+		  if (typeof entry[sdName] !== 'undefined') return true;
+		}
+	    return false;
+	  };
+
+	  this.toggleApplyAll = function(sdName) {
+	    if (!this.apiConfig.security) this.apiConfig.security = [];
+		var present = this.getApplyAll(sdName);
+		if (present) {
+		  for (var s in this.apiConfig.security) {
+		    var entry = this.apiConfig.security[s];
+			if (entry[sdName]) this.apiConfig.security.splice(s,1);
+		  }
+		}
+		else {
+		  var entry = {};
+		  entry[sdName] = [];
+		  if (this.apiConfig.securityDefinitions[sdName].type == 'oauth2') {
+		    for (var s in this.apiConfig.securityDefinitions[sdName].scopes) {
+			  entry[sdName].push(s);
+			}
+		  }
+		  this.apiConfig.security.push(entry);
 		}
 	  };
 
 	  this.removeSecurityDefinition = function(sdName) {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		delete this.apiConfig.securityDefinitions[sdName];
+		if (this.getApplyAll(sdName)) {
+		  this.toggleApplyAll(sdName);
+		}
 	  };
 
 	  this.addScope = function(sdName) {

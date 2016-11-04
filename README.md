@@ -17,6 +17,8 @@ Select an existing OpenApi definition to upload, or create a new definition and 
 
 Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting one of the "Export" tabs. When finished, download the output to save it locally or copy it your clipboard. OpenApi-gui only stores one definition at a time, and this is in your browser's local-storage. Make sure you save your JSON/YAML output locally.
 
+Before performing a destructive action, OpenApi-Gui saves the current state of the definition. At all other times you must remember to select Save manually.
+
 ### Technology
 
 OpenApi-gui runs entirely client-side using a number of Javascript frameworks including jQuery, Twitter Bootstrap, and AngularJS.
@@ -36,6 +38,5 @@ TODO
 ----
 
 * Add validation on form fields
-* Security definitions
-* Tags
+* Improve performance
 
