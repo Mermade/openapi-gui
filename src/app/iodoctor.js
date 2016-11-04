@@ -30,11 +30,11 @@ angular.module('components')
 	    var newResource = new Resource('/newPath');
         this.apiConfig.resources.push(newResource);
 		$location.hash(newResource.id);
-      }
+      };
 
 	  this.showResource = function(resource) {
 		$location.hash(resource.id);
-	  }
+	  };
       
 	  this.removeAll = function() {
 	    bootbox.confirm('Remove all paths, are you sure?', function(result) {
@@ -44,19 +44,24 @@ angular.module('components')
             $scope.$apply();
 		  }
 		});
-      }
+      };
 
 	  this.save = function() {
 	    if (window.localStorage) {
 		  window.localStorage.setItem('swagger2',JSON.stringify(this.apiConfig));
 		}
-	  }
+	  };
 
 	  this.undo = function() {
 	    if (window.localStorage) {
 		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
 		}
-	  }
+	  };
+
+	  this.scrollTop = function() {
+	    var elem = document.getElementById('scrollTop');
+		elem.scrollIntoView();
+	  };
 
       this.loadSchema = function() {
         var schema;
@@ -83,7 +88,7 @@ angular.module('components')
           resource.load(def, name, schema);
           this.push(resource);
         }, this.apiConfig.resources);
-      }
+      };
 
 	  $rootScope.$on('removeResource', function(event, id) {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
@@ -160,7 +165,7 @@ angular.module('components')
 		var data = "text/json;charset=utf-8," + encodeURIComponent(output);
 		$('#download-output').attr('href','data:' + data);
 		$('#download-output').attr('download','swagger.json');
-      }
+      };
 
       this.renderOutputYaml = function() {
         $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
@@ -176,7 +181,7 @@ angular.module('components')
 		var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
 		$('#download-yaml').attr('href','data:' + data);
 		$('#download-yaml').attr('download','swagger.yaml');
-      }
+      };
 
       this.transformConfig = function() {
         var transformedConfig = angular.extend({},this.apiConfig);

@@ -2,7 +2,7 @@
   <div class='navbar-inner'>
     <div class='container-fluid'>
       <span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
-	  <a href="#editor"><i class='pull-right btn btn-info icon-white icon-arrow-up'>&nbsp;Top</i></a>
+	  <a class="btn btn-info pull-right" ng-click="$ctrl.scrollTop()"><i class='icon-white icon-arrow-up'></i>&nbsp;Top</a>
 	  <a href="" ng-click="$ctrl.save()"><i class='pull-right btn btn-info icon-white icon-save'> Save </i></a>
 	  <a href="" ng-click="$ctrl.undo()"><i class='pull-right btn btn-info icon-white icon-undo'> Undo </i></a>
 	  <a href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%20%23Swagger%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='pull-right btn btn-info icon-white icon-twitter'> Tweet </i></a>
@@ -15,6 +15,7 @@
 <div class='container-fluid' role='main'>
   <div class='row-fluid'>
 
+    <a id='scrollTop'></a>
     <ul id="section-tabs" class='tabs nav nav-tabs'>
       <li>
         <a data-toggle='tab' href='#about' id="about-tab">
