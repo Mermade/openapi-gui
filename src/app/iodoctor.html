@@ -192,17 +192,15 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
             <div class="content forms span9">
             <form class="plain-form form-horizontal" id="frmTags">
 	    	<div>
-				<i ng-click="$ctrl.addTag()" class='btn btn-info icon-plus icon-white'></i>
+				<a ng-click="$ctrl.addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
 			</div>
  			<div ng-repeat="t in $ctrl.apiConfig.tags track by t.name">
 	        	<div class='control-group'>
                   <label class='control-label'> Name </label>
                   <div class='controls'>
                       <input class="span6" ng-model="t.name"></input>
-                  </div>
-				  <div>
 				    <i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-eraser icon-white'></i>
-				  </div>
+                  </div>
                 </div>
 	        	<div class='control-group'>
                   <label class='control-label'> Description </label>
@@ -232,7 +230,7 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
             <div class="content forms span9">
             <form class="plain-form form-horizontal" id="frmSecurity">
 	    	<div>
-				<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i>Add Security Definition</a>
+				<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
 			</div>
  			<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
 	        	<div class='control-group'>
@@ -342,8 +340,8 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 
             <div class='span3'>
                 <div class='sidebar-nav well'>
-                    <i ng-click="$ctrl.removeAll()" class='btn btn-danger remButton icon-eraser icon-white'> Remove All</i>
-                    <i ng-click="$ctrl.addResource()" class='btn btn-info addButton icon-plus icon-white'> Add Path</i>
+                    <a class="btn btn-danger remButton" ng-click="$ctrl.removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
+                    <a ng-click="$ctrl.addResource()" class='btn btn-info addButton'><i class='icon-plus icon-white'></i> Add Path</a>
                     <br/>
 					<strong>
 					  <ul id="resourceList">
