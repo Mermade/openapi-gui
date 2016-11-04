@@ -22,10 +22,8 @@ angular.module('components')
         $scope.$ctrl.parameter.properties = result;
       } );
 
-      $scope.$watch( function() {
-        return $scope.$ctrl.parameter.type;
-      }, 
-      function(newVal, oldVal) {
+      //return $scope.$ctrl.parameter.type;
+      $scope.$watch('$ctrl.parameter.type', function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
 	    this.parameter.availableFormats = this.parameter.availableFormatsFor(newVal);
       });

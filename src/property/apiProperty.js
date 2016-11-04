@@ -22,17 +22,11 @@ angular.module('components')
         $scope.$ctrl.property.properties = result;
       } );
 
-      $scope.$watch( function() {
-        return $scope.$ctrl.property.type;
-      }, 
-      function(newVal, oldVal) {
+      $scope.$watch('$ctrl.property.type', function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 
-      $scope.$watch( function() {
-        return $scope.$ctrl.property.arrayType;
-      }, 
-      function(newVal, oldVal) {
+      $scope.$watch('$ctrl.property.arrayType', function(newVal, oldVal) {
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 

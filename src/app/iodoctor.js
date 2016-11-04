@@ -117,6 +117,13 @@ angular.module('components')
 	    this.apiConfig.securityDefinitions['newSecurity'] = newSD;
 	  };
 
+	  this.renameSecurityDefinition = function(oldName, newName) {
+	    if (newName != oldName) {
+	      this.apiConfig.securityDefinitions[newName] = this.apiConfig.securityDefinitions[oldName];
+		  delete this.apiConfig.securityDefinitions[oldName];
+		}
+	  };
+
 	  this.removeSecurityDefinition = function(sdName) {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		delete this.apiConfig.securityDefinitions[sdName];
@@ -127,6 +134,13 @@ angular.module('components')
 			this.apiConfig.securityDefinitions[sdName].scopes = {};
 		}
 	    this.apiConfig.securityDefinitions[sdName].scopes['newScope'] = 'Description';
+	  };
+
+	  this.renameScope = function(sdName, oldName, newName) {
+	    if (newName != oldName) {
+	      this.apiConfig.securityDefinitions[sdName].scopes[newName] = this.apiConfig.securityDefinitions[sdName].scopes[oldName];
+		  delete this.apiConfig.securityDefinitions[sdName].scopes[oldName];
+		}
 	  };
 
 	  this.removeScope = function(sdName, sName) {

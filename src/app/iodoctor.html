@@ -237,7 +237,10 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 	        	<div class='control-group'>
                   <label class='control-label'> Name </label>
                   <div class='controls'>
-                      <input class="span6" ng-model="sdName"></input>
+                      <input class="span6" ng-model="sdName"
+					    ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)"
+						ng-init="oldValue=0"
+       					ng-focus="oldValue=sdName"></input>
 				      <i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-eraser icon-white'></i>
 				  </div>
 				</div>  
@@ -305,7 +308,10 @@ Click an item from the menu on the left to begin editing. View the JSON/YAML out
 						<div class='control-group'>
                   			<label class='control-label'> Scope Name </label>
                   			<div class='controls'>
-                   	  	 		<input class="span6" ng-model="sName"></input>
+                   	  	 		<input class="span6" ng-model="sName"
+					    			ng-blur="$ctrl.renameScope(sdName,oldValue,sName)"
+									ng-init="oldValue=0"
+       								ng-focus="oldValue=sName"></input>
 				      			<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-eraser icon-white'></i>
                   			</div>
 						</div>
