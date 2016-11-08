@@ -6,7 +6,6 @@ Vue.component('api-parameter', {
 	template: '#template-parameter'
 });
 
-
 /*function Parameter (name) {
 	
 	this.availableFormatsFor = function(type) {

@@ -3,8 +3,8 @@
 
         <i class="icon-reorder accordion-handle method-handle"></i>
 
-        <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
-            Operation: <span class='methodNameSpan'>{{index}} {{method.operationId}}</span>
+        <a class="accordion-toggle" data-toggle="collapse" :data-target="_uid" onclick="$(this).collapse('toggle')">
+            Operation: <span class='methodNameSpan'>{{httpMethod}} {{method.operationId}}</span>
         </a>
 
         <div class="accordion-buttons">
@@ -27,7 +27,7 @@
             </div>
         </div>
     </div>
-    <div class="accordion-body collapse" id="{{$ctrl.method.id}}">
+    <div class="accordion-body collapse" :id="_uid">
         <div class="accordion-inner">
             
             <div class='control-group'>

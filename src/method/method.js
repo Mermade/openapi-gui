@@ -3,6 +3,16 @@ Vue.component('api-method', {
 	data: function() {
 		return {}
 	},
+    methods: {
+        toggleBodyDisplay: function(el) {
+            el.collapse('toggle');
+        }
+    },
+    computed: {
+        httpMethod: function(){
+            return this.index.toUpperCase();
+        }
+    },
 	template: '#template-method'
 });
 
