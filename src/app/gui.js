@@ -37,7 +37,19 @@ Vue.component('gui-main', {
 			scrollTop : function() {
 	    	var elem = document.getElementById('scrollTop');
 				elem.scrollIntoView();
-	  	}
+	  	},
+
+	  	save : function() {
+				if (window.localStorage) {
+					window.localStorage.setItem('swagger2',JSON.stringify(this.openapi));
+				}
+			},
+
+	  	undo : function() {
+				if (window.localStorage) {
+					this.openapi = JSON.parse(window.localStorage.getItem('swagger2'));
+				}
+			}
 
 	},
 	template: '#template-gui-main'
@@ -89,18 +101,6 @@ Vue.component('gui-main', {
 		  }
 		});
       };
-
-	  this.save = function() {
-	    if (window.localStorage) {
-		  window.localStorage.setItem('swagger2',JSON.stringify(this.apiConfig));
-		}
-	  };
-
-	  this.undo = function() {
-	    if (window.localStorage) {
-		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
-		}
-	  };
 
       this.loadSchema = function() {
         var schema;
