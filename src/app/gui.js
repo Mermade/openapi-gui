@@ -3,6 +3,36 @@ Vue.component('gui-main', {
 	data: function() {
 		return {}
 	},
+	methods: {
+  	renderOutput : function() {
+        // Pretty print has an issue correctly rendering output when we modify
+        // the content in an already "prettified" element. This hack creates a
+        // new element so prettyPrint() will correctly re-render the output
+        $('#json-output').html('<pre class="prettyprint" id="pretty-json"></pre>');
+        output = JSON.stringify(this.openapi, null, 4);
+        $('#pretty-json').html( output );
+        clippy = new Clipboard('#copy-json');
+        prettyPrint();
+				var data = "text/json;charset=utf-8," + encodeURIComponent(output);
+				$('#download-output').attr('href','data:' + data);
+				$('#download-output').attr('download','swagger.json');
+      },
+    	renderOutputYaml : function() {
+        $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
+        try {
+					output = jsyaml.dump(this.openapi);
+				}
+				catch (ex) {
+					alert(ex.message);
+				}
+        $('#pretty-yaml').html( output );
+        clippy = new Clipboard('#copy-yaml');
+        prettyPrint();
+				var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
+				$('#download-yaml').attr('href','data:' + data);
+				$('#download-yaml').attr('download','swagger.yaml');
+      }
+	},
 	template: '#template-gui-main'
 });
 
@@ -191,36 +221,6 @@ Vue.component('gui-main', {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		delete this.apiConfig.securityDefinitions[sdName].scopes[sName];
 	  };
-
-      this.renderOutput = function() {
-        // Pretty print has an issue correctly rendering output when we modify
-        // the content in an already "prettified" element. This hack creates a
-        // new element so prettyPrint() will correctly re-render the output
-        $('#json-output').html('<pre class="prettyprint" id="pretty-json"></pre>');
-        output = JSON.stringify(this.transformConfig(), undefined, 4);
-        $('#pretty-json').html( output );
-        clippy = new Clipboard('#copy-json');
-        prettyPrint();
-		var data = "text/json;charset=utf-8," + encodeURIComponent(output);
-		$('#download-output').attr('href','data:' + data);
-		$('#download-output').attr('download','swagger.json');
-      };
-
-      this.renderOutputYaml = function() {
-        $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
-        try {
-		  output = jsyaml.dump(this.transformConfig());
-		}
-		catch (ex) {
-		  alert(ex.message);
-		}
-        $('#pretty-yaml').html( output );
-        clippy = new Clipboard('#copy-yaml');
-        prettyPrint();
-		var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
-		$('#download-yaml').attr('href','data:' + data);
-		$('#download-yaml').attr('download','swagger.yaml');
-      };
 
       this.transformConfig = function() {
         var transformedConfig = angular.extend({},this.apiConfig);

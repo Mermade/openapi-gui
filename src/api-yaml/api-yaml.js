@@ -1,12 +1,7 @@
-angular.module('components')
- 
-.component('apiYaml', {
-    bindings: {
-      config: '=',
-    },
-    controller: function($scope) {
-    },
-    templateUrl: 'src/api-yaml/output.html',
-    replace: true
-  }
-)
+Vue.component('api-yaml', {
+	props: ['openapi'],
+	data: function() {
+		return {}
+	},
+	template: '#template-yaml'
+});

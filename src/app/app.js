@@ -10,7 +10,6 @@ if (window.localStorage) {
     }
 }
 
-
 function app_main() {
     var vm = new Vue({
         data: {

@@ -49,12 +49,12 @@
 					</a>
 				</li>
 				<li>
-					<a data-toggle='tab' href='#output' id="output-tab" ng-click="$ctrl.renderOutput()">
+					<a data-toggle='tab' href='#output' id="output-tab" v-on:click="renderOutput()">
 						<i class='icon-file'></i> Export JSON
 					</a>
 				</li>
 				<li>
-					<a data-toggle='tab' href='#yaml' id="yaml-tab" ng-click="$ctrl.renderOutputYaml()">
+					<a data-toggle='tab' href='#yaml' id="yaml-tab" v-on:click="renderOutputYaml()">
 						<i class='icon-file'></i> Export YAML
 					</a>
 				</li>
