@@ -79,7 +79,7 @@
 				</div>
 
 				<div class="tab-pane" id="input">
-					<textarea class="span12 service-input" ng-model="$ctrl.importSchema"></textarea>
+					<textarea class="span12 service-input" ng-model="importSchema"></textarea>
 					<a class='btn btn-primary pull-right' id="load-definition" ng-click="$ctrl.loadSchema()">
 						<i class='icon-upload icon-white'></i> Load Definition
 					</a>
@@ -92,87 +92,87 @@
 							<div class='control-group'>
 								<label class='control-label'> Title </label>
 								<div class='controls'>
-									<input class="span4" ng-model="$ctrl.apiConfig.info.title"></input>
+									<input class="span4" v-model="openapi.info.title"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Version </label>
 								<div class='controls'>
-									<input class="span4" ng-model="$ctrl.apiConfig.info.version"></input>
+									<input class="span4" v-model="openapi.info.version"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Description </label>
 								<div class='controls'>
-									<textarea class="span6" ng-model="$ctrl.apiConfig.info.description"></textarea>
+									<textarea class="span6" v-model="openapi.info.description"></textarea>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Protocol </label>
 								<div class='controls'>
 									<div class="checkbox" v-model="openapi.schemes">
-										<input type="checkbox" checklist-model="$ctrl.apiConfig.schemes" checklist-value="s">{{s}}</input>
+										<input type="checkbox" checklist-model="openapi.schemes" checklist-value="s">{{s}}</input>
 									</div>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Host </label>
 								<div class='controls'>
-									<input class="span4" ng-model="$ctrl.apiConfig.host"></input>
+									<input class="span4" v-model="openapi.host"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> BasePath </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.basePath"></input>
+									<input class="span6" v-model="openapi.basePath"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact Name </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.name"></input>
+									<input class="span6" v-model="openapi.info.contact.name"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact Email </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.email"></input>
+									<input class="span6" v-model="openapi.info.contact.email"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact URL </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.url"></input>
+									<input class="span6" v-model="openapi.info.contact.url"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Terms of Service </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.info.termsOfService"></input>
+									<input class="span6" v-model="openapi.info.termsOfService"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> License Name </label>
 								<div class='controls'>
-									<input class="span4" ng-model="$ctrl.apiConfig.info.license.name"></input>
+									<input class="span4" v-model="openapi.info.license.name"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> License URL </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.info.license.url"></input>
+									<input class="span6" v-model="openapi.info.license.url"></input>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> External Docs </label>
 								<div class='controls'>
-									<textarea class="span6" ng-model="$ctrl.apiConfig.externalDocs.description"></textarea>
+									<textarea class="span6" v-model="openapi.externalDocs.description"></textarea>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Documentation URL </label>
 								<div class='controls'>
-									<input class="span6" ng-model="$ctrl.apiConfig.externalDocs.url"></input>
+									<input class="span6" v-model="openapi.externalDocs.url"></input>
 								</div>
 							</div>
 
@@ -187,18 +187,18 @@
 								<a ng-click="$ctrl.addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
 								<br/>
 							</div>
-							<div ng-repeat="t in $ctrl.apiConfig.tags track by t.name">
+							<div v-for="t in openapi.tags">
 								<div class='control-group'>
 									<label class='control-label'> Name </label>
 									<div class='controls'>
-										<input class="span6" ng-model="t.name"></input>
+										<input class="span6" v-model="t.name"></input>
 										<i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-eraser icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>
 									<label class='control-label'> Description </label>
 									<div class='controls'>
-										<textarea class="span6" ng-model="t.description"></textarea>
+										<textarea class="span6" v-model="t.description"></textarea>
 									</div>
 								</div>
 								<div class='control-group'>
@@ -227,18 +227,18 @@
 								<br/>
 								<br/>
 							</div>
-							<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
+							<div v-for="(sd, sdName) in openapi.securityDefinitions">
 								<div class='control-group'>
 									<label class='control-label'> Name </label>
 									<div class='controls'>
-										<input class="span6" ng-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
+										<input class="span6" v-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
 										<i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-eraser icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>
 									<label class='control-label' for="selSdType"> Type </label>
 									<div class='controls'>
-										<select name="selSdType" ng-model="sd.type">
+										<select name="selSdType" v-model="sd.type">
       						<option value="apiKey">API Key</option>
       						<option value="oauth2">oAuth2</option>
       						<option value="basic">Basic Authentication</option>
@@ -255,13 +255,13 @@
 									<div class='control-group'>
 										<label class='control-label'> Parameter Name </label>
 										<div class='controls'>
-											<input class="span6" ng-model="sd.name"></input>
+											<input class="span6" v-model="sd.name"></input>
 										</div>
 									</div>
 									<div class='control-group'>
 										<label class='control-label'> Location </label>
 										<div class='controls'>
-											<select name="selLocation" ng-model="sd.in">
+											<select name="selLocation" v-model="sd.in">
       							<option value="header">Header</option>
       							<option value="query">Query</option>
     						</select>
@@ -272,7 +272,7 @@
 									<div class='control-group'>
 										<label class='control-label'> Flow </label>
 										<div class='controls'>
-											<select name="selFlow" ng-model="sd.flow">
+											<select name="selFlow" v-model="sd.flow">
       							<option value="implicit">Implicit</option>
       							<option value="password">Password</option>
       							<option value="application">Application</option>
@@ -283,30 +283,30 @@
 									<div class='control-group'>
 										<label class='control-label'> Authorization URL </label>
 										<div class='controls'>
-											<input class="span6" ng-model="sd.authorizationUrl"></input>
+											<input class="span6" v-model="sd.authorizationUrl"></input>
 										</div>
 									</div>
 									<div class='control-group'>
 										<label class='control-label'> Token URL </label>
 										<div class='controls'>
-											<input class="span6" ng-model="sd.tokenUrl"></input>
+											<input class="span6" v-model="sd.tokenUrl"></input>
 										</div>
 									</div>
 									<div>
 										<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
 									</div>
-									<div ng-repeat="(sName, sDesc) in sd.scopes track by sName">
+									<div v-for="(sName, sDesc) in sd.scopes">
 										<div class='control-group'>
 											<label class='control-label'> Scope Name </label>
 											<div class='controls'>
-												<input class="span6" ng-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
+												<input class="span6" v-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
 												<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-eraser icon-white'></i>
 											</div>
 										</div>
 										<div class='control-group'>
 											<label class='control-label'> Description </label>
 											<div class='controls'>
-												<input class="span6" ng-model="sDesc"></input>
+												<input class="span6" v-model="sDesc"></input>
 											</div>
 										</div>
 									</div>
