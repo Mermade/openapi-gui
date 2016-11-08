@@ -17,6 +17,7 @@ Vue.component('gui-main', {
 				$('#download-output').attr('href','data:' + data);
 				$('#download-output').attr('download','swagger.json');
       },
+
     	renderOutputYaml : function() {
         $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
         try {
@@ -31,7 +32,13 @@ Vue.component('gui-main', {
 				var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
 				$('#download-yaml').attr('href','data:' + data);
 				$('#download-yaml').attr('download','swagger.yaml');
-      }
+      },
+
+			scrollTop : function() {
+	    	var elem = document.getElementById('scrollTop');
+				elem.scrollIntoView();
+	  	}
+
 	},
 	template: '#template-gui-main'
 });
@@ -93,11 +100,6 @@ Vue.component('gui-main', {
 	    if (window.localStorage) {
 		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
 		}
-	  };
-
-	  this.scrollTop = function() {
-	    var elem = document.getElementById('scrollTop');
-		elem.scrollIntoView();
 	  };
 
       this.loadSchema = function() {
