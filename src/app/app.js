@@ -1,14 +1,21 @@
-var app = angular.module('app', ['components', 'checklist-model'])
-.controller('MainController', function() {
-});
+var openapi = clone(petstore);
 
-app.run(function($rootScope) {
-});
+if (window.localStorage) {
+    var o = window.localStorage.getItem('swagger2');
+    if (o) {
+        try {
+            openapi = JSON.parse(o);
+        }
+        catch (ex) {}
+    }
+}
 
-app.config (function($locationProvider) {
-    $locationProvider.html5Mode({
-    enabled : true,
-    requireBase: false,
-    rewriteLinks : false
+
+function app_main() {
+    var vm = new Vue({
+        data: {
+            openapi: openapi
+        },
+        el: '#main-container' 
     });
-});
+}

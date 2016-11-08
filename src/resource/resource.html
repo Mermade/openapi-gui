@@ -6,7 +6,7 @@
             </label>
             <div class='controls'>
                 <div class='input'>
-                    <input class="span10" ng-model="$ctrl.resource.name">
+                    <input class="span10" v-model="index">
                 </div>
             </div>
         </div>
@@ -21,7 +21,7 @@
             </a>
         </div>
     </div>
-    <div class="accordion span12" style="margin-left:0px" ng-repeat="method in $ctrl.resource.methods track by method.id">
-        <api-method method="method"></api-method>
+    <div class="accordion span12" style="margin-left:0px" v-for="(method,key,index) in path">
+        <api-method :key="key" :method="method" :index="key"></api-method>
     </div>
 </div>

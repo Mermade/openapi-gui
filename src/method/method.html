@@ -4,7 +4,7 @@
         <i class="icon-reorder accordion-handle method-handle"></i>
 
         <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
-            Operation: <span class='methodNameSpan'>{{$ctrl.method.name}}</span>
+            Operation: <span class='methodNameSpan'>{{index}} {{method.operationId}}</span>
         </a>
 
         <div class="accordion-buttons">
@@ -33,19 +33,19 @@
             <div class='control-group'>
                 <label class='control-label'> OperationId </label>
                 <div class='controls'>
-                    <input class='methodName' ng-model="$ctrl.method.name" />
+                    <input class='methodName' v-model="method.operationId" />
                 </div>
             </div>
             <div class='control-group'>
                 <label class='control-label'> Description </label>
                 <div class='controls'>
-                    <textarea class="span8" ng-model="$ctrl.method.description"></textarea>
+                    <textarea class="span8" v-model="method.description"></textarea>
                 </div>
             </div>
             <div class='control-group'>
                 <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
                 <div class='controls'>
-                    <select ng-model="$ctrl.method.httpMethod">
+                    <select v-model="key">
                         <option value="GET">GET</option>
                         <option value="POST">POST</option>
                         <option value="PUT">PUT</option>
@@ -63,7 +63,7 @@
                 </div>
             </div> -->
             <div class='control-group'>
-                <div class="sortable-params" ng-repeat="parameter in $ctrl.method.parameters track by parameter.id">
+                <div class="sortable-params" v-for="parameter in method.parameters">
                     <api-parameter parameter="parameter"></api-parameter>
                 </div>
             </div>

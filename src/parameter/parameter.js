@@ -1,4 +1,13 @@
-function Parameter (name) {
+Vue.component('api-parameter', {
+	props: ['parameter', 'index'],
+	data: function() {
+		return {}
+	},
+	template: '#template-parameter'
+});
+
+
+/*function Parameter (name) {
 	
 	this.availableFormatsFor = function(type) {
 	  if (type === 'string') return ['','date','date-time'];
@@ -89,3 +98,4 @@ function Parameter (name) {
         return val;
     }
 }
+*/

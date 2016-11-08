@@ -1,8 +1,8 @@
 <!doctype html>
-<html ng-app="app" lang="en">
+<html lang="en">
   <head>
     <title>OpenAPI-GUI</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
 
@@ -18,31 +18,45 @@
     <script type='text/javascript' src="js/js-yaml.min.js"></script>
     <script type='text/javascript' src="js/bootbox.min.js"></script>
     <script type='text/javascript' src="js/jsonpatch.js"></script>
-	<script type='text/javascript' src="example/petstore.js"></script>
-    <script type='text/javascript' src="js/angular.js"></script>
+    <script type='text/javascript' src="example/petstore.js"></script>
+    <script type='text/javascript' src="js/vue.js"></script>
 
-    <script type='text/javascript' src="js/checklist-model.js"></script>
-
-    <script src="src/app/util.js"></script>
-    <script src="src/app/modules.js"></script>
-    <script src="src/app/iodoctor.js"></script>
-    
+    <script src="src/resource/resource.js"></script>
     <script src="src/method/method.js"></script>
     <script src="src/parameter/parameter.js"></script>
     <script src="src/property/property.js"></script>
-    <script src="src/resource/resource.js"></script>
-    
+    <script src="src/app/gui.js"></script>
+
     <script src="src/resource/apiResource.js"></script>
     <script src="src/method/apiMethod.js"></script>
     <script src="src/parameter/apiParameter.js"></script>
     <script src="src/property/apiProperty.js"></script>
     <script src="src/api-definition/api-definition.js"></script>
     <script src="src/api-yaml/api-yaml.js"></script>
-    <!-- <script src="src/schema/schema.js"></script> -->
 
+    <script src="src/app/util.js"></script>    
     <script src="src/app/app.js"></script>
+
   </head>
   <body>
-    <io-doctor></io-doctor>
+    <div style='display:none'>
+      <div id="template-gui-main"></div>
+      <div id="template-resource"></div>
+      <div id="template-method"></div>
+      <div id="template-parameter"></div>
+    </div>
+    <div id="main-container">
+      <gui-main :openapi='openapi'></gui-main>
+    </div>
+    <script>
+      $(document).ready(function(){
+        jQuery.ajaxSetup({async:false});
+        $('#template-gui-main').load('src/app/gui.html');
+        $('#template-resource').load('src/resource/resource.html');
+        $('#template-method').load('src/method/method.html');
+        $('#template-parameter').load('src/method/parameter.html');
+        app_main();
+      });
+    </script>
   </body>
 </html>

@@ -3,3 +3,7 @@ function generateId(len) {
     for (var i=0; i < len; i++) { s += r.charAt(Math.floor(Math.random()*r.length)); }
     return s;
 };
+
+function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}

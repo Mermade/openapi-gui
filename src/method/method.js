@@ -1,3 +1,12 @@
+Vue.component('api-method', {
+	props: ['key', 'method', 'index'],
+	data: function() {
+		return {}
+	},
+	template: '#template-method'
+});
+
+/*
 function Method (name) {
     this.id = generateId()
     this.name = name;
@@ -44,3 +53,4 @@ function Method (name) {
         };
     }
 }
+*/

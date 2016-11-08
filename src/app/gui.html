@@ -1,0 +1,364 @@
+<div class='component-gui'>
+	<div class='navbar navbar-inverse navbar-fixed-top'>
+		<div class='navbar-inner'>
+			<div class='container-fluid'>
+				<span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
+				<a class="btn btn-info pull-right" ng-click="$ctrl.scrollTop()"><i class='icon-white icon-arrow-up'></i>&nbsp;Top</a>
+				<a class="btn btn-info pull-right" ng-click="$ctrl.save()"><i class='icon-white icon-save'></i> Save</a>
+				<a class="btn btn-info pull-right" ng-click="$ctrl.undo()"><i class='icon-white icon-undo'></i> Undo</a>
+				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%20%23Swagger%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='icon-white icon-twitter'></i> Tweet</a>
+				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='icon-white icon-twitter'></i> Follow</a>
+				<a class='btn btn-info pull-right' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='icon-white icon-github'></i> GitHub</a>
+			</div>
+		</div>
+	</div>
+
+	<div class='container-fluid' role='main'>
+		<div class='row-fluid'>
+
+			<a id='scrollTop'></a>
+			<ul id="section-tabs" class='tabs nav nav-tabs'>
+				<li>
+					<a data-toggle='tab' href='#about' id="about-tab">
+						<i class='icon-info-sign'></i> About
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#input' id="input-tab">
+						<i class='icon-upload'></i> Load
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#header' id="header-tab">
+						<i class='icon-h-sign'></i> Header
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#tags' id="header-tags">
+						<i class='icon-tag'></i> Tags
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#security' id="header-security">
+						<i class='icon-lock'></i> Security
+					</a>
+				</li>
+				<li class='active'>
+					<a data-toggle='tab' href='#editor' id="editor-tab">
+						<i class='icon-edit'></i> Edit
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#output' id="output-tab" ng-click="$ctrl.renderOutput()">
+						<i class='icon-file'></i> Export JSON
+					</a>
+				</li>
+				<li>
+					<a data-toggle='tab' href='#yaml' id="yaml-tab" ng-click="$ctrl.renderOutputYaml()">
+						<i class='icon-file'></i> Export YAML
+					</a>
+				</li>
+			</ul>
+
+			<div class='tab-content'>
+
+				<div class="tab-pane" id="about">
+					<h1>What is OpenApi-gui?</h1>
+					<br/> OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
+					<br/>
+					<h2>How does OpenApi-gui work?</h2>
+					<br> Upload an existing definition, or create a new one (select the red 'eraser' button to remove all Paths) and start
+					adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each
+					Path, Operation and Parameter will be created.
+					<br/>
+					<br/> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
+					<br/>
+					<br/> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
+					"Export" tabs. When finished, click "Copy" to copy the output to your clipboard. OpenApi-gui does not currently store
+					any data. Make sure you save your JSON/YAML output.
+				</div>
+
+				<div class="tab-pane" id="input">
+					<textarea class="span12 service-input" ng-model="$ctrl.importSchema"></textarea>
+					<a class='btn btn-primary pull-right' id="load-definition" ng-click="$ctrl.loadSchema()">
+						<i class='icon-upload icon-white'></i> Load Definition
+					</a>
+				</div>
+
+				<div class="tab-pane" id="header">
+					<div class="content forms span9">
+						<form class="plain-form form-horizontal" id="frmHeader">
+
+							<div class='control-group'>
+								<label class='control-label'> Title </label>
+								<div class='controls'>
+									<input class="span4" ng-model="$ctrl.apiConfig.info.title"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Version </label>
+								<div class='controls'>
+									<input class="span4" ng-model="$ctrl.apiConfig.info.version"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Description </label>
+								<div class='controls'>
+									<textarea class="span6" ng-model="$ctrl.apiConfig.info.description"></textarea>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Protocol </label>
+								<div class='controls'>
+									<div class="checkbox" v-model="openapi.schemes">
+										<input type="checkbox" checklist-model="$ctrl.apiConfig.schemes" checklist-value="s">{{s}}</input>
+									</div>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Host </label>
+								<div class='controls'>
+									<input class="span4" ng-model="$ctrl.apiConfig.host"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> BasePath </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.basePath"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Contact Name </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.name"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Contact Email </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.email"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Contact URL </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.info.contact.url"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Terms of Service </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.info.termsOfService"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> License Name </label>
+								<div class='controls'>
+									<input class="span4" ng-model="$ctrl.apiConfig.info.license.name"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> License URL </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.info.license.url"></input>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> External Docs </label>
+								<div class='controls'>
+									<textarea class="span6" ng-model="$ctrl.apiConfig.externalDocs.description"></textarea>
+								</div>
+							</div>
+							<div class='control-group'>
+								<label class='control-label'> Documentation URL </label>
+								<div class='controls'>
+									<input class="span6" ng-model="$ctrl.apiConfig.externalDocs.url"></input>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+				<div class="tab-pane" id="tags">
+					<div class="content forms span9">
+						<form class="plain-form form-horizontal" id="frmTags">
+							<div>
+								<a ng-click="$ctrl.addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
+								<br/>
+							</div>
+							<div ng-repeat="t in $ctrl.apiConfig.tags track by t.name">
+								<div class='control-group'>
+									<label class='control-label'> Name </label>
+									<div class='controls'>
+										<input class="span6" ng-model="t.name"></input>
+										<i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-eraser icon-white'></i>
+									</div>
+								</div>
+								<div class='control-group'>
+									<label class='control-label'> Description </label>
+									<div class='controls'>
+										<textarea class="span6" ng-model="t.description"></textarea>
+									</div>
+								</div>
+								<div class='control-group'>
+									<label class='control-label'> External Docs </label>
+									<div class='controls'>
+										<textarea class="span6" ng-model="t.externalDocs.description"></textarea>
+									</div>
+								</div>
+								<div class='control-group'>
+									<label class='control-label'> Docs URL </label>
+									<div class='controls'>
+										<input class="span6" ng-model="t.externalDocs.url"></input>
+									</div>
+								</div>
+								<hr/>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="tab-pane" id="security">
+					<div class="content forms span9">
+						<form class="plain-form form-horizontal" id="frmSecurity">
+							<div>
+								<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
+								<br/>
+								<br/>
+							</div>
+							<div ng-repeat="(sdName, sd) in $ctrl.apiConfig.securityDefinitions track by sdName">
+								<div class='control-group'>
+									<label class='control-label'> Name </label>
+									<div class='controls'>
+										<input class="span6" ng-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
+										<i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-eraser icon-white'></i>
+									</div>
+								</div>
+								<div class='control-group'>
+									<label class='control-label' for="selSdType"> Type </label>
+									<div class='controls'>
+										<select name="selSdType" ng-model="sd.type">
+      						<option value="apiKey">API Key</option>
+      						<option value="oauth2">oAuth2</option>
+      						<option value="basic">Basic Authentication</option>
+    					</select>
+									</div>
+								</div>
+								<div class='control-group'>
+									<label class='control-label'> Apply to all paths </label>
+									<div class='controls'>
+										<input type='checkbox' ng-checked='$ctrl.getApplyAll(sdName)' ng-click='$ctrl.toggleApplyAll(sdName)'></input>
+									</div>
+								</div>
+								<div ng-if="sd.type == 'apiKey'" class='animate-if'>
+									<div class='control-group'>
+										<label class='control-label'> Parameter Name </label>
+										<div class='controls'>
+											<input class="span6" ng-model="sd.name"></input>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> Location </label>
+										<div class='controls'>
+											<select name="selLocation" ng-model="sd.in">
+      							<option value="header">Header</option>
+      							<option value="query">Query</option>
+    						</select>
+										</div>
+									</div>
+								</div>
+								<div ng-if="sd.type == 'oauth2'" class='animate-if'>
+									<div class='control-group'>
+										<label class='control-label'> Flow </label>
+										<div class='controls'>
+											<select name="selFlow" ng-model="sd.flow">
+      							<option value="implicit">Implicit</option>
+      							<option value="password">Password</option>
+      							<option value="application">Application</option>
+      							<option value="accessCode">AccessCode</option>
+    						</select>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> Authorization URL </label>
+										<div class='controls'>
+											<input class="span6" ng-model="sd.authorizationUrl"></input>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> Token URL </label>
+										<div class='controls'>
+											<input class="span6" ng-model="sd.tokenUrl"></input>
+										</div>
+									</div>
+									<div>
+										<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
+									</div>
+									<div ng-repeat="(sName, sDesc) in sd.scopes track by sName">
+										<div class='control-group'>
+											<label class='control-label'> Scope Name </label>
+											<div class='controls'>
+												<input class="span6" ng-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
+												<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-eraser icon-white'></i>
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> Description </label>
+											<div class='controls'>
+												<input class="span6" ng-model="sDesc"></input>
+											</div>
+										</div>
+									</div>
+								</div>
+								<hr/>
+							</div>
+						</form>
+					</div>
+				</div>
+
+				<div class="tab-pane" id="output">
+					<api-definition config="$ctrl.apiConfig" />
+				</div>
+
+				<div class="tab-pane" id="yaml">
+					<api-yaml config="$ctrl.apiConfig" />
+				</div>
+
+				<div class='tab-pane row-fluid active' id='editor'>
+
+					<div class='span3'>
+						<div class='sidebar-nav well'>
+							<a class="btn btn-danger remButton pull-right" ng-click="$ctrl.removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
+							<a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+							<br/>
+							<strong>
+					  <ul id="resourceList">
+                        <li v-for="(path,key) in openapi.paths">
+					      <a :href="path.id" target="_self" ng-click="$ctrl.showResource(resource)">
+                            {{key}}
+					      </a>
+						  <!--<ul>
+						  	<li ng-repeat="m in resource.methods track by $index">
+							<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" ng-click="$ctrl.showMethod(method)">{{m.httpMethod}}</a>
+							</li>
+						  </ul>-->
+						</li>
+          </ul>
+					</strong>
+						</div>
+					</div>
+
+					<div class="content forms span9">
+						<form class="form-horizontal" id="config">
+							<div class="resource" v-for="(path,key,index) in openapi.paths">
+								<api-resource :key='key' :path='path' :index='key'></api-resource>
+							</div>
+						</form>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

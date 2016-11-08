@@ -1,4 +1,12 @@
-function Resource (name) {
+Vue.component('api-resource', {
+	props: ['key', 'path', 'index'],
+	data: function() {
+		return {}
+	},
+	template: '#template-resource'
+});
+
+/*function Resource (name) {
     this.id = generateId()
     this.name = name;
     this.methods = [ new Method('newOperation') ];
@@ -34,3 +42,4 @@ Resource.prototype.render = function() {
 	return methods;
 }
 
+*/

@@ -1,6 +1,13 @@
-angular.module('components')
- 
-.component('ioDoctor', {
+Vue.component('gui-main', {
+	props: ['openapi'],
+	data: function() {
+		return {}
+	},
+	template: '#template-gui-main'
+});
+
+/*
+
     controller: function($scope, $rootScope, $timeout, $location) {
       this.importSchema = "";
 
@@ -232,3 +239,5 @@ angular.module('components')
     templateUrl: 'src/app/iodoctor.html'
   }
 )
+*/
+
