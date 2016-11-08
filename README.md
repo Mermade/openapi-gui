@@ -21,7 +21,7 @@ Before performing a destructive action, OpenApi-Gui saves the current state of t
 
 ### Technology
 
-OpenApi-gui runs entirely client-side using a number of Javascript frameworks including jQuery, Twitter Bootstrap, and AngularJS.
+OpenApi-gui runs entirely client-side using a number of Javascript frameworks including jQuery, Twitter Bootstrap, and Vue.JS.
 
 To get the app up and running just browse to [the GitHub.io page](https://github.io/mermade/openapi-gui), deploy to Heroku using the button below, or clone the repo and load index.html into a browser / host it yourself - couldn't be simpler.
 
