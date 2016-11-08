@@ -110,8 +110,11 @@
 							<div class='control-group'>
 								<label class='control-label'> Protocol </label>
 								<div class='controls'>
-									<div class="checkbox" v-model="openapi.schemes">
-										<input type="checkbox" checklist-model="openapi.schemes" checklist-value="s">{{s}}</input>
+									<div class="checkbox">
+                    <input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
+                    <input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
+                    <input type="checkbox" id="chkScheme" value="soap" v-model="openapi.schemes">SOAP</input><br/>
+                    <!--<input v-model="openapi.schemes">-->
 									</div>
 								</div>
 							</div>
