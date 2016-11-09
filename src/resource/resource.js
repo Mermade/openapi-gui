@@ -12,6 +12,9 @@ Vue.component('api-resource', {
 		removePath : function(target) {
             this.$parent.removePath(target);
 	    },
+        removeOperation : function(target) {
+            Vue.delete(this.path, target);
+        },
         addMethod : function() {
             var methods = ['get','post','put','delete','head','patch','options'];
             var index = 0;

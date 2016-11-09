@@ -6,7 +6,10 @@ Vue.component('api-method', {
     methods: {
         toggleBodyDisplay : function(el) {
             el.collapse('toggle');
-        }
+        },
+		removeOperation : function(target) {
+            this.$parent.removeOperation(target);
+	    },
     },
     computed: {
         httpMethod : function() {
