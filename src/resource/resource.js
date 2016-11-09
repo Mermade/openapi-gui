@@ -11,7 +11,21 @@ Vue.component('api-resource', {
     methods : {
 		removePath : function(target) {
             this.$parent.removePath(target);
-	    }
+	    },
+        addMethod : function() {
+            var methods = ['get','post','put','delete','head','patch','options'];
+            var index = 0;
+            while (this.path[methods[index]] && index<methods.length) {
+                index++;
+            }
+            if (index<methods.length) {
+                var method = {};
+                method.summary = '';
+                method.description = '';
+                method.parameters = [];
+                Vue.set(this.path, methods[index], method);
+            }
+        }
     },
 	template: '#template-resource'
 });

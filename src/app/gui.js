@@ -12,7 +12,7 @@ Vue.component('gui-main', {
 
 		addResource : function() {
 			if (!this.openapi.paths['/newPath']) {
-				this.openapi.paths['/newPath'] = {};
+				Vue.set(this.openapi.paths, '/newPath', {});
 			}
 		},
 
