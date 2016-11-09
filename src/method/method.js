@@ -4,13 +4,16 @@ Vue.component('api-method', {
 		return {}
 	},
     methods: {
-        toggleBodyDisplay: function(el) {
+        toggleBodyDisplay : function(el) {
             el.collapse('toggle');
         }
     },
     computed: {
-        httpMethod: function(){
+        httpMethod : function() {
             return this.index.toUpperCase();
+        },
+        hashUid : function() {
+            return '#'+this._uid;
         }
     },
 	template: '#template-method'

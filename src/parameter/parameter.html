@@ -4,7 +4,7 @@
 
 			<i class="icon-reorder accordion-handle param-handle"></i>
 
-			<a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
+			<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" onclick="$(this).collapse('toggle')">
                 Parameter: <span class='methodNameSpan'>{{parameter.name}}</span>
             </a>
 
@@ -21,7 +21,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="accordion-body collapse" id="{{$ctrl.parameter.id}}">
+		<div class="accordion-body collapse" :id="_uid">
 			<div class="accordion-inner">
 
 				<div class='control-group'>
