@@ -1,9 +1,57 @@
 Vue.component('api-parameter', {
 	props: ['parameter'],
     computed: {
+
         hashUid : function() {
             return '#'+this._uid;
+        },
+        
+        isComplex : function() {
+            if ( this.parameter.type === 'object' || 
+                this.parameter.type === 'array' ) {
+            return true;
+            }
+            return false;
+        },
+
+        effectiveType : {
+            get : function() {
+                if (!this.parameter.type) return 'object';
+                return this.parameter.type;
+            },
+            set : function(newVal) {
+                this.parameter.type = newVal;
+            } 
+        },
+
+        effectiveIn : {
+            get : function() {
+                if (!this.parameter.in) return 'body';
+                return this.parameter.in;
+            },
+            set : function(newVal) {
+                this.parameter.in = newVal;
+            } 
+        },
+
+        effectiveRequired : {
+            get : function() {
+                if (typeof this.parameter.required === 'undefined') return 'true';
+                return this.parameter.required ? 'true' : 'false';
+            },
+            set : function(newVal) {
+                this.parameter.required = (newVal == 'true' ? true : false);
+            } 
+        },
+
+
+        availableFormats : function() {
+            console.log('Parameter type '+this.parameter.type);
+            if (this.parameter.type == 'integer') return ['int32','int64'];
+            if (this.parameter.type == 'string') return ['date','date-time'];
+            return [];
         }
+
     },
 	data: function() {
 		return {}

@@ -32,15 +32,6 @@ angular.module('components')
         $scope.$emit('deleteParameter', $element.$ctrl.parameter.id);
       }
 
-      this.isComplex = function() {
-        if ( this.parameter.type === 'object' || 
-             this.parameter.type === 'array' ) {
-          return true;
-        }
-
-        return false;
-      }
-
       this.addProperty = function() {
         this.parameter.properties.push( new Property('New Property') );
       }

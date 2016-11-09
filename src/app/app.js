@@ -10,6 +10,11 @@ if (window.localStorage) {
     }
 }
 
+for (var t in openapi.tags) {
+    var tag = openapi.tags[t];
+    if (!tag.externalDocs) tag.externalDocs = {};
+}
+
 function app_main() {
     var vm = new Vue({
         data: {
