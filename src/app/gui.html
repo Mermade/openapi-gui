@@ -79,8 +79,8 @@
 				</div>
 
 				<div class="tab-pane" id="input">
-					<textarea class="span12 service-input" ng-model="importSchema"></textarea>
-					<a class='btn btn-primary pull-right' id="load-definition" ng-click="$ctrl.loadSchema()">
+					<textarea class="span12 service-input" v-model="importSchema"></textarea>
+					<a class='btn btn-primary pull-right' id="load-definition" v-on:click="loadSchema()">
 						<i class='icon-upload icon-white'></i> Load Definition
 					</a>
 				</div>

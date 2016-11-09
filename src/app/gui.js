@@ -1,5 +1,5 @@
 Vue.component('gui-main', {
-	props: ['openapi'],
+	props: ['openapi', 'importSchema'],
 	data: function() {
 		return {}
 	},
@@ -9,6 +9,27 @@ Vue.component('gui-main', {
 			var target = key.split('/').join('').split('{').join('').split('}').join('');
 			document.getElementById(target).scrollIntoView();
 	  },
+		
+		loadSchema: function () {
+			var schema;
+			try {
+				schema = JSON.parse(this.importSchema);
+				bootbox.alert('JSON definition loaded successfully');
+			}
+			catch (ex) {
+				try {
+					schema = jsyaml.safeLoad(this.importSchema);
+					bootbox.alert('YAML/blank definition loaded successfully');
+				}
+				catch (ex) {
+					bootbox.alert('The definition could not be parsed');
+				}
+			}
+
+			this.openapi = schema;
+			if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
+			this.openapi = postProcessDefinition(this.openapi);
+		},
 
   	renderOutput : function() {
         // Pretty print has an issue correctly rendering output when we modify

@@ -6,14 +6,6 @@ Vue.component('api-parameter', {
             return '#'+this._uid;
         },
         
-        isComplex : function() {
-            if ( this.parameter.type === 'object' || 
-                this.parameter.type === 'array' ) {
-            return true;
-            }
-            return false;
-        },
-
         effectiveType : {
             get : function() {
                 if (!this.parameter.type) return 'object';
@@ -44,9 +36,7 @@ Vue.component('api-parameter', {
             } 
         },
 
-
         availableFormats : function() {
-            console.log('Parameter type '+this.parameter.type);
             if (this.parameter.type == 'integer') return ['int32','int64'];
             if (this.parameter.type == 'string') return ['date','date-time'];
             return [];
@@ -56,6 +46,15 @@ Vue.component('api-parameter', {
 	data: function() {
 		return {}
 	},
+    methods : {
+        isComplex : function() {
+            if ( this.effectiveType === 'object' || 
+                this.effectiveType === 'array' ) {
+               return true;
+            }
+            return false;
+        }
+    },
 	template: '#template-parameter'
 });
 

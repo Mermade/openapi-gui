@@ -11,7 +11,7 @@
 			<div class="accordion-buttons">
 				<div class="block-container">
 					<div>
-						<a v-if="isComplex" class='btn btn-info' ng-click="$ctrl.addProperty()">
+						<a v-if="isComplex()" class='btn btn-info' ng-click="$ctrl.addProperty()">
 							<i class='icon-plus icon-white'></i> Add
 						</a>
 						<a class='btn btn-danger' ng-click="$ctrl.delete(this)">
@@ -45,7 +45,7 @@
                         </select>
 					</div>
 				</div>
-				<div class='control-group' v-if="!isComplex">
+				<div class='control-group' v-if="!isComplex()">
 					<label class='control-label'> Default Value </label>
 					<div class='controls'>
 						<input v-model="parameter.default" />
