@@ -4,6 +4,12 @@ Vue.component('gui-main', {
 		return {}
 	},
 	methods: {
+
+	  showResource : function(key) {
+			var target = key.split('/').join('').split('{').join('').split('}').join('');
+			document.getElementById(target).scrollIntoView();
+	  },
+
   	renderOutput : function() {
         // Pretty print has an issue correctly rendering output when we modify
         // the content in an already "prettified" element. This hack creates a
@@ -87,10 +93,6 @@ Vue.component('gui-main', {
         this.apiConfig.resources.push(newResource);
 		$location.hash(newResource.id);
       };
-
-	  this.showResource = function(resource) {
-		$location.hash(resource.id);
-	  };
       
 	  this.removeAll = function() {
 	    bootbox.confirm('Remove all paths, are you sure?', function(result) {

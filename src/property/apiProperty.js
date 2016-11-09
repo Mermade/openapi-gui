@@ -30,14 +30,6 @@ angular.module('components')
         $scope.$ctrl.isComplexDataType = $scope.$ctrl.isComplex();
       });
 
-      this.getCollapseTarget = function () {
-        return '#'+this.property.id;
-      }
-
-      this.toggleBodyDisplay = function() {
-        $element.collapse('toggle');
-      }
-
       this.delete = function($element) {
         $scope.$emit('deleteProperty', $element.$ctrl.property.id);
       }

@@ -336,19 +336,19 @@
 							<a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
 							<br/>
 							<strong>
-					  <ul id="resourceList">
-                        <li v-for="(path,key) in openapi.paths">
-					      <a :href="path.id" target="_self" ng-click="$ctrl.showResource(resource)">
-                            {{key}}
-					      </a>
+					      <ul id="resourceList">
+                  <li v-for="(path,key) in openapi.paths">
+					          <a :href="path.id" target="_self" v-on:click="showResource(key)">
+                        {{key}}
+					          </a>
 						  <!--<ul>
 						  	<li ng-repeat="m in resource.methods track by $index">
 							<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" ng-click="$ctrl.showMethod(method)">{{m.httpMethod}}</a>
 							</li>
 						  </ul>-->
-						</li>
-          </ul>
-					</strong>
+					  	</li>
+            </ul>
+					  </strong>
 						</div>
 					</div>
 

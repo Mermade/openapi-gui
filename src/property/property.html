@@ -4,8 +4,8 @@
     
             <i class="icon-reorder accordion-handle param-handle"></i>
 
-            <a class="accordion-toggle" data-toggle="collapse" data-target="{{$ctrl.getCollapseTarget()}}" ng-click="$ctrl.toggleBodyDisplay()">
-                Property: <span class='methodNameSpan'>{{$ctrl.property.title}}</span>
+            <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" onclick="$(this).collapse('toggle')">
+                Property: <span class='methodNameSpan'>{{property.title}}</span>
             </a>
 
             <div class="accordion-buttons">
@@ -23,25 +23,25 @@
                 </div>
             </div>
         </div>
-        <div class="accordion-body collapse" id="{{$ctrl.property.id}}">
+        <div class="accordion-body collapse" :id="_uid">
             <div class="accordion-inner">
                 
                 <div class='control-group'>
                     <label class='control-label'> Property Name </label>
                     <div class='controls'>
-                        <input ng-model="$ctrl.property.title" />
+                        <input v-model="property.title" />
                     </div>
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Description </label>
                     <div class='controls'>
-                        <textarea ng-model="$ctrl.property.description" class="span8"></textarea>
+                        <textarea v-model="property.description" class="span8"></textarea>
                     </div>
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Required </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.property.required">
+                        <select v-model="property.required">
                             <option value="true">True</option>
                             <option value="false">False</option>
                         </select>
@@ -50,13 +50,13 @@
                 <div class='control-group' ng-if="!$ctrl.isComplexDataType">
                     <label class='control-label'> Default Value </label>
                     <div class='controls'>
-                        <input ng-model="$ctrl.property.default" />
+                        <input v-model="property.default" />
                     </div>
                 </div>
                 <div class='control-group'>
                     <label class='control-label'> Data Type </label>
                     <div class='controls'>
-                        <select ng-model="$ctrl.property.type">
+                        <select v-model="property.type">
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
@@ -67,8 +67,8 @@
                 </div>
 
                 <div class='control-group'>
-                   <div class="sortable-properties" ng-repeat="property in $ctrl.property.properties track by property.id">
-                        <api-property property="property"></api-property>
+                   <div class="sortable-properties" v-for="prop in property.properties">
+                        <api-property :property="prop"></api-property>
                     </div>
                 </div>
 

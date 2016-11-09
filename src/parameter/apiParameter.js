@@ -28,14 +28,6 @@ angular.module('components')
 	    this.parameter.availableFormats = this.parameter.availableFormatsFor(newVal);
       });
 
-      this.getCollapseTarget = function () {
-        return '#'+this.parameter.id;
-      }
-
-      this.toggleBodyDisplay = function() {
-        $element.collapse('toggle');
-      }
-
       this.delete = function($element) {
         $scope.$emit('deleteParameter', $element.$ctrl.parameter.id);
       }

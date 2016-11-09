@@ -33,13 +33,6 @@ angular.module('components')
         this.method.parameters.push( new Parameter('newParameter') );
       }
 
-      this.toggleBodyDisplay = function() {
-        $element.collapse('toggle');
-      }
-
-      this.getCollapseTarget = function () {
-        return '#'+this.method.id;
-      }
     },
     templateUrl: 'src/method/method.html',
     replace: true

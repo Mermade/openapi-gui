@@ -1,5 +1,13 @@
 Vue.component('api-resource', {
 	props: ['key', 'path', 'index'],
+    computed: {
+        sanitisePath : function() {
+            return this.index.split('/').join('').split('{').join('').split('}').join('');
+        },
+        hashSanitisePath : function() {
+            return '#'+this.computed.sanitisePath();
+        }
+    },
 	data: function() {
 		return {}
 	},
