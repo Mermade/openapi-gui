@@ -8,6 +8,11 @@ Vue.component('api-resource', {
 	data: function() {
 		return {}
 	},
+    methods : {
+		removePath : function(target) {
+            this.$parent.removePath(target);
+	    }
+    },
 	template: '#template-resource'
 });
 

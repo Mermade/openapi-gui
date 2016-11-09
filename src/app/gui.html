@@ -195,7 +195,7 @@
 									<label class='control-label'> Name </label>
 									<div class='controls'>
 										<input class="span6" v-model="t.name"></input>
-										<i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-eraser icon-white'></i>
+										<i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-trash icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>
@@ -235,7 +235,7 @@
 									<label class='control-label'> Name </label>
 									<div class='controls'>
 										<input class="span6" v-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
-										<i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-eraser icon-white'></i>
+										<i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-trash icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>
@@ -303,7 +303,7 @@
 											<label class='control-label'> Scope Name </label>
 											<div class='controls'>
 												<input class="span6" v-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
-												<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-eraser icon-white'></i>
+												<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-trash icon-white'></i>
 											</div>
 										</div>
 										<div class='control-group'>
@@ -333,8 +333,8 @@
 					<div class='span3'>
 						<div class='sidebar-nav well'>
               <div>
-                <a class="btn btn-danger remButton pull-right" v-on:click="removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
-                <a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+                <a class="btn btn-danger remButton pull-right" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
+                <a v-on:click="addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
 							</div>
               <br/>
 							<strong>

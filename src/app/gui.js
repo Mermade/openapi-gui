@@ -6,9 +6,19 @@ Vue.component('gui-main', {
 	methods: {
 
 	  showResource : function(key) {
-			var target = 'resource_'+Skey.split('/').join('').split('{').join('').split('}').join('');
+			var target = 'resource_'+key.split('/').join('').split('{').join('').split('}').join('');
 			document.getElementById(target).scrollIntoView();
 	  },
+
+		addResource : function() {
+			if (!this.openapi.paths['/newPath']) {
+				this.openapi.paths['/newPath'] = {};
+			}
+		},
+
+		removePath : function(target) {
+			Vue.delete(this.openapi.paths,target);
+		},
 
 		removeAll: function () {
 			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
@@ -117,12 +127,6 @@ Vue.component('gui-main', {
         resource.load(def, name, apiConfig);
         this.push(resource);
       }, this.apiConfig.resources);
-
-      this.addResource = function() {
-	    var newResource = new Resource('/newPath');
-        this.apiConfig.resources.push(newResource);
-		$location.hash(newResource.id);
-      };
       
 	  $rootScope.$on('removeResource', function(event, id) {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
