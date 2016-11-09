@@ -6,10 +6,19 @@ Vue.component('gui-main', {
 	methods: {
 
 	  showResource : function(key) {
-			var target = key.split('/').join('').split('{').join('').split('}').join('');
+			var target = 'resource_'+Skey.split('/').join('').split('{').join('').split('}').join('');
 			document.getElementById(target).scrollIntoView();
 	  },
-		
+
+		removeAll: function () {
+			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
+				if (result) {
+					if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(this.openapi));
+					this.openapi.paths = {};
+				}
+			});
+		},
+
 		loadSchema: function () {
 			var schema;
 			try {
@@ -115,43 +124,6 @@ Vue.component('gui-main', {
 		$location.hash(newResource.id);
       };
       
-	  this.removeAll = function() {
-	    bootbox.confirm('Remove all paths, are you sure?', function(result) {
-          if (result) {
-		    if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
-		    apiConfig.resources = [];
-            $scope.$apply();
-		  }
-		});
-      };
-
-      this.loadSchema = function() {
-        var schema;
-		try {
-		  schema = JSON.parse(this.importSchema);
-		  bootbox.alert('JSON definition loaded successfully');
-		}
-		catch (ex) {
-		  try {
-		    schema = jsyaml.safeLoad(this.importSchema);
-			bootbox.alert('YAML definition loaded successfully');
-		  }
-		  catch (ex) {
-		    bootbox.alert('The definition could not be parsed');
-		  }
-		}
-
-        this.apiConfig = schema;
-		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(schema));
-		this.apiConfig.resources = [];
-
-        angular.forEach(schema.paths, function(def, name) {
-          resource = new Resource(name);
-          resource.load(def, name, schema);
-          this.push(resource);
-        }, this.apiConfig.resources);
-      };
-
 	  $rootScope.$on('removeResource', function(event, id) {
 		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
 		var result = jQuery.grep(apiConfig.resources, function(value) {
@@ -247,22 +219,6 @@ Vue.component('gui-main', {
 		delete this.apiConfig.securityDefinitions[sdName].scopes[sName];
 	  };
 
-      this.transformConfig = function() {
-        var transformedConfig = angular.extend({},this.apiConfig);
-		transformedConfig.paths = {};
-
-        angular.forEach(this.apiConfig.resources, function(resource) {
-          transformedConfig.paths[resource.name] = resource.render();
-        });
-
-		delete transformedConfig.resources;
-		delete transformedConfig.schemas;
-		return transformedConfig;
-
-      };
-    },
-    templateUrl: 'src/app/iodoctor.html'
-  }
-)
+)};
 */
 

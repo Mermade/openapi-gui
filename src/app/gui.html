@@ -332,9 +332,11 @@
 
 					<div class='span3'>
 						<div class='sidebar-nav well'>
-							<a class="btn btn-danger remButton pull-right" ng-click="$ctrl.removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
-							<a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
-							<br/>
+              <div>
+                <a class="btn btn-danger remButton pull-right" v-on:click="removeAll()"><i class='icon-eraser icon-white'></i> Remove All</a>
+                <a ng-click="$ctrl.addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+							</div>
+              <br/>
 							<strong>
 					      <ul id="resourceList">
                   <li v-for="(path,key) in openapi.paths">
