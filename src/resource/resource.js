@@ -3,6 +3,14 @@ Vue.component('api-resource', {
     computed: {
         sanitisePath : function() {
             return 'resource_'+this.index.split('/').join('').split('{').join('').split('}').join('');
+        },
+        pathEntry : {
+            get : function() {
+                 return this.index
+            },
+            set : function(newVal) {
+                this.$parent.renamePath(this.index, newVal);
+            }
         }
     },
 	data: function() {

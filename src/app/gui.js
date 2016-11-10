@@ -22,6 +22,11 @@ Vue.component('gui-main', {
 			Vue.delete(this.openapi.paths,target);
 		},
 
+		renamePath : function(oldPath, newPath) {
+			Vue.set(this.openapi.paths, newPath, this.openapi.paths[oldPath]);
+			Vue.delete(this.openapi.paths, oldPath);
+		},
+
 		removeAll: function () {
 			var self = this;
 			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
