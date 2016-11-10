@@ -129,12 +129,37 @@
 				</div>
 
 				<div v-if="parameter.type == 'array'">
-					<!-- type, format, [items], collectionFormat, minItems, maxItems, uniqueItems  ... -->
+					<!-- type, format, [items], minItems, maxItems, uniqueItems  ... -->
 					<div class='control-group'>
 						<label class='control-label'> Item Type </label>
 						<div class='controls'>
 							<input v-model="parameter.items.type" />
 							<!-- "string", "number", "integer", "boolean", or "array" -->
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label'> Collection Delimiter </label>
+						<div class='controls'>
+							<select v-model="parameter.collectionFormat" required size="2">
+								<option value="csv">Comma</option>
+								<option value="tsv">Tab</option>
+								<option value="ssv">Space</option>
+								<option value="pipes">Pipe</option>
+							</select>
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label'> Min. Items </label>
+						<div class='controls'>
+							<input type="number" min="0" step="1" v-model="parameter.minItems" />
+						</div>
+						<label class='control-label'> Max. Items </label>
+						<div class='controls'>
+							<input type="number" min="0" step="1" v-model="parameter.maxItems" />
+						</div>
+						<label class='control-label'> Unique Items </label>
+						<div class='controls' class="span8">
+							<input type="checkbox" v-model="parameter.uniqueItems" />
 						</div>
 					</div>
 				</div>

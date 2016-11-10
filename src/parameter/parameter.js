@@ -19,9 +19,14 @@ Vue.component('api-parameter', {
                 this.parameter.type = newVal;
                 if (this.parameter.type == 'array') {
                     this.parameter.items = {};
+                    this.parameter.collectionFormat = 'csv';
                 }
                 else {
                     Vue.delete(this.parameter, 'items');
+                    Vue.delete(this.parameter, 'collectionFormat');
+                    Vue.delete(this.parameter, 'minItems');
+                    Vue.delete(this.parameter, 'maxItems');
+                    Vue.delete(this.parameter, 'uniqueItems');
                 }
             } 
         },
