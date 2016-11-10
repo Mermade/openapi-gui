@@ -66,16 +66,20 @@ Vue.component('api-parameter', {
             this.$parent.removeParameter(this.index);
         }
     },
-	template: '#template-parameter'
+	template: '#template-parameter',
+    beforeMount : function() {
+        if (this.parameter["$ref"]) {
+            var ptr = this.parameter["$ref"].substr(1); // remove #
+            var def = new JSONPointer(ptr).get(this.$root.openapi);
+            for (var p in def) {
+                this.parameter[p] = def[p];
+            }
+            delete this.parameter["$ref"];
+        }
+    }
 });
 
-/*function Parameter (name) {
-	
-	this.availableFormatsFor = function(type) {
-	  if (type === 'string') return ['','date','date-time'];
-      if (type === 'integer') return ['','int32','int64'];
-      return [''];
-    }
+/*
 
         var properties = [];
 
