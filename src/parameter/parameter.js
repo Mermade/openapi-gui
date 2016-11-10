@@ -1,5 +1,5 @@
 Vue.component('api-parameter', {
-	props: ['parameter'],
+	props: ['parameter', 'index'],
     computed: {
 
         hashUid : function() {
@@ -53,6 +53,9 @@ Vue.component('api-parameter', {
                return true;
             }
             return false;
+        },
+        removeParameter : function() {
+            this.$parent.removeParameter(this.index);
         }
     },
 	template: '#template-parameter'

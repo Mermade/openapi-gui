@@ -21,6 +21,9 @@ Vue.component('api-method', {
             newParam.type = 'string';
             this.method.parameters.push(newParam);
         },
+        removeParameter : function(index) {
+            this.method.parameters.splice(index,1);
+        }
     },
     computed: {
         httpMethod : function() {
