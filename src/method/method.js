@@ -8,7 +8,7 @@ Vue.component('api-method', {
             el.collapse('toggle');
         },
         duplicateOperation : function(method) {
-            this.$parent.addMethod(method);
+            this.$parent.addOperation(method);
         },
 		removeOperation : function(target) {
             this.$parent.removeOperation(target);
@@ -27,8 +27,13 @@ Vue.component('api-method', {
         }
     },
     computed: {
-        httpMethod : function() {
-            return this.index.toUpperCase();
+        httpMethod : {
+            get : function() {
+                return this.index.toUpperCase();
+            },
+            set : function(newVal) {
+                this.$parent.renameOperation(this.index, newVal.toLowerCase());
+            }
         },
         hashUid : function() {
             return '#'+this._uid;
