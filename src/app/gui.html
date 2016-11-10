@@ -250,8 +250,9 @@
 								<div class='control-group'>
 									<label class='control-label'> Apply to all paths </label>
 									<div class='controls'>
-										<input type='checkbox' ng-checked='$ctrl.getApplyAll(sdName)' ng-click='$ctrl.toggleApplyAll(sdName)'></input>
+										<input type='checkbox' :value='sdName' v-model='openapi.security'></input>
 									</div>
+									<!-- TODO when applying oAuth2 to all paths, copy the scopes -->
 								</div>
 								<div v-if="sd.type == 'apiKey'" class='animate-if'>
 									<div class='control-group'>

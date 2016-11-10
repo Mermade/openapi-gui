@@ -138,106 +138,11 @@ Vue.component('gui-main', {
 
 /*
 
-    controller: function($scope, $rootScope, $timeout, $location) {
-      this.importSchema = "";
-
-	  if ((window.localStorage) && (window.localStorage.getItem('swagger2'))) {
-	    try {
-		  this.apiConfig = JSON.parse(window.localStorage.getItem('swagger2'));
-		}
-		catch (ex) {}
-	  }
-	  else {
-	    this.apiConfig = angular.extend({},petstore);
-	  }
-	  this.importSchema = JSON.stringify(this.apiConfig,null,2);
-
-	  this.apiConfig.resources = [];
-	  this.apiConfig.schemas = [];
-	  this.schemes = ['http','https','soap'];
-	  var apiConfig = this.apiConfig;
-
-      angular.forEach(apiConfig.paths, function(def, name) {
-        resource = new Resource(name);
-        resource.load(def, name, apiConfig);
-        this.push(resource);
-      }, this.apiConfig.resources);
-      
-	  $rootScope.$on('removeResource', function(event, id) {
-		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
-		var result = jQuery.grep(apiConfig.resources, function(value) {
-		  return value.id != id;
-		});
-	    apiConfig.resources = result;
-	  });
-
-	  this.addTag = function() {
-	    var newTag = { name: 'New Tag', description: 'Description' };
-		if (!this.apiConfig.tags) {
-			this.apiConfig.tags = [];
-		}
-	    this.apiConfig.tags.push(newTag);
-	  };
-
-	  this.removeTag = function(tag) {
-	    var index = this.apiConfig.tags.indexOf(tag);
-		if (index>=0) {
-		  if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
-		  this.apiConfig.tags.splice(index,1);
-		}
-	  };
-
-	  this.addSecurityDefinition = function() {
-	    var newSD = { name: 'newSecurity', type: 'apiKey', description: 'Description' };
-		if (!this.apiConfig.securityDefinitions) {
-			this.apiConfig.securityDefinitions = {};
-		}
-	    this.apiConfig.securityDefinitions['newSecurity'] = newSD;
-	  };
-
 	  this.renameSecurityDefinition = function(oldName, newName) {
 	    if ((newName != oldName) && (newName != '')) {
 	      this.apiConfig.securityDefinitions[newName] = this.apiConfig.securityDefinitions[oldName];
 		  delete this.apiConfig.securityDefinitions[oldName];
 		}
-	  };
-
-	  this.getApplyAll = function(sdName) {
-		for (var s in this.apiConfig.security) {
-		  var entry = this.apiConfig.security[s];
-		  if (typeof entry[sdName] !== 'undefined') return true;
-		}
-	    return false;
-	  };
-
-	  this.toggleApplyAll = function(sdName) {
-	    if (!this.apiConfig.security) this.apiConfig.security = [];
-		var present = this.getApplyAll(sdName);
-		if (present) {
-		  for (var s in this.apiConfig.security) {
-		    var entry = this.apiConfig.security[s];
-			if (entry[sdName]) this.apiConfig.security.splice(s,1);
-		  }
-		}
-		else {
-		  var entry = {};
-		  entry[sdName] = [];
-		  if (this.apiConfig.securityDefinitions[sdName].type == 'oauth2') {
-		    for (var s in this.apiConfig.securityDefinitions[sdName].scopes) {
-			  entry[sdName].push(s);
-			}
-		  }
-		  this.apiConfig.security.push(entry);
-		}
-	  };
-
-	  this.removeSecurityDefinition = function(sdName) {
-		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
-		delete this.apiConfig.securityDefinitions[sdName];
-		if (this.getApplyAll(sdName)) {
-		  this.toggleApplyAll(sdName);
-		}
-	  };
 
 	  this.addScope = function(sdName) {
 		if (!this.apiConfig.securityDefinitions[sdName].scopes) {
@@ -260,4 +165,3 @@ Vue.component('gui-main', {
 
 )};
 */
-

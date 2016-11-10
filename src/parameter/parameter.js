@@ -69,29 +69,6 @@ Vue.component('api-parameter', {
       return [''];
     }
 
-    this.id = generateId();
-    this.in = 'query';
-    this.name = name;
-    this.description = '';
-    this.required = 'false';
-    this.default ='';
-    this.type = 'string';
-	this.format = '';
-	this.pattern = '';
-	this.availableFormats = this.availableFormatsFor(this.type);
-    this.properties = [];
-
-    this.load = function(parameterDefinition) {
-        this.description = parameterDefinition.description;
-        this.required = parameterDefinition.required ? 'true' : 'false';
-        this.default = parameterDefinition.default;
-        this.type = parameterDefinition.type ? parameterDefinition.type : 'object';
-		this.availableFormats = this.availableFormatsFor(this.type);
-		this.format = parameterDefinition.format;
-		this.pattern = parameterDefinition.pattern;
-        this.in = parameterDefinition.in;
-        this.properties = [];
-
         var properties = [];
 
         if ( this.type === 'array' && parameterDefinition.items !== undefined ) {
@@ -113,24 +90,6 @@ Vue.component('api-parameter', {
             this.push( property );
         }, this.properties);
     }
-
-    this.render = function() {
-            
-        var val = {
-            name: this.name,
-            description: this.description,
-            required: this.required == "true",
-            default: this.default,
-            type: this.type,
-			format: this.format,
-			pattern: this.pattern,
-            in: this.in
-        };
-
-		if (!val.description) delete val.description;
-		if (!val.default) delete val.default;
-		if (!val.format) delete val.format;
-		if (!val.pattern) delete val.pattern;
 
         if ( Object.keys(this.properties).length > 0 ) {
             if ( this.type === 'array' ) {

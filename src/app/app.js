@@ -3,6 +3,7 @@ function postProcessDefinition(openapi) {
         var tag = openapi.tags[t];
         if (!tag.externalDocs) tag.externalDocs = {};
     }
+    if (!openapi.security) openapi.security = [];
     return openapi;
 }
 
