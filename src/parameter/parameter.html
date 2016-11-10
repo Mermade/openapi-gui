@@ -76,6 +76,7 @@
 					<div class='controls'>
 						<input v-model="parameter.default" />
 					</div>
+					<!-- TODO enums -->
 				</div>
 				<div class='control-group' v-if="effectiveFormats.length">
 					<label class='control-label'> Format </label>
@@ -86,12 +87,58 @@
                         </datalist>
 					</div>
 				</div>
-				<div class='control-group' v-if="parameter.type == 'string'">
-					<label class='control-label'> Pattern </label>
-					<div class='controls'>
-						<input v-model="parameter.pattern" />
+				<div v-if="parameter.type == 'string'">
+					<div class='control-group'>
+						<label class='control-label'> Min. Length </label>
+						<div class='controls'>
+							<input type="number" min="0" step="1" v-model="parameter.minLength" />
+						</div>
+						<label class='control-label'> Max. Length </label>
+						<div class='controls'>
+							<input type="number" min="0" step="1" v-model="parameter.maxLength" />
+						</div>
 					</div>
 				</div>
+				<div v-if="parameter.type == 'integer' || parameter.type == 'number'">
+					<div class='control-group'>
+						<label class='control-label'> Minimum </label>
+						<div class='controls'>
+							<input type="number" v-model="parameter.minimum" />
+						</div>
+						<label class='control-label'> Min. Exclusive </label>
+						<div class='controls' class="span8">
+							<input type="checkbox" v-model="parameter.minExclusive" />
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label'> Maximum </label>
+						<div class='controls'>
+							<input type="number" v-model="parameter.maximum" />
+						</div>
+						<label class='control-label'> Max. Exclusive </label>
+						<div class='controls' class="span8">
+							<input type="checkbox" v-model="parameter.maxExclusive" />
+						</div>
+					</div>
+					<div class='control-group'>
+						<label class='control-label'> Multiple Of </label>
+						<div class='controls'>
+							<input type="number" v-model="parameter.multipleOf" />
+						</div>
+					</div>
+				</div>
+
+				<div v-if="parameter.type == 'array'">
+					<!-- type, format, [items], collectionFormat, minItems, maxItems, uniqueItems  ... -->
+					<div class='control-group'>
+						<label class='control-label'> Item Type </label>
+						<div class='controls'>
+							<input v-model="parameter.items.type" />
+							<!-- "string", "number", "integer", "boolean", or "array" -->
+						</div>
+					</div>
+				</div>
+
 				<div class='control-group'>
 					<!-- TODO was sortable-params -->
 					<div class="sortable-properties" v-for="property in parameter.properties">

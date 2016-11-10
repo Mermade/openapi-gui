@@ -62,8 +62,9 @@ Vue.component('api-parameter', {
 	},
     methods : {
         isComplex : function() {
-            if ( this.effectiveType === 'object' || 
-                this.effectiveType === 'array' ) {
+            if (this.effectiveType === 'object' || 
+                this.effectiveType === 'array' ||
+                this.effectiveType === 'file') {
                return true;
             }
             return false;
