@@ -7,6 +7,9 @@ Vue.component('api-method', {
         toggleBodyDisplay : function(el) {
             el.collapse('toggle');
         },
+        duplicateOperation : function(method) {
+            this.$parent.addMethod(method);
+        },
 		removeOperation : function(target) {
             this.$parent.removeOperation(target);
 	    },

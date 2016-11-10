@@ -15,7 +15,7 @@ Vue.component('api-resource', {
         removeOperation : function(target) {
             Vue.delete(this.path, target);
         },
-        addMethod : function() {
+        addMethod : function(template) {
             var methods = ['get','post','put','delete','head','patch','options'];
             var index = 0;
             while (this.path[methods[index]] && index<methods.length) {
@@ -23,9 +23,10 @@ Vue.component('api-resource', {
             }
             if (index<methods.length) {
                 var method = {};
-                method.summary = '';
-                method.description = '';
-                method.parameters = [];
+                method.summary = template.summary || '';
+                method.description = template.description || '';
+                method.parameters = template.parameters || [];
+                method.operationId = template.operationId || '';
                 Vue.set(this.path, methods[index], method);
             }
         }
