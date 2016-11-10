@@ -43,6 +43,11 @@
 						<i class='icon-lock'></i> Security
 					</a>
 				</li>
+				<li>
+					<a data-toggle='tab' href='#prodcons' id="header-prodcons">
+						<i class='icon-magic'></i> MIME Types
+					</a>
+				</li>
 				<li class='active'>
 					<a data-toggle='tab' href='#editor' id="editor-tab">
 						<i class='icon-edit'></i> Edit
@@ -180,6 +185,11 @@
 							</div>
 
 						</form>
+					</div>
+				</div>
+
+				<div class="tab-pane" id="prodcons">
+					<div class="content forms span9">
 					</div>
 				</div>
 
@@ -334,7 +344,7 @@
 					<div class='span3'>
 						<div class='sidebar-nav well'>
 							<div>
-								<a v-on:click="addResource()" class='btn btn-info addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+								<a v-on:click="addResource()" class='btn btn-info addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
 								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
 							<br/>

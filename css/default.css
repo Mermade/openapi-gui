@@ -16,11 +16,6 @@ body {
     min-height: 300px;
 }
 
-.addButton {
-    float:right;
-    margin-right:9px;
-}
-
 .endpoint > .header > .control-group > label {
     width: auto;
     text-align: left;
