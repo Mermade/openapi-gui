@@ -67,15 +67,16 @@
 					<br/> OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
 					<br/>
 					<h2>How does OpenApi-gui work?</h2>
-					<br> Upload an existing definition, or create a new one (select the red 'eraser' button to remove all Paths) and start
+					<br> Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and start
 					adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each
 					Path, Operation and Parameter will be created.
 					<br/>
 					<br/> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
 					<br/>
 					<br/> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
-					"Export" tabs. When finished, click "Copy" to copy the output to your clipboard. OpenApi-gui does not currently store
-					any data. Make sure you save your JSON/YAML output.
+					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves
+					data only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save"
+					button is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 				</div>
 
 				<div class="tab-pane" id="input">

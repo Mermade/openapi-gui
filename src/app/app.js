@@ -7,6 +7,10 @@ function postProcessDefinition(openapi) {
     return openapi;
 }
 
+function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
 var openapi = clone(petstore);
 
 if (window.localStorage) {
@@ -21,7 +25,8 @@ if (window.localStorage) {
 
 openapi = postProcessDefinition(openapi);
 
-var importSchema = '';
+var importSchema = {};
+importSchema.text = JSON.stringify(openapi, null, 2);
 
 function app_main() {
     var vm = new Vue({

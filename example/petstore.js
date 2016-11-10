@@ -850,3 +850,18 @@ var petstore = {
 		"url" : "http://swagger.io"
 	}
 };
+
+var emptySwagger = {
+  "swagger": "2.0",
+  "info": {
+    "title": "API",
+    "version": "1.0",
+    "contact": {},
+    "license": {}
+  },
+  "externalDocs": {
+  },
+  "schemes": [],
+  "consumes": [],
+  "produces": []
+};

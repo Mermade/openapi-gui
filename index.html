@@ -30,13 +30,12 @@
     <script src="src/api-definition/api-definition.js"></script>
     <script src="src/api-yaml/api-yaml.js"></script>
 
-    <script src="src/app/util.js"></script>    
     <script src="src/app/app.js"></script>
 
   </head>
   <body>
     <div id="main-container">
-      <gui-main :openapi='openapi' :importSchema='importSchema'></gui-main>
+      <gui-main :openapi='openapi' :importSchema='importSchema.text'></gui-main>
     </div>
     <script>
       $(document).ready(function(){
@@ -47,6 +46,7 @@
         $('#template-parameter').load('src/parameter/parameter.html');
         $('#template-definition').load('src/api-definition/output.html');
         $('#template-yaml').load('src/api-yaml/output.html');
+        jQuery.ajaxSetup({async:true});
         app_main();
       });
     </script>

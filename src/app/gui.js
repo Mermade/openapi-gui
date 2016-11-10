@@ -76,16 +76,21 @@ Vue.component('gui-main', {
 			var schema;
 			try {
 				schema = JSON.parse(this.importSchema);
-				bootbox.alert('JSON definition loaded successfully');
+				bootbox.alert('JSON definition parsed successfully');
 			}
 			catch (ex) {
 				try {
 					schema = jsyaml.safeLoad(this.importSchema);
-					bootbox.alert('YAML/blank definition loaded successfully');
+					bootbox.alert('YAML definition parsed successfully');
 				}
 				catch (ex) {
 					bootbox.alert('The definition could not be parsed');
 				}
+			}
+
+			if (!this.importSchema) {
+				schema = emptySwagger;
+				this.importSchema = JSON.stringify(empty, null, 2);
 			}
 
 			if (schema.swagger == '2.0') {
@@ -134,9 +139,7 @@ Vue.component('gui-main', {
 	  	},
 
 	  	save : function() {
-				if (window.localStorage) {
-					window.localStorage.setItem('swagger2',JSON.stringify(this.openapi));
-				}
+				this.$root.save();
 			},
 
 	  	undo : function() {
@@ -157,23 +160,11 @@ Vue.component('gui-main', {
 		  delete this.apiConfig.securityDefinitions[oldName];
 		}
 
-	  this.addScope = function(sdName) {
-		if (!this.apiConfig.securityDefinitions[sdName].scopes) {
-			this.apiConfig.securityDefinitions[sdName].scopes = {};
-		}
-	    this.apiConfig.securityDefinitions[sdName].scopes['newScope'] = 'Description';
-	  };
-
 	  this.renameScope = function(sdName, oldName, newName) {
 	    if (newName != oldName) {
 	      this.apiConfig.securityDefinitions[sdName].scopes[newName] = this.apiConfig.securityDefinitions[sdName].scopes[oldName];
 		  delete this.apiConfig.securityDefinitions[sdName].scopes[oldName];
 		}
-	  };
-
-	  this.removeScope = function(sdName, sName) {
-		if (window.localStorage) window.localStorage.setItem('swagger2',JSON.stringify(apiConfig));
-		delete this.apiConfig.securityDefinitions[sdName].scopes[sName];
 	  };
 
 )};
