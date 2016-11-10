@@ -111,10 +111,9 @@
 								<label class='control-label'> Protocol </label>
 								<div class='controls'>
 									<div class="checkbox">
-                    <input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
-                    <input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
-                    <input type="checkbox" id="chkScheme" value="soap" v-model="openapi.schemes">SOAP</input><br/>
-                    <!--<input v-model="openapi.schemes">-->
+										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
+										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
+										<input type="checkbox" id="chkScheme" value="soap" v-model="openapi.schemes">SOAP</input><br/>
 									</div>
 								</div>
 							</div>
@@ -187,15 +186,15 @@
 					<div class="content forms span9">
 						<form class="plain-form form-horizontal" id="frmTags">
 							<div>
-								<a ng-click="$ctrl.addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
+								<a v-on:click="addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
 								<br/>
 							</div>
-							<div v-for="t in openapi.tags">
+							<div v-for="(t,index) in openapi.tags">
 								<div class='control-group'>
 									<label class='control-label'> Name </label>
 									<div class='controls'>
 										<input class="span6" v-model="t.name"></input>
-										<i ng-click="$ctrl.removeTag(t)" class='btn btn-danger icon-trash icon-white'></i>
+										<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>

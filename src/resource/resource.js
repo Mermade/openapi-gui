@@ -13,6 +13,7 @@ Vue.component('api-resource', {
             this.$parent.removePath(target);
 	    },
         removeOperation : function(target) {
+            this.$root.save();
             Vue.delete(this.path, target);
         },
         addMethod : function(template) {

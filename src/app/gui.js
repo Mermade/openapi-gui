@@ -17,16 +17,32 @@ Vue.component('gui-main', {
 		},
 
 		removePath : function(target) {
+			this.$root.save();
 			Vue.delete(this.openapi.paths,target);
 		},
 
 		removeAll: function () {
 			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
 				if (result) {
-					if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(this.openapi));
+					this.$root.save();
 					this.openapi.paths = {};
 				}
 			});
+		},
+
+		addTag : function() {
+			if (!this.openapi.tags.newTag) {
+				var newTag = {};
+				newTag.name = 'newTag';
+				newTag.externalDocs = {};
+				this.openapi.tags.push(newTag);
+			}
+		},
+
+		removeTag : function(index) {
+			this.$root.save();
+			this.openapi.tags.splice(index, 1);
+
 		},
 
 		loadSchema: function () {
@@ -45,9 +61,15 @@ Vue.component('gui-main', {
 				}
 			}
 
-			this.openapi = schema;
-			if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
-			this.openapi = postProcessDefinition(this.openapi);
+			if (schema.swagger == '2.0') {
+				this.openapi = schema;
+				if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
+				this.openapi = postProcessDefinition(this.openapi);
+			}
+			else {
+				bootbox.alert('Swagger version must be 2.0');
+			}
+
 		},
 
   	renderOutput : function() {

@@ -28,6 +28,13 @@ function app_main() {
             openapi: openapi,
             importSchema : importSchema
         },
-        el: '#main-container' 
+        el: '#main-container' ,
+        methods : {
+            save : function() {
+                if (window.localStorage) {
+                    window.localStorage.setItem('swagger2', JSON.stringify(this.openapi));
+                }
+            }
+        }
     });
 }

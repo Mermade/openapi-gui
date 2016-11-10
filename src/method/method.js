@@ -22,6 +22,7 @@ Vue.component('api-method', {
             this.method.parameters.push(newParam);
         },
         removeParameter : function(index) {
+            this.$root.save();
             this.method.parameters.splice(index,1);
         }
     },
