@@ -25,14 +25,14 @@ if (window.localStorage) {
 
 openapi = postProcessDefinition(openapi);
 
-var importSchema = {};
-importSchema.text = JSON.stringify(openapi, null, 2);
+var importschema = {};
+importschema.text = JSON.stringify(openapi, null, 2);
 
 function app_main() {
     var vm = new Vue({
         data: {
             openapi: openapi,
-            importSchema : importSchema
+            importschema : importschema
         },
         el: '#main-container' ,
         methods : {

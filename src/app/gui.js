@@ -1,5 +1,5 @@
 Vue.component('gui-main', {
-	props: ['openapi', 'importSchema'],
+	props: ['openapi', 'importschema'],
 	data: function() {
 		return {}
 	},
@@ -11,6 +11,7 @@ Vue.component('gui-main', {
 	  },
 
 		addResource : function() {
+			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
 			if (!this.openapi.paths['/newPath']) {
 				Vue.set(this.openapi.paths, '/newPath', {});
 			}
@@ -22,10 +23,11 @@ Vue.component('gui-main', {
 		},
 
 		removeAll: function () {
+			var self = this;
 			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
 				if (result) {
-					this.$root.save();
-					this.openapi.paths = {};
+					self.$root.save();
+					self.openapi.paths = {};
 				}
 			});
 		},
@@ -75,12 +77,12 @@ Vue.component('gui-main', {
 		loadSchema: function () {
 			var schema;
 			try {
-				schema = JSON.parse(this.importSchema);
+				schema = JSON.parse(this.importschema.text);
 				bootbox.alert('JSON definition parsed successfully');
 			}
 			catch (ex) {
 				try {
-					schema = jsyaml.safeLoad(this.importSchema);
+					schema = jsyaml.safeLoad(this.importschema.text);
 					bootbox.alert('YAML definition parsed successfully');
 				}
 				catch (ex) {
@@ -88,9 +90,10 @@ Vue.component('gui-main', {
 				}
 			}
 
-			if (!this.importSchema) {
+			if (!this.importschema) this.importschema = {};
+			if (!this.importschema.text) {
 				schema = emptySwagger;
-				this.importSchema = JSON.stringify(empty, null, 2);
+				this.importschema.text = JSON.stringify(empty, null, 2);
 			}
 
 			if (schema.swagger == '2.0') {
