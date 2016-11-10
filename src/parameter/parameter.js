@@ -5,6 +5,10 @@ Vue.component('api-parameter', {
         hashUid : function() {
             return '#'+this._uid;
         },
+
+        formatListId : function() {
+            return 'listFormats'+this._uid;
+        },
         
         effectiveType : {
             get : function() {
@@ -36,10 +40,14 @@ Vue.component('api-parameter', {
             } 
         },
 
-        availableFormats : function() {
-            if (this.parameter.type == 'integer') return ['int32','int64'];
-            if (this.parameter.type == 'string') return ['date','date-time'];
-            return [];
+        effectiveFormats : {
+            get : function() {
+                if (this.parameter.type == 'integer') return ['int32','int64'];
+                if (this.parameter.type == 'number') return ['float','double'];
+                if (this.parameter.type == 'string') return ['date','date-time','byte','binary','password'];
+                return [];
+            },
+            set : function(newVal) {}
         }
 
     },

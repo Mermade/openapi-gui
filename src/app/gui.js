@@ -69,7 +69,6 @@ Vue.component('gui-main', {
 
 		removeScope : function(sdName, sName) {
 			this.$root.save();
-			console.log(sdName, sName);
 			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
 		},
 
