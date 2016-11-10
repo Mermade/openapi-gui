@@ -42,7 +42,21 @@ Vue.component('gui-main', {
 		removeTag : function(index) {
 			this.$root.save();
 			this.openapi.tags.splice(index, 1);
+		},
 
+		addSecurityDefinition : function() {
+			if (!this.openapi.securityDefinitions.newSecurityDef) {
+				var newSecDef = {};
+				newSecDef.type = 'apiKey';
+				newSecDef.name = 'api_key';
+				newSecDef.in = 'query';
+				this.openapi.securityDefinitions.newSecurityDef = newSecDef;
+			}
+		},
+
+		removeSecurityDefinition : function(index) {
+			this.$root.save();
+			Vue.delete(this.openapi.securityDefinitions, index);
 		},
 
 		loadSchema: function () {
@@ -69,7 +83,6 @@ Vue.component('gui-main', {
 			else {
 				bootbox.alert('Swagger version must be 2.0');
 			}
-
 		},
 
   	renderOutput : function() {

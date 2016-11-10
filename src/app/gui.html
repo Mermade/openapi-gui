@@ -225,7 +225,7 @@
 					<div class="content forms span9">
 						<form class="plain-form form-horizontal" id="frmSecurity">
 							<div>
-								<a class="btn btn-info" ng-click="$ctrl.addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
+								<a class="btn btn-info" v-on:click="addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
 								<br/>
 								<br/>
 							</div>
@@ -234,17 +234,17 @@
 									<label class='control-label'> Name </label>
 									<div class='controls'>
 										<input class="span6" v-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
-										<i ng-click="$ctrl.removeSecurityDefinition(sdName)" class='btn btn-danger icon-trash icon-white'></i>
+										<i v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger icon-trash icon-white'></i>
 									</div>
 								</div>
 								<div class='control-group'>
 									<label class='control-label' for="selSdType"> Type </label>
 									<div class='controls'>
 										<select name="selSdType" v-model="sd.type">
-      						<option value="apiKey">API Key</option>
-      						<option value="oauth2">oAuth2</option>
-      						<option value="basic">Basic Authentication</option>
-    					</select>
+											<option value="apiKey">API Key</option>
+											<option value="oauth2">oAuth2</option>
+											<option value="basic">Basic Authentication</option>
+										</select>
 									</div>
 								</div>
 								<div class='control-group'>
@@ -253,7 +253,7 @@
 										<input type='checkbox' ng-checked='$ctrl.getApplyAll(sdName)' ng-click='$ctrl.toggleApplyAll(sdName)'></input>
 									</div>
 								</div>
-								<div ng-if="sd.type == 'apiKey'" class='animate-if'>
+								<div v-if="sd.type == 'apiKey'" class='animate-if'>
 									<div class='control-group'>
 										<label class='control-label'> Parameter Name </label>
 										<div class='controls'>
@@ -264,22 +264,22 @@
 										<label class='control-label'> Location </label>
 										<div class='controls'>
 											<select name="selLocation" v-model="sd.in">
-      							<option value="header">Header</option>
-      							<option value="query">Query</option>
-    						</select>
+												<option value="header">Header</option>
+												<option value="query">Query</option>
+											</select>
 										</div>
 									</div>
 								</div>
-								<div ng-if="sd.type == 'oauth2'" class='animate-if'>
+								<div v-if="sd.type == 'oauth2'" class='animate-if'>
 									<div class='control-group'>
 										<label class='control-label'> Flow </label>
 										<div class='controls'>
 											<select name="selFlow" v-model="sd.flow">
-      							<option value="implicit">Implicit</option>
-      							<option value="password">Password</option>
-      							<option value="application">Application</option>
-      							<option value="accessCode">AccessCode</option>
-    						</select>
+												<option value="implicit">Implicit</option>
+												<option value="password">Password</option>
+												<option value="application">Application</option>
+												<option value="accessCode">AccessCode</option>
+											</select>
 										</div>
 									</div>
 									<div class='control-group'>
