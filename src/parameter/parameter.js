@@ -17,6 +17,12 @@ Vue.component('api-parameter', {
             },
             set : function(newVal) {
                 this.parameter.type = newVal;
+                if (this.parameter.type == 'array') {
+                    this.parameter.items = {};
+                }
+                else {
+                    Vue.delete(this.parameter, 'items');
+                }
             } 
         },
 
@@ -70,11 +76,16 @@ Vue.component('api-parameter', {
     beforeMount : function() {
         if (this.parameter["$ref"]) {
             var ptr = this.parameter["$ref"].substr(1); // remove #
-            var def = new JSONPointer(ptr).get(this.$root.openapi);
-            for (var p in def) {
-                this.parameter[p] = def[p];
+            try {
+                var def = new JSONPointer(ptr).get(this.$root.openapi);
+                for (var p in def) {
+                    this.parameter[p] = def[p];
+                }
+                delete this.parameter["$ref"];
             }
-            delete this.parameter["$ref"];
+            catch (ex) {
+                bootbox.alert('Could not find $ref '+this.parameter["$ref"]);
+            }
         }
     }
 });
