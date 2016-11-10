@@ -28,10 +28,10 @@ Vue.component('api-resource', {
             }
             if (index<methods.length) {
                 var op = {};
-                op.summary = template.summary || '';
-                op.description = template.description || '';
-                op.parameters = template.parameters || [];
-                op.operationId = template.operationId || '';
+                op.summary = template && template.summary || '';
+                op.description = template && template.description || '';
+                op.parameters = template && template.parameters || [];
+                op.operationId = template && template.operationId || '';
                 Vue.set(this.path, methods[index], op);
             }
         },
