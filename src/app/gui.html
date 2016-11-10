@@ -296,14 +296,14 @@
 										</div>
 									</div>
 									<div>
-										<a class="btn btn-info" ng-click="$ctrl.addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
+										<a class="btn btn-info" v-on:click="addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
 									</div>
-									<div v-for="(sName, sDesc) in sd.scopes">
+									<div v-for="(sDesc, sName) in sd.scopes">
 										<div class='control-group'>
 											<label class='control-label'> Scope Name </label>
 											<div class='controls'>
 												<input class="span6" v-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
-												<i ng-click="$ctrl.removeScope(sdName,sName)" class='btn btn-danger icon-trash icon-white'></i>
+												<i v-on:click="removeScope(sdName,sName)" class='btn btn-danger icon-trash icon-white'></i>
 											</div>
 										</div>
 										<div class='control-group'>
@@ -332,25 +332,25 @@
 
 					<div class='span3'>
 						<div class='sidebar-nav well'>
-              <div>
-                <a class="btn btn-danger remButton pull-right" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
-                <a v-on:click="addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
-							</div>
-              <br/>
+							<div>
+								<a class="btn btn-danger remButton pull-right" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
+								<a v-on:click="addResource()" class='btn btn-info pull-left addButton'><i class='icon-plus icon-white'></i> Add Path</a>
+											</div>
+							<br/>
 							<strong>
-					      <ul id="resourceList">
-                  <li v-for="(path,key) in openapi.paths">
-					          <a :href="path.id" target="_self" v-on:click="showResource(key)">
-                        {{key}}
-					          </a>
-						  <!--<ul>
-						  	<li ng-repeat="m in resource.methods track by $index">
-							<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" ng-click="$ctrl.showMethod(method)">{{m.httpMethod}}</a>
-							</li>
-						  </ul>-->
-					  	</li>
-            </ul>
-					  </strong>
+								<ul id="resourceList">
+									<li v-for="(path,key) in openapi.paths">
+									<a :href="path.id" target="_self" v-on:click="showResource(key)">
+										{{key}}
+									</a>
+										<!--<ul>
+											<li v-for="m in path">
+											<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" v-on:click="showMethod()">{{m.httpMethod}}</a>
+											</li>
+										</ul>-->
+									</li>
+								</ul>
+							</strong>
 						</div>
 					</div>
 

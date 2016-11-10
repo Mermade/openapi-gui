@@ -59,6 +59,20 @@ Vue.component('gui-main', {
 			Vue.delete(this.openapi.securityDefinitions, index);
 		},
 
+		addScope : function(sdName) {
+			var secDef = this.openapi.securityDefinitions[sdName];
+			if (!secDef.scopes) secDef.scopes = {};
+			if (!secDef.scopes.newScope) {
+				Vue.set(secDef.scopes, 'newScope','description');
+			}
+		},
+
+		removeScope : function(sdName, sName) {
+			this.$root.save();
+			console.log(sdName, sName);
+			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
+		},
+
 		loadSchema: function () {
 			var schema;
 			try {
