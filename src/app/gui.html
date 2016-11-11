@@ -200,8 +200,8 @@
 								<div class='control-group'>
 									<label class='control-label'> MIME Type </label>
 									<div class='controls'>
-										<input class="span6" v-model="c"></input>
-										<i v-on:click="removeConsumes(index)" class='btn btn-danger icon-trash icon-white'></i>
+										<input class="span6" v-model="openapi.consumes[index]"></input>
+										<a v-on:click="removeConsumes(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
 							</div>
@@ -214,8 +214,8 @@
 								<div class='control-group'>
 									<label class='control-label'> MIME Type </label>
 									<div class='controls'>
-										<input class="span6" v-model="p"></input>
-										<i v-on:click="removeProduces(index)" class='btn btn-danger icon-trash icon-white'></i>
+										<input class="span6" v-model="openapi.produces[index]"></input>
+										<a v-on:click="removeProduces(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
 							</div>
@@ -275,7 +275,7 @@
 									<label class='control-label'> Name </label>
 									<div class='controls'>
 										<input class="span6" v-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
-										<i v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger icon-trash icon-white'></i>
+										<a v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
 								<div class='control-group'>
@@ -344,13 +344,13 @@
 											<label class='control-label'> Scope Name </label>
 											<div class='controls'>
 												<input class="span6" v-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
-												<i v-on:click="removeScope(sdName,sName)" class='btn btn-danger icon-trash icon-white'></i>
+												<a v-on:click="removeScope(sdName,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 											</div>
 										</div>
 										<div class='control-group'>
 											<label class='control-label'> Description </label>
 											<div class='controls'>
-												<input class="span6" v-model="sDesc"></input>
+												<input class="span6" v-model="sd.scopes[sName]"></input>
 											</div>
 										</div>
 									</div>
