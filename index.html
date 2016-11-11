@@ -1,43 +1,50 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <title>OpenAPI-GUI</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
 
-    <link href="css/app.css" rel="stylesheet">
-    <link href="css/ribbon.css" rel="stylesheet">
-    <link href="css/prettify.css" rel="stylesheet">
+<head>
+  <title>OpenAPI-GUI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <script type='text/javascript' src='js/jquery.min.js'></script>
-    <script type='text/javascript' src='js/jquery-ui.min.js'></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
-    <script type='text/javascript' src='js/prettify.js'></script>
-    <script type='text/javascript' src='js/bootstrap.min.js'></script>
-    <script type='text/javascript' src="js/js-yaml.min.js"></script>
-    <script type='text/javascript' src="js/bootbox.min.js"></script>
-    <script type='text/javascript' src="js/jsonpatch.js"></script>
-    <script type='text/javascript' src="example/petstore.js"></script>
-    <script type='text/javascript' src="js/vue.js"></script>
+  <link href="css/app.css" rel="stylesheet">
+  <link href="css/ribbon.css" rel="stylesheet">
+  <link href="css/prettify.css" rel="stylesheet">
 
-    <script src="src/resource/resource.js"></script>
-    <script src="src/method/method.js"></script>
-    <script src="src/parameter/parameter.js"></script>
-    <script src="src/property/property.js"></script>
-    <script src="src/app/gui.js"></script>
+  <!--<link href="css/jquery-ui.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+  <link href="css/jquery.ui.theme.css" rel="stylesheet">-->
 
-    <script src="src/api-definition/api-definition.js"></script>
-    <script src="src/api-yaml/api-yaml.js"></script>
+  <script type='text/javascript' src='js/jquery.min.js'></script>
+  <!--<script type='text/javascript' src='js/jquery-ui.min.js'></script>-->
+  <!--<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
+  <script type='text/javascript' src='js/prettify.js'></script>
+  <script type='text/javascript' src='js/bootstrap.min.js'></script>
+  <script type='text/javascript' src="js/js-yaml.min.js"></script>
+  <script type='text/javascript' src="js/bootbox.min.js"></script>
+  <script type='text/javascript' src="js/jsonpatch.js"></script>
+  <script type='text/javascript' src="example/petstore.js"></script>
+  <script type='text/javascript' src="js/vue.js"></script>
 
-    <script src="src/app/app.js"></script>
+  <script src="src/resource/resource.js"></script>
+  <script src="src/method/method.js"></script>
+  <script src="src/parameter/parameter.js"></script>
+  <script src="src/property/property.js"></script>
+  <script src="src/app/gui.js"></script>
 
-  </head>
-  <body>
-    <div id="main-container">
-      <gui-main :openapi='openapi' :importschema='importschema'></gui-main>
-    </div>
-    <script>
+  <script src="src/api-definition/api-definition.js"></script>
+  <script src="src/api-yaml/api-yaml.js"></script>
+
+  <script src="src/app/app.js"></script>
+
+</head>
+
+<body>
+  <div id="main-container">
+    <gui-main :openapi='openapi' :importschema='importschema'></gui-main>
+  </div>
+  <script>
       $(document).ready(function(){
         jQuery.ajaxSetup({async:false});
         $('#template-gui-main').load('src/app/gui.html');
@@ -50,13 +57,14 @@
         app_main();
       });
     </script>
-    <div style='display:none'>
-      <div id="template-gui-main"></div>
-      <div id="template-resource"></div>
-      <div id="template-method"></div>
-      <div id="template-parameter"></div>
-      <div id="template-definition"></div>
-      <div id="template-yaml"></div>
-    </div>
-  </body>
+  <div style='display:none'>
+    <div id="template-gui-main"></div>
+    <div id="template-resource"></div>
+    <div id="template-method"></div>
+    <div id="template-parameter"></div>
+    <div id="template-definition"></div>
+    <div id="template-yaml"></div>
+  </div>
+</body>
+
 </html>

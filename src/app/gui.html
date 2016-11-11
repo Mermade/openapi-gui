@@ -72,16 +72,16 @@
 					<br/> OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
 					<br/>
 					<h2>How does OpenApi-gui work?</h2>
-					<br> Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and start
-					adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each
-					Path, Operation and Parameter will be created.
+					<br> Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and
+					start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing
+					each Path, Operation and Parameter will be created.
 					<br/>
 					<br/> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
 					<br/>
 					<br/> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
-					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves
-					data only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save"
-					button is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
+					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves data
+					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
+					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 				</div>
 
 				<div class="tab-pane" id="input">
@@ -378,20 +378,19 @@
 								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
 							<br/>
-							<strong>
-								<ul id="resourceList">
-									<li v-for="(path,key) in openapi.paths">
-									<a :href="path.id" target="_self" v-on:click="showResource(key)">
-										{{key}}
-									</a>
-										<!--<ul>
-											<li v-for="m in path">
-											<a href="#{{method.id}}" class="btn btn-{{m.httpMethod}}" target="_self" v-on:click="showMethod()">{{m.httpMethod}}</a>
-											</li>
-										</ul>-->
-									</li>
-								</ul>
-							</strong>
+							<div class="dropdown open">
+								<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Navigation <b class="caret"></b></a>
+							<ul id="resourceList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+								<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
+									<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
+									<ul class='dropdown-menu'>
+										<li v-for="(m,mkey) in path">
+											<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							</div>
 						</div>
 					</div>
 
