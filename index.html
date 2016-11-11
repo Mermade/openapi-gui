@@ -35,22 +35,39 @@
 </head>
 
 <body>
+  <div id='loading'>
+    <div class="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong>Please wait!</strong> OpenAPI-GUI Loading...
+    </div>
+  </div>
   <div id="main-container">
     <gui-main :openapi='openapi' :importschema='importschema'></gui-main>
   </div>
   <script>
       $(document).ready(function(){
-        jQuery.ajaxSetup({async:false});
-        $('#template-gui-main').load('src/app/gui.html');
-        $('#template-resource').load('src/resource/resource.html');
-        $('#template-method').load('src/method/method.html');
-        $('#template-parameter').load('src/parameter/parameter.html');
-        $('#template-definition').load('src/api-definition/output.html');
-        $('#template-yaml').load('src/api-yaml/output.html');
-        jQuery.ajaxSetup({async:true});
-        app_main();
+
+        // Create the Deferred instances that can be handed to $.when()
+        var def = [];
+        for (t=0;t<6;t++) {
+          def.push($.Deferred());
+        }
+
+        // Set up the chain of events...
+        $.when(def[0], def[1], def[2], def[3], def[4], def[5]).then(function() {
+          $('#loading').hide();
+          app_main();
+        });
+
+        // And finally: Make the actual ajax calls:
+        $('#template-gui-main').load('src/app/gui.html', function() { def[0].resolve(); });
+        $('#template-resource').load('src/resource/resource.html', function() { def[1].resolve(); });
+        $('#template-method').load('src/method/method.html', function() { def[2].resolve(); });
+        $('#template-parameter').load('src/parameter/parameter.html', function() { def[3].resolve(); });
+        $('#template-definition').load('src/api-definition/output.html', function() { def[4].resolve(); });
+        $('#template-yaml').load('src/api-yaml/output.html', function() { def[5].resolve(); });
       });
-    </script>
+  </script>
   <div style='display:none'>
     <div id="template-gui-main"></div>
     <div id="template-resource"></div>
