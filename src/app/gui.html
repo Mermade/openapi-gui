@@ -378,8 +378,10 @@
 								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
 							<br/>
-							<div class="dropdown open">
-								<a id="drop1" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">Navigation <b class="caret"></b></a>
+							<div id="drop-container" class="dropdown open">
+								<a id="drop1" href="#" role="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
+									Navigation <b class="caret"></b>
+								</a>
 							<ul id="resourceList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 								<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
 									<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>

@@ -124,3 +124,7 @@ body {
 .navbar .brand {
     font-size: 14px;
 }
+
+#drop-container:hover > ul.dropdown-menu {
+    display: block;    
+}
