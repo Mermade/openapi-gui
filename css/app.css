@@ -120,3 +120,7 @@ body {
 .plain-form .control-group > label {
   font-weight: bold;
 }
+
+.navbar .brand {
+    font-size: 14px;
+}

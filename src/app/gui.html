@@ -3,10 +3,10 @@
 		<div class='navbar-inner'>
 			<div class='container-fluid'>
 				<span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI</a></span>
-				<a class="btn btn-info pull-right" v-on:click="scrollTop()"><i class='icon-white icon-arrow-up'></i>&nbsp;Top</a>
+				<a class="btn btn-info pull-right" v-on:click="scrollTop()"><i class='icon-white icon-arrow-up'></i> Top</a>
 				<a class="btn btn-info pull-right" v-on:click="save()"><i class='icon-white icon-save'></i> Save</a>
 				<a class="btn btn-info pull-right" v-on:click="undo()"><i class='icon-white icon-undo'></i> Undo</a>
-				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%20%23Swagger%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='icon-white icon-twitter'></i> Tweet</a>
+				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%20%23Swagger%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='icon-white icon-twitter'></i></a>
 				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='icon-white icon-twitter'></i> Follow</a>
 				<a class='btn btn-info pull-right' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='icon-white icon-github'></i> GitHub</a>
 			</div>
@@ -119,8 +119,8 @@
 									<div class="checkbox">
 										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
 										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
-										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WS</input><br/>
-										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WSS</input><br/>
+										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket</input><br/>
+										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure</input><br/>
 									</div>
 								</div>
 							</div>
