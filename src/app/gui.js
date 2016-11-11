@@ -121,50 +121,54 @@ Vue.component('gui-main', {
 			}
 		},
 
-  	renderOutput : function() {
-        // Pretty print has an issue correctly rendering output when we modify
-        // the content in an already "prettified" element. This hack creates a
-        // new element so prettyPrint() will correctly re-render the output
-        $('#json-output').html('<pre class="prettyprint" id="pretty-json"></pre>');
-        output = JSON.stringify(this.openapi, null, 4);
-        $('#pretty-json').html( output );
-        clippy = new Clipboard('#copy-json');
-        prettyPrint();
-				var data = "text/json;charset=utf-8," + encodeURIComponent(output);
-				$('#download-output').attr('href','data:' + data);
-				$('#download-output').attr('download','swagger.json');
-      },
+  		renderOutput : function() {
+			// Pretty print has an issue correctly rendering output when we modify
+			// the content in an already "prettified" element. This hack creates a
+			// new element so prettyPrint() will correctly re-render the output
+			$('#json-output').html('<pre class="prettyprint"><code id="pretty-json"></code></pre>');
+			output = JSON.stringify(this.openapi, null, 4);
+			$('#pretty-json').html(output);
+			clippy = new Clipboard('#copy-json');
+			$('pre code').each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
+			var data = "text/json;charset=utf-8," + encodeURIComponent(output);
+			$('#download-output').attr('href','data:' + data);
+			$('#download-output').attr('download','swagger.json');
+		},
 
     	renderOutputYaml : function() {
-        $('#yaml-output').html('<pre class="prettyprint" id="pretty-yaml"></pre>');
-        try {
-					output = jsyaml.dump(this.openapi);
-				}
-				catch (ex) {
-					alert(ex.message);
-				}
-        $('#pretty-yaml').html( output );
-        clippy = new Clipboard('#copy-yaml');
-        prettyPrint();
-				var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
-				$('#download-yaml').attr('href','data:' + data);
-				$('#download-yaml').attr('download','swagger.yaml');
-      },
+			$('#yaml-output').html('<pre class="prettyprint"><code id="pretty-yaml"></code></pre>');
+			try {
+				output = jsyaml.dump(this.openapi);
+			}
+			catch (ex) {
+				alert(ex.message);
+			}
+			$('#pretty-yaml').html(output);
+			clippy = new Clipboard('#copy-yaml');
+			$('pre code').each(function(i, block) {
+				hljs.highlightBlock(block);
+			});
+			var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
+			$('#download-yaml').attr('href', 'data:' + data);
+			$('#download-yaml').attr('download', 'swagger.yaml');
+		},
 
-			scrollTop : function() {
+		scrollTop : function() {
 	    	var elem = document.getElementById('scrollTop');
-				elem.scrollIntoView();
+			elem.scrollIntoView();
 	  	},
 
 	  	save : function() {
-				this.$root.save();
-			},
+			this.$root.save();
+		},
 
 	  	undo : function() {
-				if (window.localStorage) {
-					this.openapi = JSON.parse(window.localStorage.getItem('swagger2'));
-				}
+			if (window.localStorage) {
+				this.openapi = JSON.parse(window.localStorage.getItem('swagger2'));
 			}
+		}
 
 	},
 	template: '#template-gui-main'
