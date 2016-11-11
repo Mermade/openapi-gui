@@ -21,7 +21,7 @@
             </a>
         </div>
     </div>
-    <div class="accordion span12" style="margin-left:0px" v-for="(method,key,index) in path">
+    <div class="accordion span12" style="margin-left:0px" v-for="(method,key,index) in httpMethods">
         <api-method :key="key" :method="method" :index="key"></api-method>
     </div>
 </div>

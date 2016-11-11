@@ -119,7 +119,8 @@
 									<div class="checkbox">
 										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
 										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
-										<input type="checkbox" id="chkScheme" value="soap" v-model="openapi.schemes">SOAP</input><br/>
+										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WS</input><br/>
+										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WSS</input><br/>
 									</div>
 								</div>
 							</div>
@@ -190,6 +191,35 @@
 
 				<div class="tab-pane" id="prodcons">
 					<div class="content forms span9">
+						<form class="plain-form form-horizontal" id="frmProdCons">
+							<div>
+								<a v-on:click="addConsumes()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Consumed Type</a>
+								<br/>
+							</div>
+							<div v-for="(c,index) in openapi.consumes">
+								<div class='control-group'>
+									<label class='control-label'> MIME Type </label>
+									<div class='controls'>
+										<input class="span6" v-model="c"></input>
+										<i v-on:click="removeConsumes(index)" class='btn btn-danger icon-trash icon-white'></i>
+									</div>
+								</div>
+							</div>
+							<hr/>
+							<div>
+								<a v-on:click="addProduces()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Produced Type</a>
+								<br/>
+							</div>
+							<div v-for="(p,index) in openapi.produces">
+								<div class='control-group'>
+									<label class='control-label'> MIME Type </label>
+									<div class='controls'>
+										<input class="span6" v-model="p"></input>
+										<i v-on:click="removeProduces(index)" class='btn btn-danger icon-trash icon-white'></i>
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 

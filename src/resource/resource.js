@@ -11,28 +11,38 @@ Vue.component('api-resource', {
             set : function(newVal) {
                 this.$parent.renamePath(this.index, newVal);
             }
+        },
+        httpMethods : function() {
+            var result = {};
+            for (var m in this.methods) {
+                if (this.path[this.methods[m]]) {
+                    result[this.methods[m]] = this.path[this.methods[m]];
+                }
+            }
+            return result;
         }
     },
 	data: function() {
-		return {}
+		return {
+            methods : ['get','post','put','delete','patch','head','options']
+        }
 	},
     methods : {
 		removePath : function(target) {
             this.$parent.removePath(target);
 	    },
         addOperation : function(template) {
-            var methods = ['get','post','put','delete','head','patch','options'];
             var index = 0;
-            while (this.path[methods[index]] && index<methods.length) {
+            while (this.path[this.methods[index]] && index<this.methods.length) {
                 index++;
             }
-            if (index<methods.length) {
+            if (index<this.methods.length) {
                 var op = {};
                 op.summary = template && template.summary || '';
                 op.description = template && template.description || '';
                 op.parameters = template && template.parameters || [];
                 op.operationId = template && template.operationId || '';
-                Vue.set(this.path, methods[index], op);
+                Vue.set(this.path, this.methods[index], op);
             }
         },
         removeOperation : function(target) {
@@ -41,14 +51,14 @@ Vue.component('api-resource', {
         },
         renameOperation : function(oldMethod, newMethod) {
             if (this.path[newMethod]) {
-                Vue.set(this.path, 'temp', this.path[newMethod]);
+                Vue.set(this.path, 'x-temp', this.path[newMethod]);
                 Vue.delete(this.path, newMethod);
             }
             Vue.set(this.path, newMethod, this.path[oldMethod]);
             Vue.delete(this.path, oldMethod);
             if (this.path.temp) {
                 Vue.set(this.path, oldMethod, this.path.temp);
-                Vue.delete(this.path, 'temp');
+                Vue.delete(this.path, 'x-temp');
             }
         }
     },

@@ -39,4 +39,6 @@ TODO
 ----
 
 * Add validation on form fields
+* De-reference path-item `$ref`s (rare)
+* Handle responses / examples
 

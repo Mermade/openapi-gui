@@ -79,6 +79,16 @@ Vue.component('gui-main', {
 			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
 		},
 
+		addConsumes : function() {
+			if (!this.openapi.consumes) Vue.set(this.openapi, 'consumes', []);
+			this.openapi.consumes.push('mime/type');
+		},
+
+		addProduces : function() {
+			if (!this.openapi.produces) Vue.set(this.openapi, 'produces', []);
+			this.openapi.produces.push('mime/type');
+		},
+
 		loadSchema: function () {
 			var schema;
 			try {
