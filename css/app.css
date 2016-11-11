@@ -128,3 +128,12 @@ body {
 #drop-container:hover > ul.dropdown-menu {
     display: block;    
 }
+
+.dropdown-menu {
+    max-width: 300px;
+}
+
+.dropdown-menu li a {
+    white-space: normal;
+    word-wrap : break-word;
+}
