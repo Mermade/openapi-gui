@@ -274,7 +274,7 @@
 								<div class='control-group'>
 									<label class='control-label'> Name </label>
 									<div class='controls'>
-										<input class="span6" v-model="sdName" ng-blur="$ctrl.renameSecurityDefinition(oldValue,sdName)" ng-init="oldValue=0" ng-focus="oldValue=sdName"></input>
+										<input class="span6" v-model="sdName"></input> <!-- TODO use a lazy computed prop -->
 										<a v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
@@ -343,7 +343,7 @@
 										<div class='control-group'>
 											<label class='control-label'> Scope Name </label>
 											<div class='controls'>
-												<input class="span6" v-model="sName" ng-blur="$ctrl.renameScope(sdName,oldValue,sName)" ng-init="oldValue=0" ng-focus="oldValue=sName"></input>
+												<input class="span6" v-model="sName"></input> <!-- TODO use a lazy computed prop -->
 												<a v-on:click="removeScope(sdName,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 											</div>
 										</div>
