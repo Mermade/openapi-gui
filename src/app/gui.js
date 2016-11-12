@@ -14,6 +14,7 @@ Vue.component('gui-main', {
 			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
 			if (!this.openapi.paths['/newPath']) {
 				Vue.set(this.openapi.paths, '/newPath', {});
+				$('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
 			}
 		},
 
@@ -108,7 +109,7 @@ Vue.component('gui-main', {
 			if (!this.importschema) this.importschema = {};
 			if (!this.importschema.text) {
 				schema = emptySwagger;
-				this.importschema.text = JSON.stringify(empty, null, 2);
+				this.importschema.text = JSON.stringify(emptySwagger, null, 2);
 			}
 
 			if (schema.swagger == '2.0') {
