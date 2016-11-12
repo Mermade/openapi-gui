@@ -39,5 +39,10 @@ Vue.component('api-method', {
             return '#'+this._uid;
         }
     },
+    beforeMount : function() {
+        if (!this.method.externalDocs) {
+            Vue.set(this.method, 'externalDocs', {});
+        }
+    },
 	template: '#template-method'
 });

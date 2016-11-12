@@ -31,6 +31,20 @@
         <div class="accordion-inner">
             
             <div class='control-group'>
+                <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
+                <div class='controls'>
+                    <select v-model="httpMethod">
+                        <option value="GET">GET</option>
+                        <option value="POST">POST</option>
+                        <option value="PUT">PUT</option>
+                        <option value="DELETE">DELETE</option>
+                        <option value="HEAD">HEAD</option>
+                        <option value="PATCH">PATCH</option>
+                        <option value="OPTIONS">OPTIONS</option>
+                    </select>
+                </div>
+            </div>
+            <div class='control-group'>
                 <label class='control-label'> OperationId </label>
                 <div class='controls'>
                     <input class='methodName' v-model="method.operationId" />
@@ -48,20 +62,23 @@
                     <textarea class="span8" v-model="method.description"></textarea>
                 </div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
-                <div class='controls'>
-                    <select v-model="httpMethod">
-                        <option value="GET">GET</option>
-                        <option value="POST">POST</option>
-                        <option value="PUT">PUT</option>
-                        <option value="DELETE">DELETE</option>
-                        <option value="HEAD">HEAD</option>
-                        <option value="PATCH">PATCH</option>
-                        <option value="OPTIONS">OPTIONS</option>
-                    </select>
+            <details>
+                <summary>External Docs</summary>
+                <div class="well">
+                    <div class='control-group'>
+                        <label class='control-label'> Docs Description </label>
+                        <div class='controls'>
+                            <textarea class="span8" v-model="method.externalDocs.description"></textarea>
+                        </div>
+                    </div>
+                    <div class='control-group'>
+                        <label class='control-label'> Docs URL </label>
+                        <div class='controls'>
+                            <input type="url" class="span8" v-model="method.externalDocs.url">
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </details>
             <div class='control-group'>
                 <label class='control-label'> Deprecated </label>
                 <div class='controls'>
