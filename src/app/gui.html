@@ -270,13 +270,13 @@
 								<br/>
 								<br/>
 							</div>
-							<api-secdef v-for="(sd, sdname) in openapi.securityDefinitions" :sd='sd' :sdName='sdname' :openapi='openapi' inline-template>
+							<api-secdef v-for="(sd, sdname) in openapi.securityDefinitions" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
 								<div>
 									<div class='control-group'>
 										<label class='control-label'> Name </label>
 										<div class='controls'>
-											<input class="span6" v-model="sdname"></input> <!-- TODO use a lazy computed prop -->
-											<a v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+											<input class="span6" v-model.lazy="secname"></input>
+											<a v-on:click="removeSecurityDefinition(sdname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
 									<div class='control-group'>
@@ -292,7 +292,7 @@
 									<div class='control-group'>
 										<label class='control-label'> Apply to all paths </label>
 										<div class='controls'>
-											<input type='checkbox' :value='sdName' v-model='openapi.security'></input>
+											<input type='checkbox' :value='sdname' v-model='openapi.security'></input>
 										</div>
 										<!-- TODO when applying oAuth2 to all paths, copy the scopes -->
 									</div>
@@ -338,14 +338,14 @@
 											</div>
 										</div>
 										<div>
-											<a class="btn btn-info" v-on:click="addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
+											<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
 										</div>
 										<div v-for="(sDesc, sName) in sd.scopes">
 											<div class='control-group'>
 												<label class='control-label'> Scope Name </label>
 												<div class='controls'>
 													<input class="span6" v-model="sName"></input> <!-- TODO use a lazy computed prop -->
-													<a v-on:click="removeScope(sdName,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+													<a v-on:click="removeScope(sdname,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 												</div>
 											</div>
 											<div class='control-group'>

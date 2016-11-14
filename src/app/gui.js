@@ -62,6 +62,11 @@ Vue.component('gui-main', {
 			}
 		},
 
+		renameSecurityDefinition: function (oldName, newName) {
+			Vue.set(this.openapi.securityDefinitions, newName, this.openapi.securityDefinitions[oldName]);
+			Vue.delete(this.openapi.securityDefinitions, oldName);
+		},
+
 		removeSecurityDefinition: function (index) {
 			this.$root.save();
 			Vue.delete(this.openapi.securityDefinitions, index);
@@ -177,6 +182,16 @@ Vue.component('gui-main', {
 
 Vue.component('api-secdef', {
 	props: ['openapi', 'sd', 'sdname'],
+	computed: {
+		secname: {
+			get : function() {
+				return this.sdname;
+			},
+			set : function(newVal) {
+				this.$parent.renameSecurityDefinition(this.sdname, newVal);
+			}
+		}
+	},
 	data: function() {
 		return {}
 	}
