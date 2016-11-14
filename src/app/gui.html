@@ -328,35 +328,37 @@
 										<div class='control-group'>
 											<label class='control-label'> Authorization URL </label>
 											<div class='controls'>
-												<input class="span6" v-model="sd.authorizationUrl"></input>
+												<input class="span6" v-model="sd.authorizationUrl">
 											</div>
 										</div>
 										<div class='control-group'>
 											<label class='control-label'> Token URL </label>
 											<div class='controls'>
-												<input class="span6" v-model="sd.tokenUrl"></input>
+												<input class="span6" v-model="sd.tokenUrl">
 											</div>
 										</div>
 										<div>
 											<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
 										</div>
-										<div v-for="(sDesc, sName) in sd.scopes">
-											<div class='control-group'>
-												<label class='control-label'> Scope Name </label>
-												<div class='controls'>
-													<input class="span6" v-model="sName"></input> <!-- TODO use a lazy computed prop -->
-													<a v-on:click="removeScope(sdname,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+										<api-scope v-for="(sdesc, sname) in sd.scopes" :sd="sd" :sdname="sdname" :sname="sname" inline-template>
+											<div>
+												<div class='control-group'>
+													<label class='control-label'> Scope Name </label>
+													<div class='controls'>
+														<input class="span6" v-model.lazy="scopename">
+														<a v-on:click="removeScope(sdname,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+													</div>
+												</div>
+												<div class='control-group'>
+													<label class='control-label'> Description </label>
+													<div class='controls'>
+														<input class="span6" v-model="sd.scopes[sname]">
+													</div>
 												</div>
 											</div>
-											<div class='control-group'>
-												<label class='control-label'> Description </label>
-												<div class='controls'>
-													<input class="span6" v-model="sd.scopes[sName]"></input>
-												</div>
-											</div>
-										</div>
+										</api-scope>
+										<hr/>
 									</div>
-									<hr/>
 								</div>
 							</api-secdef>
 						</form>
@@ -384,16 +386,16 @@
 								<a id="drop1" href="#" role="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 									Navigation <b class="caret"></b>
 								</a>
-							<ul id="resourceList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-								<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
-									<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
-									<ul class='dropdown-menu'>
-										<li v-for="(m,mkey) in path">
-											<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
+								<ul id="resourceList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+									<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
+										<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
+										<ul class='dropdown-menu'>
+											<li v-for="(m,mkey) in path">
+												<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
 							</div>
 						</div>
 					</div>

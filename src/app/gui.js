@@ -192,31 +192,30 @@ Vue.component('api-secdef', {
 			}
 		}
 	},
+	methods : {
+		renameScope : function(oldName, newName) {
+			Vue.set(this.sd.scopes, newName, this.sd.scopes[oldName]);
+			Vue.delete(this.sd.scopes, oldName);
+		}
+	},
 	data: function() {
 		return {}
 	}
 });
 
 Vue.component('api-scope', {
+	props: ["sd", "sname", "sdname"],
+	computed: {
+		scopename: {
+			get : function() {
+				return this.sname;
+			},
+			set : function(newVal) {
+				this.$parent.renameScope(this.sname, newVal);
+			}
+		} 
+	},
 	data: function() {
 		return {}
 	}
 });
-
-/*
-
-	  this.renameSecurityDefinition = function(oldName, newName) {
-	    if ((newName != oldName) && (newName != '')) {
-	      this.apiConfig.securityDefinitions[newName] = this.apiConfig.securityDefinitions[oldName];
-		  delete this.apiConfig.securityDefinitions[oldName];
-		}
-
-	  this.renameScope = function(sdName, oldName, newName) {
-	    if (newName != oldName) {
-	      this.apiConfig.securityDefinitions[sdName].scopes[newName] = this.apiConfig.securityDefinitions[sdName].scopes[oldName];
-		  delete this.apiConfig.securityDefinitions[sdName].scopes[oldName];
-		}
-	  };
-
-)};
-*/
