@@ -1,29 +1,29 @@
 Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
-	data: function() {
+	data: function () {
 		return {}
 	},
 	methods: {
 
-	  showResource : function(key) {
-			var target = 'resource_'+key.split('/').join('').split('{').join('').split('}').join('');
+		showResource: function (key) {
+			var target = 'resource_' + key.split('/').join('').split('{').join('').split('}').join('');
 			document.getElementById(target).scrollIntoView();
-	  },
+		},
 
-		addResource : function() {
+		addResource: function () {
 			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
 			if (!this.openapi.paths['/newPath']) {
 				Vue.set(this.openapi.paths, '/newPath', {});
-				$('html,body').animate({scrollTop: document.body.scrollHeight},"fast");
+				$('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
 			}
 		},
 
-		removePath : function(target) {
+		removePath: function (target) {
 			this.$root.save();
-			Vue.delete(this.openapi.paths,target);
+			Vue.delete(this.openapi.paths, target);
 		},
 
-		renamePath : function(oldPath, newPath) {
+		renamePath: function (oldPath, newPath) {
 			Vue.set(this.openapi.paths, newPath, this.openapi.paths[oldPath]);
 			Vue.delete(this.openapi.paths, oldPath);
 		},
@@ -38,7 +38,7 @@ Vue.component('gui-main', {
 			});
 		},
 
-		addTag : function() {
+		addTag: function () {
 			if (!this.openapi.tags.newTag) {
 				var newTag = {};
 				newTag.name = 'newTag';
@@ -47,12 +47,12 @@ Vue.component('gui-main', {
 			}
 		},
 
-		removeTag : function(index) {
+		removeTag: function (index) {
 			this.$root.save();
 			this.openapi.tags.splice(index, 1);
 		},
 
-		addSecurityDefinition : function() {
+		addSecurityDefinition: function () {
 			if (!this.openapi.securityDefinitions.newSecurityDef) {
 				var newSecDef = {};
 				newSecDef.type = 'apiKey';
@@ -62,30 +62,30 @@ Vue.component('gui-main', {
 			}
 		},
 
-		removeSecurityDefinition : function(index) {
+		removeSecurityDefinition: function (index) {
 			this.$root.save();
 			Vue.delete(this.openapi.securityDefinitions, index);
 		},
 
-		addScope : function(sdName) {
+		addScope: function (sdName) {
 			var secDef = this.openapi.securityDefinitions[sdName];
 			if (!secDef.scopes) secDef.scopes = {};
 			if (!secDef.scopes.newScope) {
-				Vue.set(secDef.scopes, 'newScope','description');
+				Vue.set(secDef.scopes, 'newScope', 'description');
 			}
 		},
 
-		removeScope : function(sdName, sName) {
+		removeScope: function (sdName, sName) {
 			this.$root.save();
 			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
 		},
 
-		addConsumes : function() {
+		addConsumes: function () {
 			if (!this.openapi.consumes) Vue.set(this.openapi, 'consumes', []);
 			this.openapi.consumes.push('mime/type');
 		},
 
-		addProduces : function() {
+		addProduces: function () {
 			if (!this.openapi.produces) Vue.set(this.openapi, 'produces', []);
 			this.openapi.produces.push('mime/type');
 		},
@@ -122,7 +122,7 @@ Vue.component('gui-main', {
 			}
 		},
 
-  		renderOutput : function() {
+		renderOutput: function () {
 			// Pretty print has an issue correctly rendering output when we modify
 			// the content in an already "prettified" element. This hack creates a
 			// new element so prettyPrint() will correctly re-render the output
@@ -130,15 +130,15 @@ Vue.component('gui-main', {
 			output = JSON.stringify(this.openapi, null, 4);
 			$('#pretty-json').html(output);
 			clippy = new Clipboard('#copy-json');
-			$('pre code').each(function(i, block) {
+			$('pre code').each(function (i, block) {
 				hljs.highlightBlock(block);
 			});
 			var data = "text/json;charset=utf-8," + encodeURIComponent(output);
-			$('#download-output').attr('href','data:' + data);
-			$('#download-output').attr('download','swagger.json');
+			$('#download-output').attr('href', 'data:' + data);
+			$('#download-output').attr('download', 'swagger.json');
 		},
 
-    	renderOutputYaml : function() {
+		renderOutputYaml: function () {
 			$('#yaml-output').html('<pre class="prettyprint"><code id="pretty-yaml"></code></pre>');
 			try {
 				output = jsyaml.dump(this.openapi);
@@ -148,7 +148,7 @@ Vue.component('gui-main', {
 			}
 			$('#pretty-yaml').html(output);
 			clippy = new Clipboard('#copy-yaml');
-			$('pre code').each(function(i, block) {
+			$('pre code').each(function (i, block) {
 				hljs.highlightBlock(block);
 			});
 			var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
@@ -156,16 +156,16 @@ Vue.component('gui-main', {
 			$('#download-yaml').attr('download', 'swagger.yaml');
 		},
 
-		scrollTop : function() {
-	    	var elem = document.getElementById('scrollTop');
+		scrollTop: function () {
+			var elem = document.getElementById('scrollTop');
 			elem.scrollIntoView();
-	  	},
+		},
 
-	  	save : function() {
+		save: function () {
 			this.$root.save();
 		},
 
-	  	undo : function() {
+		undo: function () {
 			if (window.localStorage) {
 				this.openapi = JSON.parse(window.localStorage.getItem('swagger2'));
 			}
@@ -173,6 +173,19 @@ Vue.component('gui-main', {
 
 	},
 	template: '#template-gui-main'
+});
+
+Vue.component('api-secdef', {
+	props: ['openapi', 'sd', 'sdname'],
+	data: function() {
+		return {}
+	}
+});
+
+Vue.component('api-scope', {
+	data: function() {
+		return {}
+	}
 });
 
 /*

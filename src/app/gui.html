@@ -270,103 +270,105 @@
 								<br/>
 								<br/>
 							</div>
-							<div v-for="(sd, sdName) in openapi.securityDefinitions">
-								<div class='control-group'>
-									<label class='control-label'> Name </label>
-									<div class='controls'>
-										<input class="span6" v-model="sdName"></input> <!-- TODO use a lazy computed prop -->
-										<a v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
-									</div>
-								</div>
-								<div class='control-group'>
-									<label class='control-label' for="selSdType"> Type </label>
-									<div class='controls'>
-										<select name="selSdType" v-model="sd.type">
-											<option value="apiKey">API Key</option>
-											<option value="oauth2">oAuth2</option>
-											<option value="basic">Basic Authentication</option>
-										</select>
-									</div>
-								</div>
-								<div class='control-group'>
-									<label class='control-label'> Apply to all paths </label>
-									<div class='controls'>
-										<input type='checkbox' :value='sdName' v-model='openapi.security'></input>
-									</div>
-									<!-- TODO when applying oAuth2 to all paths, copy the scopes -->
-								</div>
-								<div v-if="sd.type == 'apiKey'" class='animate-if'>
+							<api-secdef v-for="(sd, sdname) in openapi.securityDefinitions" :sd='sd' :sdName='sdname' :openapi='openapi' inline-template>
+								<div>
 									<div class='control-group'>
-										<label class='control-label'> Parameter Name </label>
+										<label class='control-label'> Name </label>
 										<div class='controls'>
-											<input class="span6" v-model="sd.name"></input>
+											<input class="span6" v-model="sdname"></input> <!-- TODO use a lazy computed prop -->
+											<a v-on:click="removeSecurityDefinition(sdName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
 									<div class='control-group'>
-										<label class='control-label'> Location </label>
+										<label class='control-label' for="selSdType"> Type </label>
 										<div class='controls'>
-											<select name="selLocation" v-model="sd.in">
-												<option value="header">Header</option>
-												<option value="query">Query</option>
-											</select>
-										</div>
-									</div>
-								</div>
-								<div v-if="sd.type == 'oauth2'" class='animate-if'>
-									<div class='control-group'>
-										<label class='control-label'> Flow </label>
-										<div class='controls'>
-											<select name="selFlow" v-model="sd.flow">
-												<option value="implicit">Implicit</option>
-												<option value="password">Password</option>
-												<option value="application">Application</option>
-												<option value="accessCode">AccessCode</option>
+											<select name="selSdType" v-model="sd.type">
+												<option value="apiKey">API Key</option>
+												<option value="oauth2">oAuth2</option>
+												<option value="basic">Basic Authentication</option>
 											</select>
 										</div>
 									</div>
 									<div class='control-group'>
-										<label class='control-label'> Authorization URL </label>
+										<label class='control-label'> Apply to all paths </label>
 										<div class='controls'>
-											<input class="span6" v-model="sd.authorizationUrl"></input>
+											<input type='checkbox' :value='sdName' v-model='openapi.security'></input>
 										</div>
+										<!-- TODO when applying oAuth2 to all paths, copy the scopes -->
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> Token URL </label>
-										<div class='controls'>
-											<input class="span6" v-model="sd.tokenUrl"></input>
-										</div>
-									</div>
-									<div>
-										<a class="btn btn-info" v-on:click="addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
-									</div>
-									<div v-for="(sDesc, sName) in sd.scopes">
+									<div v-if="sd.type == 'apiKey'" class='animate-if'>
 										<div class='control-group'>
-											<label class='control-label'> Scope Name </label>
+											<label class='control-label'> Parameter Name </label>
 											<div class='controls'>
-												<input class="span6" v-model="sName"></input> <!-- TODO use a lazy computed prop -->
-												<a v-on:click="removeScope(sdName,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+												<input class="span6" v-model="sd.name"></input>
 											</div>
 										</div>
 										<div class='control-group'>
-											<label class='control-label'> Description </label>
+											<label class='control-label'> Location </label>
 											<div class='controls'>
-												<input class="span6" v-model="sd.scopes[sName]"></input>
+												<select name="selLocation" v-model="sd.in">
+													<option value="header">Header</option>
+													<option value="query">Query</option>
+												</select>
 											</div>
 										</div>
 									</div>
+									<div v-if="sd.type == 'oauth2'" class='animate-if'>
+										<div class='control-group'>
+											<label class='control-label'> Flow </label>
+											<div class='controls'>
+												<select name="selFlow" v-model="sd.flow">
+													<option value="implicit">Implicit</option>
+													<option value="password">Password</option>
+													<option value="application">Application</option>
+													<option value="accessCode">AccessCode</option>
+												</select>
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> Authorization URL </label>
+											<div class='controls'>
+												<input class="span6" v-model="sd.authorizationUrl"></input>
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> Token URL </label>
+											<div class='controls'>
+												<input class="span6" v-model="sd.tokenUrl"></input>
+											</div>
+										</div>
+										<div>
+											<a class="btn btn-info" v-on:click="addScope(sdName)"><i class='icon-plus icon-white'></i> Add Scope</a>
+										</div>
+										<div v-for="(sDesc, sName) in sd.scopes">
+											<div class='control-group'>
+												<label class='control-label'> Scope Name </label>
+												<div class='controls'>
+													<input class="span6" v-model="sName"></input> <!-- TODO use a lazy computed prop -->
+													<a v-on:click="removeScope(sdName,sName)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+												</div>
+											</div>
+											<div class='control-group'>
+												<label class='control-label'> Description </label>
+												<div class='controls'>
+													<input class="span6" v-model="sd.scopes[sName]"></input>
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr/>
 								</div>
-								<hr/>
-							</div>
+							</api-secdef>
 						</form>
 					</div>
 				</div>
 
 				<div class="tab-pane" id="output">
-					<api-definition config="$ctrl.apiConfig" />
+					<api-definition/>
 				</div>
 
 				<div class="tab-pane" id="yaml">
-					<api-yaml config="$ctrl.apiConfig" />
+					<api-yaml/>
 				</div>
 
 				<div class='tab-pane row-fluid active' id='editor'>
