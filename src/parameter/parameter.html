@@ -53,7 +53,7 @@
                             <option value="query">Query</option>
                             <option value="header">Header</option>
                             <option value="body">Body</option>
-                            <option value="form">Form</option>
+                            <option value="formData">Form</option>
                         </select>
 					</div>
 				</div>
@@ -76,8 +76,14 @@
 					<div class='controls'>
 						<input v-model="parameter.default" />
 					</div>
-					<!-- TODO enums, allowEmptyValue, -->
 				</div>
+				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
+					<label class='control-label'> Allow Empty Value </label>
+					<div class='controls'>
+						<input type="checkbox" v-model="parameter.allowEmptyValue" />
+					</div>
+				</div>
+				<!-- TODO enums, allowEmptyValue, -->
 				<div class='control-group' v-if="effectiveFormats.length">
 					<label class='control-label'> Format </label>
 					<div class='controls'>
