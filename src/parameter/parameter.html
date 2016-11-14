@@ -77,13 +77,28 @@
 						<input v-model="parameter.default" />
 					</div>
 				</div>
-				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
+				<div v-if="!isComplex()">
+					<a class='btn btn-info pull-right' v-on:click="addEnum()">
+						<i class='icon-plus icon-white'></i> Add Enum
+					</a>
+					<div v-for="(evalue,eindex) in parameter.enum">
+						<div class='control-group'>
+							<label class='control-label'> Enum Value </label>
+							<div class='controls'>
+								<input v-model="parameter.enum[eindex]">
+								<a class='btn btn-danger pull-right' v-on:click="removeEnum(eindex)">
+									<i class='icon-trash icon-white'></i> Delete
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+ 				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
 					<label class='control-label'> Allow Empty Value </label>
 					<div class='controls'>
 						<input type="checkbox" v-model="parameter.allowEmptyValue" />
 					</div>
 				</div>
-				<!-- TODO enums, allowEmptyValue, -->
 				<div class='control-group' v-if="effectiveFormats.length">
 					<label class='control-label'> Format </label>
 					<div class='controls'>

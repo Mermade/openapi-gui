@@ -76,6 +76,15 @@ Vue.component('api-parameter', {
         },
         removeParameter : function() {
             this.$parent.removeParameter(this.index);
+        },
+        addEnum : function() {
+            if (!this.parameter.enum) {
+                Vue.set(this.parameter, 'enum', []);
+            }
+            this.parameter.enum.push('newValue');
+        },
+        removeEnum : function(index) {
+            this.parameter.enum.splice(index, 1);
         }
     },
 	template: '#template-parameter',
