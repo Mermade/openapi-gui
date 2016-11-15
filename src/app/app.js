@@ -40,7 +40,6 @@ function app_main() {
         methods : {
             save : function() {
                 if (window.localStorage) {
-                    alert(JSON.stringify(this.container.openapi));
                     window.localStorage.setItem('swagger2', JSON.stringify(this.container.openapi));
                 }
             }
