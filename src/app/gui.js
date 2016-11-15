@@ -73,19 +73,7 @@ Vue.component('gui-main', {
 		removeSecurityDefinition: function (index) {
 			this.$root.save();
 			Vue.delete(this.openapi.securityDefinitions, index);
-		},
-
-		addScope: function (sdName) {
-			var secDef = this.openapi.securityDefinitions[sdName];
-			if (!secDef.scopes) Vue.set(secDef, 'scopes',  {});
-			if (!secDef.scopes.newScope) {
-				Vue.set(secDef.scopes, 'newScope', 'description');
-			}
-		},
-
-		removeScope: function (sdName, sName) {
-			this.$root.save();
-			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
+			// TODO delete from top level and operation security requirement objects
 		},
 
 		addConsumes: function () {
@@ -216,18 +204,38 @@ Vue.component('api-secdef', {
 		},
 		appliesToAllPaths : {
 			get : function() {
-				return this.openapi.security[this.sdname] ? true : false;
+				var index = -1;
+				for (var s=0;s<this.openapi.security.length;s++) {
+					var sr = this.openapi.security[s];
+					if (typeof sr[this.sdname] !== 'undefined') {
+						index = s;
+					}
+				}
+				return index >= 0 ? true : false;
 			},
 			set : function(newVal) {
 				if (newVal) {
 					if (!this.openapi.security) {
-						Vue.set(this.openapi, 'security', {});
+						Vue.set(this.openapi, 'security', []);
 					}
-					// TODO when applying oAuth2 to all paths, copy the scopes
-					Vue.set(this.openapi.security, this.sdname, []);
+					var newSr = {};
+					newSr[this.sdname] = [];
+					for (var s in this.sd.scopes) {
+						newSr[this.sdname].push(s);
+					}
+					this.openapi.security.push(newSr);
 				}
 				else {
-					Vue.delete(this.openapi.security, this.sdname);
+					var index = -1;
+					for (var s=0;s<this.openapi.security.length;s++) {
+						var sr = this.openapi.security[s];
+						if (typeof sr[this.sdname] !== 'undefined') {
+							index = s;
+						}
+					}
+					if (index >= 0) {
+						this.openapi.security.splice(index, 1);
+					}
 				}
 			}
 		}
@@ -236,9 +244,20 @@ Vue.component('api-secdef', {
 		removeSecurityDefinition : function(sdname) {
 			this.$parent.removeSecurityDefinition(sdname);
 		},
+		addScope: function (sdName) {
+			var secDef = this.openapi.securityDefinitions[sdName];
+			if (!secDef.scopes) Vue.set(secDef, 'scopes',  {});
+			if (!secDef.scopes.newScope) {
+				Vue.set(secDef.scopes, 'newScope', 'description');
+			}
+		},
 		renameScope : function(oldName, newName) {
 			Vue.set(this.sd.scopes, newName, this.sd.scopes[oldName]);
 			Vue.delete(this.sd.scopes, oldName);
+		},
+		removeScope: function (sdName, sName) {
+			this.$root.save();
+			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
 		}
 	},
 	data: function() {
