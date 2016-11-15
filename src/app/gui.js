@@ -70,10 +70,32 @@ Vue.component('gui-main', {
 			Vue.delete(this.openapi.securityDefinitions, oldName);
 		},
 
+		filterSecurityDefinition: function(security, sdname) {
+			var index = -1;
+			for (var s=0;s<security.length;s++) {
+				var sr = security[s];
+				if (typeof sr[sdname] !== 'undefined') {
+					index = s;
+				}
+			}
+			if (index >= 0) {
+				security.splice(index, 1);
+			}
+		},
+
 		removeSecurityDefinition: function (index) {
 			this.$root.save();
 			Vue.delete(this.openapi.securityDefinitions, index);
-			// TODO delete from top level and operation security requirement objects
+			this.filterSecurityDefinition(this.openapi.security, index);
+			for (var p in this.openapi.paths) {
+				var path = this.openapi.paths[p];
+				for (var o in path) {
+					var op = path[o];
+					if (op.security) {
+						this.filterSecurityDefinition(op.security, index);
+					}
+				}
+			}
 		},
 
 		addConsumes: function () {
@@ -226,16 +248,7 @@ Vue.component('api-secdef', {
 					this.openapi.security.push(newSr);
 				}
 				else {
-					var index = -1;
-					for (var s=0;s<this.openapi.security.length;s++) {
-						var sr = this.openapi.security[s];
-						if (typeof sr[this.sdname] !== 'undefined') {
-							index = s;
-						}
-					}
-					if (index >= 0) {
-						this.openapi.security.splice(index, 1);
-					}
+					this.$parent.filterSecurityDefinition(this.openapi.security, this.sdname);
 				}
 			}
 		}
