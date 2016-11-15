@@ -37,12 +37,16 @@ Vue.component('api-resource', {
                 index++;
             }
             if (index<this.methods.length) {
+                var responses = {};
+                responses["200"] = {
+                    description: "default"
+                };
                 var op = {};
                 op.summary = template && template.summary || '';
                 op.description = template && template.description || '';
                 op.parameters = template && template.parameters || [];
                 op.operationId = template && template.operationId || '';
-                op.responses = template && template.responses || {};
+                op.responses = template && template.responses || responses;
                 Vue.set(this.path, this.methods[index], op);
             }
         },
