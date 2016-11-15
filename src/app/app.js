@@ -31,14 +31,17 @@ importschema.text = JSON.stringify(openapi, null, 2);
 function app_main() {
     var vm = new Vue({
         data: {
-            openapi: openapi,
+            container: {
+                openapi: openapi
+            },
             importschema : importschema
         },
         el: '#main-container' ,
         methods : {
             save : function() {
                 if (window.localStorage) {
-                    window.localStorage.setItem('swagger2', JSON.stringify(this.openapi));
+                    alert(JSON.stringify(this.container.openapi));
+                    window.localStorage.setItem('swagger2', JSON.stringify(this.container.openapi));
                 }
             }
         }

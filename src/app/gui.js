@@ -53,12 +53,15 @@ Vue.component('gui-main', {
 		},
 
 		addSecurityDefinition: function () {
+			if (!this.openapi.securityDefinitions) {
+				Vue.set(this.openapi, 'securityDefinitions', {});
+			}
 			if (!this.openapi.securityDefinitions.newSecurityDef) {
 				var newSecDef = {};
 				newSecDef.type = 'apiKey';
 				newSecDef.name = 'api_key';
 				newSecDef.in = 'query';
-				this.openapi.securityDefinitions.newSecurityDef = newSecDef;
+				Vue.set(this.openapi.securityDefinitions, 'newSecurityDef', newSecDef);
 			}
 		},
 
@@ -118,9 +121,9 @@ Vue.component('gui-main', {
 			}
 
 			if (schema.swagger == '2.0') {
-				this.openapi = schema;
 				if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
-				this.openapi = postProcessDefinition(this.openapi);
+				schema = postProcessDefinition(schema);
+				Vue.set(this.$root.container, 'openapi', schema);
 			}
 			else {
 				bootbox.alert('Swagger version must be 2.0');
@@ -172,7 +175,7 @@ Vue.component('gui-main', {
 
 		undo: function () {
 			if (window.localStorage) {
-				this.openapi = JSON.parse(window.localStorage.getItem('swagger2'));
+				Vue.set(this.$root.container, 'openapi', JSON.parse(window.localStorage.getItem('swagger2')));
 			}
 		}
 
