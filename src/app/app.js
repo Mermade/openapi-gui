@@ -54,6 +54,12 @@ function app_main() {
                         }
                     }
                 }
+                for (var t in def.tags) {
+                    var tag = def.tags[t];
+                    if (tag.externalDocs && !tag.externalDocs.url) {
+                        Vue.delete(tag, 'externalDocs');
+                    }
+                }
                 return def;
             }
         }

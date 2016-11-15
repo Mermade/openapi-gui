@@ -39,6 +39,9 @@ Vue.component('gui-main', {
 		},
 
 		addTag: function () {
+			if (!this.openapi.tags) {
+				Vue.set(this.openapi, 'tags', []);
+			}
 			if (!this.openapi.tags.newTag) {
 				var newTag = {};
 				newTag.name = 'newTag';
