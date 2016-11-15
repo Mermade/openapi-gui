@@ -42,6 +42,7 @@ Vue.component('api-resource', {
                 op.description = template && template.description || '';
                 op.parameters = template && template.parameters || [];
                 op.operationId = template && template.operationId || '';
+                op.responses = template && template.responses || {};
                 Vue.set(this.path, this.methods[index], op);
             }
         },

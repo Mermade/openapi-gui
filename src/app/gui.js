@@ -77,7 +77,7 @@ Vue.component('gui-main', {
 
 		addScope: function (sdName) {
 			var secDef = this.openapi.securityDefinitions[sdName];
-			if (!secDef.scopes) secDef.scopes = {};
+			if (!secDef.scopes) Vue.set(secDef, 'scopes',  {});
 			if (!secDef.scopes.newScope) {
 				Vue.set(secDef.scopes, 'newScope', 'description');
 			}
@@ -135,7 +135,8 @@ Vue.component('gui-main', {
 			// the content in an already "prettified" element. This hack creates a
 			// new element so prettyPrint() will correctly re-render the output
 			$('#json-output').html('<pre class="prettyprint"><code id="pretty-json"></code></pre>');
-			output = JSON.stringify(this.openapi, null, 4);
+			var def = this.$root.postProcessDefinition();
+			output = JSON.stringify(def, null, 4);
 			$('#pretty-json').html(output);
 			clippy = new Clipboard('#copy-json');
 			$('pre code').each(function (i, block) {
@@ -148,8 +149,9 @@ Vue.component('gui-main', {
 
 		renderOutputYaml: function () {
 			$('#yaml-output').html('<pre class="prettyprint"><code id="pretty-yaml"></code></pre>');
+			var def = this.$root.postProcessDefinition();
 			try {
-				output = jsyaml.dump(this.openapi);
+				output = jsyaml.dump(def);
 			}
 			catch (ex) {
 				alert(ex.message);
@@ -193,9 +195,47 @@ Vue.component('api-secdef', {
 			set : function(newVal) {
 				this.$parent.renameSecurityDefinition(this.sdname, newVal);
 			}
+		},
+		type : {
+			get : function() {
+				return this.sd.type;
+			},
+			set : function(newVal) {
+				this.sd.type = newVal;
+				if (newVal != 'apiKey') {
+					Vue.delete(this.sd, 'in');
+					Vue.delete(this.sd, 'name');
+				}
+				if (newVal != 'oauth2') {
+					Vue.delete(this.sd, 'authorizationUrl');
+					Vue.delete(this.sd, 'tokenUrl');
+					Vue.delete(this.sd, 'flow');
+					Vue.delete(this.sd, 'scopes');
+				}
+			}
+		},
+		appliesToAllPaths : {
+			get : function() {
+				return this.openapi.security[this.sdname] ? true : false;
+			},
+			set : function(newVal) {
+				if (newVal) {
+					if (!this.openapi.security) {
+						Vue.set(this.openapi, 'security', {});
+					}
+					// TODO when applying oAuth2 to all paths, copy the scopes
+					Vue.set(this.openapi.security, this.sdname, []);
+				}
+				else {
+					Vue.delete(this.openapi.security, this.sdname);
+				}
+			}
 		}
 	},
 	methods : {
+		removeSecurityDefinition : function(sdname) {
+			this.$parent.removeSecurityDefinition(sdname);
+		},
 		renameScope : function(oldName, newName) {
 			Vue.set(this.sd.scopes, newName, this.sd.scopes[oldName]);
 			Vue.delete(this.sd.scopes, oldName);

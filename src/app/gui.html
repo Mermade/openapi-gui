@@ -282,7 +282,7 @@
 									<div class='control-group'>
 										<label class='control-label' for="selSdType"> Type </label>
 										<div class='controls'>
-											<select name="selSdType" v-model="sd.type">
+											<select name="selSdType" v-model="type">
 												<option value="apiKey">API Key</option>
 												<option value="oauth2">oAuth2</option>
 												<option value="basic">Basic Authentication</option>
@@ -292,9 +292,8 @@
 									<div class='control-group'>
 										<label class='control-label'> Apply to all paths </label>
 										<div class='controls'>
-											<input type='checkbox' :value='sdname' v-model='openapi.security'></input>
+											<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'></input>
 										</div>
-										<!-- TODO when applying oAuth2 to all paths, copy the scopes -->
 									</div>
 									<div v-if="sd.type == 'apiKey'" class='animate-if'>
 										<div class='control-group'>
