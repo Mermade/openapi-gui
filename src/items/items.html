@@ -1,9 +1,8 @@
 <div class="well">
-    <!-- type, format, [items], minItems, maxItems, uniqueItems  ... -->
     <div class='control-group'>
         <label class='control-label'> Item Type </label>
         <div class='controls'>
-            <select v-model="child.type">
+            <select v-model="effectiveType">
                 <option value="string">String</option>
                 <option value="integer">Integer</option>
                 <option value="number">Number</option>
@@ -12,10 +11,11 @@
             </select>
         </div>
     </div>
+    <!-- TODO format -->
     <div class='control-group'>
         <label class='control-label'> Collection Delimiter </label>
         <div class='controls'>
-            <select v-model="child.collectionFormat" required size="2">
+            <select v-model="parent.collectionFormat" required size="2">
                 <option value="csv">Comma</option>
                 <option value="tsv">Tab</option>
                 <option value="ssv">Space</option>

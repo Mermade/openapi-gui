@@ -18,8 +18,10 @@ Vue.component('api-parameter', {
             set : function(newVal) {
                 this.parameter.type = newVal;
                 if (this.parameter.type == 'array') {
-                    this.parameter.items = {};
-                    this.parameter.collectionFormat = 'csv';
+                    var items = {};
+                    items.type = 'string';
+                    Vue.set(this.parameter, 'items', items);
+                    Vue.set(this.parameter, 'collectionFormat', 'csv');
                 }
                 else {
                     Vue.delete(this.parameter, 'items');

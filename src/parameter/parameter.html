@@ -149,7 +149,7 @@
 					</div>
 				</div>
 
-				<api-items v-if="parameter.type == 'array'" :parent="parameter" :child='parameter.items'>
+				<api-items v-if="parameter.type == 'array'" :parent.sync="parameter" :child.sync='parameter.items'>
 				</api-items>
 
 			</div>
