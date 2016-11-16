@@ -1,7 +1,9 @@
 Vue.component('api-method', {
 	props: ['key', 'method', 'index', 'maintags'],
 	data: function() {
-		return {}
+		return {
+            initialised: false
+        }
 	},
     methods: {
         toggleBodyDisplay : function(el) {
@@ -38,6 +40,12 @@ Vue.component('api-method', {
         hashUid : function() {
             return '#'+this._uid;
         },
+        tagId : function() {
+            return 'tags-input'+this._uid;
+        },
+        hashTagId : function() {
+            return '#'+this.tagId;
+        },
         vtags : {
             get : function() {
                 return this.method.tags;
@@ -53,14 +61,17 @@ Vue.component('api-method', {
         }
     },
     mounted : function() {
-        $('.input-tag').tagsinput();
-        $('.input-tag').on('itemAdded', function(event) {
+        $(this.tagId).tagsinput();
+        for (var t in this.method.tags) {
+            $(this.hashTagId).tagsinput('add', this.method.tags[t]);
+        }
+        $(this.hashTagId).on('itemAdded', function(event) {
             // event.item: contains the item. Convert jQuery event to native event for vue.js
             var e = document.createEvent('HTMLEvents');
             e.initEvent('change', true, true);
             this.dispatchEvent(e);
         });
-        $('.input-tag').on('itemRemoved', function(event) {
+        $(this.hashTagId).on('itemRemoved', function(event) {
             // event.item: contains the item. Convert jQuery event to native event for vue.js
             var e = document.createEvent('HTMLEvents');
             e.initEvent('change', true, true);
