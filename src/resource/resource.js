@@ -1,5 +1,5 @@
 Vue.component('api-resource', {
-	props: ['key', 'path', 'index'],
+	props: ['key', 'path', 'index', 'maintags'],
     computed: {
         sanitisePath : function() {
             return 'resource_'+this.index.split('/').join('').split('{').join('').split('}').join('');

@@ -1,5 +1,5 @@
 Vue.component('api-method', {
-	props: ['key', 'method', 'index'],
+	props: ['key', 'method', 'index', 'maintags'],
 	data: function() {
 		return {}
 	},
@@ -37,12 +37,35 @@ Vue.component('api-method', {
         },
         hashUid : function() {
             return '#'+this._uid;
+        },
+        vtags : {
+            get : function() {
+                return this.method.tags;
+            },
+            set : function(newVal) {
+                this.method.tags = newVal;
+            }
         }
     },
     beforeMount : function() {
         if (!this.method.externalDocs) {
             Vue.set(this.method, 'externalDocs', {});
         }
+    },
+    mounted : function() {
+        $('.input-tag').tagsinput();
+        $('.input-tag').on('itemAdded', function(event) {
+            // event.item: contains the item. Convert jQuery event to native event for vue.js
+            var e = document.createEvent('HTMLEvents');
+            e.initEvent('change', true, true);
+            this.dispatchEvent(e);
+        });
+        $('.input-tag').on('itemRemoved', function(event) {
+            // event.item: contains the item. Convert jQuery event to native event for vue.js
+            var e = document.createEvent('HTMLEvents');
+            e.initEvent('change', true, true);
+            this.dispatchEvent(e);
+        });
     },
 	template: '#template-method'
 });

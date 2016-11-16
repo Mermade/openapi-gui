@@ -404,7 +404,7 @@
 					<div class="content forms span9">
 						<form class="form-horizontal" id="config">
 							<div class="resource" v-for="(path,key,index) in openapi.paths">
-								<api-resource :key='key' :path='path' :index='key'></api-resource>
+								<api-resource :key='key' :path='path' :index='key' :maintags='openapi.tags'></api-resource>
 							</div>
 						</form>
 					</div>

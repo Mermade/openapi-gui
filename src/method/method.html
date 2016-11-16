@@ -62,6 +62,14 @@
                     <textarea class="span8" v-model="method.description"></textarea>
                 </div>
             </div>
+            <div class='control-group'>
+                <label class='control-label'> Tags </label>
+                <div class='controls'>
+                    <select class="input-tag" class="span8" multiple v-model='vtags'>
+                        <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
+                    </select>
+                </div>
+            </div>
             <details>
                 <summary>External Docs</summary>
                 <div class="well">
