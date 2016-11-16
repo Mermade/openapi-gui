@@ -24,7 +24,7 @@
   <script src="src/resource/resource.js"></script>
   <script src="src/method/method.js"></script>
   <script src="src/parameter/parameter.js"></script>
-  <script src="src/property/property.js"></script>
+  <script src="src/items/items.js"></script>
   <script src="src/app/gui.js"></script>
 
   <script src="src/api-definition/api-definition.js"></script>
@@ -49,12 +49,12 @@
 
         // Create the Deferred instances that can be handed to $.when()
         var def = [];
-        for (t=0;t<6;t++) {
+        for (t=0;t<7;t++) {
           def.push($.Deferred());
         }
 
         // Set up the chain of events...
-        $.when(def[0], def[1], def[2], def[3], def[4], def[5]).then(function() {
+        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6]).then(function() {
           $('#loading').hide();
           app_main();
         });
@@ -66,6 +66,7 @@
         $('#template-parameter').load('src/parameter/parameter.html', function() { def[3].resolve(); });
         $('#template-definition').load('src/api-definition/output.html', function() { def[4].resolve(); });
         $('#template-yaml').load('src/api-yaml/output.html', function() { def[5].resolve(); });
+        $('#template-items').load('src/items/items.html', function() { def[6].resolve(); });
       });
   </script>
   <div style='display:none'>
@@ -75,6 +76,7 @@
     <div id="template-parameter"></div>
     <div id="template-definition"></div>
     <div id="template-yaml"></div>
+    <div id="template-items"></div>
   </div>
 </body>
 

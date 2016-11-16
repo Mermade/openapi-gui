@@ -1,0 +1,42 @@
+<div class="well">
+    <!-- type, format, [items], minItems, maxItems, uniqueItems  ... -->
+    <div class='control-group'>
+        <label class='control-label'> Item Type </label>
+        <div class='controls'>
+            <select v-model="child.type">
+                <option value="string">String</option>
+                <option value="integer">Integer</option>
+                <option value="number">Number</option>
+                <option value="boolean">Boolean</option>
+                <option value="array">Array</option>
+            </select>
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Collection Delimiter </label>
+        <div class='controls'>
+            <select v-model="child.collectionFormat" required size="2">
+                <option value="csv">Comma</option>
+                <option value="tsv">Tab</option>
+                <option value="ssv">Space</option>
+                <option value="pipes">Pipe</option>
+                <option value="multi">Multiple</option>
+            </select>
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Min. Items </label>
+        <div class='controls'>
+            <input type="number" min="0" step="1" v-model="parent.minItems" />
+        </div>
+        <label class='control-label'> Max. Items </label>
+        <div class='controls'>
+            <input type="number" min="0" step="1" v-model="parent.maxItems" />
+        </div>
+        <label class='control-label'> Unique Items </label>
+        <div class='controls' class="span8">
+            <input type="checkbox" v-model="parent.uniqueItems" />
+        </div>
+    </div>
+    <api-items v-if="child.type == 'array'" :parent="child" :child="child.items"></api-items>
+</div>
