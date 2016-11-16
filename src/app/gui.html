@@ -336,26 +336,28 @@
 												<input type="url" class="span6" v-model="sd.tokenUrl">
 											</div>
 										</div>
-										<div>
-											<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
-										</div>
-										<api-scope v-for="(sdesc, sname) in sd.scopes" :sd="sd" :sdname="sdname" :sname="sname" inline-template>
+										<div class='well'>
 											<div>
-												<div class='control-group'>
-													<label class='control-label'> Scope Name </label>
-													<div class='controls'>
-														<input class="span6" v-model.lazy="scopename">
-														<a v-on:click="removeScope(sdname,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
-													</div>
-												</div>
-												<div class='control-group'>
-													<label class='control-label'> Description </label>
-													<div class='controls'>
-														<input class="span6" v-model="sd.scopes[sname]">
-													</div>
-												</div>
+												<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
-										</api-scope>
+											<api-scope v-for="(sdesc, sname) in sd.scopes" :sd="sd" :sdname="sdname" :sname="sname" inline-template>
+												<div>
+													<div class='control-group'>
+														<label class='control-label'> Scope Name </label>
+														<div class='controls'>
+															<input class="span6" v-model.lazy="scopename">
+															<a v-on:click="removeScope(sdname,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+														</div>
+													</div>
+													<div class='control-group'>
+														<label class='control-label'> Description </label>
+														<div class='controls'>
+															<input class="span6" v-model="sd.scopes[sname]">
+														</div>
+													</div>
+												</div>
+											</api-scope>
+										</div>
 									</div>
 									<hr/>
 								</div>
