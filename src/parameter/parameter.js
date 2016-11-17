@@ -91,7 +91,6 @@ Vue.component('api-parameter', {
     },
 	template: '#template-parameter',
     beforeMount : function() {
-        // TODO patch-in shared path-parameters which are not overridden
         if (this.parameter["$ref"]) {
             var ptr = this.parameter["$ref"].substr(1); // remove #
             try {
@@ -105,5 +104,6 @@ Vue.component('api-parameter', {
                 bootbox.alert('Could not find $ref '+this.parameter["$ref"]);
             }
         }
+        // TODO patch-in shared path-parameters which are not overridden
     }
 });

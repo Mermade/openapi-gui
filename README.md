@@ -7,6 +7,8 @@ OpenApi-gui
 
 OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenApi definitions.
 
+![Screenshot](https://mermade.github.io/openapi-gui/img/screenshot.png)
+
 This project was initially a fork of [Daryl Kuhn's IODoctor](https://github.com/darrylkuhn/iodoctor/tree/angular-port), which in turn was inspired by [IODoctor by Brandon West](https://github.com/brandonmwest/iodoctor) which was written in Ruby.
 
 Description
@@ -39,6 +41,7 @@ TODO
 ----
 
 * Add validation on form fields
+* Consumes/Produces and security at operation level
 * De-reference path-item `$ref`s (rare)
 * Handle responses / examples
 
