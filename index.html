@@ -39,17 +39,21 @@
   <div id='loading'>
     <div class="alert">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Please wait!</strong> OpenAPI-GUI is loading...
+      <strong>Please wait!</strong> OpenAPI-GUI is loading... <progress id='progress' value="0" max="100">0 %</progress>
     </div>
   </div>
   <div id="main-container">
     <gui-main :openapi='container.openapi' :importschema='importschema'></gui-main>
   </div>
   <script>
+      var def = [];
+      function resolveDef(index) {
+        $('#progress').attr('value', parseInt($('#progress').attr('value'))+16.66);
+        def[index].resolve();
+      }
       $(document).ready(function(){
 
         // Create the Deferred instances that can be handed to $.when()
-        var def = [];
         for (t=0;t<7;t++) {
           def.push($.Deferred());
         }
@@ -61,13 +65,13 @@
         });
 
         // And finally: Make the actual ajax calls:
-        $('#template-gui-main').load('src/app/gui.html', function() { def[0].resolve(); });
-        $('#template-resource').load('src/resource/resource.html', function() { def[1].resolve(); });
-        $('#template-method').load('src/method/method.html', function() { def[2].resolve(); });
-        $('#template-parameter').load('src/parameter/parameter.html', function() { def[3].resolve(); });
-        $('#template-definition').load('src/api-definition/output.html', function() { def[4].resolve(); });
-        $('#template-yaml').load('src/api-yaml/output.html', function() { def[5].resolve(); });
-        $('#template-items').load('src/items/items.html', function() { def[6].resolve(); });
+        $('#template-gui-main').load('src/app/gui.html', function() { resolveDef(0); });
+        $('#template-resource').load('src/resource/resource.html', function() { resolveDef(1); });
+        $('#template-method').load('src/method/method.html', function() { resolveDef(2); });
+        $('#template-parameter').load('src/parameter/parameter.html', function() { resolveDef(3); });
+        $('#template-definition').load('src/api-definition/output.html', function() { resolveDef(4); });
+        $('#template-yaml').load('src/api-yaml/output.html', function() { resolveDef(5); });
+        $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
       });
   </script>
   <div style='display:none'>
