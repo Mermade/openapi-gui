@@ -11,7 +11,15 @@
             </select>
         </div>
     </div>
-    <!-- TODO format -->
+    <div class='control-group' v-if="effectiveFormats.length">
+        <label class='control-label'> Format </label>
+        <div class='controls'>
+            <input type="text" v-model="child.format" :list="formatListId" />
+            <datalist :id="formatListId">
+                <option v-for="option in effectiveFormats">{{option}}</option>
+            </datalist>
+        </div>
+    </div>
     <div class='control-group'>
         <label class='control-label'> Collection Delimiter </label>
         <div class='controls'>
@@ -20,8 +28,30 @@
                 <option value="tsv">Tab</option>
                 <option value="ssv">Space</option>
                 <option value="pipes">Pipe</option>
-                <option value="multi">Multiple</option>
+                <option value="multi" v-if="level==1">Multiple</option>
             </select>
+        </div>
+    </div>
+    <div class='control-group'>
+        <label class='control-label'> Default Value </label>
+        <div class='controls'>
+            <input v-model="child.default" />
+        </div>
+    </div>
+    <div class='well'>
+        <a class='btn btn-info pull-right' v-on:click="addEnum()">
+            <i class='icon-plus icon-white'></i> Add Enum
+        </a>
+        <div v-for="(evalue,eindex) in child.enum">
+            <div class='control-group'>
+                <label class='control-label'> Enum Value </label>
+                <div class='controls'>
+                    <input v-model="child.enum[eindex]">
+                    <a class='btn btn-danger pull-right' v-on:click="removeEnum(eindex)">
+                        <i class='icon-trash icon-white'></i> Delete
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
     <div class='control-group'>
@@ -38,5 +68,49 @@
             <input type="checkbox" v-model="parent.uniqueItems" />
         </div>
     </div>
-    <api-items v-if="child.type == 'array'" :parent="child" :child="child.items"></api-items>
+    <div v-if="child.type == 'string'">
+        <div class='control-group'>
+            <label class='control-label'> Min. Length </label>
+            <div class='controls'>
+                <input type="number" min="0" step="1" v-model="child.minLength" />
+            </div>
+            <label class='control-label'> Max. Length </label>
+            <div class='controls'>
+                <input type="number" min="0" step="1" v-model="child.maxLength" />
+            </div>
+            <label class='control-label'> Pattern </label>
+            <div class='controls'>
+                <input v-model="child.pattern" />
+            </div>
+        </div>
+    </div>
+    <div v-if="child.type == 'integer' || child.type == 'number'">
+        <div class='control-group'>
+            <label class='control-label'> Minimum </label>
+            <div class='controls'>
+                <input type="number" v-model="child.minimum" />
+            </div>
+            <label class='control-label'> Min. Exclusive </label>
+            <div class='controls' class="span8">
+                <input type="checkbox" v-model="child.minExclusive" />
+            </div>
+        </div>
+        <div class='control-group'>
+            <label class='control-label'> Maximum </label>
+            <div class='controls'>
+                <input type="number" v-model="child.maximum" />
+            </div>
+            <label class='control-label'> Max. Exclusive </label>
+            <div class='controls' class="span8">
+                <input type="checkbox" v-model="child.maxExclusive" />
+            </div>
+        </div>
+        <div class='control-group'>
+            <label class='control-label'> Multiple Of </label>
+            <div class='controls'>
+                <input type="number" v-model="child.multipleOf" />
+            </div>
+        </div>
+    </div>
+    <api-items v-if="child.type == 'array'" :parent="child" :child="child.items" :level="levelPlusOne"></api-items>
 </div>

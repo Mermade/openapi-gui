@@ -118,6 +118,10 @@
 						<div class='controls'>
 							<input type="number" min="0" step="1" v-model="parameter.maxLength" />
 						</div>
+						<label class='control-label'> Pattern </label>
+						<div class='controls' class="span8">
+							<input v-model="parameter.pattern" />
+						</div>
 					</div>
 				</div>
 				<div v-if="parameter.type == 'integer' || parameter.type == 'number'">
@@ -149,7 +153,7 @@
 					</div>
 				</div>
 
-				<api-items v-if="parameter.type == 'array'" :parent="parameter" :child='parameter.items'>
+				<api-items v-if="parameter.type == 'array'" :parent="parameter" :child='parameter.items' :level='1'>
 				</api-items>
 
 			</div>
