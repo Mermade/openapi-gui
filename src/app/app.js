@@ -38,7 +38,7 @@ function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 
-var openapi = clone(petstore);
+var openapi;
 
 if (window.localStorage) {
     var o = window.localStorage.getItem('swagger2');
@@ -48,6 +48,9 @@ if (window.localStorage) {
         }
         catch (ex) {}
     }
+}
+if (typeof openapi === 'undefined') {
+    openapi = clone(petstore);
 }
 
 openapi = preProcessDefinition(openapi);

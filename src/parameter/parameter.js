@@ -75,11 +75,11 @@ Vue.component('api-parameter', {
 
         effectiveRequired : {
             get : function() {
-                if (typeof this.parameter.required === 'undefined') return 'true';
-                return this.parameter.required ? 'true' : 'false';
+                if (typeof this.parameter.required === 'undefined') return false;
+                return this.parameter.required;
             },
             set : function(newVal) {
-                this.parameter.required = (newVal == 'true' ? true : false);
+                this.parameter.required = newVal;
             } 
         },
 
@@ -124,7 +124,7 @@ Vue.component('api-parameter', {
         if (this.parameter["$ref"]) {
             var ptr = this.parameter["$ref"].substr(1); // remove #
             try {
-                var def = new JSONPointer(ptr).get(this.$root.openapi);
+                var def = new JSONPointer(ptr).get(this.$root.container.openapi);
                 for (var p in def) {
                     this.parameter[p] = def[p];
                 }
