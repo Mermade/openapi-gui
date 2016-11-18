@@ -104,6 +104,5 @@ Vue.component('api-parameter', {
                 bootbox.alert('Could not find $ref '+this.parameter["$ref"]);
             }
         }
-        // TODO patch-in shared path-parameters which are not overridden
     }
 });

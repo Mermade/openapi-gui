@@ -9,6 +9,22 @@ function preProcessDefinition(openapi) {
         for (var o in path) {
             var op = path[o];
             if (!op.tags) op.tags = [];
+            if (path.parameters && path.parameters.length > 0) {
+                for (var pp in path.parameters) {
+                    var shared = path.parameters[pp];
+                    var seen = false;
+                    for (var cp in op.parameters) {
+                        var child = op.parameters[cp];
+                        if (child.name == shared.name && child.in == shared.in) {
+                            seen = true;
+                            break;
+                        }
+                    }
+                    if (!seen) {
+                        op.parameters.push(shared); //? clone it?
+                    }
+                }
+            }
         }
     }
     return openapi;

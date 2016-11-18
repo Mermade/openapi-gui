@@ -43,5 +43,5 @@ TODO
 * Add validation on form fields
 * Consumes/Produces and security at operation level
 * De-reference path-item `$ref`s (rare)
-* Handle responses / examples
+* Handle responses / examples / body schemas
 
