@@ -16,20 +16,50 @@ Vue.component('api-parameter', {
                 return this.parameter.type;
             },
             set : function(newVal) {
-                this.parameter.type = newVal;
-                if (this.parameter.type == 'array') {
+                if (newVal == 'array') {
                     var items = {};
-                    items.type = 'string';
+                    items.type = this.parameter.type;
+                    items.format = this.parameter.format;
+                    items.default = this.parameter.default;
+                    items.pattern = this.parameter.pattern;
+                    items.minimum = this.parameter.minimum;
+                    items.maximum = this.parameter.maximum;
+                    items.exclusiveMinimum = this.parameter.exclusiveMinimum;
+                    items.exclusiveMaximum = this.parameter.exclusiveMaximum;
+                    items.multipleOf = this.parameter.multipleOf;
+                    items.minLength = this.parameter.minLength;
+                    items.maxLength = this.parameter.maxLength;
+                    Vue.delete(this.parameter, 'format');
+                    Vue.delete(this.parameter, 'default');
+                    Vue.delete(this.parameter, 'pattern');
+                    Vue.delete(this.parameter, 'minimum');
+                    Vue.delete(this.parameter, 'maximum');
+                    Vue.delete(this.parameter, 'exclusiveMinimum');
+                    Vue.delete(this.parameter, 'exclusiveMaximum');
+                    Vue.delete(this.parameter, 'multipleOf');
+                    Vue.delete(this.parameter, 'minLength');
+                    Vue.delete(this.parameter, 'maxLength');
                     Vue.set(this.parameter, 'items', items);
                     Vue.set(this.parameter, 'collectionFormat', 'csv');
                 }
                 else {
+                    Vue.set(this.parameter, 'format', this.parameter.items.format);
+                    Vue.set(this.parameter, 'default', this.parameter.items.default);
+                    Vue.set(this.parameter, 'pattern', this.parameter.items.pattern);
+                    Vue.set(this.parameter, 'minimum', this.parameter.items.minimum);
+                    Vue.set(this.parameter, 'maximum', this.parameter.items.maximum);
+                    Vue.set(this.parameter, 'exclusiveMinimum', this.parameter.items.exclusiveMinimum);
+                    Vue.set(this.parameter, 'exclusiveMaximum', this.parameter.items.exclusiveMaximum);
+                    Vue.set(this.parameter, 'multipleOf', this.parameter.items.multipleOf);
+                    Vue.set(this.parameter, 'minLength', this.parameter.items.minLength);
+                    Vue.set(this.parameter, 'maxLength', this.parameter.items.maxLength);
                     Vue.delete(this.parameter, 'items');
                     Vue.delete(this.parameter, 'collectionFormat');
                     Vue.delete(this.parameter, 'minItems');
                     Vue.delete(this.parameter, 'maxItems');
                     Vue.delete(this.parameter, 'uniqueItems');
                 }
+                this.parameter.type = newVal;
             } 
         },
 

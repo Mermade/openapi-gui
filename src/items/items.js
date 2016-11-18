@@ -11,6 +11,7 @@ Vue.component('api-items', {
             set : function(newVal) {
                 this.child.type = newVal;
                 if (newVal == 'array') {
+                    // TODO replicate parameter array switching logic
                     var items = {};
                     items.type = 'string';
                     Vue.set(this.child, 'items', items);
