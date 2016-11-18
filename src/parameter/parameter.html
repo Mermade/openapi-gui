@@ -93,7 +93,7 @@
 						</div>
 					</div>
 				</div>
- 				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
+				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
 					<label class='control-label'> Allow Empty Value </label>
 					<div class='controls'>
 						<input type="checkbox" v-model="parameter.allowEmptyValue" />
@@ -104,8 +104,8 @@
 					<div class='controls'>
 						<input type="text" v-model="parameter.format" :list="formatListId" />
 						<datalist :id="formatListId">
-                          <option v-for="option in effectiveFormats">{{option}}</option>
-                        </datalist>
+							<option v-for="option in effectiveFormats">{{option}}</option>
+						</datalist>
 					</div>
 				</div>
 				<div v-if="parameter.type == 'string'">

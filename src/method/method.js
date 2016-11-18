@@ -78,13 +78,17 @@ Vue.component('api-method', {
             // event.item: contains the item. Convert jQuery event to native event for vue.js
             var e = document.createEvent('HTMLEvents');
             e.initEvent('change', true, true);
-            this.dispatchEvent(e);
+            setTimeout(function(){
+                this.dispatchEvent(e);
+            },0);
         });
         $(this.hashTagId).on('itemRemoved', function(event) {
             // event.item: contains the item. Convert jQuery event to native event for vue.js
             var e = document.createEvent('HTMLEvents');
             e.initEvent('change', true, true);
-            this.dispatchEvent(e);
+            setTimeout(function(){
+                this.dispatchEvent(e);
+            },0);
         });
     },
 	template: '#template-method'

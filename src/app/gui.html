@@ -98,13 +98,13 @@
 							<div class='control-group'>
 								<label class='control-label'> Title </label>
 								<div class='controls'>
-									<input class="span4" v-model="openapi.info.title"></input>
+									<input class="span4" v-model="openapi.info.title">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Version </label>
 								<div class='controls'>
-									<input class="span4" v-model="openapi.info.version"></input>
+									<input class="span4" v-model="openapi.info.version">
 								</div>
 							</div>
 							<div class='control-group'>
@@ -117,59 +117,59 @@
 								<label class='control-label'> Protocol </label>
 								<div class='controls'>
 									<div class="checkbox">
-										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP</input><br/>
-										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS</input><br/>
-										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket</input><br/>
-										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure</input><br/>
+										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP<br/>
+										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS<br/>
+										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket<br/>
+										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure<br/>
 									</div>
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Host </label>
 								<div class='controls'>
-									<input class="span4" v-model="openapi.host"></input>
+									<input class="span4" v-model="openapi.host">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> BasePath </label>
 								<div class='controls'>
-									<input class="span6" v-model="openapi.basePath"></input>
+									<input class="span6" v-model="openapi.basePath">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact Name </label>
 								<div class='controls'>
-									<input class="span6" v-model="openapi.info.contact.name"></input>
+									<input class="span6" v-model="openapi.info.contact.name">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact Email </label>
 								<div class='controls'>
-									<input type="email" class="span6" v-model="openapi.info.contact.email"></input>
+									<input type="email" class="span6" v-model="openapi.info.contact.email">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Contact URL </label>
 								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.contact.url"></input>
+									<input type="url" class="span6" v-model="openapi.info.contact.url">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> Terms of Service URL </label>
 								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.termsOfService"></input>
+									<input type="url" class="span6" v-model="openapi.info.termsOfService">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> License Name </label>
 								<div class='controls'>
-									<input class="span4" v-model="openapi.info.license.name"></input>
+									<input class="span4" v-model="openapi.info.license.name">
 								</div>
 							</div>
 							<div class='control-group'>
 								<label class='control-label'> License URL </label>
 								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.license.url"></input>
+									<input type="url" class="span6" v-model="openapi.info.license.url">
 								</div>
 							</div>
 							<div class='control-group'>
@@ -181,7 +181,7 @@
 							<div class='control-group'>
 								<label class='control-label'> Documentation URL </label>
 								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.externalDocs.url"></input>
+									<input type="url" class="span6" v-model="openapi.externalDocs.url">
 								</div>
 							</div>
 
@@ -200,7 +200,7 @@
 								<div class='control-group'>
 									<label class='control-label'> MIME Type </label>
 									<div class='controls'>
-										<input class="span6" v-model="openapi.consumes[index]"></input>
+										<input class="span6" v-model="openapi.consumes[index]">
 										<a v-on:click="removeConsumes(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
@@ -214,7 +214,7 @@
 								<div class='control-group'>
 									<label class='control-label'> MIME Type </label>
 									<div class='controls'>
-										<input class="span6" v-model="openapi.produces[index]"></input>
+										<input class="span6" v-model="openapi.produces[index]">
 										<a v-on:click="removeProduces(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
 								</div>
@@ -234,7 +234,7 @@
 								<div class='control-group'>
 									<label class='control-label'> Name </label>
 									<div class='controls'>
-										<input class="span6" v-model="t.name"></input>
+										<input class="span6" v-model="t.name">
 										<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
 									</div>
 								</div>
@@ -253,7 +253,7 @@
 								<div class='control-group'>
 									<label class='control-label'> Docs URL </label>
 									<div class='controls'>
-										<input type="url" class="span6" v-model="t.externalDocs.url"></input>
+										<input type="url" class="span6" v-model="t.externalDocs.url">
 									</div>
 								</div>
 								<hr/>
@@ -275,7 +275,7 @@
 									<div class='control-group'>
 										<label class='control-label'> Name </label>
 										<div class='controls'>
-											<input class="span6" v-model.lazy="secname"></input>
+											<input class="span6" v-model.lazy="secname">
 											<a v-on:click="removeSecurityDefinition(sdname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
@@ -292,14 +292,14 @@
 									<div class='control-group'>
 										<label class='control-label'> Apply to all paths </label>
 										<div class='controls'>
-											<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'></input>
+											<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
 										</div>
 									</div>
 									<div v-if="sd.type == 'apiKey'" class='animate-if'>
 										<div class='control-group'>
 											<label class='control-label'> Parameter Name </label>
 											<div class='controls'>
-												<input class="span6" v-model="sd.name"></input>
+												<input class="span6" v-model="sd.name">
 											</div>
 										</div>
 										<div class='control-group'>

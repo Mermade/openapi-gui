@@ -10,18 +10,15 @@
         <div class="accordion-buttons">
             <div class="block-container">
                 <a v-on:click="addParameter()" class='btn btn-info'>
-                    <i class='icon-plus icon-white'></i>
-                    Parameter
+                    <i class='icon-plus icon-white'></i> Parameter
                 </a>
-                
+
                 <a class='btn btn-info' v-on:click="duplicateOperation(method)">
-                    <i class='icon-copy icon-white'></i>
-                    Duplicate
+                    <i class='icon-copy icon-white'></i> Duplicate
                 </a>
 
                 <a class='btn btn-danger' v-on:click="removeOperation(index)">
-                    <i class='icon-trash icon-white'></i>
-                    Delete
+                    <i class='icon-trash icon-white'></i> Delete
                 </a>
 
             </div>
@@ -29,7 +26,7 @@
     </div>
     <div class="accordion-body collapse" :id="_uid">
         <div class="accordion-inner">
-            
+
             <div class='control-group'>
                 <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
                 <div class='controls'>

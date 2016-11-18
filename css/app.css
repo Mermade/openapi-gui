@@ -57,10 +57,10 @@ body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   margin: 10px 5px;
-   background-color: #E7F0F7;
+  background-color: #E7F0F7;
 }
 
-.content-section {
+/*.content-section {
   padding-left:5px;
   font-size: 14px;
   border: 1px solid #029DE7;
@@ -71,8 +71,8 @@ body {
   -khtml-border-radius: 5px;
   border-radius: 5px;
   margin: 10px 5px;
-   background-color: #D7E0E7;
-}
+  background-color: #D7E0E7;
+}*/
 
 .service-input {
     height:400px;
@@ -137,3 +137,7 @@ body {
     white-space: normal;
     word-wrap : break-word;
 }
+
+/*.collapse {
+    transition: height 0.01s;
+}*/
