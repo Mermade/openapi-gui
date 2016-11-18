@@ -69,16 +69,16 @@
 
 				<div class="tab-pane" id="about">
 					<h1>What is OpenApi-gui?</h1>
-					<br/> OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
-					<br/>
+					<br> OpenApi-gui is a GUI for creating and updating OpenApi / Swagger definitions.
+					<br>
 					<h2>How does OpenApi-gui work?</h2>
 					<br> Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and
 					start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing
 					each Path, Operation and Parameter will be created.
-					<br/>
-					<br/> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
-					<br/>
-					<br/> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
+					<br>
+					<br> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
+					<br>
+					<br> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
 					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves data
 					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
@@ -117,10 +117,10 @@
 								<label class='control-label'> Protocol </label>
 								<div class='controls'>
 									<div class="checkbox">
-										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP<br/>
-										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS<br/>
-										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket<br/>
-										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure<br/>
+										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP<br>
+										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS<br>
+										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket<br>
+										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure<br>
 									</div>
 								</div>
 							</div>
@@ -194,7 +194,7 @@
 						<form class="plain-form form-horizontal" id="frmProdCons">
 							<div>
 								<a v-on:click="addConsumes()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Consumed Type</a>
-								<br/>
+								<br>
 							</div>
 							<div v-for="(c,index) in openapi.consumes">
 								<div class='control-group'>
@@ -205,10 +205,10 @@
 									</div>
 								</div>
 							</div>
-							<hr/>
+							<hr>
 							<div>
 								<a v-on:click="addProduces()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Produced Type</a>
-								<br/>
+								<br>
 							</div>
 							<div v-for="(p,index) in openapi.produces">
 								<div class='control-group'>
@@ -228,7 +228,7 @@
 						<form class="plain-form form-horizontal" id="frmTags">
 							<div>
 								<a v-on:click="addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
-								<br/>
+								<br>
 							</div>
 							<div v-for="(t,index) in openapi.tags">
 								<div class='control-group'>
@@ -256,7 +256,7 @@
 										<input type="url" class="span6" v-model="t.externalDocs.url">
 									</div>
 								</div>
-								<hr/>
+								<hr>
 							</div>
 						</form>
 					</div>
@@ -267,8 +267,8 @@
 						<form class="plain-form form-horizontal" id="frmSecurity">
 							<div>
 								<a class="btn btn-info" v-on:click="addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
-								<br/>
-								<br/>
+								<br>
+								<br>
 							</div>
 							<api-secdef v-for="(sd, sdname) in openapi.securityDefinitions" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
 								<div>
@@ -359,7 +359,7 @@
 											</api-scope>
 										</div>
 									</div>
-									<hr/>
+									<hr>
 								</div>
 							</api-secdef>
 						</form>
@@ -367,11 +367,11 @@
 				</div>
 
 				<div class="tab-pane" id="output">
-					<api-definition/>
+					<api-definition></api-definition>
 				</div>
 
 				<div class="tab-pane" id="yaml">
-					<api-yaml/>
+					<api-yaml></api-yaml>
 				</div>
 
 				<div class='tab-pane row-fluid active' id='editor'>
@@ -382,7 +382,7 @@
 								<a v-on:click="addResource()" class='btn btn-info addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
 								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
-							<br/>
+							<br>
 							<div id="drop-container" class="dropdown open">
 								<a id="drop1" href="#" role="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
 									Navigation <b class="caret"></b>

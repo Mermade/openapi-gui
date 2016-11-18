@@ -14,7 +14,7 @@
     <div class='control-group' v-if="effectiveFormats.length">
         <label class='control-label'> Format </label>
         <div class='controls'>
-            <input type="text" v-model="child.format" :list="formatListId" />
+            <input type="text" v-model="child.format" :list="formatListId" >
             <datalist :id="formatListId">
                 <option v-for="option in effectiveFormats">{{option}}</option>
             </datalist>
@@ -35,7 +35,7 @@
     <div class='control-group'>
         <label class='control-label'> Default Value </label>
         <div class='controls'>
-            <input v-model="child.default" />
+            <input v-model="child.default" >
         </div>
     </div>
     <div class='well'>
@@ -57,30 +57,30 @@
     <div class='control-group'>
         <label class='control-label'> Min. Items </label>
         <div class='controls'>
-            <input type="number" min="0" step="1" v-model="parent.minItems" />
+            <input type="number" min="0" step="1" v-model="parent.minItems" >
         </div>
         <label class='control-label'> Max. Items </label>
         <div class='controls'>
-            <input type="number" min="0" step="1" v-model="parent.maxItems" />
+            <input type="number" min="0" step="1" v-model="parent.maxItems" >
         </div>
         <label class='control-label'> Unique Items </label>
         <div class='controls' class="span8">
-            <input type="checkbox" v-model="parent.uniqueItems" />
+            <input type="checkbox" v-model="parent.uniqueItems" >
         </div>
     </div>
     <div v-if="child.type == 'string'">
         <div class='control-group'>
             <label class='control-label'> Min. Length </label>
             <div class='controls'>
-                <input type="number" min="0" step="1" v-model="child.minLength" />
+                <input type="number" min="0" step="1" v-model="child.minLength" >
             </div>
             <label class='control-label'> Max. Length </label>
             <div class='controls'>
-                <input type="number" min="0" step="1" v-model="child.maxLength" />
+                <input type="number" min="0" step="1" v-model="child.maxLength" >
             </div>
             <label class='control-label'> Pattern </label>
             <div class='controls'>
-                <input v-model="child.pattern" />
+                <input v-model="child.pattern" >
             </div>
         </div>
     </div>
@@ -88,27 +88,27 @@
         <div class='control-group'>
             <label class='control-label'> Minimum </label>
             <div class='controls'>
-                <input type="number" v-model="child.minimum" />
+                <input type="number" v-model="child.minimum" >
             </div>
             <label class='control-label'> Min. Exclusive </label>
             <div class='controls' class="span8">
-                <input type="checkbox" v-model="child.minExclusive" />
+                <input type="checkbox" v-model="child.minExclusive" >
             </div>
         </div>
         <div class='control-group'>
             <label class='control-label'> Maximum </label>
             <div class='controls'>
-                <input type="number" v-model="child.maximum" />
+                <input type="number" v-model="child.maximum" >
             </div>
             <label class='control-label'> Max. Exclusive </label>
             <div class='controls' class="span8">
-                <input type="checkbox" v-model="child.maxExclusive" />
+                <input type="checkbox" v-model="child.maxExclusive" >
             </div>
         </div>
         <div class='control-group'>
             <label class='control-label'> Multiple Of </label>
             <div class='controls'>
-                <input type="number" v-model="child.multipleOf" />
+                <input type="number" v-model="child.multipleOf" >
             </div>
         </div>
     </div>
