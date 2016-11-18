@@ -18,6 +18,10 @@ function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+}
+
 var openapi = clone(petstore);
 
 if (window.localStorage) {
@@ -59,8 +63,13 @@ function app_main() {
                         if (op.externalDocs && !op.externalDocs.url) {
                             Vue.delete(op, 'externalDocs');
                         }
-                        if (op.tags && op.tags.length == 0) {
-                            Vue.delete(op, 'tags');
+                        if (op.tags) {
+                            if (op.tags.length == 0) {
+                                Vue.delete(op, 'tags');
+                            }
+                            else {
+                                Vue.set(op, 'tags', op.tags.filter(onlyUnique));
+                            }
                         }
                     }
                 }

@@ -1,9 +1,7 @@
 Vue.component('api-method', {
 	props: ['key', 'method', 'index', 'maintags'],
 	data: function() {
-		return {
-            initialised: false
-        }
+		return {}
 	},
     methods: {
         toggleBodyDisplay : function(el) {
@@ -61,7 +59,18 @@ Vue.component('api-method', {
         }
     },
     mounted : function() {
-        $(this.tagId).tagsinput();
+        var simpleTags = [];
+        for (var t in this.maintags) {
+            simpleTags.push(this.maintags[t].name);
+        }
+        $(this.hashTagId).tagsinput({
+            typeahead: {
+                name: this.tagId,
+                source: function(query) {
+                    return simpleTags;
+                }
+            }
+        });
         for (var t in this.method.tags) {
             $(this.hashTagId).tagsinput('add', this.method.tags[t]);
         }
