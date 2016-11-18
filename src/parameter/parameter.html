@@ -27,7 +27,7 @@
 				<div class='control-group'>
 					<label class='control-label'> Parameter Name </label>
 					<div class='controls'>
-						<input v-model="parameter.name" required/>
+						<input v-model="parameter.name" required>
 					</div>
 				</div>
 				<div class='control-group'>
@@ -74,7 +74,7 @@
 				<div class='control-group' v-if="!isComplex()">
 					<label class='control-label'> Default Value </label>
 					<div class='controls'>
-						<input v-model="parameter.default" />
+						<input v-model="parameter.default">
 					</div>
 				</div>
 				<div class='well' v-if="!isComplex()">
@@ -96,13 +96,13 @@
 				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
 					<label class='control-label'> Allow Empty Value </label>
 					<div class='controls'>
-						<input type="checkbox" v-model="parameter.allowEmptyValue" />
+						<input type="checkbox" v-model="parameter.allowEmptyValue">
 					</div>
 				</div>
 				<div class='control-group' v-if="effectiveFormats.length">
 					<label class='control-label'> Format </label>
 					<div class='controls'>
-						<input type="text" v-model="parameter.format" :list="formatListId" />
+						<input type="text" v-model="parameter.format" :list="formatListId">
 						<datalist :id="formatListId">
 							<option v-for="option in effectiveFormats">{{option}}</option>
 						</datalist>
@@ -112,15 +112,15 @@
 					<div class='control-group'>
 						<label class='control-label'> Min. Length </label>
 						<div class='controls'>
-							<input type="number" min="0" step="1" v-model="parameter.minLength" />
+							<input type="number" min="0" step="1" v-model="parameter.minLength">
 						</div>
 						<label class='control-label'> Max. Length </label>
 						<div class='controls'>
-							<input type="number" min="0" step="1" v-model="parameter.maxLength" />
+							<input type="number" min="0" step="1" v-model="parameter.maxLength">
 						</div>
 						<label class='control-label'> Pattern </label>
-						<div class='controls' class="span8">
-							<input v-model="parameter.pattern" />
+						<div class='controls span8'>
+							<input v-model="parameter.pattern">
 						</div>
 					</div>
 				</div>
@@ -128,27 +128,27 @@
 					<div class='control-group'>
 						<label class='control-label'> Minimum </label>
 						<div class='controls'>
-							<input type="number" v-model="parameter.minimum" />
+							<input type="number" v-model="parameter.minimum">
 						</div>
 						<label class='control-label'> Min. Exclusive </label>
-						<div class='controls' class="span8">
-							<input type="checkbox" v-model="parameter.minExclusive" />
+						<div class='controls span8'>
+							<input type="checkbox" v-model="parameter.minExclusive">
 						</div>
 					</div>
 					<div class='control-group'>
 						<label class='control-label'> Maximum </label>
 						<div class='controls'>
-							<input type="number" v-model="parameter.maximum" />
+							<input type="number" v-model="parameter.maximum">
 						</div>
 						<label class='control-label'> Max. Exclusive </label>
-						<div class='controls' class="span8">
-							<input type="checkbox" v-model="parameter.maxExclusive" />
+						<div class='controls span8'>
+							<input type="checkbox" v-model="parameter.maxExclusive">
 						</div>
 					</div>
 					<div class='control-group'>
 						<label class='control-label'> Multiple Of </label>
 						<div class='controls'>
-							<input type="number" v-model="parameter.multipleOf" />
+							<input type="number" v-model="parameter.multipleOf">
 						</div>
 					</div>
 				</div>
