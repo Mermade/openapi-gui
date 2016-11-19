@@ -9,6 +9,11 @@ Vue.component('api-method', {
         toggleBody : function() {
             this.visible = !this.visible;
             $(this.hashUid).collapse('toggle');
+            if (this.visible) {
+                Vue.nextTick(function(){
+                    this.tagSetup();
+                },this);
+            }
         },
         duplicateOperation : function(method) {
             this.$parent.addOperation(method);
@@ -27,6 +32,39 @@ Vue.component('api-method', {
         removeParameter : function(index) {
             this.$root.save();
             this.method.parameters.splice(index,1);
+        },
+        tagSetup : function() {
+            var simpleTags = [];
+            for (var t in this.maintags) {
+                simpleTags.push(this.maintags[t].name);
+            }
+            $(this.hashTagId).tagsinput({
+                typeahead: {
+                    name: this.tagId,
+                    source: function(query) {
+                        return simpleTags;
+                    }
+                }
+            });
+            for (var t in this.method.tags) {
+                $(this.hashTagId).tagsinput('add', this.method.tags[t]);
+            }
+            $(this.hashTagId).on('itemAdded', function(event) {
+                // event.item: contains the item. Convert jQuery event to native event for vue.js
+                var e = document.createEvent('HTMLEvents');
+                e.initEvent('change', true, true);
+                setTimeout(function(){
+                    this.dispatchEvent(e);
+                },0);
+            });
+            $(this.hashTagId).on('itemRemoved', function(event) {
+                // event.item: contains the item. Convert jQuery event to native event for vue.js
+                var e = document.createEvent('HTMLEvents');
+                e.initEvent('change', true, true);
+                setTimeout(function(){
+                    this.dispatchEvent(e);
+                },0);
+            });
         }
     },
     computed: {
@@ -62,37 +100,7 @@ Vue.component('api-method', {
         }
     },
     mounted : function() {
-        var simpleTags = [];
-        for (var t in this.maintags) {
-            simpleTags.push(this.maintags[t].name);
-        }
-        $(this.hashTagId).tagsinput({
-            typeahead: {
-                name: this.tagId,
-                source: function(query) {
-                    return simpleTags;
-                }
-            }
-        });
-        for (var t in this.method.tags) {
-            $(this.hashTagId).tagsinput('add', this.method.tags[t]);
-        }
-        $(this.hashTagId).on('itemAdded', function(event) {
-            // event.item: contains the item. Convert jQuery event to native event for vue.js
-            var e = document.createEvent('HTMLEvents');
-            e.initEvent('change', true, true);
-            setTimeout(function(){
-                this.dispatchEvent(e);
-            },0);
-        });
-        $(this.hashTagId).on('itemRemoved', function(event) {
-            // event.item: contains the item. Convert jQuery event to native event for vue.js
-            var e = document.createEvent('HTMLEvents');
-            e.initEvent('change', true, true);
-            setTimeout(function(){
-                this.dispatchEvent(e);
-            },0);
-        });
+        //this.tagSetup();
     },
 	template: '#template-method'
 });
