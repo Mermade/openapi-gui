@@ -135,7 +135,7 @@ Vue.component('gui-main', {
 
 			if (schema.swagger == '2.0') {
 				if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
-				schema = postProcessDefinition(schema);
+				schema = preProcessDefinition(schema);
 				Vue.set(this.$root.container, 'openapi', schema);
 			}
 			else {
