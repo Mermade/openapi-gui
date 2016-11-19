@@ -3,7 +3,7 @@
 
         <i class="icon-reorder accordion-handle method-handle"></i>
 
-        <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" onclick="$(this).collapse('toggle')">
+        <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
             Operation: <span class='methodNameSpan'>{{httpMethod}} {{method.operationId}}</span>
         </a>
 
@@ -25,7 +25,7 @@
         </div>
     </div>
     <div class="accordion-body collapse" :id="_uid">
-        <div class="accordion-inner">
+        <div v-if="visible" class="accordion-inner">
 
             <div class='control-group'>
                 <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>

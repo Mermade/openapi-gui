@@ -1,11 +1,14 @@
 Vue.component('api-method', {
 	props: ['key', 'method', 'index', 'maintags'],
 	data: function() {
-		return {}
+		return {
+            visible: false
+        }
 	},
     methods: {
-        toggleBodyDisplay : function(el) {
-            el.collapse('toggle');
+        toggleBody : function() {
+            this.visible = !this.visible;
+            $(this.hashUid).collapse('toggle');
         },
         duplicateOperation : function(method) {
             this.$parent.addOperation(method);

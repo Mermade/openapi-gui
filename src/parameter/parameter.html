@@ -4,7 +4,7 @@
 
 			<i class="icon-reorder accordion-handle param-handle"></i>
 
-			<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" onclick="$(this).collapse('toggle')">
+			<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
                 Parameter: <span class='methodNameSpan'>{{parameter.name}}</span>
             </a>
 
@@ -22,7 +22,7 @@
 			</div>
 		</div>
 		<div class="accordion-body collapse" :id="_uid">
-			<div class="accordion-inner">
+			<div v-if="visible" class="accordion-inner">
 
 				<div class='control-group'>
 					<label class='control-label'> Parameter Name </label>

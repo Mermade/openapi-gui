@@ -95,9 +95,15 @@ Vue.component('api-parameter', {
 
     },
 	data: function() {
-		return {}
+		return {
+            visible: false
+        }
 	},
     methods : {
+        toggleBody : function() {
+            this.visible = !this.visible;
+            $(this.hashUid).collapse('toggle');
+        },
         isComplex : function() {
             if (this.effectiveType === 'object' || 
                 this.effectiveType === 'array' ||
