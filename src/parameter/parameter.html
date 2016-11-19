@@ -11,8 +11,8 @@
 			<div class="accordion-buttons">
 				<div class="block-container">
 					<div>
-						<a v-if="isComplex()" class='btn btn-info' ng-click="$ctrl.addProperty()">
-							<i class='icon-plus icon-white'></i> Add Property
+						<a v-if="effectiveType == 'object'" class='btn btn-info' ng-click="$ctrl.addProperty()">
+							<i class='icon-edit icon-white'></i> Edit Schema
 						</a>
 						<a class='btn btn-danger' v-on:click="removeParameter()">
 							<i class='icon-trash icon-white'></i> Delete

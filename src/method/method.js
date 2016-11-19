@@ -104,3 +104,20 @@ Vue.component('api-method', {
     },
 	template: '#template-method'
 });
+
+Vue.component('api-response', {
+	props: ["response", "status"],
+	computed: {
+		statusCode: {
+			get : function() {
+				return this.status;
+			},
+			set : function(newVal) {
+				this.$parent.renameResponse(this.status, newVal);
+			}
+		} 
+	},
+	data: function() {
+		return {}
+	}
+});

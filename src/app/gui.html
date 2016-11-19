@@ -230,34 +230,36 @@
 							<div>
 								<a v-on:click="addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
 								<br>
+								<br>
 							</div>
 							<div v-for="(t,index) in openapi.tags">
-								<div class='control-group'>
-									<label class='control-label'> Name </label>
-									<div class='controls'>
-										<input class="span6" v-model="t.name">
-										<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
+								<div class="well">
+									<div class='control-group'>
+										<label class='control-label'> Name </label>
+										<div class='controls'>
+											<input class="span6" v-model="t.name">
+											<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> Description </label>
+										<div class='controls'>
+											<textarea class="span6" v-model="t.description"></textarea>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> External Docs </label>
+										<div class='controls'>
+											<textarea class="span6" v-model="t.externalDocs.description"></textarea>
+										</div>
+									</div>
+									<div class='control-group'>
+										<label class='control-label'> Docs URL </label>
+										<div class='controls'>
+											<input type="url" class="span6" v-model="t.externalDocs.url">
+										</div>
 									</div>
 								</div>
-								<div class='control-group'>
-									<label class='control-label'> Description </label>
-									<div class='controls'>
-										<textarea class="span6" v-model="t.description"></textarea>
-									</div>
-								</div>
-								<div class='control-group'>
-									<label class='control-label'> External Docs </label>
-									<div class='controls'>
-										<textarea class="span6" v-model="t.externalDocs.description"></textarea>
-									</div>
-								</div>
-								<div class='control-group'>
-									<label class='control-label'> Docs URL </label>
-									<div class='controls'>
-										<input type="url" class="span6" v-model="t.externalDocs.url">
-									</div>
-								</div>
-								<hr>
 							</div>
 						</form>
 					</div>
@@ -272,7 +274,7 @@
 								<br>
 							</div>
 							<api-secdef v-for="(sd, sdname) in openapi.securityDefinitions" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
-								<div>
+								<div class="well">
 									<div class='control-group'>
 										<label class='control-label'> Name </label>
 										<div class='controls'>
@@ -360,7 +362,6 @@
 											</api-scope>
 										</div>
 									</div>
-									<hr>
 								</div>
 							</api-secdef>
 						</form>

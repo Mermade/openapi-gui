@@ -95,6 +95,25 @@
                     <api-parameter :parameter="parameter" :index='index'></api-parameter>
                 </div>
             </div>
+            <div class="well">
+                <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
+                    <div class="well">
+                        <div class='control-group'>
+                            <label class='control-label'> Status Code </label>
+                            <div class='controls'>
+                                <input class="span6" v-model.lazy="status">
+                                <a v-on:click="removeResponse(status)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+                            </div>
+                        </div>
+                        <div class='control-group'>
+                            <label class='control-label'> Description </label>
+                            <div class='controls'>
+                                <input class="span6" v-model="response.description">
+                            </div>
+                        </div>
+                    </div>
+                </api-response>
+            </div>
         </div>
     </div>
 </div>
