@@ -43,7 +43,12 @@ Vue.component('api-method', {
             Vue.set(this.method.responses, status, response);
         },
         editResponse : function(status) {
-
+            var response = this.method.responses[status];
+            if (!response.schema) {
+                Vue.set(response, 'schema', {});
+            }
+            var options = {};
+            $('#schemaModal').modal(options);
         },
         removeResponse : function(status) {
             Vue.delete(this.method.responses, status);
@@ -113,9 +118,6 @@ Vue.component('api-method', {
         if (!this.method.externalDocs) {
             Vue.set(this.method, 'externalDocs', {});
         }
-    },
-    mounted : function() {
-        //this.tagSetup();
     },
 	template: '#template-method'
 });

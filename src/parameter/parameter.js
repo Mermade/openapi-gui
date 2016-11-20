@@ -115,6 +115,10 @@ Vue.component('api-parameter', {
         removeParameter : function() {
             this.$parent.removeParameter(this.index);
         },
+        editSchema : function() {
+            var options = {};
+            $('#schemaModal').modal(options);
+        },
         addEnum : function() {
             if (!this.parameter.enum) {
                 Vue.set(this.parameter, 'enum', []);
