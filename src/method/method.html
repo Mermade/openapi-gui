@@ -96,12 +96,16 @@
                 </div>
             </div>
             <div class="well">
+                <a v-on:click="addResponse()" class="btn btn-info"><i class="icon-add icon-white"></i> Add Response</a>
+                <br>
+                <br>
                 <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
                     <div class="well">
                         <div class='control-group'>
                             <label class='control-label'> Status Code </label>
                             <div class='controls'>
                                 <input class="span6" v-model.lazy="status">
+                                <a v-on:click="editResponse(status)" class='btn btn-success'><i class='icon-edit icon-white'></i> Edit Schema</a>
                                 <a v-on:click="removeResponse(status)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
                             </div>
                         </div>

@@ -33,6 +33,21 @@ Vue.component('api-method', {
             this.$root.save();
             this.method.parameters.splice(index,1);
         },
+        addResponse : function() {
+            var status = 200;
+            while (this.method.responses[status]) {
+                status++;
+            }
+            var response = {};
+            response.description = 'Description';
+            Vue.set(this.method.responses, status, response);
+        },
+        editResponse : function(status) {
+
+        },
+        removeResponse : function(status) {
+            Vue.delete(this.method.responses, status);
+        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {
