@@ -47,8 +47,17 @@ Vue.component('api-method', {
             if (!response.schema) {
                 Vue.set(response, 'schema', {});
             }
-            var options = {};
-            $('#schemaModal').modal(options);
+            var editorOptions = {
+                theme: 'bootstrap2',
+                iconlib: 'fontawesome3',
+                schema: jsonSchemaDraft4,
+                refs: this.$root.container.openapi,
+                startval: response.schema
+            };
+            var element = document.getElementById('schemaContainer');
+            var editor = new JSONEditor(element, editorOptions);
+            var modalOptions = {};
+            $('#schemaModal').modal(modalOptions);
         },
         removeResponse : function(status) {
             Vue.delete(this.method.responses, status);
