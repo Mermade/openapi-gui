@@ -116,8 +116,17 @@ Vue.component('api-parameter', {
             this.$parent.removeParameter(this.index);
         },
         editSchema : function() {
-            var options = {};
-            $('#schemaModal').modal(options);
+            var editorOptions = {
+                theme: 'bootstrap2',
+                iconlib: 'fontawesome3',
+                schema: jsonSchemaDraft4,
+                refs: this.$root.container.openapi,
+                startval: this.schema
+            };
+            var element = document.getElementById('schemaContainer');
+            var editor = new JSONEditor(element, editorOptions);
+            var modalOptions = {};
+            $('#schemaModal').modal(modalOptions);
         },
         addEnum : function() {
             if (!this.parameter.enum) {
