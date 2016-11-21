@@ -117,13 +117,17 @@ Vue.component('api-parameter', {
             this.$parent.removeParameter(this.index);
         },
         editSchema : function() {
+            if (!this.parameter.schema) {
+                Vue.set(this.parameter, 'schema', {});
+            }
+            var initial = deref(this.parameter.schema, this.$root.container.openapi);
             var editorOptions = {
                 theme: 'bootstrap2',
                 iconlib: 'fontawesome3',
                 display_required_only: true,
                 schema: jsonSchemaDraft4,
                 refs: this.$root.container.openapi,
-                startval: this.schema
+                startval: initial
             };
             var element = document.getElementById('schemaContainer');
             this.schemaEditor = new JSONEditor(element, editorOptions);

@@ -1,3 +1,37 @@
+function clone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+function recurse(obj,parent,callback) {
+    if (typeof obj == 'object') {
+        callback(obj);
+        for (var p in obj){
+            recurse(obj[p],obj,callback);
+        }
+    }
+}
+
+function deref(obj,defs) {
+    var result = clone(obj);
+    recurse(result,{},function(o){
+        if ((typeof o == 'object') && (o["$ref"])) {
+            var ptr = o["$ref"].substr(1);
+            try {
+                var def = new JSONPointer(ptr).get(defs);
+                for (var p in def) {
+                    o[p] = def[p];
+                }
+                delete o["$ref"];
+            }
+            catch (ex) {
+                console.log(ex.message);
+                console.log('Could not find $ref '+o["$ref"]);
+            }
+        }
+    });
+    return result;
+}
+
 function preProcessDefinition(openapi) {
     for (var t in openapi.tags) {
         var tag = openapi.tags[t];
@@ -21,17 +55,13 @@ function preProcessDefinition(openapi) {
                         }
                     }
                     if (!seen) {
-                        op.parameters.push(shared); //? clone it?
+                        op.parameters.push(shared); // TODO resolve whether we should clone it?
                     }
                 }
             }
         }
     }
     return openapi;
-}
-
-function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
 }
 
 function onlyUnique(value, index, self) { 

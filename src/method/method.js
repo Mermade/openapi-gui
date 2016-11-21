@@ -48,12 +48,13 @@ Vue.component('api-method', {
             if (!response.schema) {
                 Vue.set(response, 'schema', {});
             }
+            var initial = deref(response.schema,this.$root.container.openapi);
             var editorOptions = {
                 theme: 'bootstrap2',
                 iconlib: 'fontawesome3',
                 schema: jsonSchemaDraft4,
                 refs: this.$root.container.openapi,
-                startval: response.schema
+                startval: initial
             };
             var element = document.getElementById('schemaContainer');
             this.schemaEditor = new JSONEditor(element, editorOptions);
