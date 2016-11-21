@@ -2,7 +2,8 @@ Vue.component('api-method', {
 	props: ['key', 'method', 'index', 'maintags'],
 	data: function() {
 		return {
-            visible: false
+            visible: false,
+            schemaEditor: undefined
         }
 	},
     methods: {
@@ -55,7 +56,12 @@ Vue.component('api-method', {
                 startval: response.schema
             };
             var element = document.getElementById('schemaContainer');
-            var editor = new JSONEditor(element, editorOptions);
+            this.schemaEditor = new JSONEditor(element, editorOptions);
+            schemaEditorClose = function() {
+                this.schemaEditor.destroy();
+                $('#schemaModal').modal('hide');
+            }.bind(this);
+            schemaEditorSave = schemaEditorClose; // for now
             var modalOptions = {};
             $('#schemaModal').modal(modalOptions);
         },

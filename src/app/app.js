@@ -58,6 +58,10 @@ openapi = preProcessDefinition(openapi);
 var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
 
+// or we could wrap jsoneditor in a Vue.js component?
+var schemaEditorSave = function() {};
+var schemaEditorClose = function() {};
+
 function app_main() {
     var vm = new Vue({
         data: {
