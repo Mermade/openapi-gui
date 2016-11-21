@@ -135,7 +135,10 @@ Vue.component('api-parameter', {
                 this.schemaEditor.destroy();
                 $('#schemaModal').modal('hide');
             }.bind(this);
-            schemaEditorSave = schemaEditorClose; // for now
+            schemaEditorSave = function() {
+                this.parameter.schema = this.schemaEditor.getValue();
+                schemaEditorClose();
+            }.bind(this);
             var modalOptions = {};
             $('#schemaModal').modal(modalOptions);
         },
