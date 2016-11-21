@@ -5,7 +5,7 @@ var emptySwagger={"swagger":"2.0","info":{"title":"API","version":"1.0","contact
 var jsonSchemaDraft4 = {
 "id": "http://json-schema.org/draft-04/schema#",
 "$schema": "http://json-schema.org/draft-04/schema#",
-"description": "Core schema meta-schema",
+"description": "OpenApi 2.0 schema subset",
 "definitions": {
     "schemaArray": {
         "type": "array",
@@ -56,6 +56,7 @@ var jsonSchemaDraft4 = {
     },
     "exclusiveMaximum": {
         "type": "boolean",
+        "format": "checkbox",
         "default": false
     },
     "minimum": {
@@ -63,6 +64,7 @@ var jsonSchemaDraft4 = {
     },
     "exclusiveMinimum": {
         "type": "boolean",
+        "format": "checkbox",
         "default": false
     },
     "maxLength": { "$ref": "#/definitions/positiveInteger" },
@@ -73,7 +75,9 @@ var jsonSchemaDraft4 = {
     },
     "additionalItems": {
         "anyOf": [
-            { "type": "boolean" },
+            { "type": "boolean",
+              "format": "checkbox"
+            },
             { "$ref": "#" }
         ],
         "default": {}
@@ -89,6 +93,7 @@ var jsonSchemaDraft4 = {
     "minItems": { "$ref": "#/definitions/positiveIntegerDefault0" },
     "uniqueItems": {
         "type": "boolean",
+        "format": "checkbox",
         "default": false
     },
     "maxProperties": { "$ref": "#/definitions/positiveInteger" },
@@ -96,7 +101,9 @@ var jsonSchemaDraft4 = {
     "required": { "$ref": "#/definitions/stringArray" },
     "additionalProperties": {
         "anyOf": [
-            { "type": "boolean" },
+            { "type": "boolean",
+              "format": "checkbox" 
+            },
             { "$ref": "#" }
         ],
         "default": {}
@@ -116,15 +123,6 @@ var jsonSchemaDraft4 = {
         "additionalProperties": { "$ref": "#" },
         "default": {}
     },
-    "dependencies": {
-        "type": "object",
-        "additionalProperties": {
-            "anyOf": [
-                { "$ref": "#" },
-                { "$ref": "#/definitions/stringArray" }
-            ]
-        }
-    },
     "enum": {
         "type": "array",
         "minItems": 1,
@@ -142,8 +140,6 @@ var jsonSchemaDraft4 = {
         ]
     },
     "allOf": { "$ref": "#/definitions/schemaArray" },
-    "anyOf": { "$ref": "#/definitions/schemaArray" },
-    "oneOf": { "$ref": "#/definitions/schemaArray" },
     "not": { "$ref": "#" }
 },
 "dependencies": {
@@ -151,3 +147,15 @@ var jsonSchemaDraft4 = {
     "exclusiveMinimum": [ "minimum" ]
 },
 "default": {}}
+
+//    "anyOf": { "$ref": "#/definitions/schemaArray" },
+//    "oneOf": { "$ref": "#/definitions/schemaArray" },
+//    "dependencies": {
+//        "type": "object",
+//        "additionalProperties": {
+//            "anyOf": [
+//                { "$ref": "#" },
+//                { "$ref": "#/definitions/stringArray" }
+//            ]
+//        }
+//    },
