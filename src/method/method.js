@@ -66,11 +66,11 @@ Vue.component('api-method', {
                 this.response.schema = this.schemaEditor.getValue();
                 schemaEditorClose();
             }.bind(this);
-            schemaEditorSave = schemaEditorClose; // for now
             var modalOptions = {};
             $('#schemaModal').modal(modalOptions);
         },
         removeResponse : function(status) {
+            this.$root.save();
             Vue.delete(this.method.responses, status);
         },
         tagSetup : function() {
