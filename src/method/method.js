@@ -57,17 +57,22 @@ Vue.component('api-method', {
                 startval: initial
             };
             var element = document.getElementById('schemaContainer');
-            this.schemaEditor = new JSONEditor(element, editorOptions);
-            schemaEditorClose = function() {
-                this.schemaEditor.destroy();
-                $('#schemaModal').modal('hide');
-            }.bind(this);
-            schemaEditorSave = function() {
-                this.response.schema = this.schemaEditor.getValue();
-                schemaEditorClose();
-            }.bind(this);
-            var modalOptions = {};
-            $('#schemaModal').modal(modalOptions);
+            try {
+                this.schemaEditor = new JSONEditor(element, editorOptions);
+                schemaEditorClose = function() {
+                    this.schemaEditor.destroy();
+                    $('#schemaModal').modal('hide');
+                }.bind(this);
+                schemaEditorSave = function() {
+                    this.response.schema = this.schemaEditor.getValue();
+                    schemaEditorClose();
+                }.bind(this);
+                var modalOptions = {};
+                $('#schemaModal').modal(modalOptions);
+            }
+            catch (ex) {
+                bootbox.alert('The editor could not be instantiated. Circular schemas are not yet supported');
+            }
         },
         removeResponse : function(status) {
             this.$root.save();

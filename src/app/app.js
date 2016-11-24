@@ -2,33 +2,59 @@ function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-function recurse(obj,parent,callback) {
+function recurse(obj,path,cache,callback) {
     if (typeof obj == 'object') {
-        callback(obj);
+        callback(obj,path);
         for (var p in obj){
-            recurse(obj[p],obj,callback);
+            if (cache.indexOf(obj[p])<0) {
+                //cache.push(obj[p]);
+                recurse(obj[p],path+p+'/',cache,callback);
+                //cache.pop();
+            }
         }
     }
 }
 
 function deref(obj,defs) {
     var result = clone(obj);
-    recurse(result,{},function(o){
-        if ((typeof o == 'object') && (o["$ref"])) {
-            var ptr = o["$ref"].substr(1);
-            try {
-                var def = new JSONPointer(ptr).get(defs);
-                for (var p in def) {
-                    o[p] = def[p];
+    var changes = 1;
+    while (changes>0) {
+        changes = 0;
+        var cache = [];
+        recurse(result,'#/',cache,function(o,path){
+            cache.push(o);
+            if ((typeof o == 'object') && (o["$ref"])) {
+                var ptr = o["$ref"];
+                //console.log('  '+ptr+' @ '+path);
+                var target = (ptr.indexOf('#/definitions/') == 0) ? defs : result;
+                try {
+                    var def = new JSONPointer(ptr.substr(1)).get(target);
+                    changes++;
+                    // rewrite local $refs
+                    recurse(def,'#/',cache,function(o,dpath){
+                        if (o["$ref"]) {
+                            var newPtr = o["$ref"];
+                            if ((ptr+'/').indexOf(newPtr+'/')>=0) {
+                                //console.log('    circular '+newPtr+' @ '+dpath+' & above');
+                                var fixPtr = (newPtr+'/').replace(ptr+'/',path);
+                                fixPtr = fixPtr.substr(0,fixPtr.length-1);
+                                //console.log('    '+fixPtr);
+                                o["$ref"] = fixPtr;
+                            }
+                        }
+                    });
+                    for (var p in def) {
+                        o[p] = def[p];
+                    }
+                    delete o["$ref"];
                 }
-                delete o["$ref"];
+                catch (ex) {
+                    console.log(ex.message);
+                    console.log('Could not find $ref '+o["$ref"]);
+                }
             }
-            catch (ex) {
-                console.log(ex.message);
-                console.log('Could not find $ref '+o["$ref"]);
-            }
-        }
-    });
+        });
+    }
     return result;
 }
 
