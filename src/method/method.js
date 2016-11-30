@@ -26,7 +26,7 @@ Vue.component('api-method', {
             var newParam = {};
             newParam.name = 'newParam';
             newParam.in = 'query';
-            newParam.required = true;
+            newParam.required = false;
             newParam.type = 'string';
             this.method.parameters.push(newParam);
         },
