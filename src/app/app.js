@@ -35,10 +35,8 @@ function deref(obj,defs) {
                         if (o["$ref"]) {
                             var newPtr = o["$ref"];
                             if ((ptr+'/').indexOf(newPtr+'/')>=0) {
-                                //console.log('    circular '+newPtr+' @ '+dpath+' & above');
                                 var fixPtr = (newPtr+'/').replace(ptr+'/',path);
                                 fixPtr = fixPtr.substr(0,fixPtr.length-1);
-                                //console.log('    '+fixPtr);
                                 o["$ref"] = fixPtr;
                             }
                         }

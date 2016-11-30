@@ -137,3 +137,7 @@ body {
     white-space: normal;
     word-wrap : break-word;
 }
+
+summary:focus {
+	outline: none;
+}
