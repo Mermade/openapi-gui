@@ -70,6 +70,7 @@ Vue.component('api-parameter', {
             },
             set : function(newVal) {
                 this.parameter.in = newVal;
+				if (newVal == 'path') Vue.set(this.parameter, 'required', true);
             } 
         },
 
