@@ -1,5 +1,5 @@
 Vue.component('api-method', {
-	props: ['key', 'method', 'index', 'maintags'],
+	props: ['method', 'index', 'maintags'],
 	data: function() {
 		return {
             visible: false,
@@ -132,6 +132,7 @@ Vue.component('api-method', {
         },
         vtags : {
             get : function() {
+				if (!this.method.tags) Vue.set(this.method, 'tags', []);
                 return this.method.tags;
             },
             set : function(newVal) {
