@@ -34,6 +34,7 @@ You only need to `npm install` the Node.js modules if you wish to use the `Arapa
 ### Limitations
 
 * OpenApi-gui will de-reference shared parameters. For publication, you may wish to pass your OpenApi definition through a tool such as [OpenApi-optimise](https://githhub.com/mermade/openapi_optimise).
+* The definition must be self-contained with no external `$ref`s.
 * Editing a response / example / body schema will dereference it.
 * OpenApi-gui will not always preserve vendor-extensions.
 * OpenApi-gui will not preserve comments from definitions imported in YAML format.
@@ -43,6 +44,5 @@ TODO
 
 * Add validation on form fields
 * Consumes/Produces and security at operation level
-* De-reference path-item `$ref`s (rare)
 * Handle circular `$ref`s in responses / examples / body schemas
 
