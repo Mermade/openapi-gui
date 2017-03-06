@@ -10,7 +10,6 @@
   <link href="css/ribbon.css" rel="stylesheet">
   <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
-  <link rel="manifest" href="data/manifest.json">
 
   <script type='text/javascript' src='js/jquery.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
@@ -63,6 +62,9 @@
         // Set up the chain of events...
         $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6]).then(function() {
           $('#loading').hide();
+		  if (screen && screen.orientation) {
+		  	screen.orientation.lock('landscape');
+		  }
           $(function() { $.support.transition = false; });
           app_main();
         });
