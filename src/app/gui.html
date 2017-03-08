@@ -194,22 +194,26 @@
 
 				<div class="tab-pane" id="servers">
 					<div class="content forms span9">
-						<form class="plain-form form-horizontal" id="frmProdCons">
+						<form class="plain-form form-horizontal" id="frmServers">
 							<div>
 								<a v-on:click="addServer()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Server</a>
 								<br>
 							</div>
 							<div v-for="(server,index) in openapi.servers">
+								<div class="well">
 								<div class='control-group'>
 									<label class='control-label'> URL </label>
 									<div class='controls'>
 										<input class="span6" v-model="server.url">
 										<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 									</div>
+								</div>
+								<div class='control-group'>
 									<label class='control-label'> Description </label>
 									<div class='controls'>
 										<input class="span6" v-model="server.description">
 									</div>
+								</div>
 								</div>
 							</div>
 						</form>
@@ -309,33 +313,55 @@
 									</div>
 									<div v-if="sd.type == 'oauth2'" class='animate-if'>
 										<div class='control-group'>
-											<label class='control-label'> Flow </label>
+											<label class='control-label'> Implicit Flow </label>
 											<div class='controls'>
-												<select name="selFlow" v-model="sd.flow">
-													<option value="implicit">Implicit</option>
-													<option value="password">Password</option>
-													<option value="application">Application</option>
-													<option value="accessCode">AccessCode</option>
-												</select>
+												<input type='checkbox' v-model='hasImplicit'>
 											</div>
 										</div>
 										<div class='control-group'>
+											<label class='control-label'> Password Flow </label>
+											<div class='controls'>
+												<input type='checkbox' v-model='hasPassword'>
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> clientCredentials Flow </label>
+											<div class='controls'>
+												<input type='checkbox' v-model='hasClientCred'>
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> authorizationCode </label>
+											<div class='controls'>
+												<input type='checkbox' v-model='hasAuthCode'>
+											</div>
+										</div>
+
+										<div class="well" v-for="(flow,flowName) in sd.flow">
+
+										<div class='control-group'>
 											<label class='control-label'> Authorization URL </label>
 											<div class='controls'>
-												<input type="url" class="span6" v-model="sd.authorizationUrl">
+												<input type="url" class="span6" v-model="flow.authorizationUrl">
 											</div>
 										</div>
 										<div class='control-group'>
 											<label class='control-label'> Token URL </label>
 											<div class='controls'>
-												<input type="url" class="span6" v-model="sd.tokenUrl">
+												<input type="url" class="span6" v-model="flow.tokenUrl">
+											</div>
+										</div>
+										<div class='control-group'>
+											<label class='control-label'> Refresh URL </label>
+											<div class='controls'>
+												<input type="url" class="span6" v-model="flow.refreshUrl">
 											</div>
 										</div>
 										<div class='well'>
 											<div>
 												<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
-											<api-scope v-for="(sdesc, sname) in sd.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" inline-template>
+											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" inline-template>
 												<div>
 													<div class='control-group'>
 														<label class='control-label'> Scope Name </label>
@@ -347,12 +373,15 @@
 													<div class='control-group'>
 														<label class='control-label'> Description </label>
 														<div class='controls'>
-															<input class="span6" v-model="sd.scopes[sname]">
+															<input class="span6" v-model="flow.scopes[sname]">
 														</div>
 													</div>
 												</div>
 											</api-scope>
 										</div>
+
+										</div>
+
 									</div>
 								</div>
 							</api-secdef>

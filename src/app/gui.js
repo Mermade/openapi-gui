@@ -219,10 +219,13 @@ Vue.component('api-secdef', {
 					Vue.delete(this.sd, 'name');
 				}
 				if (newVal != 'oauth2') {
-					Vue.delete(this.sd, 'authorizationUrl');
-					Vue.delete(this.sd, 'tokenUrl');
+					//Vue.delete(this.sd, 'authorizationUrl');
+					//Vue.delete(this.sd, 'tokenUrl');
 					Vue.delete(this.sd, 'flow');
-					Vue.delete(this.sd, 'scopes');
+					//Vue.delete(this.sd, 'scopes');
+				}
+				if (newVal != 'http') {
+					Vue.delete(this.sd, 'scheme');
 				}
 			}
 		},
@@ -252,6 +255,34 @@ Vue.component('api-secdef', {
 				else {
 					this.$parent.filterSecurityDefinition(this.openapi.security, this.sdname);
 				}
+			}
+		},
+		hasImplicit: {
+			get : function() {
+				return this.sd.flow && this.sd.flow.implicit;
+			},
+			set : function(newVal) {
+			}
+		},
+		hasPassword: {
+			get : function() {
+				return this.sd.flow && this.sd.flow.password;
+			},
+			set : function(newVal) {
+			}
+		},
+		hasAuthCode: {
+			get : function() {
+				return this.sd.flow && this.sd.flow.authorizationCode;
+			},
+			set : function(newVal) {
+			}
+		},
+		hasClientCred: {
+			get : function() {
+				return this.sd.flow && this.sd.flow.clientCredentials;
+			},
+			set : function(newVal) {
 			}
 		}
 	},
