@@ -93,7 +93,7 @@
 				</div>
 
 				<div class="tab-pane" id="header">
-					<div class="content forms span9">
+					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmHeader">
 
 							<div class='control-group'>
@@ -193,7 +193,7 @@
 				</div>
 
 				<div class="tab-pane" id="servers">
-					<div class="content forms span9">
+					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmServers">
 							<div>
 								<a v-on:click="addServer()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Server</a>
@@ -221,7 +221,7 @@
 				</div>
 
 				<div class="tab-pane" id="tags">
-					<div class="content forms span9">
+					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmTags">
 							<div>
 								<a v-on:click="addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
@@ -262,7 +262,7 @@
 				</div>
 
 				<div class="tab-pane" id="security">
-					<div class="content forms span9">
+					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmSecurity">
 							<div>
 								<a class="btn btn-info" v-on:click="addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
@@ -403,7 +403,7 @@
 
 				<div class='tab-pane row-fluid active' id='editor'>
 
-					<div class='span3'>
+					<div class='span2'>
 						<div class='sidebar-nav well'>
 							<div>
 								<a v-on:click="addResource()" class='btn btn-info addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
@@ -428,7 +428,7 @@
 						</div>
 					</div>
 
-					<div class="content forms span9">
+					<div class="content forms span10">
 						<form class="form-horizontal" id="config">
 							<div class="resource" v-for="(path,key,index) in openapi.paths">
 								<api-resource :path='path' :index='key' :maintags='openapi.tags'></api-resource>

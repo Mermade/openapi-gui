@@ -39,6 +39,7 @@ TODO
 ----
 
 * Add validation on form fields
-* Editing of bodyRequest schemas / content-types
+* Server parameters
+* Editing of requestBody schemas / content-types / examples
 * Handle circular `$ref`s in responses / examples / body schemas
 
