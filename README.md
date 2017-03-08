@@ -1,11 +1,7 @@
 OpenApi-gui
 ===========
 
-## Work in Progress
-
-**Warning!** Outputting to OpenApi format is still in flux, and may not preserve all data of a loaded definition.
-
-OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenApi definitions.
+OpenApi-gui is a GUI for creating and editing OpenApi version 3.0.x JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenApi definitions.
 
 ![Screenshot](https://mermade.github.io/openapi-gui/img/screenshot.png)
 
@@ -15,7 +11,7 @@ Description
 -----------
 ### How It Works
 
-Select an existing OpenApi definition to upload, or create a new definition and start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path, Operation and Parameter will be created.
+Select an existing OpenApi 3.0.x definition to upload, or create a new definition and start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path, Operation and Parameter will be created.
 
 Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting one of the "Export" tabs. When finished, download the output to save it locally or copy it your clipboard. OpenApi-gui only stores one definition at a time, and this is in your browser's local-storage. Make sure you save your JSON/YAML output locally.
 
@@ -36,13 +32,13 @@ You only need to `npm install` the Node.js modules if you wish to use the `Arapa
 * OpenApi-gui will de-reference shared parameters. For publication, you may wish to pass your OpenApi definition through a tool such as [OpenApi-optimise](https://githhub.com/mermade/openapi_optimise).
 * The definition must be self-contained with no external `$ref`s.
 * Editing a response / example / body schema will dereference it.
-* OpenApi-gui will not always preserve vendor-extensions.
+* OpenApi-gui will not always preserve vendor-extensions, e.g. if a parameter is deleted and recreated.
 * OpenApi-gui will not preserve comments from definitions imported in YAML format.
 
 TODO
 ----
 
 * Add validation on form fields
-* Consumes/Produces and security at operation level
+* Editing of bodyRequest schemas / content-types
 * Handle circular `$ref`s in responses / examples / body schemas
 

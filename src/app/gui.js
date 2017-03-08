@@ -129,17 +129,17 @@ Vue.component('gui-main', {
 
 			if (!this.importschema) this.importschema = {};
 			if (!this.importschema.text) {
-				schema = emptySwagger;
-				this.importschema.text = JSON.stringify(emptySwagger, null, 2);
+				schema = emptyOpenAPI;
+				this.importschema.text = JSON.stringify(emptyOpenAPI, null, 2);
 			}
 
-			if (schema.swagger == '2.0') {
-				if (window.localStorage) window.localStorage.setItem('swagger2', JSON.stringify(schema));
+			if (schema.openapi.startsWith('3.0.')) {
+				if (window.localStorage) window.localStorage.setItem('openapi3', JSON.stringify(schema));
 				schema = preProcessDefinition(schema);
 				Vue.set(this.$root.container, 'openapi', schema);
 			}
 			else {
-				bootbox.alert('Swagger version must be 2.0');
+				bootbox.alert('OpenAPI version must be 3.0.x');
 			}
 		},
 
@@ -157,7 +157,7 @@ Vue.component('gui-main', {
 			});
 			var data = "text/json;charset=utf-8," + encodeURIComponent(output);
 			$('#download-output').attr('href', 'data:' + data);
-			$('#download-output').attr('download', 'swagger.json');
+			$('#download-output').attr('download', 'openapi.json');
 		},
 
 		renderOutputYaml: function () {
@@ -176,7 +176,7 @@ Vue.component('gui-main', {
 			});
 			var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
 			$('#download-yaml').attr('href', 'data:' + data);
-			$('#download-yaml').attr('download', 'swagger.yaml');
+			$('#download-yaml').attr('download', 'openapi.yaml');
 		},
 
 		scrollTop: function () {
@@ -190,7 +190,7 @@ Vue.component('gui-main', {
 
 		undo: function () {
 			if (window.localStorage) {
-				Vue.set(this.$root.container, 'openapi', JSON.parse(window.localStorage.getItem('swagger2')));
+				Vue.set(this.$root.container, 'openapi', JSON.parse(window.localStorage.getItem('openapi3')));
 			}
 		}
 

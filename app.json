@@ -1,7 +1,7 @@
 {
   "name": "OpenApi-gui",
-  "description": "GUI for OpenApi / Swagger definitions",
+  "description": "GUI for OpenApi 3.0.x definitions",
   "repository": "https://github.com/mermade/openapi-gui",
   "logo": "http://mermade.github.io/arapaho/logo.jpg",
-  "keywords": ["openapi", "swagger", "api", "documentation", "docs", "gui", "editor"]
+  "keywords": ["openapi", "openapi3", "api", "documentation", "docs", "gui", "editor"]
 }

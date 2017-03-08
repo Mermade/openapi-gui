@@ -95,7 +95,7 @@ function onlyUnique(value, index, self) {
 var openapi;
 
 if (window.localStorage) {
-    var o = window.localStorage.getItem('swagger2');
+    var o = window.localStorage.getItem('openapi3');
     if (o) {
         try {
             openapi = JSON.parse(o);
@@ -128,7 +128,7 @@ function app_main() {
         methods : {
             save : function() {
                 if (window.localStorage) {
-                    window.localStorage.setItem('swagger2', JSON.stringify(this.container.openapi));
+                    window.localStorage.setItem('openapi3', JSON.stringify(this.container.openapi));
                 }
             },
             postProcessDefinition : function() {
