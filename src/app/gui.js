@@ -101,14 +101,13 @@ Vue.component('gui-main', {
 			}
 		},
 
-		addConsumes: function () {
-			if (!this.openapi.consumes) Vue.set(this.openapi, 'consumes', []);
-			this.openapi.consumes.push('mime/type');
+		addServer: function () {
+			if (!this.openapi.servers) Vue.set(this.openapi, 'servers', []);
+			this.openapi.servers.push({url:'',description:''});
 		},
 
-		addProduces: function () {
-			if (!this.openapi.produces) Vue.set(this.openapi, 'produces', []);
-			this.openapi.produces.push('mime/type');
+		removeServer: function(index) {
+			this.openapi.servers.splice(index,1);
 		},
 
 		loadSchema: function () {
