@@ -298,9 +298,7 @@ Vue.component('api-secdef', {
 		removeSecurityDefinition : function(sdname) {
 			this.$parent.removeSecurityDefinition(sdname);
 		},
-		addScope: function (flow,sdName,flowName) {
-			//var secDef = this.openapi.components.securitySchemes[sdName];
-			//var flow = secDef.flow[flowName];
+		addScope: function (flow) {
 			if (!flow.scopes) Vue.set(flow, 'scopes',  {});
 			if (!flow.scopes.newScope) {
 				Vue.set(flow.scopes, 'newScope', 'description');
@@ -321,7 +319,7 @@ Vue.component('api-secdef', {
 });
 
 Vue.component('api-scope', {
-	props: ["sd", "sname", "sdname"],
+	props: ["sd", "sname", "sdname", "flow"],
 	computed: {
 		scopename: {
 			get : function() {

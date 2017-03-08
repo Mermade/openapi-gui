@@ -365,7 +365,7 @@
 											<div>
 												<a class="btn btn-info" v-on:click="addScope(flow)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
-											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" inline-template>
+											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
 												<div>
 													<div class='control-group'>
 														<label class='control-label'> Scope Name </label>
