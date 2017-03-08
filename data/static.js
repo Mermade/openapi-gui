@@ -5,7 +5,7 @@ var emptyOpenAPI={"swagger":"3.0.0-RC0","info":{"title":"API","version":"1.0","c
 var jsonSchemaDraft4 = {
 "id": "http://json-schema.org/draft-04/schema#",
 "$schema": "http://json-schema.org/draft-04/schema#",
-"description": "OpenApi 2.0 schema subset",
+"description": "OpenApi 3.0 schema subset",
 "definitions": {
     "schemaArray": {
         "type": "array",
