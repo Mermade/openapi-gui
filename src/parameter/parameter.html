@@ -49,8 +49,7 @@
                             <option value="path">Path</option>
                             <option value="query">Query</option>
                             <option value="header">Header</option>
-                            <option value="body">Body</option>
-                            <option value="formData">Form</option>
+                            <option value="cookie">Cookie</option>
                         </select>
 					</div>
 				</div>
@@ -63,7 +62,6 @@
                             <option value="integer">integer</option>
                             <option value="number">number</option>
                             <option value="array">array</option>
-                            <option value="file">file</option>
                             <option value="object">object</option>
                         </select>
 					</div>
@@ -90,7 +88,7 @@
 						</div>
 					</div>
 				</div>
-				<div class='control-group' v-if="parameter.in == 'query' || parameter.in == 'formData'">
+				<div class='control-group' v-if="parameter.in == 'query'">
 					<label class='control-label'> Allow Empty Value </label>
 					<div class='controls'>
 						<input type="checkbox" v-model="parameter.allowEmptyValue">
