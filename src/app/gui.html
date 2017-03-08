@@ -338,6 +338,10 @@
 										</div>
 
 										<div class="well" v-for="(flow,flowName) in sd.flow">
+										<!-- reindent -->
+										<div class='control-group'>
+											<label class='control-label'> Flow: {{ flowName }} </label>
+										</div>
 
 										<div class='control-group'>
 											<label class='control-label'> Authorization URL </label>
@@ -359,7 +363,7 @@
 										</div>
 										<div class='well'>
 											<div>
-												<a class="btn btn-info" v-on:click="addScope(sdname)"><i class='icon-plus icon-white'></i> Add Scope</a>
+												<a class="btn btn-info" v-on:click="addScope(flow)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
 											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" inline-template>
 												<div>
@@ -367,7 +371,7 @@
 														<label class='control-label'> Scope Name </label>
 														<div class='controls'>
 															<input class="span6" v-model.lazy="scopename">
-															<a v-on:click="removeScope(sdname,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+															<a v-on:click="removeScope(flow,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 														</div>
 													</div>
 													<div class='control-group'>
@@ -380,7 +384,7 @@
 											</api-scope>
 										</div>
 
-										</div>
+										</div> <!-- to here -->
 
 									</div>
 								</div>

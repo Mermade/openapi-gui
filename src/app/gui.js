@@ -262,6 +262,8 @@ Vue.component('api-secdef', {
 				return this.sd.flow && this.sd.flow.implicit;
 			},
 			set : function(newVal) {
+				if (newVal) Vue.set(this.sd.flow,'implicit',{})
+				else Vue.delete(this.sd.flow,'implicit');
 			}
 		},
 		hasPassword: {
@@ -269,6 +271,8 @@ Vue.component('api-secdef', {
 				return this.sd.flow && this.sd.flow.password;
 			},
 			set : function(newVal) {
+				if (newVal) Vue.set(this.sd.flow,'password',{})
+				else Vue.delete(this.sd.flow,'password');
 			}
 		},
 		hasAuthCode: {
@@ -276,6 +280,8 @@ Vue.component('api-secdef', {
 				return this.sd.flow && this.sd.flow.authorizationCode;
 			},
 			set : function(newVal) {
+				if (newVal) Vue.set(this.sd.flow,'authorizationCode',{})
+				else Vue.delete(this.sd.flow,'authorizationCode');
 			}
 		},
 		hasClientCred: {
@@ -283,6 +289,8 @@ Vue.component('api-secdef', {
 				return this.sd.flow && this.sd.flow.clientCredentials;
 			},
 			set : function(newVal) {
+				if (newVal) Vue.set(this.sd.flow,'clientCredentials',{})
+				else Vue.delete(this.sd.flow,'clientCredentials');
 			}
 		}
 	},
@@ -290,20 +298,21 @@ Vue.component('api-secdef', {
 		removeSecurityDefinition : function(sdname) {
 			this.$parent.removeSecurityDefinition(sdname);
 		},
-		addScope: function (sdName) {
-			var secDef = this.openapi.securityDefinitions[sdName];
-			if (!secDef.scopes) Vue.set(secDef, 'scopes',  {});
-			if (!secDef.scopes.newScope) {
-				Vue.set(secDef.scopes, 'newScope', 'description');
+		addScope: function (flow,sdName,flowName) {
+			//var secDef = this.openapi.components.securitySchemes[sdName];
+			//var flow = secDef.flow[flowName];
+			if (!flow.scopes) Vue.set(flow, 'scopes',  {});
+			if (!flow.scopes.newScope) {
+				Vue.set(flow.scopes, 'newScope', 'description');
 			}
 		},
-		renameScope : function(oldName, newName) {
-			Vue.set(this.sd.scopes, newName, this.sd.scopes[oldName]);
-			Vue.delete(this.sd.scopes, oldName);
+		renameScope : function(flow, oldName, newName) {
+			Vue.set(flow.scopes, newName, flow.scopes[oldName]);
+			Vue.delete(flow.scopes, oldName);
 		},
-		removeScope: function (sdName, sName) {
+		removeScope: function (flow, sName) {
 			this.$root.save();
-			Vue.delete(this.openapi.securityDefinitions[sdName].scopes, sName);
+			Vue.delete(flow.scopes,sName);
 		}
 	},
 	data: function() {
@@ -319,7 +328,7 @@ Vue.component('api-scope', {
 				return this.sname;
 			},
 			set : function(newVal) {
-				this.$parent.renameScope(this.sname, newVal);
+				this.$parent.renameScope(this.flow, this.sname, newVal);
 			}
 		} 
 	},
