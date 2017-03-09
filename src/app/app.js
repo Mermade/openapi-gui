@@ -2,6 +2,16 @@ function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
 function recurse(obj,path,cache,callback) {
     if (typeof obj == 'object') {
         callback(obj,path);
@@ -62,18 +72,28 @@ function preProcessDefinition(openapi) {
         if (!tag.externalDocs) tag.externalDocs = {};
     }
     if (!openapi.security) openapi.security = [];
+	if (!openapi.info.contact) {
+		openapi.info.contact = {};
+	}
+	if (!openapi.info.license) {
+		openapi.info.license = {};
+	}
+	if (!openapi.externalDocs) {
+		openapi.externalDocs = {};
+	}
     for (var p in openapi.paths) {
         var path = openapi.paths[p];
         for (var o in path) {
             var op = path[o];
             if (!op.tags) op.tags = [];
             if (path.parameters && path.parameters.length > 0) {
+                if (!op.parameters) op.parameters = [];
                 for (var pp in path.parameters) {
                     var shared = path.parameters[pp];
                     var seen = false;
                     for (var cp in op.parameters) {
                         var child = op.parameters[cp];
-                        if (child.name == shared.name && child.in == shared.in) {
+                        if (child && child.name == shared.name && child.in == shared.in) {
                             seen = true;
                             break;
                         }
