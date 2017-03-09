@@ -456,7 +456,9 @@
 										<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
 										<ul class='dropdown-menu'>
 											<li v-for="(m,mkey) in path">
-												<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
+												<template v-if="'.get.post.put.patch.head.options.delete.trace'.indexOf(mkey)>0">
+													<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
+												</template>
 											</li>
 										</ul>
 									</li>

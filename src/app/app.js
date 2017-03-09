@@ -104,6 +104,7 @@ function preProcessDefinition(openapi) {
                 }
             }
         }
+		delete path.parameters; // other non-HTTP verb properties are excluded from the nav menu
     }
     return openapi;
 }
