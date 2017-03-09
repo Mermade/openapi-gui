@@ -35,7 +35,7 @@
 				</li>
 				<li>
 					<a data-toggle='tab' href='#servers' id="header-servers">
-						<i class='icon-magic'></i> Servers
+						<i class='icon-cloud'></i> Servers
 					</a>
 				</li>
 				<li>
@@ -198,22 +198,59 @@
 							<div>
 								<a v-on:click="addServer()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Server</a>
 								<br>
+								<br>
 							</div>
 							<div v-for="(server,index) in openapi.servers">
 								<div class="well">
-								<div class='control-group'>
-									<label class='control-label'> URL </label>
-									<div class='controls'>
-										<input class="span6" v-model="server.url">
-										<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+									<div class='control-group'>
+										<label class='control-label'> URL </label>
+										<div class='controls'>
+											<input class="span6" v-model="server.url">
+											<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+										</div>
 									</div>
-								</div>
-								<div class='control-group'>
-									<label class='control-label'> Description </label>
-									<div class='controls'>
-										<input class="span6" v-model="server.description">
+									<div class='control-group'>
+										<label class='control-label'> Description </label>
+										<div class='controls'>
+											<input class="span6" v-model="server.description">
+										</div>
 									</div>
-								</div>
+
+									<div>
+										<a v-on:click="addVariable(index)" class="btn btn-info"><i class="icon-plus icon-white"></i> Add Variable</a>
+										<br>
+										<br>
+									</div>
+									<div v-for="(variable,index) in server.variables">
+										<div class="well">
+											<div class="control-group">
+												<label class='control-label'> Name </label>
+												<div class="controls">
+													<input class="span6" v-model="index" v-model.lazy="variableName">
+													<a v-on:click="removeVariable(server,index)" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete </a>
+												</div>
+											</div>
+											<div class='control-group'>
+												<label class='control-label'> Description </label>
+												<div class='controls'>
+													<input class="span6" v-model="variable.description">
+												</div>
+											</div>
+											<div class='control-group'>
+												<label class='control-label'> Default </label>
+												<div class='controls'>
+													<input class="span6" v-model="variable.default">
+												</div>
+											</div>
+											<div class='control-group'>
+												<label class='control-label'> Enum </label>
+												<div class='controls'>
+													<!-- todo -->
+												</div>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</form>

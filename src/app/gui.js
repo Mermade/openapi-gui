@@ -110,6 +110,20 @@ Vue.component('gui-main', {
 			this.openapi.servers.splice(index,1);
 		},
 
+		addVariable: function (serverIndex) {
+			if (!this.openapi.servers[serverIndex].variables) Vue.set(this.openapi.servers[serverIndex],'variables',{});
+			Vue.set(this.openapi.servers[serverIndex].variables,'newVar',{description:'',default:'change-me'});
+		},
+
+		renameVariable : function(server, oldName, newName) {
+			Vue.set(server.variables, newName, server.variabes[oldName]);
+			Vue.delete(server.variables, oldName);
+		},
+
+		removeVariable: function (server,index) {
+			Vue.delete(server.variables,index);
+		},
+
 		loadSchema: function () {
 			var schema;
 			try {
@@ -219,10 +233,7 @@ Vue.component('api-secdef', {
 					Vue.delete(this.sd, 'name');
 				}
 				if (newVal != 'oauth2') {
-					//Vue.delete(this.sd, 'authorizationUrl');
-					//Vue.delete(this.sd, 'tokenUrl');
 					Vue.delete(this.sd, 'flow');
-					//Vue.delete(this.sd, 'scopes');
 				}
 				if (newVal != 'http') {
 					Vue.delete(this.sd, 'scheme');
