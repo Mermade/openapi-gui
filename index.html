@@ -21,7 +21,7 @@
   <script type='text/javascript' src="js/jsoneditor.min.js"></script>
   <script type='text/javascript' src="js/bootstrap-tagsinput.min.js"></script>
   <script type='text/javascript' src="data/static.js"></script>
-  <script type='text/javascript' src="js/vue.min.js"></script>
+  <script type='text/javascript' src="js/vue.js"></script>
 
   <script src="src/resource/resource.js"></script>
   <script src="src/method/method.js"></script>
@@ -55,12 +55,12 @@
       $(document).ready(function(){
 
         // Create the Deferred instances that can be handed to $.when()
-        for (t=0;t<7;t++) {
+        for (t=0;t<8;t++) {
           def.push($.Deferred());
         }
 
         // Set up the chain of events...
-        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6]).then(function() {
+        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
           $('#loading').hide();
 		  if (screen && screen.orientation) {
 		  	screen.orientation.lock('landscape');
@@ -77,6 +77,29 @@
         $('#template-definition').load('src/api-definition/output.html', function() { resolveDef(4); });
         $('#template-yaml').load('src/api-yaml/output.html', function() { resolveDef(5); });
         $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
+
+		// def(7) is our chance to load a spec from a querystring parameter
+		// for now...
+		var loadUrl = getParameterByName('url');
+		if (loadUrl) {
+			$.ajax(loadUrl,{
+				success: function(data) {
+					try {
+						openapi = preProcessDefinition(data);
+					}
+					catch (ex) {
+						alert(ex);
+					}
+				},
+				complete: function() {
+					resolveDef(7);
+				}
+			});
+		}
+		else {
+			resolveDef(7);
+		}
+
       });
   </script>
   <div style='display:none'>
