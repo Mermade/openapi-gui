@@ -81,6 +81,9 @@ function preProcessDefinition(openapi) {
 	if (!openapi.externalDocs) {
 		openapi.externalDocs = {};
 	}
+	if (!openapi.paths) {
+		openapi.paths = {};
+	}
     for (var p in openapi.paths) {
         var path = openapi.paths[p];
         for (var o in path) {
@@ -176,6 +179,12 @@ function app_main() {
                         Vue.delete(tag, 'externalDocs');
                     }
                 }
+				if (def.externalDocs && !def.externalDocs.url) {
+					Vue.delete(def, 'externalDocs');
+				}
+				if (def.info && def.info.license && !def.info.license.name) {
+					Vue.delete(def.info, 'license');
+				}
                 return def;
             }
         }
