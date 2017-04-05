@@ -1,10 +1,6 @@
 OpenApi-gui
 ===========
 
-## Work in Progress
-
-**Warning!** Outputting to OpenApi format is still in flux, and may not preserve all data of a loaded definition.
-
 OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenApi definitions.
 
 ![Screenshot](https://mermade.github.io/openapi-gui/img/screenshot.png)
