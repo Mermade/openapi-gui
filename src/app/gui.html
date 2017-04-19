@@ -1,8 +1,12 @@
 <div class='component-gui'>
-	<div class='navbar navbar-inverse navbar-fixed-top'>
-		<div class='navbar-inner'>
-			<div class='container-fluid'>
+	<div class='nav has-shadow'>
+		<div class='nav-left'>
+			<div class="nav-item">
 				<span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI v3</a></span>
+			</div>
+		</div>
+		<div class="nav-right">
+			<div class='nav-item'>
 				<a class="btn btn-info pull-right" v-on:click="scrollTop()"><i class='icon-white icon-arrow-up'></i> Top</a>
 				<a class="btn btn-info pull-right" v-on:click="save()"><i class='icon-white icon-save'></i> Save</a>
 				<a class="btn btn-info pull-right" v-on:click="undo()"><i class='icon-white icon-undo'></i> Undo</a>
@@ -13,67 +17,88 @@
 		</div>
 	</div>
 
+	<div id="alert" class="modal">
+  		<div class="modal-background"></div>
+  		<div class="modal-content">
+			<article class="message">
+				<div class="message-body">
+    				<span id="alertText"></span>
+				</div>
+			</article>
+  		</div>
+  		<button id="alertClose" class="modal-close"></button>
+	</div>
+
 	<div class='container-fluid' role='main'>
 		<div class='row-fluid'>
 
 			<a id='scrollTop'></a>
-			<ul id="section-tabs" class='tabs nav nav-tabs'>
-				<li>
-					<a data-toggle='tab' href='#about' id="about-tab">
-						<i class='icon-info-sign'></i> About
+			<ul id="section-tabs" class='tabs is-boxed'>
+				<li class="tabItem" id="tabItem-about">
+					<a class="tabSelect" href="#about" v-on:click="selectTab('about',$event)">
+						<span class="icon is-small"><i class="icon-info-sign"></i></span>
+						<span>About</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#input' id="input-tab">
-						<i class='icon-upload'></i> Load
+				<li class="tabItem" id="tabItem-input" v-on:click="selectTab('input',$event)">
+					<a class="tabSelect" href='#input' id="input-tab">
+						<span class="icon is-small"><i class='icon-upload'></i></span>
+						<span>Load</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#header' id="header-tab">
-						<i class='icon-h-sign'></i> Header
+				<li class="tabItem" id="tabItem-header">
+					<a class="tabSelect" href='#header' id="header-tab" v-on:click="selectTab('header',$event)">
+						<span class="icon is-small"><i class='icon-h-sign'></i></span>
+						<span>Header</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#servers' id="header-servers">
-						<i class='icon-cloud'></i> Servers
+				<li class="tabItem" id="tabItem-servers">
+					<a class="tabSelect" href='#servers' id="servers-tab" v-on:click="selectTab('servers',$event)">
+						<span class="icon is-small"><i class='icon-cloud'></i></span>
+						<span>Servers</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#security' id="header-security">
-						<i class='icon-lock'></i> Security
+				<li class="tabItem" id="tabItem-security">
+					<a class="tabSelect" href='#security' id="security-tab" v-on:click="selectTab('security',$event)">
+						<span class="icon is-small"><i class='icon-lock'></i></span>
+						<span>Security</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#tags' id="header-tags">
-						<i class='icon-tag'></i> Tags
+				<li class="tabItem" id="tabItem-tags">
+					<a class="tabSelect" href='#tags' id="tags-tab" v-on:click="selectTab('tags',$event)">
+						<span class="icon is-small"><i class='icon-tag'></i></span>
+						<span>Tags</span>
 					</a>
 				</li>
-				<li class='active'>
-					<a data-toggle='tab' href='#editor' id="editor-tab">
-						<i class='icon-edit'></i> Edit
+				<li class='tabItem is-active' id="tabItem-editor">
+					<a class="tabSelect" href='#editor' id="editor-tab" v-on:click="selectTab('editor',$event)">
+						<span class="icon is-small"><i class='icon-edit'></i></span>
+						<span>Edit</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#output' id="output-tab" v-on:click="renderOutput()">
-						<i class='icon-file'></i> Export JSON
+				<li class="tabItem" id="tabItem-output">
+					<a class="tabSelect" href='#output' id="output-tab" v-on:click="renderOutput($event)">
+						<span class="icon is-small"><i class='icon-file'></i></span>
+						<span>Export JSON</span>
 					</a>
 				</li>
-				<li>
-					<a data-toggle='tab' href='#yaml' id="yaml-tab" v-on:click="renderOutputYaml()">
-						<i class='icon-file'></i> Export YAML
+				<li class="tabItem" id="tabItem-yaml">
+					<a class="tabSelect" href='#yaml' id="yaml-tab" v-on:click="renderOutputYaml($event)">
+						<span class="icon is-small"><i class='icon-file'></i></span>
+						<span>Export YAML</span>
 					</a>
 				</li>
 			</ul>
 
 			<div class='tab-content'>
 
-				<div class="tab-pane" id="about">
-					<h1>What is OpenApi-gui?</h1>
-					<br> OpenApi-gui is a GUI for creating and updating <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">
-					OpenApi 3.0.x</a> definitions.
+				<div class="tab-pane hidden" id="about">
+					<h1 class="title">What is OpenApi-gui?</h1>
+					OpenApi-gui is a GUI for creating and updating <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">
+					OpenApi 3.0.x</a> definitions.<br>
 					<br>
-					<h2>How does OpenApi-gui work?</h2>
-					<br> Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and
+					<h2 class="subtitle">How does OpenApi-gui work?</h2>
+					Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and
 					start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing
 					each Path, Operation and Parameter will be created.
 					<br>
@@ -85,14 +110,20 @@
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 				</div>
 
-				<div class="tab-pane" id="input">
-					<textarea class="span12 service-input" v-model="importschema.text"></textarea>
+				<div class="tab-pane hidden" id="input">
+				    <div class="columns">
+					<div class="column is-10">
+					<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
+					</div>
+					<div class="column">
 					<a class='btn btn-primary pull-right' id="load-definition" v-on:click="loadSchema()">
 						<i class='icon-upload icon-white'></i> Load Definition
 					</a>
+					</div>
+					</div>
 				</div>
 
-				<div class="tab-pane" id="header">
+				<div class="tab-pane hidden" id="header">
 					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmHeader">
 
@@ -139,15 +170,15 @@
 								</div>
 							</div>
 							-->
-							<div class='control-group'>
-								<label class='control-label'> Contact Name </label>
-								<div class='controls'>
+							<div class='control-group level'>
+								<label class='control-label level-item'> Contact Name </label>
+								<div class='controls level-item'>
 									<input class="span6" v-model="openapi.info.contact.name">
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> Contact Email </label>
-								<div class='controls'>
+							<div class='control-group level'>
+								<label class='control-label level-item'> Contact Email </label>
+								<div class='controls level-item'>
 									<input type="email" class="span6" v-model="openapi.info.contact.email">
 								</div>
 							</div>
@@ -192,7 +223,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="servers">
+				<div class="tab-pane hidden" id="servers">
 					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmServers">
 							<div>
@@ -257,7 +288,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="tags">
+				<div class="tab-pane hidden" id="tags">
 					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmTags">
 							<div>
@@ -298,7 +329,7 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="security">
+				<div class="tab-pane hidden" id="security">
 					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmSecurity">
 							<div>
@@ -430,15 +461,15 @@
 					</div>
 				</div>
 
-				<div class="tab-pane" id="output">
+				<div class="tab-pane hidden" id="output">
 					<api-definition></api-definition>
 				</div>
 
-				<div class="tab-pane" id="yaml">
+				<div class="tab-pane hidden" id="yaml">
 					<api-yaml></api-yaml>
 				</div>
 
-				<div class='tab-pane row-fluid active' id='editor'>
+				<div class='tab-pane row-fluid is-active' id='editor'>
 
 					<div class='span2'>
 						<div class='sidebar-nav well'>

@@ -124,19 +124,27 @@ Vue.component('gui-main', {
 			Vue.delete(server.variables,index);
 		},
 
+		showAlert: function (text) {
+			$('#alertText').text(text);
+			$('#alert').addClass('is-active');
+			$('#alertClose').click(function(){
+				$('#alert').removeClass('is-active');
+			});
+		},
+
 		loadSchema: function () {
 			var schema;
 			try {
 				schema = JSON.parse(this.importschema.text);
-				bootbox.alert('JSON definition parsed successfully');
+				this.showAlert('JSON definition parsed successfully');
 			}
 			catch (ex) {
 				try {
 					schema = jsyaml.safeLoad(this.importschema.text);
-					bootbox.alert('YAML definition parsed successfully');
+					this.showAlert('YAML definition parsed successfully');
 				}
 				catch (ex) {
-					bootbox.alert('The definition could not be parsed');
+					this.showAlert('The definition could not be parsed');
 				}
 			}
 
@@ -156,7 +164,16 @@ Vue.component('gui-main', {
 			}
 		},
 
-		renderOutput: function () {
+		selectTab: function (name, $event) {
+			$('.tabItem').removeClass('is-active');
+			$('#tabItem-'+name).addClass('is-active');
+			$('.tab-pane').addClass('hidden');
+			$('#'+name).removeClass('hidden');
+			$event.preventDefault();
+		},
+
+		renderOutput: function ($event) {
+			this.selectTab('output',$event);
 			// Pretty print has an issue correctly rendering output when we modify
 			// the content in an already "prettified" element. This hack creates a
 			// new element so prettyPrint() will correctly re-render the output
@@ -165,15 +182,18 @@ Vue.component('gui-main', {
 			output = JSON.stringify(def, null, 4);
 			$('#pretty-json').html(output);
 			clippy = new Clipboard('#copy-json');
-			$('pre code').each(function (i, block) {
-				hljs.highlightBlock(block);
-			});
+			setTimeout(function(){
+				$('pre code').each(function (i, block) {
+					hljs.highlightBlock(block);
+				});
+			},0);
 			var data = "text/json;charset=utf-8," + encodeURIComponent(output);
 			$('#download-output').attr('href', 'data:' + data);
 			$('#download-output').attr('download', 'openapi.json');
 		},
 
-		renderOutputYaml: function () {
+		renderOutputYaml: function ($event) {
+			this.selectTab('yaml',$event);
 			$('#yaml-output').html('<pre class="prettyprint"><code id="pretty-yaml"></code></pre>');
 			var def = this.$root.postProcessDefinition();
 			try {
@@ -184,9 +204,11 @@ Vue.component('gui-main', {
 			}
 			$('#pretty-yaml').html(output);
 			clippy = new Clipboard('#copy-yaml');
-			$('pre code').each(function (i, block) {
-				hljs.highlightBlock(block);
-			});
+			setTimeout(function(){
+				$('pre code').each(function (i, block) {
+					hljs.highlightBlock(block);
+				});
+			},0);
 			var data = "text/x-yaml;charset=utf-8," + encodeURIComponent(output);
 			$('#download-yaml').attr('href', 'data:' + data);
 			$('#download-yaml').attr('download', 'openapi.yaml');
