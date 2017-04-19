@@ -92,7 +92,7 @@
 
 			<div class='tab-content'>
 
-				<div class="tab-pane hidden" id="about">
+				<div class="tab-pane hidden container is-fluid" id="about">
 					<h1 class="title">What is OpenApi-gui?</h1>
 					OpenApi-gui is a GUI for creating and updating <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">
 					OpenApi 3.0.x</a> definitions.<br>
@@ -110,7 +110,7 @@
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 				</div>
 
-				<div class="tab-pane hidden" id="input">
+				<div class="tab-pane hidden container is-fluid" id="input">
 				    <div class="columns">
 					<div class="column is-10">
 					<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
@@ -124,98 +124,85 @@
 				</div>
 
 				<div class="tab-pane hidden" id="header">
-					<div class="content forms span10">
+					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmHeader">
 
-							<div class='control-group'>
-								<label class='control-label'> Title </label>
-								<div class='controls'>
-									<input class="span4" v-model="openapi.info.title">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Title </label>
+								<div class='field-body field control'>
+									<input class="input" v-model="openapi.info.title">
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> Version </label>
-								<div class='controls'>
-									<input class="span4" v-model="openapi.info.version">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Version </label>
+								<div class='field-body field control'>
+									<input class="input" v-model="openapi.info.version">
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> Description </label>
-								<div class='controls'>
-									<textarea class="span6" v-model="openapi.info.description"></textarea>
+
+							<div class="field is-horizontal">
+							  <div class="field-label is-normal">
+							    <label class="label">Description</label>
+							  </div>
+							  <div class="field-body">
+							    <div class="field">
+							      <div class="control">
+									<textarea class="textarea" v-model="openapi.info.description"></textarea>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Contact Name </label>
+								<div class='field-body field control'>
+									<input class="input" v-model="openapi.info.contact.name">
 								</div>
 							</div>
-							<!--
-							<div class='control-group'>
-								<label class='control-label'> Protocol </label>
-								<div class='controls'>
-									<div class="checkbox">
-										<input type="checkbox" id="chkScheme" value="http" v-model="openapi.schemes">HTTP<br>
-										<input type="checkbox" id="chkScheme" value="https" v-model="openapi.schemes">HTTPS<br>
-										<input type="checkbox" id="chkScheme" value="ws" v-model="openapi.schemes">WebSocket<br>
-										<input type="checkbox" id="chkScheme" value="wss" v-model="openapi.schemes">WebSocket Secure<br>
-									</div>
+
+						    <div class="field is-horizontal">
+						    	<label class='field-label is-normal label'> Contact Email </label>
+ 						     <div class="field-body control has-icons-left">
+     						   <input class="input" type="email" v-model="openapi.info.contact.email">
+      					   	   <i class="icon is-small is-left icon-envelope"></i>
+						      </div>
+						    </div>
+
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Contact URL </label>
+								<div class='field-body field control'>
+									<input type="url" class="input" v-model="openapi.info.contact.url">
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> Host </label>
-								<div class='controls'>
-									<input class="span4" v-model="openapi.host">
+
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Terms of Service URL </label>
+								<div class='field-body field control'>
+									<input type="url" class="input" v-model="openapi.info.termsOfService">
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> BasePath </label>
-								<div class='controls'>
-									<input class="span6" v-model="openapi.basePath">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> License Name </label>
+								<div class='field-body field control'>
+									<input class="input" v-model="openapi.info.license.name">
 								</div>
 							</div>
-							-->
-							<div class='control-group level'>
-								<label class='control-label level-item'> Contact Name </label>
-								<div class='controls level-item'>
-									<input class="span6" v-model="openapi.info.contact.name">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> License URL </label>
+								<div class='field-body field control'>
+									<input type="url" class="input" v-model="openapi.info.license.url">
 								</div>
 							</div>
-							<div class='control-group level'>
-								<label class='control-label level-item'> Contact Email </label>
-								<div class='controls level-item'>
-									<input type="email" class="span6" v-model="openapi.info.contact.email">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> External Docs </label>
+								<div class='field-body field control'>
+									<textarea class="textarea" v-model="openapi.externalDocs.description"></textarea>
 								</div>
 							</div>
-							<div class='control-group'>
-								<label class='control-label'> Contact URL </label>
-								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.contact.url">
-								</div>
-							</div>
-							<div class='control-group'>
-								<label class='control-label'> Terms of Service URL </label>
-								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.termsOfService">
-								</div>
-							</div>
-							<div class='control-group'>
-								<label class='control-label'> License Name </label>
-								<div class='controls'>
-									<input class="span4" v-model="openapi.info.license.name">
-								</div>
-							</div>
-							<div class='control-group'>
-								<label class='control-label'> License URL </label>
-								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.info.license.url">
-								</div>
-							</div>
-							<div class='control-group'>
-								<label class='control-label'> External Docs </label>
-								<div class='controls'>
-									<textarea class="span6" v-model="openapi.externalDocs.description"></textarea>
-								</div>
-							</div>
-							<div class='control-group'>
-								<label class='control-label'> Documentation URL </label>
-								<div class='controls'>
-									<input type="url" class="span6" v-model="openapi.externalDocs.url">
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Documentation URL </label>
+								<div class='field-body field control'>
+									<input type="url" class="input" v-model="openapi.externalDocs.url">
 								</div>
 							</div>
 
@@ -233,16 +220,16 @@
 							</div>
 							<div v-for="(server,index) in openapi.servers">
 								<div class="well">
-									<div class='control-group'>
-										<label class='control-label'> URL </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> URL </label>
+										<div class='field-body field control'>
 											<input class="span6" v-model="server.url">
 											<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> Description </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Description </label>
+										<div class='field-body field control'>
 											<input class="span6" v-model="server.description">
 										</div>
 									</div>
@@ -254,28 +241,28 @@
 									</div>
 									<div v-for="(variable,index) in server.variables">
 										<div class="well">
-											<div class="control-group">
-												<label class='control-label'> Name </label>
-												<div class="controls">
+											<div class="field is-horizontal">
+												<label class='field-label is-normal label'> Name </label>
+												<div class="field-body field control">
 													<input class="span6" v-model="index" v-model.lazy="variableName">
 													<a v-on:click="removeVariable(server,index)" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete </a>
 												</div>
 											</div>
-											<div class='control-group'>
-												<label class='control-label'> Description </label>
-												<div class='controls'>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Description </label>
+												<div class='field-body field control'>
 													<input class="span6" v-model="variable.description">
 												</div>
 											</div>
-											<div class='control-group'>
-												<label class='control-label'> Default </label>
-												<div class='controls'>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Default </label>
+												<div class='field-body field control'>
 													<input class="span6" v-model="variable.default">
 												</div>
 											</div>
-											<div class='control-group'>
-												<label class='control-label'> Enum </label>
-												<div class='controls'>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Enum </label>
+												<div class='field-body field control'>
 													<!-- todo -->
 												</div>
 											</div>
@@ -298,28 +285,28 @@
 							</div>
 							<div v-for="(t,index) in openapi.tags">
 								<div class="well">
-									<div class='control-group'>
-										<label class='control-label'> Name </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Name </label>
+										<div class='field-body field control'>
 											<input class="span6" v-model="t.name">
 											<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> Description </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Description </label>
+										<div class='field-body field control'>
 											<textarea class="span6" v-model="t.description"></textarea>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> External Docs </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> External Docs </label>
+										<div class='field-body field control'>
 											<textarea class="span6" v-model="t.externalDocs.description"></textarea>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> Docs URL </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Docs URL </label>
+										<div class='field-body field control'>
 											<input type="url" class="span6" v-model="t.externalDocs.url">
 										</div>
 									</div>
@@ -339,16 +326,16 @@
 							</div>
 							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
 								<div class="well">
-									<div class='control-group'>
-										<label class='control-label'> Name </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Name </label>
+										<div class='field-body field control'>
 											<input class="span6" v-model.lazy="secname">
 											<a v-on:click="removeSecurityDefinition(sdname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label' for="selSdType"> Type </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label' for="selSdType"> Type </label>
+										<div class='field-body field control'>
 											<select name="selSdType" v-model="type">
 												<option value="apiKey">API Key</option>
 												<option value="oauth2">oAuth2</option>
@@ -356,22 +343,22 @@
 											</select>
 										</div>
 									</div>
-									<div class='control-group'>
-										<label class='control-label'> Apply to all paths </label>
-										<div class='controls'>
+									<div class='field is-horizontal'>
+										<label class='field-label is-normal label'> Apply to all paths </label>
+										<div class='field-body field control'>
 											<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
 										</div>
 									</div>
 									<div v-if="sd.type == 'apiKey'" class='animate-if'>
-										<div class='control-group'>
-											<label class='control-label'> Parameter Name </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Parameter Name </label>
+											<div class='field-body field control'>
 												<input class="span6" v-model="sd.name">
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> Location </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Location </label>
+											<div class='field-body field control'>
 												<select name="selLocation" v-model="sd.in">
 													<option value="header">Header</option>
 													<option value="query">Query</option>
@@ -380,52 +367,52 @@
 										</div>
 									</div>
 									<div v-if="sd.type == 'oauth2'" class='animate-if'>
-										<div class='control-group'>
-											<label class='control-label'> Implicit Flow </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Implicit Flow </label>
+											<div class='field-body field control'>
 												<input type='checkbox' v-model='hasImplicit'>
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> Password Flow </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Password Flow </label>
+											<div class='field-body field control'>
 												<input type='checkbox' v-model='hasPassword'>
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> clientCredentials Flow </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> clientCredentials Flow </label>
+											<div class='field-body field control'>
 												<input type='checkbox' v-model='hasClientCred'>
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> authorizationCode </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> authorizationCode </label>
+											<div class='field-body field control'>
 												<input type='checkbox' v-model='hasAuthCode'>
 											</div>
 										</div>
 
 										<div class="well" v-for="(flow,flowName) in sd.flow">
 										<!-- reindent -->
-										<div class='control-group'>
-											<label class='control-label'> Flow: {{ flowName }} </label>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
 										</div>
 
-										<div class='control-group'>
-											<label class='control-label'> Authorization URL </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Authorization URL </label>
+											<div class='field-body field control'>
 												<input type="url" class="span6" v-model="flow.authorizationUrl">
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> Token URL </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Token URL </label>
+											<div class='field-body field control'>
 												<input type="url" class="span6" v-model="flow.tokenUrl">
 											</div>
 										</div>
-										<div class='control-group'>
-											<label class='control-label'> Refresh URL </label>
-											<div class='controls'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Refresh URL </label>
+											<div class='field-body field control'>
 												<input type="url" class="span6" v-model="flow.refreshUrl">
 											</div>
 										</div>
@@ -435,16 +422,16 @@
 											</div>
 											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
 												<div>
-													<div class='control-group'>
-														<label class='control-label'> Scope Name </label>
-														<div class='controls'>
+													<div class='field is-horizontal'>
+														<label class='field-label is-normal label'> Scope Name </label>
+														<div class='field-body field control'>
 															<input class="span6" v-model.lazy="scopename">
 															<a v-on:click="removeScope(flow,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 														</div>
 													</div>
-													<div class='control-group'>
-														<label class='control-label'> Description </label>
-														<div class='controls'>
+													<div class='field is-horizontal'>
+														<label class='field-label is-normal label'> Description </label>
+														<div class='field-body field control'>
 															<input class="span6" v-model="flow.scopes[sname]">
 														</div>
 													</div>

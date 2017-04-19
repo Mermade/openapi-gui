@@ -32,12 +32,18 @@
 </head>
 
 <body>
-  <div id='loading'>
-    <div class="alert">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id='progress' value="0" max="100">0 %</progress>
+  <div id="loading" class="container is-fluid">
+  <article class="message">
+    <div class="message-header">
+	    <p>Loading</p>
+	    <button class="delete"></button>
     </div>
+	<div class="message-body">
+      <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress" value="0" max="100">0 %</progress>
+    </div>
+  </article>
   </div>
+
   <div id="main-container">
     <gui-main :openapi='container.openapi' :importschema='importschema'></gui-main>
   </div>
