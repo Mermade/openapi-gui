@@ -223,14 +223,14 @@
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> URL </label>
 										<div class='field-body field control'>
-											<input class="span6" v-model="server.url">
+											<input class="input" v-model="server.url">
 											<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Description </label>
 										<div class='field-body field control'>
-											<input class="span6" v-model="server.description">
+											<input class="input" v-model="server.description">
 										</div>
 									</div>
 
@@ -244,14 +244,14 @@
 											<div class="field is-horizontal">
 												<label class='field-label is-normal label'> Name </label>
 												<div class="field-body field control">
-													<input class="span6" v-model="index" v-model.lazy="variableName">
+													<input class="input" v-model="index" v-model.lazy="variableName">
 													<a v-on:click="removeVariable(server,index)" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete </a>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Description </label>
 												<div class='field-body field control'>
-													<input class="span6" v-model="variable.description">
+													<input class="input" v-model="variable.description">
 												</div>
 											</div>
 											<div class='field is-horizontal'>
@@ -325,7 +325,7 @@
 								<br>
 							</div>
 							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
-								<div class="well">
+								<div class="container is-fluid">
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body field control'>
@@ -370,25 +370,25 @@
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Implicit Flow </label>
 											<div class='field-body field control'>
-												<input type='checkbox' v-model='hasImplicit'>
+												<input type='checkbox' class="checkbox" v-model='hasImplicit'>
 											</div>
 										</div>
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Password Flow </label>
 											<div class='field-body field control'>
-												<input type='checkbox' v-model='hasPassword'>
+												<input type='checkbox' class="checkbox" v-model='hasPassword'>
 											</div>
 										</div>
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> clientCredentials Flow </label>
 											<div class='field-body field control'>
-												<input type='checkbox' v-model='hasClientCred'>
+												<input type='checkbox' class="checkbox" v-model='hasClientCred'>
 											</div>
 										</div>
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> authorizationCode </label>
 											<div class='field-body field control'>
-												<input type='checkbox' v-model='hasAuthCode'>
+												<input type='checkbox' class="checkbox" v-model='hasAuthCode'>
 											</div>
 										</div>
 
@@ -456,20 +456,17 @@
 					<api-yaml></api-yaml>
 				</div>
 
-				<div class='tab-pane row-fluid is-active' id='editor'>
+				<div class='tab-pane is-active' id='editor'>
 
-					<div class='span2'>
-						<div class='sidebar-nav well'>
+					<div class='container is-fluid columns'>
+						<div class='column is-3'>
 							<div>
 								<a v-on:click="addResource()" class='btn btn-info addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
 								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
 							<br>
-							<div id="drop-container" class="dropdown open">
-								<a id="drop1" href="#" role="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-									Navigation <b class="caret"></b>
-								</a>
-								<ul id="resourceList" class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+							<aside id="drop-container" class="menu">
+								<ul id="resourceList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
 									<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
 										<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
 										<ul class='dropdown-menu'>
@@ -481,18 +478,18 @@
 										</ul>
 									</li>
 								</ul>
-							</div>
+							</aside>
 						</div>
-					</div>
 
-					<div class="content forms span10">
-						<form class="form-horizontal" id="config">
-							<div class="resource" v-for="(path,key,index) in openapi.paths">
-								<api-resource :path='path' :index='key' :maintags='openapi.tags'></api-resource>
-							</div>
-						</form>
-					</div>
+						<div class="column">
+							<form class="form-horizontal" id="config">
+								<div class="resource" v-for="(path,key,index) in openapi.paths">
+									<api-resource :path='path' :index='key' :maintags='openapi.tags'></api-resource>
+								</div>
+							</form>
+						</div>
 
+					</div>
 				</div>
 			</div>
 		</div>
