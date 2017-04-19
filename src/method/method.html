@@ -9,15 +9,15 @@
 
         <div class="accordion-buttons">
             <div class="block-container">
-                <a v-on:click="addParameter()" class='btn btn-info'>
+                <a v-on:click="addParameter()" class='button is-success'>
                     <i class='icon-plus icon-white'></i> Parameter
                 </a>
 
-                <a class='btn btn-info' v-on:click="duplicateOperation(method)">
+                <a class='button is-success' v-on:click="duplicateOperation(method)">
                     <i class='icon-copy icon-white'></i> Duplicate
                 </a>
 
-                <a class='btn btn-danger' v-on:click="removeOperation(index)">
+                <a class='button is-danger' v-on:click="removeOperation(index)">
                     <i class='icon-trash icon-white'></i> Delete
                 </a>
 
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="well">
-                <a v-on:click="addResponse()" class="btn btn-info"><i class="icon-add icon-white"></i> Add Response</a>
+                <a v-on:click="addResponse()" class="button is-success"><i class="icon-add icon-white"></i> Add Response</a>
                 <br>
                 <br>
                 <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
@@ -106,8 +106,8 @@
                             <label class='control-label'> Status Code </label>
                             <div class='controls'>
                                 <input class="span6" v-model.lazy="status">
-                                <a v-on:click="editResponse(status)" class='btn btn-success'><i class='icon-edit icon-white'></i> Edit Schema</a>
-                                <a v-on:click="removeResponse(status)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+                                <a v-on:click="editResponse(status)" class='button is-success'><i class='icon-edit icon-white'></i> Edit Schema</a>
+                                <a v-on:click="removeResponse(status)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a>
                             </div>
                         </div>
                         <div class='control-group'>

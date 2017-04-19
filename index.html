@@ -80,7 +80,6 @@
         $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
 
 		// def(7) is our chance to load a spec from a querystring parameter
-		// for now...
 		var loadUrl = getParameterByName('url');
 		if (loadUrl) {
 			$.ajax(loadUrl,{

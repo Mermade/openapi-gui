@@ -116,7 +116,7 @@
 					<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
 					</div>
 					<div class="column">
-					<a class='btn btn-primary pull-right' id="load-definition" v-on:click="loadSchema()">
+					<a class='button is-primary pull-right' id="load-definition" v-on:click="loadSchema()">
 						<i class='icon-upload icon-white'></i> Load Definition
 					</a>
 					</div>
@@ -211,31 +211,31 @@
 				</div>
 
 				<div class="tab-pane hidden" id="servers">
-					<div class="content forms span10">
+					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmServers">
 							<div>
-								<a v-on:click="addServer()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Server</a>
+								<a v-on:click="addServer()" class='button is-success'><i class='icon-plus icon-white'></i> Add Server</a>
 								<br>
 								<br>
 							</div>
 							<div v-for="(server,index) in openapi.servers">
-								<div class="well">
-									<div class='field is-horizontal'>
+								<div class="columns well">
+									<div class='column is-5 field is-horizontal'>
+										<span class="control"><a v-on:click="removeServer(index)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a></span>
 										<label class='field-label is-normal label'> URL </label>
 										<div class='field-body field control'>
 											<input class="input" v-model="server.url">
-											<a v-on:click="removeServer(index)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
-									<div class='field is-horizontal'>
+									<div class='column is-5 field is-horizontal'>
 										<label class='field-label is-normal label'> Description </label>
 										<div class='field-body field control'>
 											<input class="input" v-model="server.description">
 										</div>
 									</div>
 
-									<div>
-										<a v-on:click="addVariable(index)" class="btn btn-info"><i class="icon-plus icon-white"></i> Add Variable</a>
+									<div class="column field is-horizontal control">
+										<a v-on:click="addVariable(index)" class="button is-success"><i class="icon-plus icon-white"></i> Add Variable</a>
 										<br>
 										<br>
 									</div>
@@ -245,7 +245,7 @@
 												<label class='field-label is-normal label'> Name </label>
 												<div class="field-body field control">
 													<input class="input" v-model="index" v-model.lazy="variableName">
-													<a v-on:click="removeVariable(server,index)" class="btn btn-danger"><i class="icon-trash icon-white"></i> Delete </a>
+													<a v-on:click="removeVariable(server,index)" class="button is-danger"><i class="icon-trash icon-white"></i> Delete </a>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
@@ -257,7 +257,7 @@
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Default </label>
 												<div class='field-body field control'>
-													<input class="span6" v-model="variable.default">
+													<input class="input" v-model="variable.default">
 												</div>
 											</div>
 											<div class='field is-horizontal'>
@@ -276,10 +276,10 @@
 				</div>
 
 				<div class="tab-pane hidden" id="tags">
-					<div class="content forms span10">
-						<form class="plain-form form-horizontal" id="frmTags">
+					<div class="container is-fluid">
+						<form class="x" id="frmTags">
 							<div>
-								<a v-on:click="addTag()" class='btn btn-info'><i class='icon-plus icon-white'></i> Add Tag</a>
+								<a v-on:click="addTag()" class='button is-success'><i class='icon-plus icon-white'></i> Add Tag</a>
 								<br>
 								<br>
 							</div>
@@ -288,26 +288,26 @@
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body field control'>
-											<input class="span6" v-model="t.name">
-											<i v-on:click="removeTag(index)" class='btn btn-danger icon-trash icon-white'></i>
+											<input class="input" v-model="t.name">
+											<i v-on:click="removeTag(index)" class='button is-danger icon-trash icon-white'></i>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Description </label>
 										<div class='field-body field control'>
-											<textarea class="span6" v-model="t.description"></textarea>
+											<textarea class="textarea" v-model="t.description"></textarea>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> External Docs </label>
 										<div class='field-body field control'>
-											<textarea class="span6" v-model="t.externalDocs.description"></textarea>
+											<textarea class="textarea" v-model="t.externalDocs.description"></textarea>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Docs URL </label>
 										<div class='field-body field control'>
-											<input type="url" class="span6" v-model="t.externalDocs.url">
+											<input type="url" class="input" v-model="t.externalDocs.url">
 										</div>
 									</div>
 								</div>
@@ -320,7 +320,7 @@
 					<div class="content forms span10">
 						<form class="plain-form form-horizontal" id="frmSecurity">
 							<div>
-								<a class="btn btn-info" v-on:click="addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
+								<a class="button is-success" v-on:click="addSecurityDefinition()"><i class='icon-plus icon-white'></i> Add Security Definition</a>
 								<br>
 								<br>
 							</div>
@@ -329,8 +329,8 @@
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body field control'>
-											<input class="span6" v-model.lazy="secname">
-											<a v-on:click="removeSecurityDefinition(sdname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+											<input class="input" v-model.lazy="secname">
+											<a v-on:click="removeSecurityDefinition(sdname)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
@@ -353,7 +353,7 @@
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Parameter Name </label>
 											<div class='field-body field control'>
-												<input class="span6" v-model="sd.name">
+												<input class="input" v-model="sd.name">
 											</div>
 										</div>
 										<div class='field is-horizontal'>
@@ -401,38 +401,38 @@
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Authorization URL </label>
 											<div class='field-body field control'>
-												<input type="url" class="span6" v-model="flow.authorizationUrl">
+												<input type="url" class="input" v-model="flow.authorizationUrl">
 											</div>
 										</div>
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Token URL </label>
 											<div class='field-body field control'>
-												<input type="url" class="span6" v-model="flow.tokenUrl">
+												<input type="url" class="input" v-model="flow.tokenUrl">
 											</div>
 										</div>
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Refresh URL </label>
 											<div class='field-body field control'>
-												<input type="url" class="span6" v-model="flow.refreshUrl">
+												<input type="url" class="input" v-model="flow.refreshUrl">
 											</div>
 										</div>
 										<div class='well'>
 											<div>
-												<a class="btn btn-info" v-on:click="addScope(flow)"><i class='icon-plus icon-white'></i> Add Scope</a>
+												<a class="button is-success" v-on:click="addScope(flow)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
 											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
 												<div>
 													<div class='field is-horizontal'>
 														<label class='field-label is-normal label'> Scope Name </label>
 														<div class='field-body field control'>
-															<input class="span6" v-model.lazy="scopename">
-															<a v-on:click="removeScope(flow,sname)" class='btn btn-danger'><i class='icon-trash icon-white'></i> Delete</a>
+															<input class="input" v-model.lazy="scopename">
+															<a v-on:click="removeScope(flow,sname)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a>
 														</div>
 													</div>
 													<div class='field is-horizontal'>
 														<label class='field-label is-normal label'> Description </label>
 														<div class='field-body field control'>
-															<input class="span6" v-model="flow.scopes[sname]">
+															<input class="input" v-model="flow.scopes[sname]">
 														</div>
 													</div>
 												</div>
@@ -459,13 +459,13 @@
 				<div class='tab-pane is-active' id='editor'>
 
 					<div class='container is-fluid columns'>
-						<div class='column is-3'>
+						<div class='column is-2'>
 							<div>
-								<a v-on:click="addResource()" class='btn btn-info addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
-								<a class="btn btn-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
+								<a v-on:click="addResource()" class='button is-success addButton pull-left'><i class='icon-plus icon-white'></i> Add Path</a>
+								<a class="button is-danger remButton" v-on:click="removeAll()"><i class='icon-trash icon-white'></i> Remove All</a>
 							</div>
 							<br>
-							<aside id="drop-container" class="menu">
+							<aside id="drop-container" class="menu menu-small">
 								<ul id="resourceList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
 									<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
 										<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>

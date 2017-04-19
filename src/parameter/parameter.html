@@ -11,10 +11,10 @@
 			<div class="accordion-buttons">
 				<div class="block-container">
 					<div>
-						<a v-if="effectiveType == 'object'" class='btn btn-info' v-on:click="editSchema()">
+						<a v-if="effectiveType == 'object'" class='button is-success' v-on:click="editSchema()">
 							<i class='icon-edit icon-white'></i> Edit Schema
 						</a>
-						<a class='btn btn-danger' v-on:click="removeParameter()">
+						<a class='button is-danger' v-on:click="removeParameter()">
 							<i class='icon-trash icon-white'></i> Delete
 						</a>
 					</div>
@@ -73,7 +73,7 @@
 					</div>
 				</div>
 				<div class='well' v-if="!isComplex()">
-					<a class='btn btn-info pull-right' v-on:click="addEnum()">
+					<a class='button is-success pull-right' v-on:click="addEnum()">
 						<i class='icon-plus icon-white'></i> Add Enum
 					</a>
 					<div v-for="(evalue,eindex) in parameter.enum">
@@ -81,7 +81,7 @@
 							<label class='control-label'> Enum Value </label>
 							<div class='controls'>
 								<input v-model="parameter.enum[eindex]">
-								<a class='btn btn-danger pull-right' v-on:click="removeEnum(eindex)">
+								<a class='button is-danger pull-right' v-on:click="removeEnum(eindex)">
 									<i class='icon-trash icon-white'></i> Delete
 								</a>
 							</div>

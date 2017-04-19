@@ -1,21 +1,19 @@
 <div class="resource" :id="sanitisePath">
-    <div class="header">
-        <div class='control-group span6'>
-            <label class='control-label'>
-                Path:
-            </label>
-            <div class='controls'>
-                <div class='input'>
-                    <input class="span10" v-model.lazy="pathEntry">
-                </div>
-            </div>
+    <div class="header columns">
+		<div class="column">
+        	<div class='field is-horizontal'>
+          		<label class='is-normal field field-label label'>Path:&nbsp;</label>
+           		<div class='field field-body control'>
+           			<input class="input" v-model.lazy="pathEntry">
+           		</div>
+        	</div>
         </div>
-        <div class='pull-right span6'>
-            <a v-on:click="removePath(index)" class='btn btn-danger pull-right'>
+        <div class='column is-4'>
+            <a v-on:click="removePath(index)" class='button is-danger is-right'>
                 <i class='icon-trash icon-white'></i>
                 Delete Path
             </a>
-            <a v-on:click="addOperation()" class='btn btn-info pull-right'>
+            <a v-on:click="addOperation()" class='button is-success is-right'>
                 <i class='icon-plus icon-white'></i> 
                 Add Operation
             </a>

@@ -9,7 +9,7 @@ Vue.component('api-method', {
     methods: {
         toggleBody : function() {
             this.visible = !this.visible;
-            $(this.hashUid).collapse('toggle');
+            //$(this.hashUid).collapse('toggle');
             if (this.visible) {
                 Vue.nextTick(function(){
                     this.tagSetup();
