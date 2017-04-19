@@ -56,14 +56,6 @@ body {
   background-color: #E7F0F7;
 }
 
-.well {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 1px;
-  box-shadow: inset 0 0 3px black, 0 0 3px black;
-  padding: 10px;
-  margin: 15px;
-}
-
 .service-input {
     width:100%;
     height:400px;

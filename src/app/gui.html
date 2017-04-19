@@ -219,7 +219,7 @@
 								<br>
 							</div>
 							<div v-for="(server,index) in openapi.servers">
-								<div class="columns well">
+								<div class="columns box">
 									<div class='column is-5 field is-horizontal'>
 										<span class="control"><a v-on:click="removeServer(index)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a></span>
 										<label class='field-label is-normal label'> URL </label>
@@ -240,7 +240,7 @@
 										<br>
 									</div>
 									<div v-for="(variable,index) in server.variables">
-										<div class="well">
+										<div class="box">
 											<div class="field is-horizontal">
 												<label class='field-label is-normal label'> Name </label>
 												<div class="field-body field control">
@@ -284,7 +284,7 @@
 								<br>
 							</div>
 							<div v-for="(t,index) in openapi.tags">
-								<div class="well">
+								<div class="box">
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body field control'>
@@ -392,7 +392,7 @@
 											</div>
 										</div>
 
-										<div class="well" v-for="(flow,flowName) in sd.flow">
+										<div class="box" v-for="(flow,flowName) in sd.flow">
 										<!-- reindent -->
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
@@ -416,7 +416,7 @@
 												<input type="url" class="input" v-model="flow.refreshUrl">
 											</div>
 										</div>
-										<div class='well'>
+										<div class='box'>
 											<div>
 												<a class="button is-success" v-on:click="addScope(flow)"><i class='icon-plus icon-white'></i> Add Scope</a>
 											</div>
