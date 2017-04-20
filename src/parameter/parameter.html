@@ -2,20 +2,37 @@
 	<div class="accordion-group">
 		<div class='accordion-heading'>
 
-			<i class="icon-reorder accordion-handle param-handle"></i>
+			<a class="icon" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+				<i class="fa fa-reorder accordion-handle param-handle"></i>
+			</a>
 
-			<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+<!--			<span>
+				<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
                 Parameter: <span class='methodNameSpan'>{{parameter.name}}</span>
-            </a>
+            	</a>
+			</span>-->
+
+			<span>Parameter:
+				<span class="icon"><i class="fa fa-fw fa-plus"></i></span>
+				<a class='icon' v-on:click="duplicateParameter()">
+					<i class="fa fa-fw fa-copy"></i>
+				</a>
+				<a class='icon is-danger' v-on:click="removeParameter()">
+					<i class="fa fa-fw fa-trash"></i>
+				</a>
+				<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+					<span class='methodNameSpan'>{{parameter.name}}</span>
+				</a>
+			</span>
 
 			<div class="accordion-buttons">
 				<div class="block-container">
 					<div>
 						<a v-if="effectiveType == 'object'" class='button is-success' v-on:click="editSchema()">
-							<i class='icon-edit icon-white'></i> Edit Schema
+							<i class='fa fa-fw fa-edit'></i>Edit Schema
 						</a>
 						<a class='button is-danger' v-on:click="removeParameter()">
-							<i class='icon-trash icon-white'></i> Delete
+							<i class='fa fa-fw fa-trash'></i>Delete
 						</a>
 					</div>
 				</div>

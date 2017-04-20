@@ -46,8 +46,8 @@ body {
 }
 
 .parameter {
-  padding-left:5px;
-  font-size: 14px;
+  padding:10px;
+  /*font-size: 14px;*/
   border: 1px solid #029DE7;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -66,20 +66,21 @@ body {
 
 .accordion-heading  {
 	display:table;
+  vertical-align: middle;
 	width:100%;
 }
 
 .accordion-heading > .accordion-handle {
     display:table-cell;
-    /*padding: 10px;
-    vertical-align: middle;*/
+    padding: 10px;
+    vertical-align: middle;
 }
 
 .accordion-heading > .accordion-toggle {
     display:table-cell;
-    /*padding: 10px;*/
+    padding: 10px;
     width:100%;
-    /*vertical-align: middle;*/
+    vertical-align: middle;
 }
 
 .accordion-heading > .accordion-buttons {
