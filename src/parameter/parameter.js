@@ -9,7 +9,7 @@ Vue.component('api-parameter', {
         formatListId : function() {
             return 'listFormats'+this._uid;
         },
-        
+
         effectiveType : {
             get : function() {
                 if (!this.parameter.type) return 'object';
@@ -60,7 +60,7 @@ Vue.component('api-parameter', {
                     Vue.delete(this.parameter, 'uniqueItems');
                 }
                 this.parameter.type = newVal;
-            } 
+            }
         },
 
         effectiveIn : {
@@ -71,7 +71,7 @@ Vue.component('api-parameter', {
             set : function(newVal) {
                 this.parameter.in = newVal;
 				if (newVal == 'path') Vue.set(this.parameter, 'required', true);
-            } 
+            }
         },
 
         effectiveRequired : {
@@ -81,7 +81,7 @@ Vue.component('api-parameter', {
             },
             set : function(newVal) {
                 this.parameter.required = newVal;
-            } 
+            }
         },
 
         effectiveFormats : {
@@ -107,7 +107,7 @@ Vue.component('api-parameter', {
             $(this.hashUid).collapse('toggle');
         },
         isComplex : function() {
-            if (this.effectiveType === 'object' || 
+            if (this.effectiveType === 'object' ||
                 this.effectiveType === 'array' ||
                 this.effectiveType === 'file') {
                return true;
@@ -169,21 +169,4 @@ Vue.component('api-parameter', {
             }
         }
     }
-});
-
-Vue.component('api-response', {
-	props: ["response", "status"],
-	computed: {
-		statusCode: {
-			get : function() {
-				return this.status;
-			},
-			set : function(newVal) {
-				this.$parent.renameResponse(this.status, newVal);
-			}
-		} 
-	},
-	data: function() {
-		return {}
-	}
 });

@@ -102,30 +102,31 @@
                 <a v-on:click="addResponse()" class="button is-success"><i class="fa fa-add"></i> Add Response</a>
                 <br>
                 <br>
-                <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
+                <api-response v-for="(response, status) in method.responses"
+                    :response="response" :key="status" :status="status" :method="method" inline-template>
                     <div class="box">
                         <div class='field is-horizontal is-grouped'>
-                            <div class="none">
-                                <div class="field is-horizontal">
-                                    <label class='label field-label is-normal'>Status&nbsp;Code </label>
-                                    <div class='field-body'>
-                                        <input class="input" size="6" v-model.lazy="status">
-                                    </div>
+                            <div class="control">
+                                <label class='label field-label is-normal'>Status&nbsp;Code </label>
+                            </div>
+                            <div class="field">
+                                <div class='field-body'>
+                                    <input class="input" size="3" v-model.lazy="statusCode">
                                 </div>
                             </div>
+                            <div class="control">
+                                <label class='label field-label is-normal'>&nbsp;Description</label>
+                            </div>
                             <div class="control is-expanded">
-                                <div class='field is-horizontal'>
-                                    <label class='label field-label is-normal'> Description </label>
-                                    <div class='field-body'>
-                                        <input class="input" v-model="response.description">
-                                    </div>
+                                <div class='field-body'>
+                                    <input class="input" v-model="response.description">
                                 </div>
                             </div>
                             <div class="control">
                                 <a v-on:click="editResponse(status)" class='button is-success'><i class='fa fa-fw fa-edit'></i>Edit Schema</a>
                             </div>
                             <div class="control">
-                                <a v-on:click="removeResponse(status)" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
+                                <a v-on:click="removeResponse()" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
                             </div>
                         </div>
                     </div>

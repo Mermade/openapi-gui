@@ -74,10 +74,6 @@ Vue.component('api-method', {
                 bootbox.alert('The editor could not be instantiated. Circular schemas are not yet supported');
             }
         },
-        removeResponse : function(status) {
-            this.$root.save();
-            Vue.delete(this.method.responses, status);
-        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {
@@ -149,18 +145,27 @@ Vue.component('api-method', {
 });
 
 Vue.component('api-response', {
-	props: ["response", "status"],
-	computed: {
-		statusCode: {
-			get : function() {
-				return this.status;
-			},
-			set : function(newVal) {
-				this.$parent.renameResponse(this.status, newVal);
-			}
-		} 
-	},
-	data: function() {
-		return {}
-	}
+    props: ["response", "status", "method"],
+    computed: {
+        statusCode: {
+            get: function () {
+                return this.status;
+            },
+            set: function (newVal) {
+                this.$parent.renameResponse(this.status, newVal);
+            }
+        }
+    },
+    methods: {
+        editResponse: function () {
+            this.$parent.editResponse(this.status);
+        },
+        removeResponse: function () {
+            this.$root.save();
+            Vue.delete(this.method.responses, this.status);
+        }
+    },
+    data: function () {
+        return {}
+    }
 });

@@ -325,7 +325,8 @@
 								<br>
 								<br>
 							</div>-->
-							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
+							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes"
+								:key="sdname" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
 								<div class="container is-fluid">
 									<div class="field is-grouped">
 										<div class="control">
