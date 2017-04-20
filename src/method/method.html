@@ -24,13 +24,13 @@
             </div>
         </div>
     </div>
-    <div class="accordion-body collapse" :id="_uid">
+    <div class="accordion-body collapse method-body" :id="_uid">
         <div v-if="visible" class="accordion-inner">
 
-            <div class='control-group'>
-                <label class='control-label'> HTTP Method (GET, POST, PUT, etc) </label>
-                <div class='controls'>
-                    <select v-model="httpMethod">
+            <div class='field is-horizontal'>
+                <label class='label field-label is-normal'> HTTP Method (GET, POST, PUT, etc) </label>
+                <div class='field-body is-horizontal'>
+                    <select class='select' v-model="httpMethod">
                         <option value="GET">GET</option>
                         <option value="POST">POST</option>
                         <option value="PUT">PUT</option>
@@ -42,78 +42,78 @@
                     </select>
                 </div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> OperationId </label>
-                <div class='controls'>
-                    <input class='methodName' v-model="method.operationId">
+            <div class='field is-horizontal'>
+                <label class='label field-label is-normal'> OperationId </label>
+                <div class='field-body'>
+                    <input class='input methodName' v-model="method.operationId">
                 </div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> Summary </label>
-                <div class='controls'>
-                    <input class="span8" v-model="method.summary">
+            <div class='field is-horizontal'>
+                <label class='is-normal label field-label'> Summary </label>
+                <div class='field-body'>
+                    <input class="input" v-model="method.summary">
                 </div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> Description </label>
-                <div class='controls'>
-                    <textarea class="span8" v-model="method.description"></textarea>
-                </div>
+            <div class='field is-horizontal'>
+                <label class='label field-label is-normal'> Description </label>
+				<div class="field-body">
+                	<textarea class="textarea" v-model="method.description"></textarea>
+				</div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> Tags </label>
-                <div class='controls'>
-                    <select :id="tagId" class="span8" multiple v-model='vtags'>
+            <div class='field is-horizontal'>
+                <label class='field-label is-normal'> Tags </label>
+                <div class='field-body'>
+                    <select :id="tagId" class="select" multiple v-model='vtags'>
                         <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
                     </select>
                 </div>
             </div>
-            <div class='control-group'>
-                <label class='control-label'> Deprecated </label>
-                <div class='controls'>
-                    <input type='checkbox' v-model='method.deprecated'>
+            <div class='field is-horizontal'>
+                <label class='field-label label is-normal'> Deprecated </label>
+                <div class='field-body'>
+                    <input type='checkbox' class='checkbox' v-model='method.deprecated'>
                 </div>
             </div>
             <details>
-                <summary>External Docs</summary>
-                <div class="well">
-                    <div class='control-group'>
-                        <label class='control-label'> Docs Description </label>
-                        <div class='controls'>
-                            <textarea class="span8" v-model="method.externalDocs.description"></textarea>
+                <summary><b>External Docs</b></summary>
+                <div class="box">
+                    <div class='field is-horizontal'>
+                        <label class='label field-label is-normal'> Docs Description </label>
+                        <div class='field-body'>
+                            <textarea class="textarea" v-model="method.externalDocs.description"></textarea>
                         </div>
                     </div>
-                    <div class='control-group'>
-                        <label class='control-label'> Docs URL </label>
-                        <div class='controls'>
-                            <input type="url" class="span8" v-model="method.externalDocs.url">
+                    <div class='field is-horizontal'>
+                        <label class='label field-label is-normal'> Docs URL </label>
+                        <div class='field-body'>
+                            <input type="url" class="input" v-model="method.externalDocs.url">
                         </div>
                     </div>
                 </div>
             </details>
-            <div class='control-group'>
+            <div class="none">
                 <div class="sortable-params" v-for="(parameter,index) in method.parameters">
                     <api-parameter :parameter="parameter" :index='index'></api-parameter>
                 </div>
             </div>
-            <div class="well">
+            <div class="box">
                 <a v-on:click="addResponse()" class="button is-success"><i class="icon-add icon-white"></i> Add Response</a>
                 <br>
                 <br>
                 <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
-                    <div class="well">
-                        <div class='control-group'>
-                            <label class='control-label'> Status Code </label>
-                            <div class='controls'>
-                                <input class="span6" v-model.lazy="status">
+                    <div class="box">
+                        <div class='field is-horizontal'>
+                            <label class='label field-label is-normal'> Status Code </label>
+                            <div class='field-body'>
+                                <input class="input" v-model.lazy="status">
                                 <a v-on:click="editResponse(status)" class='button is-success'><i class='icon-edit icon-white'></i> Edit Schema</a>
                                 <a v-on:click="removeResponse(status)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a>
                             </div>
                         </div>
-                        <div class='control-group'>
-                            <label class='control-label'> Description </label>
-                            <div class='controls'>
-                                <input class="span6" v-model="response.description">
+                        <div class='field is-horizontal'>
+                            <label class='label field-label is-normal'> Description </label>
+                            <div class='field-body'>
+                                <input class="input" v-model="response.description">
                             </div>
                         </div>
                     </div>

@@ -24,27 +24,27 @@
 		<div class="accordion-body collapse" :id="_uid">
 			<div v-if="visible" class="accordion-inner">
 
-				<div class='control-group'>
-					<label class='control-label'> Parameter Name </label>
-					<div class='controls'>
+				<div class='field is-horizontal'>
+					<label class='label field-label is-normal'> Parameter Name </label>
+					<div class='field-body'>
 						<input v-model="parameter.name" required>
 					</div>
 				</div>
-				<div class='control-group'>
-					<label class='control-label'> Description </label>
-					<div class='controls'>
-						<textarea v-model="parameter.description" class="span8"></textarea>
+				<div class='field is-horizontal'>
+					<label class='label field-label is-normal'> Description </label>
+					<div class='field-body'>
+						<textarea v-model="parameter.description" class="textarea"></textarea>
 					</div>
 				</div>
-				<div class='control-group'>
-					<label class='control-label'> Required </label>
-					<div class='controls'>
+				<div class='field is-horizontal'>
+					<label class='label field-label is-normal'> Required </label>
+					<div class='field-body'>
 						<input type="checkbox" v-model="effectiveRequired" :disabled="effectiveIn == 'path' ? true : false">
 					</div>
 				</div>
-				<div class='control-group'>
-					<label class='control-label'> Location </label>
-					<div class='controls'>
+				<div class='field is-horizontal'>
+					<label class='label field-label is-normal'> Location </label>
+					<div class='field-body'>
 						<select v-model="effectiveIn" required size="3">
                             <option value="path">Path</option>
                             <option value="query">Query</option>
@@ -53,9 +53,9 @@
                         </select>
 					</div>
 				</div>
-				<div class='control-group'>
-					<label class='control-label'> Data Type </label>
-					<div class='controls'>
+				<div class='field is-horizontal'>
+					<label class='label field-label is-normal'> Data Type </label>
+					<div class='field-body'>
 						<select v-model="effectiveType" required size="5">
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
@@ -66,9 +66,9 @@
                         </select>
 					</div>
 				</div>
-				<div class='control-group' v-if="!isComplex()">
-					<label class='control-label'> Default Value </label>
-					<div class='controls'>
+				<div class='field is-horizontal' v-if="!isComplex()">
+					<label class='label field-label is-normal'> Default Value </label>
+					<div class='field-body'>
 						<input v-model="parameter.default">
 					</div>
 				</div>
@@ -77,9 +77,9 @@
 						<i class='icon-plus icon-white'></i> Add Enum
 					</a>
 					<div v-for="(evalue,eindex) in parameter.enum">
-						<div class='control-group'>
-							<label class='control-label'> Enum Value </label>
-							<div class='controls'>
+						<div class='field is-horizontal'>
+							<label class='label field-label is-normal'> Enum Value </label>
+							<div class='field-body'>
 								<input v-model="parameter.enum[eindex]">
 								<a class='button is-danger pull-right' v-on:click="removeEnum(eindex)">
 									<i class='icon-trash icon-white'></i> Delete
@@ -88,15 +88,15 @@
 						</div>
 					</div>
 				</div>
-				<div class='control-group' v-if="parameter.in == 'query'">
-					<label class='control-label'> Allow Empty Value </label>
-					<div class='controls'>
+				<div class='field is-horizontal' v-if="parameter.in == 'query'">
+					<label class='label field-label is-normal'> Allow Empty Value </label>
+					<div class='field-body'>
 						<input type="checkbox" v-model="parameter.allowEmptyValue">
 					</div>
 				</div>
-				<div class='control-group' v-if="effectiveFormats.length">
-					<label class='control-label'> Format </label>
-					<div class='controls'>
+				<div class='field is-horizontal' v-if="effectiveFormats.length">
+					<label class='label field-label is-normal'> Format </label>
+					<div class='field-body'>
 						<input type="text" v-model="parameter.format" :list="formatListId">
 						<datalist :id="formatListId">
 							<option v-for="option in effectiveFormats">{{option}}</option>
@@ -104,45 +104,45 @@
 					</div>
 				</div>
 				<div v-if="parameter.type == 'string'">
-					<div class='control-group'>
-						<label class='control-label'> Min. Length </label>
-						<div class='controls'>
+					<div class='field is-horizontal'>
+						<label class='label field-label is-normal'> Min. Length </label>
+						<div class='field-body'>
 							<input type="number" min="0" step="1" v-model="parameter.minLength">
 						</div>
-						<label class='control-label'> Max. Length </label>
-						<div class='controls'>
+						<label class='label field-label is-normal'> Max. Length </label>
+						<div class='field-body'>
 							<input type="number" min="0" step="1" v-model="parameter.maxLength">
 						</div>
-						<label class='control-label'> Pattern </label>
-						<div class='controls span8'>
-							<input v-model="parameter.pattern">
+						<label class='label field-label is-normal'> Pattern </label>
+						<div class='field-body'>
+							<input class="input" v-model="parameter.pattern">
 						</div>
 					</div>
 				</div>
 				<div v-if="parameter.type == 'integer' || parameter.type == 'number'">
-					<div class='control-group'>
-						<label class='control-label'> Minimum </label>
-						<div class='controls'>
+					<div class='field is-horizontal'>
+						<label class='label field-label is-normal'> Minimum </label>
+						<div class='field-body'>
 							<input type="number" v-model="parameter.minimum">
 						</div>
-						<label class='control-label'> Min. Exclusive </label>
-						<div class='controls span8'>
-							<input type="checkbox" v-model="parameter.minExclusive">
+						<label class='label field-label is-normal'> Min. Exclusive </label>
+						<div class='field-body'>
+							<input type="checkbox" class="checkbox" v-model="parameter.minExclusive">
 						</div>
 					</div>
-					<div class='control-group'>
-						<label class='control-label'> Maximum </label>
-						<div class='controls'>
+					<div class='field is-horizontal'>
+						<label class='label field-label is-normal'> Maximum </label>
+						<div class='field-body'>
 							<input type="number" v-model="parameter.maximum">
 						</div>
-						<label class='control-label'> Max. Exclusive </label>
-						<div class='controls span8'>
-							<input type="checkbox" v-model="parameter.maxExclusive">
+						<label class='label field-label is-normal'> Max. Exclusive </label>
+						<div class='field-body'>
+							<input type="checkbox" class="checkbox" v-model="parameter.maxExclusive">
 						</div>
 					</div>
-					<div class='control-group'>
-						<label class='control-label'> Multiple Of </label>
-						<div class='controls'>
+					<div class='field is-horizontal'>
+						<label class='label field-label is-normal'> Multiple Of </label>
+						<div class='field-body'>
 							<input type="number" v-model="parameter.multipleOf">
 						</div>
 					</div>
