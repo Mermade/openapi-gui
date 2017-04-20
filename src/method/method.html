@@ -1,7 +1,7 @@
 <div class="accordion-group">
     <div class='accordion-heading'>
 
-        <i class="icon-reorder accordion-handle method-handle"></i>
+        <i class="fa fa-reorder accordion-handle method-handle"></i>
 
         <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
             Operation: <span class='methodNameSpan'>{{httpMethod}} {{method.operationId}}</span>
@@ -10,15 +10,15 @@
         <div class="accordion-buttons">
             <div class="block-container">
                 <a v-on:click="addParameter()" class='button is-success'>
-                    <i class='icon-plus icon-white'></i> Parameter
+                    <i class='fa fa-plus'></i> Parameter
                 </a>
 
                 <a class='button is-success' v-on:click="duplicateOperation(method)">
-                    <i class='icon-copy icon-white'></i> Duplicate
+                    <i class='fa fa-copy'></i> Duplicate
                 </a>
 
                 <a class='button is-danger' v-on:click="removeOperation(index)">
-                    <i class='icon-trash icon-white'></i> Delete
+                    <i class='fa fa-trash'></i> Delete
                 </a>
 
             </div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="box">
-                <a v-on:click="addResponse()" class="button is-success"><i class="icon-add icon-white"></i> Add Response</a>
+                <a v-on:click="addResponse()" class="button is-success"><i class="fa fa-add"></i> Add Response</a>
                 <br>
                 <br>
                 <api-response v-for="(response, status) in method.responses" :response="response" :status="status" inline-template>
@@ -106,8 +106,8 @@
                             <label class='label field-label is-normal'> Status Code </label>
                             <div class='field-body'>
                                 <input class="input" v-model.lazy="status">
-                                <a v-on:click="editResponse(status)" class='button is-success'><i class='icon-edit icon-white'></i> Edit Schema</a>
-                                <a v-on:click="removeResponse(status)" class='button is-danger'><i class='icon-trash icon-white'></i> Delete</a>
+                                <a v-on:click="editResponse(status)" class='button is-success'><i class='fa fa-edit'></i> Edit Schema</a>
+                                <a v-on:click="removeResponse(status)" class='button is-danger'><i class='fa fa-trash'></i> Delete</a>
                             </div>
                         </div>
                         <div class='field is-horizontal'>
