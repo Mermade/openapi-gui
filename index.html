@@ -16,7 +16,7 @@
   <script type='text/javascript' src="js/jsonpatch.js"></script>
   <script type='text/javascript' src="js/jsoneditor.min.js"></script>
   <script type='text/javascript' src="data/static.js"></script>
-  <script type='text/javascript' src="js/vue.min.js"></script>
+  <script type='text/javascript' src="js/vue.js"></script>
 
   <script src="src/resource/resource.js"></script>
   <script src="src/method/method.js"></script>
@@ -32,16 +32,18 @@
 </head>
 
 <body>
-  <div id="loading" class="container is-fluid">
+  <div id="loading" class="section">
+  <div class="container is-fluid">
   <article class="message">
     <div class="message-header">
 	    <p>Loading</p>
 	    <button class="delete"></button>
     </div>
 	<div class="message-body">
-      <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress" value="0" max="100">0 %</progress>
+      <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress is-success" value="0" max="100">0 %</progress>
     </div>
   </article>
+  </div>
   </div>
 
   <div id="main-container">

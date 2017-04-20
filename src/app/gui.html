@@ -18,15 +18,15 @@
 	</div>
 
 	<div id="alert" class="modal">
-  		<div class="modal-background"></div>
-  		<div class="modal-content">
+		<div class="modal-background"></div>
+		<div class="modal-content">
 			<article class="message">
 				<div class="message-body">
-    				<span id="alertText"></span>
+					<span id="alertText"></span>
 				</div>
 			</article>
-  		</div>
-  		<button id="alertClose" class="modal-close"></button>
+		</div>
+		<button id="alertClose" class="modal-close"></button>
 	</div>
 
 	<div class='container-fluid' role='main'>
@@ -98,9 +98,9 @@
 					OpenApi 3.0.x</a> definitions.<br>
 					<br>
 					<h2 class="subtitle">How does OpenApi-gui work?</h2>
-					Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and
-					start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing
-					each Path, Operation and Parameter will be created.
+					Upload an existing definition, or create a new one (select the red 'trash-can' button to remove all Paths) and start adding
+					Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path,
+					Operation and Parameter will be created.
 					<br>
 					<br> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
 					<br>
@@ -111,15 +111,15 @@
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
-				    <div class="columns">
-					<div class="column is-10">
-					<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
-					</div>
-					<div class="column">
-					<a class='button is-primary pull-right' id="load-definition" v-on:click="loadSchema()">
-						<i class='fa fa-upload'></i> Load Definition
-					</a>
-					</div>
+					<div class="columns">
+						<div class="column is-10">
+							<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
+						</div>
+						<div class="column">
+							<a class='button is-primary pull-right' id="load-definition" v-on:click="loadSchema()">
+								<i class='fa fa-fw fa-upload'></i>Load Definition
+							</a>
+						</div>
 					</div>
 				</div>
 
@@ -141,16 +141,16 @@
 							</div>
 
 							<div class="field is-horizontal">
-							  <div class="field-label is-normal">
-							    <label class="label">Description</label>
-							  </div>
-							  <div class="field-body">
-							    <div class="field">
-							      <div class="control">
-									<textarea class="textarea" v-model="openapi.info.description"></textarea>
-							      </div>
-							    </div>
-							  </div>
+								<div class="field-label is-normal">
+									<label class="label">Description</label>
+								</div>
+								<div class="field-body">
+									<div class="field">
+										<div class="control">
+											<textarea class="textarea" v-model="openapi.info.description"></textarea>
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<div class='field is-horizontal'>
@@ -160,26 +160,13 @@
 								</div>
 							</div>
 
-						    <div class="field is-horizontal">
-						    	<label class='field-label is-normal label'> Contact Email </label>
- 						 	    <p class="field-body has-icons-left">
-     							   <input class="input" type="email" v-model="openapi.info.contact.email">
-      					   		   <span><i class="icon is-small is-left fa-envelope"></i></span>
-						      	</p>
-						    </div>
-
-<div class="field">
-  <label class="label">Username</label>
-  <p class="control has-icons-left has-icons-right">
-    <input class="input is-success" type="text" placeholder="Text input" value="bulma">
-    <span class="icon is-small is-left">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fa fa-check"></i>
-    </span>
-  </p>
-</div>
+							<div class="field is-horizontal">
+								<label class='field-label is-normal label'> Contact Email </label>
+								<span class="field-body has-icons-left">
+									<input class="input" type="email" v-model="openapi.info.contact.email">
+									<span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
+								</span>
+							</div>
 
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Contact URL </label>
@@ -226,38 +213,38 @@
 				<div class="tab-pane hidden" id="servers">
 					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmServers">
-							<div>
-								<a v-on:click="addServer()" class='button is-success'><i class='fa fa-plus'></i> Add Server</a>
-								<br>
-								<br>
-							</div>
 							<div v-for="(server,index) in openapi.servers">
-								<div class="columns box">
-									<div class='column is-5 field is-horizontal'>
-										<span class="control"><a v-on:click="removeServer(index)" class='button is-danger'><i class='fa fa-trash'></i>&nbsp;Delete</a></span>
-										<label class='field-label is-normal label'> URL </label>
-										<div class='field-body field control'>
-											<input class="input" v-model="server.url">
+								<div class="box">
+									<div class="columns">
+										<div class='column is-5 field level is-horizontal is-grouped'>
+											<span class="icon"><a v-on:click="addServer()" class='none'><i class='fa fa-plus'></i></a></span>
+											<span class="icon"><a v-on:click="removeServer(index)" class='none'><i class='fa fa-trash'></i></a></span>
+											<label class='field-label is-normal label'>URL</label>
+											<div class='field-body control'>
+												<input class="input" v-model="server.url">
+											</div>
 										</div>
-									</div>
-									<div class='column is-5 field is-horizontal'>
-										<label class='field-label is-normal label'> Description </label>
-										<div class='field-body field control'>
-											<input class="input" v-model="server.description">
+										<div class='column is-5 field is-horizontal'>
+											<label class='field-label is-normal label'> Description </label>
+											<div class='field-body field control'>
+												<input class="input" v-model="server.description">
+											</div>
 										</div>
-									</div>
 
-									<div class="column field is-horizontal control">
-										<a v-on:click="addVariable(index)" class="button is-success"><i class="fa fa-plus"></i> Add Variable</a>
-										<br>
-										<br>
+										<div class="column field is-horizontal control">
+											<a v-on:click="addVariable(index)" class="button is-success"><i class="fa fa-fw fa-plus"></i> Add Variable</a>
+											<br>
+											<br>
+										</div>
 									</div>
 									<div v-for="(variable,index) in server.variables">
 										<div class="box">
-											<div class="field is-horizontal">
+											<div class="field is-horizontal is-grouped">
 												<label class='field-label is-normal label'> Name </label>
 												<div class="field-body field control">
 													<input class="input" v-model="index" v-model.lazy="variableName">
+												</div>
+												<div class="control">
 													<a v-on:click="removeVariable(server,index)" class="button is-danger"><i class="fa fa-trash"></i> Delete </a>
 												</div>
 											</div>
@@ -281,7 +268,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</form>
@@ -292,17 +278,19 @@
 					<div class="container is-fluid">
 						<form class="x" id="frmTags">
 							<div>
-								<a v-on:click="addTag()" class='button is-success'><i class='fa fa-plus'></i> Add Tag</a>
+								<a v-on:click="addTag()" class='button is-success'><i class='fa fa-fw fa-plus'></i>Add Tag</a>
 								<br>
 								<br>
 							</div>
 							<div v-for="(t,index) in openapi.tags">
 								<div class="box">
-									<div class='field is-horizontal'>
+									<div class='field is-horizontal is-grouped'>
 										<label class='field-label is-normal label'> Name </label>
-										<div class='field-body field control'>
+										<div class='field-body control'>
 											<input class="input" v-model="t.name">
-											<i v-on:click="removeTag(index)" class='button is-danger fa-trash fa-white'></i>
+										</div>
+										<div class="control">
+											<span class="button is-danger"><i v-on:click="removeTag(index)" class='fa fa-fw fa-trash'></i>Delete</span>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
@@ -332,41 +320,52 @@
 				<div class="tab-pane hidden" id="security">
 					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmSecurity">
-							<div>
+							<!--<div>
 								<a class="button is-success" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i>&nbsp;Add Security Definition</a>
 								<br>
 								<br>
-							</div>
+							</div>-->
 							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
 								<div class="container is-fluid">
-									<div class="level">
-									<div class="level-left">
-									<div class='level-item field is-horizontal'>
-										<label class='field-label is-normal label'> Name </label>
-										<div class='field-body field control'>
-											<input class="input" v-model.lazy="secname">
-											<a v-on:click="removeSecurityDefinition(sdname)" class='button is-danger'><i class='fa fa-trash'></i> Delete</a>
+									<div class="field is-grouped">
+										<div class="control">
+											<label class="field-label is-normal label">&nbsp;</label>
+											<a class="icon" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i></a>
 										</div>
-									</div>
-									<div class='level-item field is-horizontal'>
-										<label class='field-label is-normal label' for="selSdType"> Type </label>
-										<div class='field-body field control'>
-											<span class="select">
-											<select name="selSdType" v-model="type">
-												<option value="apiKey">API Key</option>
-												<option value="oauth2">oAuth2</option>
-												<option value="http">HTTP Authentication</option>
-											</select>
-											</span>
+										<div class="control">
+											<label class="field-label is-normal label">&nbsp;</label>
+											<a class="icon" v-on:click="removeSecurityDefinition(sdname)"><i class='fa fa-trash'></i></a>
 										</div>
-									</div>
-									<div class='level-item field is-horizontal'>
-										<label class='field-label is-normal label'> Apply to all paths </label>
-										<div class='field-body field control'>
-											<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
+										<div class="control is-expanded">
+											<label class='field-label is-normal label'> Name </label>
+											<div class='field-body'>
+												<input class="input" v-model.lazy="secname">
+											</div>
 										</div>
-									</div>
-									</div>
+										<!--<div class="control">
+											<label class="field-label is-normal label">&nbsp;</label>
+											<div class="field-body">
+												<a v-on:click="removeSecurityDefinition(sdname)" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
+											</div>
+										</div>-->
+										<div class='control'>
+											<label class='field-label is-normal label' for="selSdType"> Type </label>
+											<div class='field-body'>
+												<div class="select">
+													<select name="selSdType" v-model="type">
+														<option value="apiKey">API Key</option>
+														<option value="oauth2">oAuth2</option>
+														<option value="http">HTTP Authentication</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										<div class='control'>
+											<label class='field-label is-normal label'> Apply&nbsp;to&nbsp;all&nbsp;paths </label>
+											<div class='field-body field control'>
+												<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
+											</div>
+										</div>
 									</div>
 
 									<div v-if="sd.type == 'apiKey'" class='animate-if'>
@@ -387,83 +386,89 @@
 										</div>
 									</div>
 									<div v-if="sd.type == 'oauth2'" class='animate-if'>
-										<div class="field control level">
-										<div class="level-left">
-										<div class='level-item field is-horizontal'>
-											<label class='field-label is-normal label'> Implicit Flow </label>
-											<div class='field-body field control'>
-												<input type='checkbox' class="checkbox" v-model='hasImplicit'>
+										<div class="field control level box">
+											<div class="level-left">
+												<div class="level-item field is-horizontal">
+													<label class="field-label is-normal label">Flows:</label>
+													<div class='field-body field control'>&nbsp;</div>
+												</div>
+												<div class='level-item field is-horizontal'>
+													<label class='field-label is-normal label'>Implicit</label>
+													<div class='field-body field control'>
+														<input type='checkbox' class="checkbox" v-model='hasImplicit'>
+													</div>
+												</div>
+												<div class='level-item field is-horizontal'>
+													<label class='field-label is-normal label'>Password</label>
+													<div class='field-body field control'>
+														<input type='checkbox' class="checkbox" v-model='hasPassword'>
+													</div>
+												</div>
+												<div class='level-item field is-horizontal'>
+													<label class='field-label is-normal label'>clientCredentials</label>
+													<div class='field-body field control'>
+														<input type='checkbox' class="checkbox" v-model='hasClientCred'>
+													</div>
+												</div>
+												<div class='level-item field is-horizontal'>
+													<label class='field-label is-normal label'>authorizationCode</label>
+													<div class='field-body field control'>
+														<input type='checkbox' class="checkbox" v-model='hasAuthCode'>
+													</div>
+												</div>
+												<div class="level-item"></div> <!-- last level-item is wrongly positioned -->
 											</div>
-										</div>
-										<div class='level-item field is-horizontal'>
-											<label class='field-label is-normal label'> Password Flow </label>
-											<div class='field-body field control'>
-												<input type='checkbox' class="checkbox" v-model='hasPassword'>
-											</div>
-										</div>
-										<div class='level-item field is-horizontal'>
-											<label class='field-label is-normal label'> clientCredentials Flow </label>
-											<div class='field-body field control'>
-												<input type='checkbox' class="checkbox" v-model='hasClientCred'>
-											</div>
-										</div>
-										<div class='level-item field is-horizontal'>
-											<label class='field-label is-normal label'> authorizationCode </label>
-											<div class='field-body field control'>
-												<input type='checkbox' class="checkbox" v-model='hasAuthCode'>
-											</div>
-										</div>
-										</div>
 										</div>
 
 										<div class="box" v-for="(flow,flowName) in sd.flow">
-										<!-- reindent -->
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
-										</div>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
+											</div>
 
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Authorization URL </label>
-											<div class='field-body field control'>
-												<input type="url" class="input" v-model="flow.authorizationUrl">
-											</div>
-										</div>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Token URL </label>
-											<div class='field-body field control'>
-												<input type="url" class="input" v-model="flow.tokenUrl">
-											</div>
-										</div>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Refresh URL </label>
-											<div class='field-body field control'>
-												<input type="url" class="input" v-model="flow.refreshUrl">
-											</div>
-										</div>
-										<div class='box'>
-											<div>
-												<a class="button is-success" v-on:click="addScope(flow)"><i class='fa fa-plus'></i>&nbsp;Add Scope</a>
-											</div>
-											<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
-												<div>
-													<div class='field is-horizontal'>
-														<label class='field-label is-normal label'> Scope Name </label>
-														<div class='field-body field control'>
-															<input class="input" v-model.lazy="scopename">
-															<a v-on:click="removeScope(flow,sname)" class='button is-danger'><i class='fa fa-trash'></i> Delete</a>
-														</div>
-													</div>
-													<div class='field is-horizontal'>
-														<label class='field-label is-normal label'> Description </label>
-														<div class='field-body field control'>
-															<input class="input" v-model="flow.scopes[sname]">
-														</div>
-													</div>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Authorization URL </label>
+												<div class='field-body field control'>
+													<input type="url" class="input" v-model="flow.authorizationUrl">
 												</div>
-											</api-scope>
-										</div>
+											</div>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Token URL </label>
+												<div class='field-body field control'>
+													<input type="url" class="input" v-model="flow.tokenUrl">
+												</div>
+											</div>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Refresh URL </label>
+												<div class='field-body field control'>
+													<input type="url" class="input" v-model="flow.refreshUrl">
+												</div>
+											</div>
+											<div class='box'>
+												<div>
+													<a class="button is-success" v-on:click="addScope(flow)"><i class='fa fa-plus'></i>&nbsp;Add Scope</a>
+												</div>
+												<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
+													<div class="box">
+														<div class='field is-horizontal is-grouped'>
+															<label class='field-label is-normal label'> Scope Name </label>
+															<div class='field-body field control'>
+																<input class="input" v-model.lazy="scopename">
+															</div>
+															<div class="control">
+																<a v-on:click="removeScope(flow,sname)" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
+															</div>
+														</div>
+														<div class='field is-horizontal'>
+															<label class='field-label is-normal label'> Description </label>
+															<div class='field-body field control'>
+																<input class="input" v-model="flow.scopes[sname]">
+															</div>
+														</div>
+													</div>
+												</api-scope>
+											</div>
 
-										</div> <!-- to here -->
+										</div>
 
 									</div>
 								</div>
@@ -485,8 +490,7 @@
 					<div class='container is-fluid columns'>
 						<div class='column is-2 box'>
 							<div>
-								<a v-on:click="addResource()" class='button is-success addButton pull-left'><i class='fa fa-plus'></i> Add Path</a>
-								<a class="button is-danger remButton" v-on:click="removeAll()"><i class='fa fa-trash'></i> Remove All</a>
+								<a class="button is-danger remButton" v-on:click="removeAll()"><i class='fa fa-fw fa-trash'></i>Remove All</a>
 							</div>
 							<br>
 							<aside id="drop-container" class="menu menu-small">
@@ -508,7 +512,7 @@
 						<div class="column">
 							<form class="form-horizontal" id="config">
 								<div class="resource" v-for="(path,key,index) in openapi.paths">
-									<api-resource :path='path' :index='key' :maintags='openapi.tags'></api-resource>
+									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags'></api-resource>
 								</div>
 							</form>
 						</div>

@@ -10,27 +10,9 @@ Vue.component('gui-main', {
 			document.getElementById(target).scrollIntoView();
 		},
 
-		addResource: function () {
-			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
-			if (!this.openapi.paths['/newPath']) {
-				Vue.set(this.openapi.paths, '/newPath', {});
-				$('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
-			}
-		},
-
-		removePath: function (target) {
-			this.$root.save();
-			Vue.delete(this.openapi.paths, target);
-		},
-
-		renamePath: function (oldPath, newPath) {
-			Vue.set(this.openapi.paths, newPath, this.openapi.paths[oldPath]);
-			Vue.delete(this.openapi.paths, oldPath);
-		},
-
 		removeAll: function () {
 			var self = this;
-			bootbox.confirm('Remove all paths, methods and parameters, are you sure?', function (result) {
+			bootbox.confirm('Remove all paths, operations and parameters, are you sure?', function (result) {
 				if (result) {
 					self.$root.save();
 					self.openapi.paths = {};
@@ -56,15 +38,15 @@ Vue.component('gui-main', {
 		},
 
 		addSecurityDefinition: function () {
-			if (!this.openapi.securityDefinitions) {
-				Vue.set(this.openapi, 'securityDefinitions', {});
+			if (!this.openapi.components.securitySchemes) {
+				Vue.set(this.openapi.components, 'securitySchemes', {});
 			}
-			if (!this.openapi.securityDefinitions.newSecurityDef) {
+			if (!this.openapi.components.securitySchemes.newSecurityScheme) {
 				var newSecDef = {};
 				newSecDef.type = 'apiKey';
 				newSecDef.name = 'api_key';
 				newSecDef.in = 'query';
-				Vue.set(this.openapi.securityDefinitions, 'newSecurityDef', newSecDef);
+				Vue.set(this.openapi.components.securitySchemes, 'newSecurityScheme', newSecDef);
 			}
 		},
 
@@ -88,7 +70,7 @@ Vue.component('gui-main', {
 
 		removeSecurityDefinition: function (index) {
 			this.$root.save();
-			Vue.delete(this.openapi.securityDefinitions, index);
+			Vue.delete(this.openapi.components.securitySchemes, index);
 			this.filterSecurityDefinition(this.openapi.security, index);
 			for (var p in this.openapi.paths) {
 				var path = this.openapi.paths[p];
@@ -140,7 +122,7 @@ Vue.component('gui-main', {
 			}
 			catch (ex) {
 				try {
-					schema = jsyaml.safeLoad(this.importschema.text);
+					schema = jsyaml.safeLoad(this.importschema.text, {json:true});
 					this.showAlert('YAML definition parsed successfully');
 				}
 				catch (ex) {
@@ -328,6 +310,9 @@ Vue.component('api-secdef', {
 		}
 	},
 	methods : {
+		addSecurityDefinition : function() {
+			this.$parent.addSecurityDefinition();
+		},
 		removeSecurityDefinition : function(sdname) {
 			this.$parent.removeSecurityDefinition(sdname);
 		},
@@ -361,7 +346,7 @@ Vue.component('api-scope', {
 			set : function(newVal) {
 				this.$parent.renameScope(this.flow, this.sname, newVal);
 			}
-		} 
+		}
 	},
 	data: function() {
 		return {}
