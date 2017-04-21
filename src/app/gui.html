@@ -7,12 +7,12 @@
 		</div>
 		<div class="nav-right">
 			<div class='nav-item'>
-				<a class="btn btn-info pull-right" v-on:click="scrollTop()"><i class='fa fa-white fa-arrow-up'></i> Top</a>
-				<a class="btn btn-info pull-right" v-on:click="save()"><i class='fa fa-white fa-save'></i> Save</a>
-				<a class="btn btn-info pull-right" v-on:click="undo()"><i class='fa fa-white fa-undo'></i> Undo</a>
-				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%23.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
-				<a class="btn btn-info pull-right" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='fa fa-twitter'></i> Follow</a>
-				<a class='btn btn-info pull-right' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='fa fa-github'></i> GitHub</a>
+				<a class="btn" v-on:click="scrollTop()"><i class='fa fa-white fa-arrow-up'></i> Top</a>
+				<a class="btn" v-on:click="save()"><i class='fa fa-white fa-save'></i> Save</a>
+				<a class="btn" v-on:click="undo()"><i class='fa fa-white fa-undo'></i> Undo</a>
+				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%23.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
+				<a class="btn" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='fa fa-twitter'></i> Follow</a>
+				<a class='btn' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='fa fa-github'></i> GitHub</a>
 			</div>
 		</div>
 	</div>
@@ -112,13 +112,17 @@
 
 				<div class="tab-pane hidden container is-fluid" id="input">
 					<div class="columns">
+						<div class="column is-2">
+							<div class="container">
+								<a class='button is-primary' id="load-definition" v-on:click="loadSchema()">
+									<i class='fa fa-fw fa-upload'></i>Load Definition
+								</a>
+								<br><br>
+								<a class="button is-danger remButton" v-on:click="removeAll()"><i class='fa fa-fw fa-trash'></i>Remove All</a>
+							</div>
+						</div>
 						<div class="column is-10">
 							<textarea class="service-input is-fullwidth" v-model="importschema.text"></textarea>
-						</div>
-						<div class="column">
-							<a class='button is-primary pull-right' id="load-definition" v-on:click="loadSchema()">
-								<i class='fa fa-fw fa-upload'></i>Load Definition
-							</a>
 						</div>
 					</div>
 				</div>
@@ -213,6 +217,22 @@
 				<div class="tab-pane hidden" id="servers">
 					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmServers">
+							<div class="card" v-if="openapi.servers.length==0">
+								<div class="card-content">
+									<p class="title">
+									<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#serverObject">OpenAPI Specification Servers Object</a>
+									</p>
+									<p class="subtitle">
+										There are no servers defined. This means the API paths will be relative to the host and path
+										the OpenAPI definition was loaded from.
+									</p>
+								</div>
+								<footer class="card-footer">
+									<p class="card-footer-item">
+									<a v-on:click="addServer()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Server</span></a>
+									</p>
+								</footer>
+							</div>
 							<div v-for="(server,index) in openapi.servers">
 								<div class="box">
 									<div class="columns">
@@ -232,7 +252,7 @@
 										</div>
 
 										<div class="column field is-horizontal control">
-											<a v-on:click="addVariable(index)" class="button is-success"><i class="fa fa-fw fa-plus"></i> Add Variable</a>
+											<a v-on:click="addVariable(index)" class="button is-primary"><i class="fa fa-fw fa-plus"></i> Add Variable</a>
 											<br>
 											<br>
 										</div>
@@ -245,7 +265,7 @@
 													<input class="input" v-model="index" v-model.lazy="variableName">
 												</div>
 												<div class="control">
-													<a v-on:click="removeVariable(server,index)" class="button is-danger"><i class="fa fa-trash"></i> Delete </a>
+													<a v-on:click="removeVariable(server,index)" class="button delete"></a>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
@@ -263,7 +283,7 @@
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Enum </label>
 												<div class='field-body field control'>
-													<!-- todo -->
+													<!-- TODO -->
 												</div>
 											</div>
 										</div>
@@ -275,22 +295,27 @@
 				</div>
 
 				<div class="tab-pane hidden" id="tags">
-					<div class="container is-fluid">
-						<form class="x" id="frmTags">
-							<div>
-								<a v-on:click="addTag()" class='button is-success'><i class='fa fa-fw fa-plus'></i>Add Tag</a>
+					<div class="container is-fluid box">
+						<form class="columns" id="frmTags">
+							<div class="column is-2 box">
+								<a v-on:click="addTag()" class='button is-primary'><i class='fa fa-fw fa-plus'></i>Add Tag</a>
 								<br>
-								<br>
+								<div class="menu">
+									<ul class="menu-list">
+										<li v-for="(t,index) in openapi.tags"><a :href="'#tag'+index">{{t.name}}</a></li>
+									</ul>
+								</div>
 							</div>
-							<div v-for="(t,index) in openapi.tags">
-								<div class="box">
+							<div class="column">
+								<div v-for="(t,index) in openapi.tags" class="box">
+									<a :name="'tag'+index"></a>
 									<div class='field is-horizontal is-grouped'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body control'>
 											<input class="input" v-model="t.name">
 										</div>
 										<div class="control">
-											<span class="button is-danger"><i v-on:click="removeTag(index)" class='fa fa-fw fa-trash'></i>Delete</span>
+											<span class="button delete" v-on:click="removeTag(index)"></span>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
@@ -319,15 +344,30 @@
 
 				<div class="tab-pane hidden" id="security">
 					<div class="container is-fluid">
-						<form class="plain-form form-horizontal" id="frmSecurity">
-							<!--<div>
-								<a class="button is-success" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i>&nbsp;Add Security Definition</a>
+						<form class="columns" id="frmSecurity">
+							<div class="column is-2 box">
+								<a class="button is-primary" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i>&nbsp;Add Security Scheme</a>
 								<br>
-								<br>
-							</div>-->
+								<div class="menu">
+									<ul class="menu-list">
+										<li v-for="(sd, sdname) in openapi.components.securitySchemes">
+											<a :href="'#sec'+sdname">{{sdname}}</a>
+											<ul>
+												<li v-for="(flow,flowName) in sd.flow">{{flowName}}
+													<ul>
+														<li v-for="(sdesc, sname) in flow.scopes">{{sname}}</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="column is-10">
 							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes"
 								:key="sdname" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
-								<div class="container is-fluid">
+								<div class="container is-fluid box">
+									<a :name="'sec'+sdname"></a>
 									<div class="field is-grouped">
 										<div class="control">
 											<label class="field-label is-normal label">&nbsp;</label>
@@ -474,6 +514,7 @@
 									</div>
 								</div>
 							</api-secdef>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -490,10 +531,6 @@
 
 					<div class='container is-fluid columns'>
 						<div class='column is-2 box'>
-							<div>
-								<a class="button is-danger remButton" v-on:click="removeAll()"><i class='fa fa-fw fa-trash'></i>Remove All</a>
-							</div>
-							<br>
 							<aside id="drop-container" class="menu menu-small">
 								<ul id="resourceList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
 									<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
@@ -510,7 +547,7 @@
 							</aside>
 						</div>
 
-						<div class="column">
+						<div class="column box">
 							<form class="form-horizontal" id="config">
 								<div class="resource" v-for="(path,key,index) in openapi.paths">
 									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags'></api-resource>

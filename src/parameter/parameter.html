@@ -6,13 +6,7 @@
 				<i class="fa fa-reorder accordion-handle param-handle"></i>
 			</a>
 
-<!--			<span>
-				<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
-                Parameter: <span class='methodNameSpan'>{{parameter.name}}</span>
-            	</a>
-			</span>-->
-
-			<span>Parameter:
+			<span><span><b>Parameter:</b></span>
 				<span class="icon"><i class="fa fa-fw fa-plus"></i></span>
 				<a class='icon' v-on:click="duplicateParameter()">
 					<i class="fa fa-fw fa-copy"></i>
@@ -21,7 +15,7 @@
 					<i class="fa fa-fw fa-trash"></i>
 				</a>
 				<a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
-					<span class='methodNameSpan'>{{parameter.name}}</span>
+					<span class='parameterNameSpan'>{{parameter.name}}</span>
 				</a>
 			</span>
 

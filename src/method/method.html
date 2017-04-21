@@ -5,14 +5,10 @@
             <i class="fa fa-reorder accordion-handle method-handle"></i>
         </a>
 
-        <span>Operation:
-            <span class="icon"><i class="fa fa-fw fa-plus"></i></span>
-            <a class='icon' v-on:click="duplicateOperation(method)">
-                <i class="fa fa-fw fa-copy"></i>
-            </a>
-            <a class='icon is-danger' v-on:click="removeOperation(index)">
-                <i class="fa fa-fw fa-trash"></i>
-            </a>
+        <span><b>Operation:</b>
+            <a class="icon" v-on:click="addOperation()"><i class="fa fa-fw fa-plus"></i></a>
+            <a class='icon' v-on:click="duplicateOperation(method)"><i class="fa fa-fw fa-copy"></i></a>
+            <a class='icon is-danger' v-on:click="removeOperation(index)"><i class="fa fa-fw fa-trash"></i></a>
             <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
                 <span class='methodNameSpan'>{{httpMethod}} {{method.operationId}}</span>
             </a>
@@ -20,34 +16,42 @@
 
         <div class="accordion-buttons">
             <div class="block-container">
-                <a v-on:click="addParameter()" class='button is-success'>
+                <!--<a v-on:click="addParameter()" class='button is-success'>
                     <i class='fa fa-fw fa-plus'></i>Parameter
-                </a>
+                </a>-->
             </div>
         </div>
     </div>
     <div class="accordion-body collapse method-body" :id="_uid">
         <div v-if="visible" class="accordion-inner">
 
-            <div class='field is-horizontal'>
-                <label class='label field-label is-normal'> HTTP Method (GET, POST, PUT, etc) </label>
-                <div class='control field-body'>
-                    <select class='select' v-model="httpMethod">
-                        <option value="GET">GET</option>
-                        <option value="POST">POST</option>
-                        <option value="PUT">PUT</option>
-                        <option value="DELETE">DELETE</option>
-                        <option value="HEAD">HEAD</option>
-                        <option value="PATCH">PATCH</option>
-                        <option value="OPTIONS">OPTIONS</option>
-                        <option value="TRACE">TRACE</option>
-                    </select>
+            <div class="field is-grouped">
+                <div class='control is-horizontal'>
+                    <label class='label field-label is-normal'>Method</label>
+                    <div class='control field-body'>
+                        <select class='select' v-model="httpMethod">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+                            <option value="PUT">PUT</option>
+                            <option value="DELETE">DELETE</option>
+                            <option value="HEAD">HEAD</option>
+                            <option value="PATCH">PATCH</option>
+                            <option value="OPTIONS">OPTIONS</option>
+                            <option value="TRACE">TRACE</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class='field is-horizontal'>
-                <label class='label field-label is-normal'> OperationId </label>
-                <div class='field-body'>
-                    <input class='input methodName' v-model="method.operationId">
+                <div class='control is-horizontal is-expanded'>
+                    <label class='label field-label is-normal'> OperationId </label>
+                    <div class='field-body'>
+                        <input class='input methodName' v-model="method.operationId">
+                    </div>
+                </div>
+                <div class='control is-horizontal'>
+                    <label class='field-label label is-normal'> Deprecated </label>
+                    <div class='field-body'>
+                        <input type='checkbox' class='checkbox' v-model='method.deprecated'>
+                    </div>
                 </div>
             </div>
             <div class='field is-horizontal'>
@@ -68,12 +72,6 @@
                     <select :id="tagId" class="select" multiple v-model='vtags'>
                         <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
                     </select>
-                </div>
-            </div>
-            <div class='field is-horizontal'>
-                <label class='field-label label is-normal'> Deprecated </label>
-                <div class='field-body'>
-                    <input type='checkbox' class='checkbox' v-model='method.deprecated'>
                 </div>
             </div>
             <details>

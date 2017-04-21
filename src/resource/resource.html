@@ -1,20 +1,27 @@
 <div class="resource box" :id="sanitisePath">
     <div class="header columns">
 		<div class="column">
-        	<div class='field is-horizontal'>
-                <span class="level">
+        	<div class='field is-grouped level'>
+                <div class="control">
                     <span class="icon"><a v-on:click="addResource()"><i class="fa fa-fw fa-plus"></i></a></span>
+                </div>
+                <div class="control">
+                    <span class="icon"><a v-on:click="editPathDesc()"><i class="fa fa-fw fa-edit"></i></a></span>
+                </div>
+                <div class="control">
                     <span class="icon"><a v-on:click="removePath(index)"><i class="is-danger fa fa-fw fa-trash"></i></a></span>
-                    <label class='is-normal field field-label label'>Path:&nbsp;</label>
-                    <div class='field field-body control'>
-                        <input class="input" v-model.lazy="pathEntry">
-                    </div>
-                </span>
-        	</div>
+                </div>
+                <div class="control">
+                    <label class='is-normal field-label'><b>Path:&nbsp;</b></label>
+                </div>
+                <div class="control is-expanded">
+                    <input class="input" v-model.lazy="pathEntry">
+                </div>
+            </div>
         </div>
-        <div class='column is-4'>
-            <a v-if="Object.keys(httpMethods).length==0" v-on:click="addOperation()" class='button is-success is-right'>
-                <i class='fa fa-plus'></i>
+        <div class='column is-2'>
+            <a v-if="Object.keys(httpMethods).length==0" v-on:click="addOperation()" class='button is-primary is-right'>
+                <i class='fa fa-fw fa-plus'></i>
                 Add Operation
             </a>
         </div>

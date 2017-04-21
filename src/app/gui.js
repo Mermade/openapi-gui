@@ -12,7 +12,7 @@ Vue.component('gui-main', {
 
 		removeAll: function () {
 			var self = this;
-			bootbox.confirm('Remove all paths, operations and parameters, are you sure?', function (result) {
+			this.showConfirm('Remove all paths, operations and parameters, are you sure?', function (result) {
 				if (result) {
 					self.$root.save();
 					self.openapi.paths = {};
@@ -106,12 +106,17 @@ Vue.component('gui-main', {
 			Vue.delete(server.variables,index);
 		},
 
-		showAlert: function (text) {
+		showAlert: function (text, callback) {
 			$('#alertText').text(text);
 			$('#alert').addClass('is-active');
 			$('#alertClose').click(function(){
+				if (callback) callback(false);
 				$('#alert').removeClass('is-active');
 			});
+		},
+
+		showConfirm: function(text, callback) {
+			this.showAlert(text, callback);
 		},
 
 		loadSchema: function () {
@@ -142,7 +147,7 @@ Vue.component('gui-main', {
 				Vue.set(this.$root.container, 'openapi', schema);
 			}
 			else {
-				bootbox.alert('OpenAPI version must be 3.0.x');
+				this.showAlert('OpenAPI version must be 3.0.x');
 			}
 		},
 

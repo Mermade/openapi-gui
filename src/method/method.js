@@ -16,6 +16,9 @@ Vue.component('api-method', {
                 },this);
             }
         },
+        addOperation : function() {
+            this.$parent.addOperation();
+        },
         duplicateOperation : function(method) {
             this.$parent.addOperation(method);
         },
