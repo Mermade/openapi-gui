@@ -1,4 +1,4 @@
-<div class="accordion-group">
+<div class="accordion-group box">
     <div class='accordion-heading'>
 
         <a class="icon" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
@@ -16,67 +16,109 @@
 
         <div class="accordion-buttons">
             <div class="block-container">
-                <!--<a v-on:click="addParameter()" class='button is-success'>
-                    <i class='fa fa-fw fa-plus'></i>Parameter
-                </a>-->
             </div>
         </div>
     </div>
+
     <div class="accordion-body collapse method-body" :id="_uid">
         <div v-if="visible" class="accordion-inner">
 
-            <div class="field is-grouped">
-                <div class='control is-horizontal'>
-                    <label class='label field-label is-normal'>Method</label>
-                    <div class='control field-body'>
-                        <select class='select' v-model="httpMethod">
-                            <option value="GET">GET</option>
-                            <option value="POST">POST</option>
-                            <option value="PUT">PUT</option>
-                            <option value="DELETE">DELETE</option>
-                            <option value="HEAD">HEAD</option>
-                            <option value="PATCH">PATCH</option>
-                            <option value="OPTIONS">OPTIONS</option>
-                            <option value="TRACE">TRACE</option>
+            <ul id="method-tabs" class='tabs is-boxed tab-container'>
+                <li class="tabItem method-tab is-active tabItem-method-main">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('main',$event)">
+                        <span class="icon is-small"><i class="fa fa-cog"></i></span>
+                        <span>Main</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-description">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('description',$event)">
+                        <span class="icon is-small"><i class="fa fa-comment"></i></span>
+                        <span>Description</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-docs">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('docs',$event)">
+                        <span class="icon is-small"><i class="fa fa-book"></i></span>
+                        <span>Docs</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-parameters">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('parameters',$event)">
+                        <span class="icon is-small"><i class="fa fa-list"></i></span>
+                        <span>Parameters</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-requestbodies">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('requestbodies',$event)">
+                        <span class="icon is-small"><i class="fa fa-question"></i></span>
+                        <span>Request Bodies</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-responses">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('responses',$event)">
+                        <span class="icon is-small"><i class="fa fa-thumbs-o-up"></i></span>
+                        <span>Responses</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="method-pane method-pane-main">
+                <div class="field is-grouped">
+                    <div class='control is-horizontal'>
+                        <label class='label field-label is-normal'>Method</label>
+                        <div class='control field-body'>
+                            <select class='select' v-model="httpMethod">
+                                <option value="GET">GET</option>
+                                <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="DELETE">DELETE</option>
+                                <option value="HEAD">HEAD</option>
+                                <option value="PATCH">PATCH</option>
+                                <option value="OPTIONS">OPTIONS</option>
+                                <option value="TRACE">TRACE</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class='control is-horizontal is-expanded'>
+                        <label class='label field-label is-normal'> OperationId </label>
+                        <div class='field-body'>
+                            <input class='input methodName' v-model="method.operationId">
+                        </div>
+                    </div>
+                    <div class='control is-horizontal'>
+                        <label class='field-label label is-normal'> Deprecated </label>
+                        <div class='field-body'>
+                            <input type='checkbox' class='checkbox' v-model='method.deprecated'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="method-pane method-pane-description hidden">
+                <div class='field is-horizontal'>
+                    <label class='is-normal label field-label'> Summary </label>
+                    <div class='field-body'>
+                        <input class="input" v-model="method.summary">
+                    </div>
+                </div>
+                <div class='field is-horizontal'>
+                    <label class='label field-label is-normal'> Description </label>
+                    <div class="field-body">
+                        <textarea class="textarea" v-model="method.description"></textarea>
+                    </div>
+                </div>
+                <div class='field is-horizontal'>
+                    <label class='field-label is-normal'> Tags </label>
+                    <div class='field-body'>
+                        <select :id="tagId" class="select" multiple v-model='vtags'>
+                            <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
                         </select>
                     </div>
                 </div>
-                <div class='control is-horizontal is-expanded'>
-                    <label class='label field-label is-normal'> OperationId </label>
-                    <div class='field-body'>
-                        <input class='input methodName' v-model="method.operationId">
-                    </div>
-                </div>
-                <div class='control is-horizontal'>
-                    <label class='field-label label is-normal'> Deprecated </label>
-                    <div class='field-body'>
-                        <input type='checkbox' class='checkbox' v-model='method.deprecated'>
-                    </div>
-                </div>
             </div>
-            <div class='field is-horizontal'>
-                <label class='is-normal label field-label'> Summary </label>
-                <div class='field-body'>
-                    <input class="input" v-model="method.summary">
-                </div>
-            </div>
-            <div class='field is-horizontal'>
-                <label class='label field-label is-normal'> Description </label>
-				<div class="field-body">
-                	<textarea class="textarea" v-model="method.description"></textarea>
-				</div>
-            </div>
-            <div class='field is-horizontal'>
-                <label class='field-label is-normal'> Tags </label>
-                <div class='field-body'>
-                    <select :id="tagId" class="select" multiple v-model='vtags'>
-                        <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <details>
-                <summary><b>External Docs</b></summary>
-                <div class="box">
+
+            <div class="method-pane method-pane-docs hidden">
+                <div class="none">
                     <div class='field is-horizontal'>
                         <label class='label field-label is-normal'> Docs Description </label>
                         <div class='field-body'>
@@ -90,13 +132,51 @@
                         </div>
                     </div>
                 </div>
-            </details>
-            <div class="none">
+            </div>
+
+            <div class="method-pane method-pane-parameters hidden">
+                <div class="card" v-if="method.parameters.length==0">
+                    <div class="card-content">
+                        <p class="title">
+                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#parametersObject">OpenAPI Specification Parameters Object</a>
+                        </p>
+                        <p class="subtitle">
+                            There are no parameters defined for this operation.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                        <a v-on:click="addParameter()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Parameter</span></a>
+                        </p>
+                    </footer>
+                </div>
                 <div class="sortable-params" v-for="(parameter,index) in method.parameters">
                     <api-parameter :parameter="parameter" :index='index'></api-parameter>
                 </div>
             </div>
-            <div class="box">
+
+            <div class="method-pane method-pane-requestbodies hidden">
+                <div class="card" v-if="method.parameters.length==0">
+                    <div class="card-content">
+                        <p class="title">
+                            TODO
+                        </p>
+                        <p class="subtitle">
+                            Nothing to see here, move along.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                        <a v-on:click="addRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Request Body</span></a>
+                        </p>
+                    </footer>
+                </div>
+                <div class="sortable-params" v-for="(parameter,index) in method.parameters">
+                    <api-parameter :parameter="parameter" :index='index'></api-parameter>
+                </div>
+            </div>
+
+            <div class="method-pane method-pane-responses hidden">
                 <a v-on:click="addResponse()" class="button is-success"><i class="fa fa-add"></i> Add Response</a>
                 <br>
                 <br>
@@ -130,6 +210,7 @@
                     </div>
                 </api-response>
             </div>
+
         </div>
     </div>
 </div>

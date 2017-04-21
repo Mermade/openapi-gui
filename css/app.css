@@ -95,6 +95,10 @@ body {
     white-space:nowrap;
 }
 
+.tab-container {
+  justify-content: flex-start;
+}
+
 .btn {
   padding-left: 15px;
 }

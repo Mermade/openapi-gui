@@ -16,6 +16,13 @@ Vue.component('api-method', {
                 },this);
             }
         },
+		selectTab: function (name, $event) {
+			$('.method-tab').removeClass('is-active');
+			$('.tabItem-method-'+name).addClass('is-active');
+			$('.method-pane').addClass('hidden');
+			$('.method-pane-'+name).removeClass('hidden');
+			$event.preventDefault();
+		},
         addOperation : function() {
             this.$parent.addOperation();
         },
@@ -30,7 +37,8 @@ Vue.component('api-method', {
             newParam.name = 'newParam';
             newParam.in = 'query';
             newParam.required = false;
-            newParam.type = 'string';
+            newParam.schema = {};
+            newParam.schema.type = 'string';
             this.method.parameters.push(newParam);
         },
         removeParameter : function(index) {

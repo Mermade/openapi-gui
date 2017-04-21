@@ -84,6 +84,15 @@ function preProcessDefinition(openapi) {
 	if (!openapi.paths) {
 		openapi.paths = {};
 	}
+    if (!openapi.components) {
+        openapi.components = {};
+    }
+    if (!openapi.components.links) {
+        openapi.components.links = {};
+    }
+    if (!openapi.components.callbacks) {
+        openapi.components.callbacks = {};
+    }
     for (var p in openapi.paths) {
         var path = openapi.paths[p];
         for (var o in path) {
@@ -112,7 +121,7 @@ function preProcessDefinition(openapi) {
     return openapi;
 }
 
-function onlyUnique(value, index, self) { 
+function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
 

@@ -7,7 +7,9 @@
 			</a>
 
 			<span><span><b>Parameter:</b></span>
-				<span class="icon"><i class="fa fa-fw fa-plus"></i></span>
+				<a class='icon' v-on:click="addParameter()">
+					<i class="fa fa-fw fa-plus"></i>
+				</a>
 				<a class='icon' v-on:click="duplicateParameter()">
 					<i class="fa fa-fw fa-copy"></i>
 				</a>
@@ -50,13 +52,13 @@
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Required </label>
 					<div class='field-body'>
-						<input type="checkbox" v-model="effectiveRequired" :disabled="effectiveIn == 'path' ? true : false">
+						<input type="checkbox" class="checkbox" v-model="effectiveRequired" :disabled="effectiveIn == 'path' ? true : false">
 					</div>
 				</div>
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Location </label>
 					<div class='field-body'>
-						<select v-model="effectiveIn" required size="3">
+						<select class="select" v-model="effectiveIn" required size="3">
                             <option value="path">Path</option>
                             <option value="query">Query</option>
                             <option value="header">Header</option>
@@ -67,7 +69,7 @@
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Data Type </label>
 					<div class='field-body'>
-						<select v-model="effectiveType" required size="5">
+						<select class="select" v-model="effectiveType" required size="5">
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
