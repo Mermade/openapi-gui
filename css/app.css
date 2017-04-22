@@ -45,20 +45,6 @@ body {
   padding-bottom:10px;
 }
 
-.parameter {
-  padding:10px;
-  /*font-size: 14px;*/
-  border: 1px solid #029DE7;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
-  border-radius: 5px;
-  margin: 10px 5px;
-  background-color: #E7F0F7;
-}
-
 .service-input {
   width:100%;
   height:400px;
@@ -128,4 +114,8 @@ summary:focus {
 
 .hidden {
   display: none;
+}
+
+.box {
+  background: rgba(0, 0, 0, 0.01);
 }
