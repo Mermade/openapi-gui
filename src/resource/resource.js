@@ -43,8 +43,8 @@ Vue.component('api-resource', {
             }
             if (index<this.methods.length) {
                 var responses = {};
-                responses["200"] = {
-                    description: "default"
+                responses.default = {
+                    description: "Default response"
                 };
                 var op = {};
                 op.summary = template && template.summary || '';
