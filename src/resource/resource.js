@@ -29,13 +29,9 @@ Vue.component('api-resource', {
         }
 	},
     methods : {
-		addResource: function () {
-			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
-			if (!this.openapi.paths['/newPath']) {
-				Vue.set(this.openapi.paths, '/newPath', {});
-				$('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
-			}
-		},
+        addResource : function () {
+            this.$parent.addResource();
+        },
 		removePath: function (target) {
 			this.$root.save();
 			Vue.delete(this.openapi.paths, target);

@@ -156,7 +156,7 @@
             </div>
 
             <div class="method-pane method-pane-requestbodies hidden">
-                <div class="card" v-if="method.parameters.length==0">
+                <div class="card">
                     <div class="card-content">
                         <p class="title">
                             TODO
@@ -170,9 +170,6 @@
                         <a v-on:click="addRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Request Body</span></a>
                         </p>
                     </footer>
-                </div>
-                <div class="sortable-params" v-for="(parameter,index) in method.parameters">
-                    <api-parameter :parameter="parameter" :index='index'></api-parameter>
                 </div>
             </div>
 

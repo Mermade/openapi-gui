@@ -5,6 +5,14 @@ Vue.component('gui-main', {
 	},
 	methods: {
 
+		addResource: function () {
+			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
+			if (!this.openapi.paths['/newPath']) {
+				Vue.set(this.openapi.paths, '/newPath', {});
+				$('html,body').animate({ scrollTop: document.body.scrollHeight }, "fast");
+			}
+		},
+
 		showResource: function (key) {
 			var target = 'resource_' + key.split('/').join('').split('{').join('').split('}').join('');
 			document.getElementById(target).scrollIntoView();
@@ -12,7 +20,7 @@ Vue.component('gui-main', {
 
 		removeAll: function () {
 			var self = this;
-			this.showConfirm('Remove all paths, operations and parameters, are you sure?', function (result) {
+			this.showConfirm('Are you sure?','This action will remove all paths, operations and parameters. Undo will be available.', function (result) {
 				if (result) {
 					self.$root.save();
 					self.openapi.paths = {};
@@ -115,8 +123,22 @@ Vue.component('gui-main', {
 			});
 		},
 
-		showConfirm: function(text, callback) {
-			this.showAlert(text, callback);
+		showConfirm: function(title, text, callback) {
+			$('#confirmTitle').text(title);
+			$('#confirmSubtitle').text(text);
+			$('#confirm').addClass('is-active');
+			$('#confirmClose').click(function(){
+				if (callback) callback(false);
+				$('#confirm').removeClass('is-active');
+			});
+			$('#confirmCancel').click(function(){
+				if (callback) callback(false);
+				$('#confirm').removeClass('is-active');
+			});
+			$('#confirmOk').click(function(){
+				if (callback) callback(true);
+				$('#confirm').removeClass('is-active');
+			});
 		},
 
 		loadSchema: function () {

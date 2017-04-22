@@ -174,6 +174,9 @@ Vue.component('api-response', {
         removeResponse: function () {
             this.$root.save();
             Vue.delete(this.method.responses, this.status);
+            if (Object.keys(this.method.responses).length==0) {
+                Vue.set(this.method.responses,'default',{description:'Default response'});
+            }
         }
     },
     data: function () {
