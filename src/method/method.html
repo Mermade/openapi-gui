@@ -69,7 +69,8 @@
                     <div class='control is-horizontal'>
                         <label class='label field-label is-normal'>Method</label>
                         <div class='control field-body'>
-                            <select class='select' v-model="httpMethod">
+                            <div class="select">
+                            <select v-model="httpMethod">
                                 <option value="GET">GET</option>
                                 <option value="POST">POST</option>
                                 <option value="PUT">PUT</option>
@@ -79,6 +80,7 @@
                                 <option value="OPTIONS">OPTIONS</option>
                                 <option value="TRACE">TRACE</option>
                             </select>
+                            </div>
                         </div>
                     </div>
                     <div class='control is-horizontal is-expanded'>

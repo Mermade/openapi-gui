@@ -375,6 +375,14 @@ Vue.component('api-scope', {
 			}
 		}
 	},
+	methods: {
+		addScope: function() {
+			this.$parent.addScope(this.flow);
+		},
+		removeScope: function(flow, sName) {
+			this.$parent.removeScope(flow, sName);
+		}
+	},
 	data: function() {
 		return {}
 	}

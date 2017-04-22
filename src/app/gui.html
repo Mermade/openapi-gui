@@ -497,10 +497,12 @@
 										<div class='field is-horizontal'>
 											<label class='field-label is-normal label'> Location </label>
 											<div class='field-body field control'>
-												<select class="select" name="selLocation" v-model="sd.in">
-													<option value="header">Header</option>
-													<option value="query">Query</option>
-												</select>
+												<div class="select">
+													<select class="selectx" name="selLocation" v-model="sd.in">
+														<option value="header">Header</option>
+														<option value="query">Query</option>
+													</select>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -566,18 +568,37 @@
 												</div>
 											</div>
 											<div class='box'>
-												<div>
-													<a class="button is-success" v-on:click="addScope(flow)"><i class='fa fa-plus'></i>&nbsp;Add Scope</a>
+												<div class="card" v-if="Object.keys(flow.scopes).length==0">
+													<div class="card-content">
+														<p class="title">
+														<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#scopesObject">OpenAPI Specification Scopes Object</a>
+														</p>
+														<p class="subtitle">
+															There are no scopes defined yet for this oAuth2 flow.
+														</p>
+													</div>
+													<footer class="card-footer">
+														<p class="card-footer-item">
+														<a v-on:click="addScope(flow)"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Scope</span></a>
+														</p>
+													</footer>
 												</div>
+
 												<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
 													<div class="box">
-														<div class='field is-horizontal is-grouped'>
+														<div class='field is-horizontal level is-grouped'>
+															<div class="control">
+																<a class="icon" v-on:click="addScope(flow)"><i class='fa fa-plus'></i></a>
+															</div>
+															<div class="control">
+																<a class="icon" v-on:click="duplicateScope(flow)"><i class='fa fa-copy'></i></a>
+															</div>
+															<div class="control">
+																<a class="icon" v-on:click="removeScope(flow,sname)"><i class='fa fa-trash'></i></a>
+															</div>
 															<label class='field-label is-normal label'> Scope Name </label>
 															<div class='field-body field control'>
 																<input class="input" v-model.lazy="scopename">
-															</div>
-															<div class="control">
-																<a v-on:click="removeScope(flow,sname)" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
 															</div>
 														</div>
 														<div class='field is-horizontal'>

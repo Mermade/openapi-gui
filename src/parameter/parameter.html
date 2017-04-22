@@ -13,6 +13,9 @@
 				<a class='icon' v-on:click="duplicateParameter()">
 					<i class="fa fa-fw fa-copy"></i>
 				</a>
+				<a v-if="effectiveType == 'object'" class='icon' v-on:click="editSchema()">
+					<i class='fa fa-fw fa-edit'></i>
+				</a>
 				<a class='icon is-danger' v-on:click="removeParameter()">
 					<i class="fa fa-fw fa-trash"></i>
 				</a>
@@ -24,12 +27,6 @@
 			<div class="accordion-buttons">
 				<div class="block-container">
 					<div>
-						<a v-if="effectiveType == 'object'" class='button is-success' v-on:click="editSchema()">
-							<i class='fa fa-fw fa-edit'></i>Edit Schema
-						</a>
-						<a class='button is-danger' v-on:click="removeParameter()">
-							<i class='fa fa-fw fa-trash'></i>Delete
-						</a>
 					</div>
 				</div>
 			</div>
@@ -40,7 +37,7 @@
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Parameter Name </label>
 					<div class='field-body'>
-						<input v-model="parameter.name" required>
+						<input class="input" v-model="parameter.name" required>
 					</div>
 				</div>
 				<div class='field is-horizontal'>
@@ -58,18 +55,21 @@
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Location </label>
 					<div class='field-body'>
-						<select class="select" v-model="effectiveIn" required size="3">
+						<div class="select">
+						<select v-model="effectiveIn" required size="3">
                             <option value="path">Path</option>
                             <option value="query">Query</option>
                             <option value="header">Header</option>
                             <option value="cookie">Cookie</option>
                         </select>
+						</div>
 					</div>
 				</div>
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Data Type </label>
 					<div class='field-body'>
-						<select class="select" v-model="effectiveType" required size="5">
+						<div class="select">
+						<select v-model="effectiveType" required size="5">
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
@@ -77,6 +77,7 @@
                             <option value="array">array</option>
                             <option value="object">object</option>
                         </select>
+						</div>
 					</div>
 				</div>
 				<div class='field is-horizontal' v-if="!isComplex()">
