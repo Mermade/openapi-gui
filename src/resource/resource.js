@@ -32,6 +32,11 @@ Vue.component('api-resource', {
         addResource : function () {
             this.$parent.addResource();
         },
+        duplicateResource : function (index) {
+            if (!this.openapi.paths['newPath']) {
+                Vue.set(this.openapi.paths,'/newPath',this.openapi.paths[index]);
+            }
+        },
 		removePath: function (target) {
 			this.$root.save();
 			Vue.delete(this.openapi.paths, target);
