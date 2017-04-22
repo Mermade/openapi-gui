@@ -29,6 +29,23 @@
             </a>
         </div>
     </div>
+    <div class="card hidden" :id="'pathDesc'+sanitisePath()">
+        <div class="card-content">
+            <div class="field">
+                <label class="label">Summary</label>
+                <input class="input" v-model="path.summary">
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <textarea class="textarea" v-model="path.description"></textarea>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <p class="card-footer-item">
+            <a v-on:click="hidePathDesc()"><span class="button is-primary"><i class="fa fa-fw fa-close"></i>Close</span></a>
+            </p>
+        </footer>
+    </div>
     <div class="accordion" style="margin-left:0px" v-for="(method,key,index) in httpMethods">
         <api-method :method="method" :index="key" :maintags="maintags"></api-method>
     </div>

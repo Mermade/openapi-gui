@@ -1,9 +1,6 @@
 Vue.component('api-resource', {
 	props: ['openapi', 'path', 'index', 'maintags'],
     computed: {
-        sanitisePath : function() {
-            return 'resource_'+this.index.split('/').join('').split('{').join('').split('}').join('');
-        },
         pathEntry : {
             get : function() {
                  return this.index
@@ -25,10 +22,13 @@ Vue.component('api-resource', {
     },
 	data: function() {
 		return {
-            methods : ['get','post','put','delete','patch','head','options']
+            methods : ['get','post','put','delete','patch','head','options','trace']
         }
 	},
     methods : {
+        sanitisePath : function() {
+            return 'resource_'+this.index.split('/').join('').split('{').join('').split('}').join('');
+        },
         addResource : function () {
             this.$parent.addResource();
         },
@@ -36,6 +36,12 @@ Vue.component('api-resource', {
 			this.$root.save();
 			Vue.delete(this.openapi.paths, target);
 		},
+        editPathDesc: function() {
+            $('#pathDesc'+this.sanitisePath()).toggleClass('hidden');
+        },
+        hidePathDesc: function() {
+            $('#pathDesc'+this.sanitisePath()).addClass('hidden');
+        },
         addOperation : function(template) {
             var index = 0;
             while (this.path[this.methods[index]] && index<this.methods.length) {
