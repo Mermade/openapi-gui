@@ -77,6 +77,9 @@ Vue.component('api-method', {
         removeResponse : function(status) {
             this.$root.save();
             Vue.delete(this.method.responses, status);
+            if (Object.keys(this.method.responses).length==0) {
+                Vue.set(this.method.responses,'default',{description:'Default response'});
+            }
         },
         tagSetup : function() {
             var simpleTags = [];

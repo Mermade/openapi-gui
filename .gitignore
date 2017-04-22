@@ -2,3 +2,4 @@ node_modules
 js/vue.js
 js/jsoneditor.js
 test/
+test.html
