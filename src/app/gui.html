@@ -230,8 +230,9 @@
 
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Contact Name </label>
-								<div class='field-body field control'>
+								<div class='field-body field control has-icons-left'>
 									<input class="input" v-model="openapi.info.contact.name">
+									<span class="icon is-small is-left"><i class="fa fa-user"></i></span>
 								</div>
 							</div>
 
@@ -245,15 +246,17 @@
 
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Contact URL </label>
-								<div class='field-body field control'>
+								<div class='field-body field control has-icons-left'>
 									<input type="url" class="input" v-model="openapi.info.contact.url">
+									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
 
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Terms of Service URL </label>
-								<div class='field-body field control'>
+								<div class='field-body field control has-icons-left'>
 									<input type="url" class="input" v-model="openapi.info.termsOfService">
+									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
 							<div class='field is-horizontal'>
@@ -264,8 +267,9 @@
 							</div>
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> License URL </label>
-								<div class='field-body field control'>
+								<div class='field-body field control has-icons-left'>
 									<input type="url" class="input" v-model="openapi.info.license.url">
+									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
 							<div class='field is-horizontal'>
@@ -276,8 +280,9 @@
 							</div>
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Documentation URL </label>
-								<div class='field-body field control'>
+								<div class='field-body field control has-icons-left'>
 									<input type="url" class="input" v-model="openapi.externalDocs.url">
+									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
 
@@ -311,8 +316,9 @@
 											<span class="icon"><a v-on:click="addServer()" class='none'><i class='fa fa-plus'></i></a></span>
 											<span class="icon"><a v-on:click="removeServer(index)" class='none'><i class='fa fa-trash'></i></a></span>
 											<label class='field-label is-normal label'>URL</label>
-											<div class='field-body control'>
+											<div class='field-body control has-icons-left'>
 												<input class="input" v-model="server.url">
+												<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 											</div>
 										</div>
 										<div class='column is-5 field is-horizontal'>
@@ -403,8 +409,9 @@
 									</div>
 									<div class='field is-horizontal'>
 										<label class='field-label is-normal label'> Docs URL </label>
-										<div class='field-body field control'>
+										<div class='field-body field control has-icons-left'>
 											<input type="url" class="input" v-model="t.externalDocs.url">
+											<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 										</div>
 									</div>
 								</div>
@@ -539,20 +546,23 @@
 
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Authorization URL </label>
-												<div class='field-body field control'>
+												<div class='field-body field control has-icons-left'>
 													<input type="url" class="input" v-model="flow.authorizationUrl">
+													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Token URL </label>
-												<div class='field-body field control'>
+												<div class='field-body field control has-icons-left'>
 													<input type="url" class="input" v-model="flow.tokenUrl">
+													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Refresh URL </label>
-												<div class='field-body field control'>
+												<div class='field-body field control has-icons-left'>
 													<input type="url" class="input" v-model="flow.refreshUrl">
+													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 												</div>
 											</div>
 											<div class='box'>

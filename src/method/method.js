@@ -168,6 +168,9 @@ Vue.component('api-response', {
         }
     },
     methods: {
+        addResponse: function () {
+            this.$parent.addResponse();
+        },
         editResponse: function () {
             this.$parent.editResponse(this.status);
         },

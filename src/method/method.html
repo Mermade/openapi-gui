@@ -6,7 +6,9 @@
         </a>
 
         <span><b>Operation:</b>
+            <span class="control">
             <a class="icon" v-on:click="addOperation()"><i class="fa fa-fw fa-plus"></i></a>
+            </span>
             <a class='icon' v-on:click="duplicateOperation(method)"><i class="fa fa-fw fa-copy"></i></a>
             <a class='icon is-danger' v-on:click="removeOperation(index)"><i class="fa fa-fw fa-trash"></i></a>
             <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
@@ -127,8 +129,9 @@
                     </div>
                     <div class='field is-horizontal'>
                         <label class='label field-label is-normal'> Docs URL </label>
-                        <div class='field-body'>
+                        <div class='field-body control has-icons-left'>
                             <input type="url" class="input" v-model="method.externalDocs.url">
+                            <span class="icon is-small is-left"><i class="fa fa-link"></i></span>
                         </div>
                     </div>
                 </div>
@@ -174,13 +177,22 @@
             </div>
 
             <div class="method-pane method-pane-responses hidden">
-                <a v-on:click="addResponse()" class="button is-success"><i class="fa fa-add"></i> Add Response</a>
-                <br>
-                <br>
                 <api-response v-for="(response, status) in method.responses"
                     :response="response" :key="status" :status="status" :method="method" inline-template>
                     <div class="box">
-                        <div class='field is-horizontal is-grouped'>
+                        <div class='field level is-horizontal is-grouped'>
+                            <div class="control">
+                                <span class="icon"><a v-on:click="addResponse()"><i class="fa fa-fw fa-plus"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <span class="icon"><a v-on:click="duplicateResponse()"><i class="fa fa-fw fa-copy"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <span class="icon"><a v-on:click="editResponse(status)"><i class="fa fa-fw fa-edit"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <span class="icon"><a v-on:click="removeResponse()"><i class="fa fa-fw fa-trash"></i></a></span>
+                            </div>
                             <div class="control">
                                 <label class='label field-label is-normal'>Status&nbsp;Code </label>
                             </div>
@@ -196,12 +208,6 @@
                                 <div class='field-body'>
                                     <input class="input" v-model="response.description">
                                 </div>
-                            </div>
-                            <div class="control">
-                                <a v-on:click="editResponse(status)" class='button is-success'><i class='fa fa-fw fa-edit'></i>Edit Schema</a>
-                            </div>
-                            <div class="control">
-                                <a v-on:click="removeResponse()" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
                             </div>
                         </div>
                     </div>
