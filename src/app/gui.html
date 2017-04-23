@@ -99,18 +99,6 @@
 						<span>Edit</span>
 					</a>
 				</li>
-				<li class='tabItem' id="tabItem-callbacks">
-					<a class="tabSelect" href='#callbacks' id="callbacks-tab" v-on:click="selectTab('callbacks',$event)">
-						<span class="icon is-small"><i class='fa fa-chevron-circle-left'></i></span>
-						<span>Callbacks</span>
-					</a>
-				</li>
-				<li class='tabItem' id="tabItem-links">
-					<a class="tabSelect" href='#links' id="links-tab" v-on:click="selectTab('links',$event)">
-						<span class="icon is-small"><i class='fa fa-link'></i></span>
-						<span>Links</span>
-					</a>
-				</li>
 				<li class="tabItem" id="tabItem-output">
 					<a class="tabSelect" href='#output' id="output-tab" v-on:click="renderOutput($event)">
 						<span class="icon is-small"><i class='fa fa-file'></i></span>
@@ -143,42 +131,6 @@
 					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves data
 					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
-				</div>
-
-				<div class="tab-pane hidden container is-fluid" id="callbacks">
-					<div class="card" v-if="Object.keys(openapi.components.callbacks).length == 0">
-						<div class="card-content">
-							<p class="title">
-							<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#callbackObject">OpenAPI Specification Callback Object</a>
-							</p>
-							<p class="subtitle">
-								There are no callbacks defined.
-							</p>
-						</div>
-						<footer class="card-footer">
-							<p class="card-footer-item">
-							<a v-on:click="addCallback()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Callback</span></a>
-							</p>
-						</footer>
-					</div>
-				</div>
-
-				<div class="tab-pane hidden container is-fluid" id="links">
-					<div class="card" v-if="Object.keys(openapi.components.links).length == 0">
-						<div class="card-content">
-							<p class="title">
-							<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#linksObject">OpenAPI Specification Links Object</a>
-							</p>
-							<p class="subtitle">
-								There are no links defined.
-							</p>
-						</div>
-						<footer class="card-footer">
-							<p class="card-footer-item">
-							<a v-on:click="addLink()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Link</span></a>
-							</p>
-						</footer>
-					</div>
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">

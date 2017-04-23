@@ -62,6 +62,18 @@
                         <span>Responses</span>
                     </a>
                 </li>
+                <li class="tabItem method-tab tabItem-method-links">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('links',$event)">
+                        <span class="icon is-small"><i class="fa fa-link"></i></span>
+                        <span>Links</span>
+                    </a>
+                </li>
+                <li class="tabItem method-tab tabItem-method-callbacks">
+                    <a class="tabSelect" href="#about" v-on:click="selectTab('callbacks',$event)">
+                        <span class="icon is-small"><i class="fa fa-chevron-circle-left"></i></span>
+                        <span>Callbacks</span>
+                    </a>
+                </li>
             </ul>
 
             <div class="method-pane method-pane-main">
@@ -214,6 +226,42 @@
                         </div>
                     </div>
                 </api-response>
+            </div>
+
+            <div class="method-pane method-pane-callbacks hidden container is-fluid">
+                <div class="card" v-if="!method.callbacks || Object.keys(method.callbacks).length == 0">
+                    <div class="card-content">
+                        <p class="title">
+                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#callbackObject">OpenAPI Specification Callback Object</a>
+                        </p>
+                        <p class="subtitle">
+                            There are no callbacks defined.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                        <a v-on:click="addCallback()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Callback</span></a>
+                        </p>
+                    </footer>
+                </div>
+            </div>
+
+            <div class="method-pane method-pane-links hidden container is-fluid">
+                <div class="card" v-if="!method.links || Object.keys(method.links).length == 0">
+                    <div class="card-content">
+                        <p class="title">
+                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#linksObject">OpenAPI Specification Links Object</a>
+                        </p>
+                        <p class="subtitle">
+                            There are no links defined.
+                        </p>
+                    </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                        <a v-on:click="addLink()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Link</span></a>
+                        </p>
+                    </footer>
+                </div>
             </div>
 
         </div>
