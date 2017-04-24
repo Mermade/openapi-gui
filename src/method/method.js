@@ -61,7 +61,7 @@ Vue.component('api-method', {
             }
             var initial = deref(response.schema,this.$root.container.openapi);
             var editorOptions = {
-                theme: 'bootstrap2',
+                theme: 'html',
                 iconlib: 'fontawesome3',
                 schema: jsonSchemaDraft4,
                 refs: this.$root.container.openapi,
@@ -72,17 +72,16 @@ Vue.component('api-method', {
                 this.schemaEditor = new JSONEditor(element, editorOptions);
                 schemaEditorClose = function() {
                     this.schemaEditor.destroy();
-                    $('#schemaModal').modal('hide');
+                    $('#schemaModal').removeClass('is-active');
                 }.bind(this);
                 schemaEditorSave = function() {
                     this.response.schema = this.schemaEditor.getValue();
                     schemaEditorClose();
                 }.bind(this);
-                var modalOptions = {};
-                $('#schemaModal').modal(modalOptions);
+                $('#schemaModal').addClass('is-active');
             }
             catch (ex) {
-                bootbox.alert('The editor could not be instantiated. Circular schemas are not yet supported');
+                showAlert('The editor could not be instantiated. Circular schemas are not yet supported');
             }
         },
         tagSetup : function() {

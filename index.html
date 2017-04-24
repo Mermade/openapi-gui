@@ -106,7 +106,7 @@
 
       });
   </script>
-  <div style='display:none'>
+  <div class="hidden">
     <div id="template-gui-main"></div>
     <div id="template-resource"></div>
     <div id="template-method"></div>
@@ -115,18 +115,24 @@
     <div id="template-yaml"></div>
     <div id="template-items"></div>
   </div>
-  <div class="modal hide fade" id="schemaModal">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-      <h3>Schema Editor</h3>
-    </div>
-    <div class="modal-body">
-      <div id="schemaContainer">
+  <div class="modal fade" id="schemaModal">
+    <div class="card">
+      <div class="card-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Schema Editor</h3>
       </div>
-    </div>
-    <div class="modal-footer">
-      <a href="#" class="btn" onclick="schemaEditorClose()">Close</a>
-      <a href="#" class="btn btn-primary" onclick="schemaEditorSave()">Save changes</a>
+      <div class="card-content">
+        <div id="schemaContainer">
+        </div>
+      </div>
+      <div class="card-footer">
+        <p class="card-footer-item">
+          <a href="#" class="button is-warning" onclick="schemaEditorClose()">Close</a>
+        </p>
+        <p class="card-footer-item">
+          <a href="#" class="button is-primary" onclick="schemaEditorSave()">Save changes</a>
+        </p>
+      </div>
     </div>
   </div>
 </body>

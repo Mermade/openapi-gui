@@ -92,7 +92,7 @@ Vue.component('api-parameter', {
             }
             var initial = deref(this.parameter.schema, this.$root.container.openapi);
             var editorOptions = {
-                theme: 'bootstrap2',
+                theme: 'html',
                 iconlib: 'fontawesome4',
                 display_required_only: true,
                 schema: jsonSchemaDraft4,
@@ -103,14 +103,13 @@ Vue.component('api-parameter', {
             this.schemaEditor = new JSONEditor(element, editorOptions);
             schemaEditorClose = function() {
                 this.schemaEditor.destroy();
-                $('#schemaModal').modal('hide');
+                $('#schemaModal').removeClass('is-active');
             }.bind(this);
             schemaEditorSave = function() {
                 this.parameter.schema = this.schemaEditor.getValue();
                 schemaEditorClose();
             }.bind(this);
-            var modalOptions = {};
-            $('#schemaModal').modal(modalOptions);
+            $('#schemaModal').addClass('is-active');
         },
         addEnum : function() {
             if (!this.parameter.enum) {
