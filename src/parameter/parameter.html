@@ -54,22 +54,22 @@
 				</div>
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Location </label>
-					<div class='field-body'>
-						<div class="select">
-						<select v-model="effectiveIn" required size="3">
+					<div class="control field-body">
+					<span class="select">
+						<select v-model="effectiveIn" required>
                             <option value="path">Path</option>
                             <option value="query">Query</option>
                             <option value="header">Header</option>
                             <option value="cookie">Cookie</option>
                         </select>
-						</div>
+					</span>
 					</div>
 				</div>
 				<div class='field is-horizontal'>
 					<label class='label field-label is-normal'> Data Type </label>
-					<div class='field-body'>
-						<div class="select">
-						<select v-model="effectiveType" required size="5">
+					<div class="control field-body">
+					<div class="select">
+						<select v-model="effectiveType" required>
                             <option value="boolean">boolean</option>
                             <option value="string">string</option>
                             <option value="integer">integer</option>
@@ -77,7 +77,7 @@
                             <option value="array">array</option>
                             <option value="object">object</option>
                         </select>
-						</div>
+					</div>
 					</div>
 				</div>
 				<div class='field is-horizontal' v-if="!isComplex()">

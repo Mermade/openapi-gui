@@ -62,7 +62,7 @@ Vue.component('api-method', {
             var initial = deref(response.schema,this.$root.container.openapi);
             var editorOptions = {
                 theme: 'html',
-                iconlib: 'fontawesome3',
+                iconlib: 'fontawesome4',
                 schema: jsonSchemaDraft4,
                 refs: this.$root.container.openapi,
                 startval: initial
