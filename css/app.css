@@ -88,8 +88,13 @@ body {
   padding-left: 15px;
 }
 
+#topnav {
+  position: sticky;
+  top: 0;
+}
+
 .navbar .brand {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 summary:focus {
