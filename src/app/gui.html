@@ -117,7 +117,7 @@
 
 				<div class="tab-pane hidden container is-fluid" id="about">
 					<h1 class="title">What is OpenApi-gui?</h1>
-					OpenApi-gui is a GUI for creating and updating <a href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md">
+					OpenApi-gui is a GUI for creating and updating <a v-bind:href="specLink('')">
 					OpenApi 3.0.x</a> definitions.<br>
 					<br>
 					<h2 class="subtitle">How does OpenApi-gui work?</h2>
@@ -248,7 +248,7 @@
 							<div class="card" v-if="openapi.servers.length==0">
 								<div class="card-content">
 									<p class="title">
-									<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#serverObject">OpenAPI Specification Servers Object</a>
+									<a v-bind:href="specLink('#serverObject')">OpenAPI Specification Servers Object</a>
 									</p>
 									<p class="subtitle">
 										There are no servers defined. This means the API paths will be relative to the host and path
@@ -265,8 +265,8 @@
 								<div class="box">
 									<div class="columns">
 										<div class='column is-5 field level is-horizontal is-grouped'>
-											<span class="icon"><a v-on:click="addServer()" class='none'><i class='fa fa-plus'></i></a></span>
-											<span class="icon"><a v-on:click="removeServer(index)" class='none'><i class='fa fa-trash'></i></a></span>
+											<span class="icon" data-balloon="Add a server"><a v-on:click="addServer()" class='none'><i class='fa fa-plus'></i></a></span>
+											<span class="icon" data-balloon="Remove server"><a v-on:click="removeServer(index)" class='none'><i class='fa fa-trash'></i></a></span>
 											<label class='field-label is-normal label'>URL</label>
 											<div class='field-body control has-icons-left'>
 												<input class="input" v-model="server.url">
@@ -401,11 +401,11 @@
 									<div class="field is-grouped">
 										<div class="control">
 											<label class="field-label is-normal label">&nbsp;</label>
-											<a class="icon" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i></a>
+											<a class="icon" data-balloon="Add securityScheme" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i></a>
 										</div>
 										<div class="control">
 											<label class="field-label is-normal label">&nbsp;</label>
-											<a class="icon" v-on:click="removeSecurityDefinition(sdname)"><i class='fa fa-trash'></i></a>
+											<a class="icon" data-balloon="Remove securityScheme" v-on:click="removeSecurityDefinition(sdname)"><i class='fa fa-trash'></i></a>
 										</div>
 										<div class="control is-expanded">
 											<label class='field-label is-normal label'> Name </label>
@@ -523,7 +523,7 @@
 												<div class="card" v-if="Object.keys(flow.scopes).length==0">
 													<div class="card-content">
 														<p class="title">
-														<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#scopesObject">OpenAPI Specification Scopes Object</a>
+														<a v-bind:href="specLink('#scopesObject')">OpenAPI Specification Scopes Object</a>
 														</p>
 														<p class="subtitle">
 															There are no scopes defined yet for this oAuth2 flow.
@@ -540,13 +540,13 @@
 													<div class="box">
 														<div class='field is-horizontal level is-grouped'>
 															<div class="control">
-																<a class="icon" v-on:click="addScope(flow)"><i class='fa fa-plus'></i></a>
+																<a class="icon" data-balloon="Add scope" v-on:click="addScope(flow)"><i class='fa fa-plus'></i></a>
 															</div>
 															<div class="control">
-																<a class="icon" v-on:click="duplicateScope(flow)"><i class='fa fa-copy'></i></a>
+																<a class="icon" data-balloon="Duplicate scope" v-on:click="duplicateScope(flow)"><i class='fa fa-copy'></i></a>
 															</div>
 															<div class="control">
-																<a class="icon" v-on:click="removeScope(flow,sname)"><i class='fa fa-trash'></i></a>
+																<a class="icon" data-balloon="Remove scope" v-on:click="removeScope(flow,sname)"><i class='fa fa-trash'></i></a>
 															</div>
 															<label class='field-label is-normal label'> Scope Name </label>
 															<div class='field-body field control'>
@@ -606,7 +606,7 @@
 								<div class="card" v-if="Object.keys(openapi.paths).length==0">
 									<div class="card-content">
 										<p class="title">
-										<a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#pathsObject">OpenAPI Specification Paths Object</a>
+										<a v-bind:href="specLink('#pathsObject')">OpenAPI Specification Paths Object</a>
 										</p>
 										<p class="subtitle">
 											There are no paths defined yet for this definition.

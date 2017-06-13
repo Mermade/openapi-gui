@@ -155,7 +155,7 @@
                 <div class="card" v-if="method.parameters.length==0">
                     <div class="card-content">
                         <p class="title">
-                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#parametersObject">OpenAPI Specification Parameters Object</a>
+                        <a v-bind:href="specLink('#parametersObject')">OpenAPI Specification Parameters Object</a>
                         </p>
                         <p class="subtitle">
                             There are no parameters defined for this operation.
@@ -196,16 +196,16 @@
                     <div class="box">
                         <div class='field level is-horizontal is-grouped'>
                             <div class="control">
-                                <span class="icon"><a v-on:click="addResponse()"><i class="fa fa-fw fa-plus"></i></a></span>
+                                <span class="icon" data-balloon="Add response"><a v-on:click="addResponse()"><i class="fa fa-fw fa-plus"></i></a></span>
                             </div>
                             <div class="control">
-                                <span class="icon"><a v-on:click="duplicateResponse()"><i class="fa fa-fw fa-copy"></i></a></span>
+                                <span class="icon" data-balloon="Duplicate response"><a v-on:click="duplicateResponse()"><i class="fa fa-fw fa-copy"></i></a></span>
                             </div>
                             <div class="control">
-                                <span class="icon"><a v-on:click="editResponse(status)"><i class="fa fa-fw fa-edit"></i></a></span>
+                                <span class="icon" data-balloon="Edit response"><a v-on:click="editResponse(status)"><i class="fa fa-fw fa-edit"></i></a></span>
                             </div>
                             <div class="control">
-                                <span class="icon"><a v-on:click="removeResponse()"><i class="fa fa-fw fa-trash"></i></a></span>
+                                <span class="icon" data-balloon="Remove response"><a v-on:click="removeResponse()"><i class="fa fa-fw fa-trash"></i></a></span>
                             </div>
                             <div class="control">
                                 <label class='label field-label is-normal'>Status&nbsp;Code </label>
@@ -232,7 +232,7 @@
                 <div class="card" v-if="!method.callbacks || Object.keys(method.callbacks).length == 0">
                     <div class="card-content">
                         <p class="title">
-                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#callbackObject">OpenAPI Specification Callback Object</a>
+                        <a v-bind:href="specLink('#callbackObject')">OpenAPI Specification Callback Object</a>
                         </p>
                         <p class="subtitle">
                             There are no callbacks defined.
@@ -250,7 +250,7 @@
                 <div class="card" v-if="!method.links || Object.keys(method.links).length == 0">
                     <div class="card-content">
                         <p class="title">
-                        <a href="https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc0/versions/3.0.md#linksObject">OpenAPI Specification Links Object</a>
+                        <a v-bind:href="specLink('#linksObject')">OpenAPI Specification Links Object</a>
                         </p>
                         <p class="subtitle">
                             There are no links defined.
