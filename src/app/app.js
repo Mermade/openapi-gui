@@ -72,6 +72,9 @@ function preProcessDefinition(openapi) {
         if (!tag.externalDocs) tag.externalDocs = {};
     }
     if (!openapi.security) openapi.security = [];
+	if (!openapi.info) {
+		openapi.info = {version:"1.0.0",title:"Untitled"};
+	}
 	if (!openapi.info.contact) {
 		openapi.info.contact = {};
 	}
