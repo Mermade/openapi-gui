@@ -245,7 +245,7 @@
 				<div class="tab-pane hidden" id="servers">
 					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmServers">
-							<div class="card" v-if="openapi.servers.length==0">
+							<div class="card" v-if="!openapi.servers || openapi.servers.length==0">
 								<div class="card-content">
 									<p class="title">
 									<a v-bind:href="specLink('#serverObject')">OpenAPI Specification Servers Object</a>
