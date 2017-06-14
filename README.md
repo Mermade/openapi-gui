@@ -38,8 +38,8 @@ You only need to `npm install` the Node.js modules if you wish to use the `Arapa
 TODO
 ----
 
-* Add validation on form fields
-* Server parameters
+* Add [validation](/todo.md) on form fields
+* Finish server parameters
 * Editing of requestBody schemas / content-types / examples
 * Handle circular `$ref`s in responses / examples / body schemas
 
