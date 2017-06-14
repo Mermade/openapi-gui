@@ -131,6 +131,10 @@
 					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves data
 					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
+					<br>
+					<br>
+					<h3 class="subtitle">Converting from OpenAPI 2.0</h3>
+					OpenAPI 2.0 definitions may be converted using <a href="https://openapi-converter.herokuapp.com/">this online tool</a>.
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
@@ -344,7 +348,7 @@
 											<input class="input" v-model="t.name">
 										</div>
 										<div class="control">
-											<span class="button delete" v-on:click="removeTag(index)"></span>
+											<a class="icon" data-balloon="Remove tag" v-on:click="removeTag(index)"><i class='fa fa-trash'></i></a>
 										</div>
 									</div>
 									<div class='field is-horizontal'>
