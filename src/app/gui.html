@@ -117,7 +117,7 @@
 
 				<div class="tab-pane hidden container is-fluid" id="about">
 					<h1 class="title">What is OpenApi-gui?</h1>
-					OpenApi-gui is a GUI for creating and updating <a v-bind:href="specLink('')">
+					OpenApi-gui is a GUI for creating and updating <a v-bind:href="specLink()">
 					OpenApi 3.0.x</a> definitions.<br>
 					<br>
 					<h2 class="subtitle">How does OpenApi-gui work?</h2>
@@ -290,15 +290,15 @@
 											<br>
 										</div>
 									</div>
-									<div v-for="(variable,index) in server.variables">
+									<api-srvvar v-for="(variable,index) in server.variables" :name="index" :key="index" :variable="variable" :server="server" inline-template>
 										<div class="box">
 											<div class="field is-horizontal is-grouped">
 												<label class='field-label is-normal label'> Name </label>
 												<div class="field-body field control">
-													<input class="input" v-model="index" v-model.lazy="variableName">
+													<input class="input" v-model.lazy="variableName">
 												</div>
 												<div class="control">
-													<a v-on:click="removeVariable(server,index)" class="button delete"></a>
+													<span class="icon" data-balloon="Remove variable"><a v-on:click="removeVariable()"><i class='fa fa-trash'></i></a></span>
 												</div>
 											</div>
 											<div class='field is-horizontal'>
@@ -320,7 +320,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</api-srvvar>
 								</div>
 							</div>
 						</form>

@@ -1,9 +1,15 @@
 Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
-		return {}
+		return {
+			specVersion: '3.0.0-rc1'
+		}
 	},
 	methods: {
+
+		specLink: function(fragment) {
+			return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.md'+(fragment ? fragment : '');
+		},
 
 		addResource: function () {
 			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
@@ -381,6 +387,28 @@ Vue.component('api-scope', {
 		},
 		removeScope: function(flow, sName) {
 			this.$parent.removeScope(flow, sName);
+		}
+	},
+	data: function() {
+		return {}
+	}
+});
+
+Vue.component('api-srvvar', {
+	props: ["name", "variable", "server"],
+	computed: {
+		variableName: {
+			get : function() {
+				return this.name;
+			},
+			set : function(newVal) {
+				this.$parent.renameVariable(this.name, newVal);
+			}
+		}
+	},
+	methods: {
+		removeVariable: function() {
+			this.$parent.removeVariable(this.server, this.name);
 		}
 	},
 	data: function() {
