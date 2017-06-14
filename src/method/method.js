@@ -7,6 +7,9 @@ Vue.component('api-method', {
         }
 	},
     methods: {
+		specLink: function(fragment) {
+			return this.$parent.$parent.specLink(fragment);
+		},
         toggleBody : function() {
             this.visible = !this.visible;
             //$(this.hashUid).collapse('toggle');

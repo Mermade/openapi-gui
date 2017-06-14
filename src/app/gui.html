@@ -273,7 +273,7 @@
 											<span class="icon" data-balloon="Remove server"><a v-on:click="removeServer(index)" class='none'><i class='fa fa-trash'></i></a></span>
 											<label class='field-label is-normal label'>URL</label>
 											<div class='field-body control has-icons-left'>
-												<input class="input" v-model="server.url">
+												<input class="input" placeholder="Required" v-model="server.url">
 												<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 											</div>
 										</div>
@@ -310,7 +310,7 @@
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Default </label>
 												<div class='field-body field control'>
-													<input class="input" v-model="variable.default">
+													<input class="input" placeholder="Required" v-model="variable.default">
 												</div>
 											</div>
 											<div class='field is-horizontal'>
