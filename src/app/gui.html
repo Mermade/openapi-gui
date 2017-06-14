@@ -161,13 +161,13 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Title </label>
 								<div class='field-body field control'>
-									<input class="input" v-model="openapi.info.title">
+									<input class="input" placeholder="Required" v-model="openapi.info.title" @input="$v.openapi.info.title.$touch()" v-bind:class="{ 'is-danger': !$v.openapi.info.title.required }">
 								</div>
 							</div>
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Version </label>
 								<div class='field-body field control'>
-									<input class="input" v-model="openapi.info.version">
+									<input class="input" placeholder="Required" v-model="openapi.info.version" @input="$v.openapi.info.version.$touch()" v-bind:class="{ 'is-danger': !$v.openapi.info.version.required }">
 								</div>
 							</div>
 

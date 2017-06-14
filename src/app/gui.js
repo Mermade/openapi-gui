@@ -1,3 +1,5 @@
+const { required } = window.validators;
+
 Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
@@ -244,6 +246,18 @@ Vue.component('gui-main', {
 			}
 		}
 
+	},
+	validations: {
+		openapi: {
+			info: {
+				title: {
+					required
+				},
+				version: {
+					required
+				}
+			}
+		}
 	},
 	template: '#template-gui-main'
 });

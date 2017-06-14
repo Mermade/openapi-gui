@@ -153,6 +153,7 @@ var schemaEditorSave = function() {};
 var schemaEditorClose = function() {};
 
 function app_main() {
+    Vue.use(window.vuelidate.default);
     var vm = new Vue({
         data: {
             container: {
@@ -160,7 +161,8 @@ function app_main() {
             },
             importschema : importschema
         },
-        el: '#main-container' ,
+        el: '#main-container',
+		validations: {},
         methods : {
             save : function() {
                 if (window.localStorage) {
