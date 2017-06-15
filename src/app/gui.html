@@ -17,6 +17,18 @@
 		</div>
 	</div>
 
+	<div id="mdPreview" class="modal">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<article class="message">
+				<div class="message-body">
+					<span id="mdPreviewText"></span>
+				</div>
+			</article>
+		</div>
+		<button id="mdPreviewClose" class="modal-close"></button>
+	</div>
+
 	<div id="alert" class="modal">
 		<div class="modal-background"></div>
 		<div class="modal-content">
@@ -174,11 +186,12 @@
 							<div class="field is-horizontal">
 								<div class="field-label is-normal">
 									<label class="label">Description</label>
+									<span class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview('#txtDescription')"><i class='fa fa-check-circle'></i></a></span>
 								</div>
 								<div class="field-body">
 									<div class="field">
 										<div class="control">
-											<textarea class="textarea" v-model="openapi.info.description"></textarea>
+											<textarea class="textarea" id="txtDescription" v-model="openapi.info.description"></textarea>
 										</div>
 									</div>
 								</div>
@@ -235,7 +248,7 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> License URL </label>
 								<div class='field-body field control has-icons-left'>
-									<input type="url" class="input" v-model="openapi.info.license.url">
+									<input type="url" id="urlLicense" class="input" v-model="openapi.info.license.url">
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>

@@ -13,6 +13,17 @@ Vue.component('gui-main', {
 			return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.md'+(fragment ? fragment : '');
 		},
 
+		markdownPreview: function(selector) {
+			$('#mdPreview').addClass('is-active');
+			var str = $(selector).val();
+			var md = window.markdownit();
+			var result = md.render(str);
+			$('#mdPreviewText').html(result);
+			$('#mdPreviewClose').click(function(){
+				$('#mdPreview').removeClass('is-active');
+			});
+		},
+
 		enableLicenseSelect: function() {
 			if ($('#drpLicense').hasClass('hidden')) {
 				$('#txtLicense').addClass('hidden');
