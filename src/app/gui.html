@@ -345,7 +345,7 @@
 									<div class='field is-horizontal is-grouped'>
 										<label class='field-label is-normal label'> Name </label>
 										<div class='field-body control'>
-											<input class="input" v-model="t.name">
+											<input class="input" placeholder="Required" v-model="t.name">
 										</div>
 										<div class="control">
 											<a class="icon" data-balloon="Remove tag" v-on:click="removeTag(index)"><i class='fa fa-trash'></i></a>
@@ -431,6 +431,7 @@
 														<option value="apiKey">API Key</option>
 														<option value="oauth2">oAuth2</option>
 														<option value="http">HTTP Authentication</option>
+														<option value="openIdConnect">OpenIdConnect</option>
 													</select>
 												</div>
 											</div>
@@ -439,6 +440,25 @@
 											<label class='field-label is-normal label'> Apply&nbsp;to&nbsp;all&nbsp;paths </label>
 											<div class='field-body field control'>
 												<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
+											</div>
+										</div>
+									</div>
+
+									<div v-if="sd.type == 'http'" class='animate-if'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> Scheme </label>
+											<div class='field-body field control'>
+												<input class="input" placeholder="Required" v-model="sd.scheme">
+											</div>
+										</div>
+									</div>
+
+									<div v-if="sd.type == 'openIdConnect'" class='animate-if'>
+										<div class='field is-horizontal'>
+											<label class='field-label is-normal label'> OpenIdConnect URL </label>
+											<div class='field-body field control has-icons-left'>
+												<input class="input" placeholder="Required" v-model="sd.openIdConnectUrl">
+												<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 											</div>
 										</div>
 									</div>
@@ -454,7 +474,7 @@
 											<label class='field-label is-normal label'> Location </label>
 											<div class='field-body field control'>
 												<div class="select">
-													<select class="selectx" name="selLocation" v-model="sd.in">
+													<select class="none" name="selLocation" v-model="sd.in">
 														<option value="header">Header</option>
 														<option value="query">Query</option>
 													</select>
