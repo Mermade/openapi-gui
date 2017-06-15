@@ -1,17 +1,17 @@
 <div class="accordion-group box">
     <div class='accordion-heading'>
 
-        <a class="icon" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+        <a class="icon" data-toggle="collapse" data-balloon="Expand operation" :data-target="hashUid" v-on:click="toggleBody()">
             <i class="fa fa-reorder accordion-handle method-handle"></i>
         </a>
 
         <span><b>Operation:</b>
             <span class="control">
-            <a class="icon" v-on:click="addOperation()"><i class="fa fa-fw fa-plus"></i></a>
+            <a class="icon" data-balloon="Add operation" v-on:click="addOperation()"><i class="fa fa-fw fa-plus"></i></a>
             </span>
-            <a class='icon' v-on:click="duplicateOperation(method)"><i class="fa fa-fw fa-copy"></i></a>
-            <a class='icon is-danger' v-on:click="removeOperation(index)"><i class="fa fa-fw fa-trash"></i></a>
-            <a class="accordion-toggle" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+            <a class='icon' data-balloon="Duplicate operation" v-on:click="duplicateOperation(method)"><i class="fa fa-fw fa-copy"></i></a>
+            <a class='icon is-danger' data-balloon="Remove operation" v-on:click="removeOperation(index)"><i class="fa fa-fw fa-trash"></i></a>
+            <a class="accordion-toggle" data-balloon="Expand operation" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
                 <span class='methodNameSpan'>{{httpMethod}} {{method.operationId}}</span>
             </a>
         </span>
