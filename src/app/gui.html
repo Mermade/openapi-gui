@@ -218,7 +218,18 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> License Name </label>
 								<div class='field-body field control'>
-									<input class="input" v-model="openapi.info.license.name">
+									<input class="input" id="txtLicense" v-model="openapi.info.license.name">
+									<div class="select hidden" id="drpLicense">
+										<select id="selLicense" v-model="openapi.info.license.name">
+											<option value="MIT">MIT License</option>
+											<option value="Apache-2.0">Apache 2.0 License</option>
+											<option value="CC BY-SA 4.0">Creative Commons Attribution Share-alike</option>
+											<option value="CC NC-SA 4.0">Creative Commons No-Commercial Share-alike</option>
+											<option value="">Custom license</option>
+										</select>
+									</div>
+									<span class="icon" data-balloon="Choose license"><a v-on:click="enableLicenseSelect()" class='none'><i class='fa fa-caret-down'></i></a></span>
+										<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
 								</div>
 							</div>
 							<div class='field is-horizontal'>

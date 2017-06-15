@@ -13,6 +13,27 @@ Vue.component('gui-main', {
 			return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.md'+(fragment ? fragment : '');
 		},
 
+		enableLicenseSelect: function() {
+			if ($('#drpLicense').hasClass('hidden')) {
+				$('#txtLicense').addClass('hidden');
+				$('#drpLicense').removeClass('hidden');
+				var openapi = this.openapi;
+				$('#selLicense').on('change',function(e){
+					var license = $('#selLicense').val();
+					$('#txtLicense').val(license);
+					if (license == 'MIT') Vue.set(openapi.info.license,'url','https://opensource.org/licenses/MIT');
+					if (license == 'Apache-2.0') Vue.set(openapi.info.license,'url','https://opensource.org/licenses/Apache-2.0');
+					if (license == 'CC BY-SA 4.0') Vue.set(openapi.info.license,'url','https://creativecommons.org/licenses/by/4.0/');
+					if (license == 'CC NC-SA 4.0') Vue.set(openapi.info.license,'url','https://creativecommons.org/licenses/by-nc/4.0/');
+					if (license == '') Vue.set(openapi.info.license,'url','');
+				});
+			}
+			else {
+				$('#txtLicense').removeClass('hidden');
+				$('#drpLicense').addClass('hidden');
+			}
+		},
+
 		addResource: function () {
 			if (!this.openapi.paths) Vue.set(this.openapi, 'paths', {});
 			if (!this.openapi.paths['/newPath']) {
