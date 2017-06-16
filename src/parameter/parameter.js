@@ -10,6 +10,10 @@ Vue.component('api-parameter', {
             return 'listFormats'+this._uid;
         },
 
+		descId: function() {
+			return 'txtParmDesc'+this._uid;
+		},
+
         effectiveType : {
             get : function() {
                 if (!this.parameter.type) return 'object';
@@ -68,9 +72,11 @@ Vue.component('api-parameter', {
         }
 	},
     methods : {
+		markdownPreview: function() {
+			this.$parent.$parent.$parent.markdownPreview('#'+this.descId);
+		},
         toggleBody : function() {
             this.visible = !this.visible;
-            $(this.hashUid).collapse('toggle');
         },
         isComplex : function() {
             if (this.effectiveType === 'object' ||

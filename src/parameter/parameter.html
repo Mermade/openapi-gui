@@ -41,9 +41,12 @@
 					</div>
 				</div>
 				<div class='field is-horizontal'>
-					<label class='label field-label is-normal'> Description </label>
+					<div class="field-label is-normal">
+						<label class='label'> Description </label>
+						<span class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview()"><i class='fa fa-check-circle'></i></a></span>
+					</div>
 					<div class='field-body'>
-						<textarea v-model="parameter.description" class="textarea"></textarea>
+						<textarea v-model="parameter.description" :id="descId" class="textarea"></textarea>
 					</div>
 				</div>
 				<div class='field is-horizontal'>
