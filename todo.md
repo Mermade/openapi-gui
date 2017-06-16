@@ -14,3 +14,7 @@
   * flows for oauth2
     * various urls etc for oauth2
   * openIdConnectUrl for openIdConnect
+
+* ~~operation.description markdown preview~~
+* response.description markdown preview
+* tag description and externalDocs.description markdown preview

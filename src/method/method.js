@@ -10,6 +10,9 @@ Vue.component('api-method', {
 		specLink: function(fragment) {
 			return this.$parent.$parent.specLink(fragment);
 		},
+		markdownPreview: function() {
+			this.$parent.$parent.markdownPreview('#'+this.descId);
+		},
         toggleBody : function() {
             this.visible = !this.visible;
             //$(this.hashUid).collapse('toggle');
@@ -133,6 +136,9 @@ Vue.component('api-method', {
         hashUid : function() {
             return '#'+this._uid;
         },
+		descId : function() {
+			return 'txtOpDesc'+this._uid;
+		},
         tagId : function() {
             return 'tags-input'+this._uid;
         },
