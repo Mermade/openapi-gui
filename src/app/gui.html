@@ -253,9 +253,12 @@
 								</div>
 							</div>
 							<div class='field is-horizontal'>
-								<label class='field-label is-normal label'> External Docs </label>
+								<div class="field-label is-normal">
+									<label class='label'> External Docs </label>
+									<span class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview('#txtExtDocDesc')"><i class='fa fa-check-circle'></i></a></span>
+								</div>
 								<div class='field-body field control'>
-									<textarea class="textarea" v-model="openapi.externalDocs.description"></textarea>
+									<textarea class="textarea" id="txtExtDocDesc" v-model="openapi.externalDocs.description"></textarea>
 								</div>
 							</div>
 							<div class='field is-horizontal'>
