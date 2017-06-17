@@ -4,7 +4,7 @@ Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
 		return {
-			specVersion: '3.0.0-rc1'
+			specVersion: '3.0.0-rc2'
 		}
 	},
 	methods: {
