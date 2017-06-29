@@ -16,8 +16,8 @@ Vue.component('api-parameter', {
 
         effectiveType : {
             get : function() {
-                if (!this.parameter.type) return 'object';
-                return this.parameter.type;
+                if (!(this.parameter.schema && this.parameter.schema.type)) return 'object';
+                return this.parameter.schema.type;
             },
             set : function(newVal) {
                 if (newVal == 'array') {
