@@ -111,6 +111,12 @@
 						<span>Edit</span>
 					</a>
 				</li>
+				<li class="tabItem" id="tabItem-wizards">
+					<a class="tabSelect" href='#wizards' id="wizards-tab" v-on:click="selectTab('wizards',$event)">
+						<span class="icon is-small"><i class='fa fa-magic'></i></span>
+						<span>Wizards</span>
+					</a>
+				</li>
 				<li class="tabItem" id="tabItem-output">
 					<a class="tabSelect" href='#output' id="output-tab" v-on:click="renderOutput($event)">
 						<span class="icon is-small"><i class='fa fa-file'></i></span>
@@ -121,6 +127,12 @@
 					<a class="tabSelect" href='#yaml' id="yaml-tab" v-on:click="renderOutputYaml($event)">
 						<span class="icon is-small"><i class='fa fa-file'></i></span>
 						<span>Export YAML</span>
+					</a>
+				</li>
+				<li class="tabItem" id="tabItem-settings">
+					<a class="tabSelect" href='#settings' id="settings-tab" v-on:click="selectTab('settings',$event)">
+						<span class="icon is-small"><i class='fa fa-cog'></i></span>
+						<span>Settings</span>
 					</a>
 				</li>
 			</ul>
@@ -679,6 +691,24 @@
 					</div>
 				</div>
 			</div>
+
+			<div class='tab-content'>
+				<div class="tab-pane hidden container is-fluid" id="wizards">
+					<h1 class="title">TODO</h1>
+					<ul>
+						<li>Create CRUD operations from definition</li>
+						<li>Generate link definition from sample</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class='tab-content'>
+				<div class="tab-pane hidden container is-fluid" id="settings">
+					<h1 class="title">TODO</h1>
+					<h2 class="subtitle">Storage mechanism settings etc</h2>
+				</div>
+			</div>
+
 		</div>
 	</div>
 </div>
