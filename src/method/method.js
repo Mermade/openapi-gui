@@ -62,32 +62,30 @@ Vue.component('api-method', {
         },
         editResponse : function(status) {
             var response = this.method.responses[status];
-            if (!response.schema) {
-                Vue.set(response, 'schema', {});
+            if (!response.content) {
+                Vue.set(response, 'content', {'application/json':{schema:{}}});
             }
-            var initial = deref(response.schema,this.$root.container.openapi);
-            var editorOptions = {
-                theme: 'html',
-                iconlib: 'fontawesome4',
-                schema: jsonSchemaDraft4,
-                refs: this.$root.container.openapi,
-                startval: initial
-            };
+			// TODO allow editing of multiple content-type schemas
+			var firstKey = Object.keys(response.content)[0];
+            var initial = deref(response.content[firstKey].schema,this.$root.container.openapi);
+            var editorOptions = {};
             var element = document.getElementById('schemaContainer');
             try {
                 this.schemaEditor = new JSONEditor(element, editorOptions);
+				this.schemaEditor.set(initial);
+				this.schemaEditor.expandAll();
                 schemaEditorClose = function() {
                     this.schemaEditor.destroy();
                     $('#schemaModal').removeClass('is-active');
                 }.bind(this);
                 schemaEditorSave = function() {
-                    this.response.schema = this.schemaEditor.getValue();
+                    this.response.schema = this.schemaEditor.get();
                     schemaEditorClose();
                 }.bind(this);
                 $('#schemaModal').addClass('is-active');
             }
             catch (ex) {
-                showAlert('The editor could not be instantiated. Circular schemas are not yet supported');
+                this.$parent.$parent.showAlert('The editor could not be instantiated (circular schemas are not yet supported): '+ex.message);
             }
         },
         tagSetup : function() {

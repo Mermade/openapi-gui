@@ -97,22 +97,15 @@ Vue.component('api-parameter', {
                 Vue.set(this.parameter, 'schema', {});
             }
             var initial = deref(this.parameter.schema, this.$root.container.openapi);
-            var editorOptions = {
-                theme: 'html',
-                iconlib: 'fontawesome4',
-                display_required_only: true,
-                schema: jsonSchemaDraft4,
-                refs: this.$root.container.openapi,
-                startval: initial
-            };
+            var editorOptions = {};
             var element = document.getElementById('schemaContainer');
-            this.schemaEditor = new JSONEditor(element, editorOptions);
+            this.schemaEditor = new JSONEditor(element, editorOptions, initial);
             schemaEditorClose = function() {
                 this.schemaEditor.destroy();
                 $('#schemaModal').removeClass('is-active');
             }.bind(this);
             schemaEditorSave = function() {
-                this.parameter.schema = this.schemaEditor.getValue();
+                this.parameter.schema = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
             $('#schemaModal').addClass('is-active');

@@ -36,7 +36,7 @@ function deref(obj,defs) {
             if ((typeof o == 'object') && (o["$ref"])) {
                 var ptr = o["$ref"];
                 //console.log('  '+ptr+' @ '+path);
-                var target = (ptr.indexOf('#/definitions/') == 0) ? defs : result;
+                var target = (ptr.indexOf('#/components/') == 0) ? defs : result;
                 try {
                     var def = new JSONPointer(ptr.substr(1)).get(target);
                     changes++;
