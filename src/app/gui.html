@@ -741,9 +741,25 @@
 										</p>
 									</footer>
 								</div>
-								<!--<div class="resource" v-for="(path,key,index) in openapi.paths">
-									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags'></api-resource>
-								</div>-->
+								<div class="schema" v-for="(schema,key) in openapi.components.schemas">
+									<div class="box">
+							            <span><span><b>Schema:</b></span>
+						                <a class='icon' data-balloon="Add schema" v-on:click="addSchema()">
+      						              <i class="fa fa-fw fa-plus"></i>
+      						            </a>
+						                <a class='icon' data-balloon="Duplicate schema" v-on:click="duplicateSchema(key)">
+						                    <i class="fa fa-fw fa-copy"></i>
+						                </a>
+						                <a class='icon' data-balloon="Edit schema" v-on:click="editSchema(key)">
+						                    <i class='fa fa-fw fa-edit'></i>
+						                </a>
+						                <a class='icon is-danger' data-balloon="Remove schema" v-on:click="removeSchema(key)">
+						                    <i class="fa fa-fw fa-trash"></i>
+						                </a>
+						                <span class='schemaNameSpan'>{{key}}</span>
+										</span>
+									</div>
+								</div>
 							</form>
 						</div>
 
