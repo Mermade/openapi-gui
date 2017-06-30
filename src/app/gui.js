@@ -154,6 +154,12 @@ Vue.component('gui-main', {
 			Vue.delete(server.variables,index);
 		},
 
+		addSchema: function() {
+			if (!this.openapi.components.schemas.NewSchema) {
+				Vue.set(this.openapi.components.schemas, 'NewSchema', {type: 'object'});
+			}
+		},
+
 		showAlert: function (text, callback) {
 			$('#alertText').text(text);
 			$('#alert').addClass('is-active');
