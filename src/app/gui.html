@@ -705,8 +705,49 @@
 
 			<div class='tab-content'>
 				<div class="tab-pane hidden container is-fluid" id="schemas">
-					<h1 class="title">TODO</h1>
-					<h2 class="subtitle">Schema editing</h2>
+
+					<div class='container is-fluid columns'>
+						<div class='column is-2 box'>
+							<aside id="drop-container" class="menu menu-small">
+								<ul id="schemaList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
+									<li class='dropdown-submenu' v-for="(schema,key) in openapi.components.schemas">
+										<a :href="schema.id" target="_self" v-on:click="showSchema(key)">{{key}}</a>
+										<ul class='dropdown-menu'>
+											<li v-for="(prop,pkey) in schema.properties">
+												<template v-if="(prop.type == 'object') || prop.$ref">
+													<a :href="prop.id" target="_self" v-on:click="showSchema(key)">{{pkey}}</a>
+												</template>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</aside>
+						</div>
+
+						<div class="column box">
+							<form class="form-horizontal" id="config">
+								<div class="card" v-if="Object.keys(openapi.components.schemas).length==0">
+									<div class="card-content">
+										<p class="title">
+										<a v-bind:href="specLink('#schemasObject')">OpenAPI Specification Schemas Object</a>
+										</p>
+										<p class="subtitle">
+											There are no shared schemas defined yet for this definition.
+										</p>
+									</div>
+									<footer class="card-footer">
+										<p class="card-footer-item">
+										<a v-on:click="addSchema()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Schema</span></a>
+										</p>
+									</footer>
+								</div>
+								<!--<div class="resource" v-for="(path,key,index) in openapi.paths">
+									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags'></api-resource>
+								</div>-->
+							</form>
+						</div>
+
+					</div>
 				</div>
 			</div>
 
