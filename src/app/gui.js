@@ -160,6 +160,16 @@ Vue.component('gui-main', {
 			}
 		},
 
+		duplicateSchema: function(key) {
+			if (!this.openapi.components.schemas.NewSchema) {
+				Vue.set(this.openapi.components.schemas, 'NewSchema', this.openapi.components.schemas[key]);
+			}
+		},
+
+		removeSchema: function(key) {
+			Vue.delete(this.openapi.components.schemas, key);
+		},
+
 		showAlert: function (text, callback) {
 			$('#alertText').text(text);
 			$('#alert').addClass('is-active');
