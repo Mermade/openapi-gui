@@ -8,6 +8,7 @@
 		<div class="nav-right">
 			<div class='nav-item'>
 				<a class="btn" v-on:click="scrollTop()"><i class='fa fa-white fa-arrow-up'></i> Top</a>
+				<a class="btn" v-on:click="settings()"><i class='fa fa-white fa-cog'></i> Settings</a>
 				<a class="btn" v-on:click="save()"><i class='fa fa-white fa-save'></i> Save</a>
 				<a class="btn" v-on:click="undo()"><i class='fa fa-white fa-undo'></i> Undo</a>
 				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%23.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
@@ -111,6 +112,12 @@
 						<span>Edit</span>
 					</a>
 				</li>
+				<li class="tabItem" id="tabItem-schemas">
+					<a class="tabSelect" href='#schemas' id="schemas-tab" v-on:click="selectTab('schemas',$event)">
+						<span class="icon is-small"><i class='fa fa-code'></i></span>
+						<span>Schemas</span>
+					</a>
+				</li>
 				<li class="tabItem" id="tabItem-wizards">
 					<a class="tabSelect" href='#wizards' id="wizards-tab" v-on:click="selectTab('wizards',$event)">
 						<span class="icon is-small"><i class='fa fa-magic'></i></span>
@@ -127,12 +134,6 @@
 					<a class="tabSelect" href='#yaml' id="yaml-tab" v-on:click="renderOutputYaml($event)">
 						<span class="icon is-small"><i class='fa fa-file'></i></span>
 						<span>Export YAML</span>
-					</a>
-				</li>
-				<li class="tabItem" id="tabItem-settings">
-					<a class="tabSelect" href='#settings' id="settings-tab" v-on:click="selectTab('settings',$event)">
-						<span class="icon is-small"><i class='fa fa-cog'></i></span>
-						<span>Settings</span>
 					</a>
 				</li>
 			</ul>
@@ -703,9 +704,9 @@
 			</div>
 
 			<div class='tab-content'>
-				<div class="tab-pane hidden container is-fluid" id="settings">
+				<div class="tab-pane hidden container is-fluid" id="schemas">
 					<h1 class="title">TODO</h1>
-					<h2 class="subtitle">Storage mechanism settings etc</h2>
+					<h2 class="subtitle">Schema editing</h2>
 				</div>
 			</div>
 
