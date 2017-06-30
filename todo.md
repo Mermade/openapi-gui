@@ -1,5 +1,7 @@
 * Finish server parameters
 * Editing of requestBody schemas / content-types / examples
+* Callbacks
+* Links
 * Handle circular `$ref`s in responses / examples / body schemas
 * Add validation on form fields
   * License name is required if license url is filled in (thus the object is present)
