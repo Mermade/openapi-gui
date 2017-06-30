@@ -166,6 +166,22 @@ Vue.component('gui-main', {
 			}
 		},
 
+		editSchema: function(key) {
+            var initial = deref(this.$root.container.openapi.components.schemas[key], this.$root.container.openapi);
+            var editorOptions = {};
+            var element = document.getElementById('schemaContainer');
+            this.schemaEditor = new JSONEditor(element, editorOptions, initial);
+            schemaEditorClose = function() {
+                this.schemaEditor.destroy();
+                $('#schemaModal').removeClass('is-active');
+            }.bind(this);
+            schemaEditorSave = function() {
+                this.parameter.schema = this.schemaEditor.get();
+                schemaEditorClose();
+            }.bind(this);
+            $('#schemaModal').addClass('is-active');
+		},
+
 		removeSchema: function(key) {
 			Vue.delete(this.openapi.components.schemas, key);
 		},
