@@ -743,7 +743,8 @@
 								</div>
 								<div class="schema" v-for="(schema,key) in openapi.components.schemas">
 									<div class="box">
-							            <span><span><b>Schema:</b></span>
+										<div class="level">
+							            <span class="level-left"><span><b>Schema:</b></span>
 						                <a class='icon' data-balloon="Add schema" v-on:click="addSchema()">
       						              <i class="fa fa-fw fa-plus"></i>
       						            </a>
@@ -756,8 +757,11 @@
 						                <a class='icon is-danger' data-balloon="Remove schema" v-on:click="removeSchema(key)">
 						                    <i class="fa fa-fw fa-trash"></i>
 						                </a>
-						                <span class='schemaNameSpan'>{{key}}</span>
 										</span>
+										<span class='level-item field-body field control'>
+											<input class="input" placeholder="Required" v-model.lazy="key"><!--wip-->
+										</span>
+										</div>
 									</div>
 								</div>
 							</form>
