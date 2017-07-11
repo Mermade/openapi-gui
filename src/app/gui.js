@@ -146,7 +146,7 @@ Vue.component('gui-main', {
 		},
 
 		renameVariable : function(server, oldName, newName) {
-			Vue.set(server.variables, newName, server.variabes[oldName]);
+			Vue.set(server.variables, newName, server.variables[oldName]);
 			Vue.delete(server.variables, oldName);
 		},
 
@@ -480,7 +480,7 @@ Vue.component('api-srvvar', {
 				return this.name;
 			},
 			set : function(newVal) {
-				this.$parent.renameVariable(this.name, newVal);
+				this.$parent.renameVariable(this.server, this.name, newVal);
 			}
 		}
 	},
