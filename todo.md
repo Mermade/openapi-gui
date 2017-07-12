@@ -1,4 +1,6 @@
-* Finish server parameters
+* ~~Finish server parameters~~
+* ~~Finish parameter enums~~
+* Rework tags-input
 * Editing of requestBody schemas / content-types / examples
 * Callbacks
 * Links
