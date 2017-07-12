@@ -81,9 +81,15 @@
 				<div class="field control level">
 					<div class="level-left">
 						<div class="level-item field is-horizontal">
-							<label class='label field-label is-normal'> Required </label>
+							<label class='field-label is-normal label'> Required </label>
 							<div class='field-body'>
 								<input type="checkbox" class="checkbox" v-model="effectiveRequired" :disabled="effectiveIn == 'path' ? true : false">
+							</div>
+						</div>
+						<div class="level-item field is-horizontal">
+							<label class='field-label is-normal label'> Deprecated </label>
+							<div class='field-body'>
+								<input type="checkbox" class="checkbox" v-model="parameter.deprecated">
 							</div>
 						</div>
 						<div class='level-item field is-horizontal' v-if="parameter.in == 'query'">

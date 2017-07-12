@@ -28,7 +28,7 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 
 - [ ] openapi
 - [x] [info](#info-object)
-- [ ] [servers](#servers-object)
+- [x] [servers](#servers-object)
 - [ ] [paths](#paths-object)
 - [ ] [components](#components-object)
 - [ ] [security](#security-requirement-object)
@@ -63,7 +63,7 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 
 ### [Server Variable](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#server-variable-object) object
 
-- [ ] enum
+- [x] enum
 - [x] default
 - [x] description
 
@@ -98,7 +98,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [x] [head](#operation-object)
 - [x] [patch](#operation-object)
 - [x] [trace](#operation-object)
-- [ ] [server](#server-object)
+- [ ] [servers](#server-object)
 - [x] [parameters](#parameter-object)
 
 ### [Operation](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#operation-object) object
@@ -123,16 +123,16 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 
 ### [Parameter](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#parameter-object) object
 
-- [ ] name
-- [ ] in
-    - [ ] query
-    - [ ] header
-    - [ ] path
-    - [ ] cookie
-- [ ] description
-- [ ] required
-- [ ] deprecated
-- [ ] allowEmptyValue
+- [x] name
+- [x] in
+    - [x] query
+    - [x] header
+    - [x] path
+    - [x] cookie
+- [x] description
+- [x] required
+- [x] deprecated
+- [x] allowEmptyValue
 
 #### schema extensions
 
@@ -174,12 +174,12 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 
 ### [Responses](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#responses-object) object
 
-- [ ] [response](#response-object)
+- [x] [response](#response-object)
 
 ### [Response](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#response-object) object
 
-- [ ] description
-- [ ] [headers](#header-object)
+- [x] description
+- [x] [headers](#header-object)
 - [ ] [content](#media-type-object)
 - [ ] [links](#link-object)
 
@@ -209,9 +209,9 @@ See [parameter](#parameter-object) object.
 
 ### [Tag](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#tag-object) object
 
-- [ ] name
-- [ ] description
-- [ ] [externalDocs](#external-documentation-object)
+- [x] name
+- [x] description
+- [x] [externalDocs](#external-documentation-object)
 
 ### [Reference](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#reference-object) object
 
@@ -284,38 +284,38 @@ The OpenAPI specification also supports several additional properties from JSON 
 
 ### [Security Scheme](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#security-scheme-object) object
 
-- [ ] type
-  - [ ] apiKey
-  - [ ] http
-  - [ ] oauth2
-  - [ ] openIdConnect
-- [ ] description
-- [ ] name
-- [ ] in
-- [ ] scheme
-- [ ] bearerFormat
-- [ ] [flows](#oauth-flows-object)
-- [ ] openIdConnectUrl
+- [x] type
+  - [x] apiKey
+  - [x] http
+  - [x] oauth2
+  - [x] openIdConnect
+- [x] description
+- [x] name
+- [x] in
+- [x] scheme
+- [x] bearerFormat
+- [x] [flows](#oauth-flows-object)
+- [x] openIdConnectUrl
 
 ### [OAuth Flows](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#oauth-flows-object) object
 
-- [ ] [implict](#oauth-flow-object)
-- [ ] [password](#oauth-flow-object)
-- [ ] [clientCredentials](#oauth-flow-object)
-- [ ] [authorizationCode](#oauth-flow-object)
+- [x] [implict](#oauth-flow-object)
+- [x] [password](#oauth-flow-object)
+- [x] [clientCredentials](#oauth-flow-object)
+- [x] [authorizationCode](#oauth-flow-object)
 
 ### [OAuth Flow](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#oauth-flow-object) object
 
-- [ ] authorizationUrl
-- [ ] tokenUrl
-- [ ] refreshUrl
-- [ ] scopes
+- [x] authorizationUrl
+- [x] tokenUrl
+- [x] refreshUrl
+- [x] scopes
 
 ### [Security Requirement](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#security-requirement-object) object
 
-- [ ] oauth2
-- [ ] openIdConnect
-- [ ] "other"
+- [x] oauth2
+- [x] openIdConnect
+- [x] "other"
 
 ### [Specification Extensions](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#specification-extensions)
 
