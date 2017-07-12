@@ -487,6 +487,35 @@ Vue.component('api-srvvar', {
 	methods: {
 		removeVariable: function() {
 			this.$parent.removeVariable(this.server, this.name);
+		},
+		addVEnum: function() {
+			if (!this.variable.enum) Vue.set(this.variable, 'enum', []);
+			this.variable.enum.push('newValue');
+		}
+	},
+	data: function() {
+		return {}
+	}
+});
+
+Vue.component('api-venum', {
+	props: ["variable", "eindex"],
+	computed: {
+		vename: {
+			get: function() {
+				return this.variable.enum[this.eindex];
+			},
+			set: function(newValue) {
+				this.variable.enum[this.eindex] = newValue;
+			}
+		}
+	},
+	methods: {
+		removeVEnum: function(eIndex) {
+			this.variable.enum.splice(eIndex,1);
+		},
+		addVEnum: function() {
+			this.$parent.addVEnum();
 		}
 	},
 	data: function() {
