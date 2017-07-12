@@ -2,7 +2,7 @@
 	<div class="accordion-group">
 		<div class='accordion-heading'>
 
-			<a class="icon" data-toggle="collapse" data-balloon="Expand parameter" :data-target="hashUid" v-on:click="toggleBody()">
+			<a class="icon" data-toggle="collapse" data-balloon="Toggle parameter" :data-target="hashUid" v-on:click="toggleBody()">
 				<i class="fa fa-reorder accordion-handle param-handle"></i>
 			</a>
 
@@ -19,7 +19,7 @@
 				<a class='icon is-danger' data-balloon="Remove parameter" v-on:click="removeParameter()">
 					<i class="fa fa-fw fa-trash"></i>
 				</a>
-				<a class="accordion-toggle" data-balloon="Expand parameter" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
+				<a class="accordion-toggle" data-balloon="Toggle parameter" data-toggle="collapse" :data-target="hashUid" v-on:click="toggleBody()">
 					<span class='parameterNameSpan'>{{parameter.name}}</span>
 				</a>
 			</span>
