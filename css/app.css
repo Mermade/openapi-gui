@@ -123,3 +123,7 @@ summary:focus {
 .box {
   background: rgba(0, 0, 0, 0.01);
 }
+
+.boxsep {
+  margin-bottom: 10px;
+}
