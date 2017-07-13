@@ -127,3 +127,8 @@ summary:focus {
 .boxsep {
   margin-bottom: 10px;
 }
+
+#schemaContainer {
+  width: 400px;
+  height: 400px;
+}
