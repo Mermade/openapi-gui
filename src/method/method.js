@@ -181,7 +181,18 @@ Vue.component('api-mediatype', {
             set: function (newVal) {
                 this.$parent.renameMediaType(this.mediatype, newVal);
             }
-        }
+        },
+		schemaTooltip : {
+			get : function() {
+				if (!this.content.schema || !this.content.schema.$ref) {
+					return 'Edit inline schema';
+				}
+				else {
+					var schemaName = this.content.schema.$ref.replace('#/components/schemas/','');
+					return 'Edit sharedschema ('+schemaName+')';
+				}
+			}
+		}
     },
     methods: {
         addMediaType: function () {

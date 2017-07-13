@@ -71,7 +71,7 @@ Vue.component('api-parameter', {
 				}
 				else {
 					var schemaName = this.parameter.schema.$ref.replace('#/components/schemas/','');
-					return 'Edit schema ('+schemaName+')';
+					return 'Edit shared schema ('+schemaName+')';
 				}
 			}
 		}

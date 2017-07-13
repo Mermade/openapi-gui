@@ -239,7 +239,7 @@
                                             <span class="icon" data-balloon="Duplicate media-type"><a v-on:click="duplicateMediaType()"><i class="fa fa-fw fa-copy"></i></a></span>
                                         </div>
                                         <div class="control">
-                                            <span class="icon" data-balloon="Edit schema"><a v-on:click="editMediaType(mediatype)"><i class="fa fa-fw fa-edit"></i></a></span>
+                                            <span class="icon" :data-balloon="schemaTooltip"><a v-on:click="editMediaType(mediatype)"><i class="fa fa-fw fa-edit"></i></a></span>
                                         </div>
                                         <div class="control">
                                             <span class="icon" data-balloon="Remove media-type"><a v-on:click="removeMediaType()"><i class="fa fa-fw fa-trash"></i></a></span>
