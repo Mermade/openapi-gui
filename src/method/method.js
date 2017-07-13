@@ -60,34 +60,6 @@ Vue.component('api-method', {
             response.description = 'Description';
             Vue.set(this.method.responses, status, response);
         },
-        editResponse : function(status) {
-            var response = this.method.responses[status];
-            if (!response.content) {
-                Vue.set(response, 'content', {'application/json':{schema:{}}});
-            }
-			// TODO allow editing of multiple content-type schemas
-			var firstKey = Object.keys(response.content)[0];
-            var initial = deref(response.content[firstKey].schema,this.$root.container.openapi);
-            var editorOptions = {};
-            var element = document.getElementById('schemaContainer');
-            try {
-                this.schemaEditor = new JSONEditor(element, editorOptions);
-				this.schemaEditor.set(initial);
-				this.schemaEditor.expandAll();
-                schemaEditorClose = function() {
-                    this.schemaEditor.destroy();
-                    $('#schemaModal').removeClass('is-active');
-                }.bind(this);
-                schemaEditorSave = function() {
-                    this.response.schema = this.schemaEditor.get();
-                    schemaEditorClose();
-                }.bind(this);
-                $('#schemaModal').addClass('is-active');
-            }
-            catch (ex) {
-                this.$parent.$parent.showAlert('The editor could not be instantiated (circular schemas are not yet supported): '+ex.message);
-            }
-        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {
@@ -177,14 +149,16 @@ Vue.component('api-response', {
         addResponse: function () {
             this.$parent.addResponse();
         },
-        editResponse: function () {
-            this.$parent.editResponse(this.status);
-        },
         removeResponse: function () {
             this.$root.save();
             Vue.delete(this.method.responses, this.status);
             if (Object.keys(this.method.responses).length==0) {
                 Vue.set(this.method.responses,'default',{description:'Default response'});
+            }
+        },
+        addMediaType: function() {
+            if (!this.response.content['change/me']) {
+                Vue.set(this.response.content,'change/me',{schema:{}});
             }
         }
     },
@@ -209,8 +183,34 @@ Vue.component('api-mediatype', {
         addMediaType: function () {
             this.$parent.addMediaType();
         },
-        editMediaType: function () {
-            this.$parent.editMediaType(this.mediatype);
+        duplicateMediaType: function() {
+            if (!this.response.content['change/me']) {
+                var newContent = clone(this.content);
+                Vue.set(this.response.content,'change/me',newContent);
+            }
+        },
+        editMediaType: function (mediatype) {
+            var initial = deref(this.response.content[mediatype].schema,this.$root.container.openapi);
+            var editorOptions = {};
+            var element = document.getElementById('schemaContainer');
+            try {
+                this.schemaEditor = new JSONEditor(element, editorOptions);
+				this.schemaEditor.set(initial);
+				this.schemaEditor.expandAll();
+                schemaEditorClose = function() {
+                    this.schemaEditor.destroy();
+                    $('#schemaModal').removeClass('is-active');
+                }.bind(this);
+                schemaEditorSave = function() {
+                    // TODO saving back to shared schema
+                    this.response.content[mediatype].schema = this.schemaEditor.get();
+                    schemaEditorClose();
+                }.bind(this);
+                $('#schemaModal').addClass('is-active');
+            }
+            catch (ex) {
+                this.$parent.$parent.showAlert('The editor could not be instantiated (circular schemas are not yet supported): '+ex.message);
+            }
         },
         removeMediaType: function () {
             this.$root.save();
