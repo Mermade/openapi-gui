@@ -204,9 +204,9 @@
                             <div class="control">
                                 <span class="icon" data-balloon="Duplicate response"><a v-on:click="duplicateResponse()"><i class="fa fa-fw fa-copy"></i></a></span>
                             </div>
-                            <div class="control">
+                            <!--<div class="control">
                                 <span class="icon" data-balloon="Edit response"><a v-on:click="editResponse(status)"><i class="fa fa-fw fa-edit"></i></a></span>
-                            </div>
+                            </div>-->
                             <div class="control">
                                 <span class="icon" data-balloon="Remove response"><a v-on:click="removeResponse()"><i class="fa fa-fw fa-trash"></i></a></span>
                             </div>
@@ -227,6 +227,35 @@
                                 </div>
                             </div>
                         </div>
+						<div class="box">
+                            <api-mediatype v-for="(content, mediatype) in response.content"
+                                :content="content" :key="mediatype" :mediatype="mediatype" :response="response" inline-template>
+                                <div class="box">
+                                    <div class='field level is-horizontal is-grouped'>
+                                        <div class="control">
+                                            <span class="icon" data-balloon="Add media-type"><a v-on:click="addMediaType()"><i class="fa fa-fw fa-plus"></i></a></span>
+                                        </div>
+                                        <div class="control">
+                                            <span class="icon" data-balloon="Duplicate media-type"><a v-on:click="duplicateMediaType()"><i class="fa fa-fw fa-copy"></i></a></span>
+                                        </div>
+                                        <div class="control">
+                                            <span class="icon" data-balloon="Edit schema"><a v-on:click="editMediaType(mediatype)"><i class="fa fa-fw fa-edit"></i></a></span>
+                                        </div>
+                                        <div class="control">
+                                            <span class="icon" data-balloon="Remove media-type"><a v-on:click="removeMediaType()"><i class="fa fa-fw fa-trash"></i></a></span>
+                                        </div>
+                                        <div class="control">
+                                            <label class='label field-label is-normal'>Media-Type</label>
+                                        </div>
+                                        <div class="control is-expanded">
+                                            <div class='field-body'>
+                                                <input class="input" placeholder="Required" v-model.lazy="mediaTypeName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </api-mediatype>
+						</div>
                     </div>
                 </api-response>
             </div>

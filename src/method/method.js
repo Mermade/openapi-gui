@@ -192,3 +192,35 @@ Vue.component('api-response', {
         return {}
     }
 });
+
+Vue.component('api-mediatype', {
+    props: ["content", "mediatype", "response"],
+    computed: {
+        mediaTypeName: {
+            get: function () {
+                return this.mediatype;
+            },
+            set: function (newVal) {
+                this.$parent.renameMediatype(this.mediatype, newVal);
+            }
+        }
+    },
+    methods: {
+        addMediaType: function () {
+            this.$parent.addMediaType();
+        },
+        editMediaType: function () {
+            this.$parent.editMediaType(this.mediatype);
+        },
+        removeMediaType: function () {
+            this.$root.save();
+            Vue.delete(this.response.content, this.mediatype);
+            if (Object.keys(this.response.content).length==0) {
+                Vue.set(this.response.content,'application/json',{schema:{}});
+            }
+        }
+    },
+    data: function () {
+        return {}
+    }
+});
