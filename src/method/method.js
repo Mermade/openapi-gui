@@ -3,7 +3,8 @@ Vue.component('api-method', {
 	data: function() {
 		return {
             visible: false,
-            schemaEditor: undefined
+            schemaEditor: undefined,
+            cbName: undefined
         }
 	},
     methods: {
@@ -71,7 +72,7 @@ Vue.component('api-method', {
                 Vue.set(this.method,'callbacks',{});
             }
             if (!this.method.callbacks.newCallback) {
-                Vue.set(this.method.callbacks,'newCallback',{});
+                Vue.set(this.method.callbacks,'newCallback',{newExpression:{}});
             }
         },
         duplicateCallback : function(cbname) {
@@ -82,10 +83,25 @@ Vue.component('api-method', {
         removeCallback : function(cbname) {
             Vue.delete(this.method.callbacks,cbname);
         },
+        storeCallbackName : function(oldName) {
+            this.cbName = oldName;
+        },
+        renameCallback : function(newName) {
+            Vue.set(this.method.callbacks,newName,this.method.callbacks[this.cbName]);
+            Vue.delete(this.method.callbacks,this.cbName);
+        },
         addCallbackURL : function(cbname) {
-            if (!this.method.callbacks[cbname].expression) {
-                Vue.set(this.method.callbacks[cbname],'expression',{});
+            if (!this.method.callbacks[cbname].newExpression) {
+                Vue.set(this.method.callbacks[cbname],'newExpression',{});
             }
+        },
+        duplicateExpression : function(cbname, expname) {
+            if (!this.method.callbacks[cbname].newExpression) {
+                Vue.set(this.method.callbacks[cbname],'newExpression',clone(this.method.callbacks[cbname][expname]));
+            }
+        },
+        removeExpression : function(cbname, expname) {
+            Vue.delete(this.method.callbacks[cbname],expname);
         },
         tagSetup : function() {
             var simpleTags = [];
