@@ -66,6 +66,27 @@ Vue.component('api-method', {
                 Vue.set(rb.content,'change/me',{schema:{}});
             }
         },
+        addCallback : function() {
+            if (!this.method.callbacks) {
+                Vue.set(this.method,'callbacks',{});
+            }
+            if (!this.method.callbacks.newCallback) {
+                Vue.set(this.method.callbacks,'newCallback',{});
+            }
+        },
+        duplicateCallback : function(cbname) {
+            if (!this.method.callbacks.newCallback) {
+                Vue.set(this.method.callbacks,'newCallback',clone(this.method.callbacks[cbname]));
+            }
+        },
+        removeCallback : function(cbname) {
+            Vue.delete(this.method.callbacks,cbname);
+        },
+        addCallbackURL : function(cbname) {
+            if (!this.method.callbacks[cbname].expression) {
+                Vue.set(this.method.callbacks[cbname],'expression',{});
+            }
+        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {

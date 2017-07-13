@@ -254,9 +254,6 @@
                             <div class="control">
                                 <span class="icon" data-balloon="Duplicate response"><a v-on:click="duplicateResponse()"><i class="fa fa-fw fa-copy"></i></a></span>
                             </div>
-                            <!--<div class="control">
-                                <span class="icon" data-balloon="Edit response"><a v-on:click="editResponse(status)"><i class="fa fa-fw fa-edit"></i></a></span>
-                            </div>-->
                             <div class="control">
                                 <span class="icon" data-balloon="Remove response"><a v-on:click="removeResponse()"><i class="fa fa-fw fa-trash"></i></a></span>
                             </div>
@@ -326,6 +323,60 @@
                         </p>
                     </footer>
                 </div>
+                <div class="box" v-if="method.callbacks && Object.keys(method.callbacks).length>0">
+                    <!-- todo callbacks -->
+                    <div v-for="(callback, cbname) in method.callbacks">
+                        <div class='field level is-horizontal is-grouped'>
+                            <div class="control">
+                                <span class="icon" data-balloon="Add callback"><a v-on:click="addCallback()"><i class="fa fa-fw fa-plus"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <span class="icon" data-balloon="Duplicate callback"><a v-on:click="duplicateCallback(cbname)"><i class="fa fa-fw fa-copy"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <span class="icon" data-balloon="Remove callback"><a v-on:click="removeCallback(cbname)"><i class="fa fa-fw fa-trash"></i></a></span>
+                            </div>
+                            <div class="control">
+                                <label class='label field-label is-normal'>Name </label>
+                            </div>
+                            <div class="field">
+                                <div class='field-body'>
+                                    <input class="input" v-model.lazy="cbname">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='column is-2'>
+                            <a v-if="Object.keys(callback).length==0" v-on:click="addCallbackURL(cbname)" class='button is-primary is-right'>
+                                <i class='fa fa-fw fa-plus'></i>
+                                Add URL Expression
+                            </a>
+                        </div>
+
+                        <div v-for="(expression, expname) in callback">
+                            <div class='field level is-horizontal is-grouped'>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Add expression"><a v-on:click="addExpression(cbname)"><i class="fa fa-fw fa-plus"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Duplicate expression"><a v-on:click="duplicateExpression(cbname,expname)"><i class="fa fa-fw fa-copy"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Remove expession"><a v-on:click="removeExpression(cbname,expname)"><i class="fa fa-fw fa-trash"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <label class='label field-label is-normal'>Expression </label>
+                                </div>
+                                <div class="field">
+                                    <div class='field-body'>
+                                        <input class="input" v-model.lazy="expname">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
             <div class="method-pane method-pane-links hidden container is-fluid">
