@@ -160,6 +160,10 @@ Vue.component('api-response', {
             if (!this.response.content['change/me']) {
                 Vue.set(this.response.content,'change/me',{schema:{}});
             }
+        },
+        renameMediaType: function(oldName, newName) {
+            Vue.set(this.response.content, newName, this.response.content[oldName]);
+            Vue.delete(this.response.content, oldName);
         }
     },
     data: function () {
@@ -175,7 +179,7 @@ Vue.component('api-mediatype', {
                 return this.mediatype;
             },
             set: function (newVal) {
-                this.$parent.renameMediatype(this.mediatype, newVal);
+                this.$parent.renameMediaType(this.mediatype, newVal);
             }
         }
     },
