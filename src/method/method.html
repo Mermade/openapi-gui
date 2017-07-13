@@ -53,7 +53,7 @@
                 <li class="tabItem method-tab tabItem-method-requestbodies">
                     <a class="tabSelect" href="#about" v-on:click="selectTab('requestbodies',$event)">
                         <span class="icon is-small"><i class="fa fa-question"></i></span>
-                        <span>Request Bodies</span>
+                        <span>Request Body</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-responses">
@@ -176,13 +176,13 @@
             </div>
 
             <div class="method-pane method-pane-requestbodies hidden">
-                <div class="card">
+                <div class="card" v-if="!method.requestBody">
                     <div class="card-content">
                         <p class="title">
                         <a v-bind:href="specLink('#requestBodyObject')">OpenAPI Specification requestBody Object</a>
                         </p>
                         <p class="subtitle">
-                            There are no requestBodies defined.
+                            There is no requestBody defined.
                         </p>
                     </div>
                     <footer class="card-footer">
@@ -190,6 +190,56 @@
                         <a v-on:click="addRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Request Body</span></a>
                         </p>
                     </footer>
+                </div>
+                <div class="box">
+                    <div class="field is-horizontal is-grouped">
+                        <div class="control">
+                            <label class='label field-label is-normal'>Description</label>
+                        </div>
+                        <div class="control is-expanded">
+                            <div class='field-body'>
+                                <textarea class="textarea" v-model="effectiveRequestBody.description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal is-grouped">
+                        <div class="control">
+                            <label class='label field-label is-normal'>Required</label>
+                        </div>
+                        <div class="control is-expanded">
+                            <div class='field-body'>
+                                <input type="checkbox" class="checkbox" v-model="effectiveRequestBody.required">
+                            </div>
+                        </div>
+                    </div>
+
+                    <api-mediatype v-for="(content, mediatype) in effectiveRequestBody.content"
+                        :content="content" :key="mediatype" :mediatype="mediatype" :container="effectiveRequestBody" inline-template>
+                        <div class="box">
+                            <div class='field level is-horizontal is-grouped'>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Add media-type"><a v-on:click="addMediaType()"><i class="fa fa-fw fa-plus"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Duplicate media-type"><a v-on:click="duplicateMediaType()"><i class="fa fa-fw fa-copy"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <span class="icon" :data-balloon="schemaTooltip"><a v-on:click="editMediaType(mediatype)"><i class="fa fa-fw fa-edit"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <span class="icon" data-balloon="Remove media-type"><a v-on:click="removeMediaType()"><i class="fa fa-fw fa-trash"></i></a></span>
+                                </div>
+                                <div class="control">
+                                    <label class='label field-label is-normal'>Media-Type</label>
+                                </div>
+                                <div class="control is-expanded">
+                                    <div class='field-body'>
+                                        <input class="input" placeholder="Required" v-model.lazy="mediaTypeName">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </api-mediatype>
                 </div>
             </div>
 
@@ -229,7 +279,7 @@
                         </div>
 						<div class="box">
                             <api-mediatype v-for="(content, mediatype) in response.content"
-                                :content="content" :key="mediatype" :mediatype="mediatype" :response="response" inline-template>
+                                :content="content" :key="mediatype" :mediatype="mediatype" :container="response" inline-template>
                                 <div class="box">
                                     <div class='field level is-horizontal is-grouped'>
                                         <div class="control">

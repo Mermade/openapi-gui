@@ -60,6 +60,12 @@ Vue.component('api-method', {
             response.description = 'Description';
             Vue.set(this.method.responses, status, response);
         },
+        addMediaType : function() {
+            var rb = this.effectiveRequestBody;
+            if (!rb.content['change/me']) {
+                Vue.set(rb.content,'change/me',{schema:{}});
+            }
+        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {
@@ -123,6 +129,13 @@ Vue.component('api-method', {
             set : function(newVal) {
                 this.method.tags = newVal;
             }
+        },
+        effectiveRequestBody : {
+            get : function() {
+                if (!this.method.requestBody) return null;
+                if (!this.method.requestBody.$ref) return this.method.requestBody;
+                return deref(this.method.requestBody, this.$root.container.openapi);
+            }
         }
     },
     beforeMount : function() {
@@ -172,7 +185,7 @@ Vue.component('api-response', {
 });
 
 Vue.component('api-mediatype', {
-    props: ["content", "mediatype", "response"],
+    props: ["content", "mediatype", "container"],
     computed: {
         mediaTypeName: {
             get: function () {
@@ -184,12 +197,13 @@ Vue.component('api-mediatype', {
         },
 		schemaTooltip : {
 			get : function() {
+                // TODO for a $ref'd requestBody, $ref'd schemas may appear inline - set depth on deref?
 				if (!this.content.schema || !this.content.schema.$ref) {
 					return 'Edit inline schema';
 				}
 				else {
 					var schemaName = this.content.schema.$ref.replace('#/components/schemas/','');
-					return 'Edit sharedschema ('+schemaName+')';
+					return 'Edit shared schema ('+schemaName+')';
 				}
 			}
 		}
@@ -199,13 +213,13 @@ Vue.component('api-mediatype', {
             this.$parent.addMediaType();
         },
         duplicateMediaType: function() {
-            if (!this.response.content['change/me']) {
+            if (!this.container.content['change/me']) {
                 var newContent = clone(this.content);
-                Vue.set(this.response.content,'change/me',newContent);
+                Vue.set(this.container.content,'change/me',newContent);
             }
         },
         editMediaType: function (mediatype) {
-            var initial = deref(this.response.content[mediatype].schema,this.$root.container.openapi);
+            var initial = deref(this.container.content[mediatype].schema,this.$root.container.openapi);
             var editorOptions = {};
             var element = document.getElementById('schemaContainer');
             try {
@@ -218,7 +232,7 @@ Vue.component('api-mediatype', {
                 }.bind(this);
                 schemaEditorSave = function() {
                     // TODO saving back to shared schema
-                    this.response.content[mediatype].schema = this.schemaEditor.get();
+                    this.container.content[mediatype].schema = this.schemaEditor.get();
                     schemaEditorClose();
                 }.bind(this);
                 $('#schemaModal').addClass('is-active');
@@ -229,9 +243,9 @@ Vue.component('api-mediatype', {
         },
         removeMediaType: function () {
             this.$root.save();
-            Vue.delete(this.response.content, this.mediatype);
-            if (Object.keys(this.response.content).length==0) {
-                Vue.set(this.response.content,'application/json',{schema:{}});
+            Vue.delete(this.container.content, this.mediatype);
+            if (Object.keys(this.container.content).length==0) {
+                Vue.set(this.container.content,'application/json',{schema:{}});
             }
         }
     },

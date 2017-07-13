@@ -75,7 +75,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [x] [responses](#responses-object)
 - [x] [parameters](#parameter-object)
 - [ ] [examples](#example-object)
-- [ ] [requestBodies](#request-body-object)
+- [x] [requestBodies](#request-body-object)
 - [x] [headers](#header-object)
 - [ ] [securitySchemes](#security-scheme-object)
 - [ ] [links](#link-object)
@@ -109,7 +109,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] [externalDocs](#external-documentation-object)
 - [x] operationId
 - [x] [parameters](#parameter-object)
-- [ ] [requestBody](#request-body-object)
+- [x] [requestBody](#request-body-object)
 - [x] [responses](#responses-object)
 - [ ] [callbacks](#callback-object)
 - [x] deprecated
@@ -153,13 +153,13 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 
 ### [Request Body](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#request-body-object) object
 
-- [ ] description
-- [ ] [content](#media-type-object)
-- [ ] required
+- [x] description
+- [x] [content](#media-type-object)
+- [x] required
 
 ### [Media Type](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#media-type-object) object
 
-- [ ] [schema](#schema-object)
+- [x] [schema](#schema-object)
 - [ ] [example](#example-object)
 - [ ] [examples](#example-object)
 - [ ] [encoding](#encoding-object)
@@ -180,7 +180,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 
 - [x] description
 - [x] [headers](#header-object)
-- [ ] [content](#media-type-object)
+- [x] [content](#media-type-object)
 - [ ] [links](#link-object)
 
 ### [Callback](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#callback-object) object

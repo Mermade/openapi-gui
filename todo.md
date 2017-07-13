@@ -1,10 +1,8 @@
 * ~~Finish server parameters~~
 * ~~Finish parameter enums~~
 * Rework tags-input
-* Editing of requestBody schemas / content-types / examples
-* Callbacks
-* Links
-* Handle circular `$ref`s in responses / examples / body schemas
+* ~~Editing of requestBody schemas / content-types~~
+* Editing of requestBody examples
 * Add validation on form fields
   * License name is required if license url is filled in (thus the object is present)
   * Server.url is required
@@ -25,5 +23,9 @@
 * markdown previews
   * ~~operation.description markdown preview~~
   * response.description markdown preview
-  * tag description markdown preview
+  * tag.description markdown preview
   * externalDocs.description markdown preview
+  * requestBody.description markdown preview
+* Callbacks
+* Links
+* Handle circular `$ref`s in responses / examples / body schemas
