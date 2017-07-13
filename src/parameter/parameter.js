@@ -62,7 +62,19 @@ Vue.component('api-parameter', {
                 return [];
             },
             set : function(newVal) {}
-        }
+        },
+
+		schemaTooltip : {
+			get : function() {
+				if (!this.parameter.schema || !this.parameter.schema.$ref) {
+					return 'Edit inline schema';
+				}
+				else {
+					var schemaName = this.parameter.schema.$ref.replace('#/components/schemas/','');
+					return 'Edit schema ('+schemaName+')';
+				}
+			}
+		}
 
     },
 	data: function() {
