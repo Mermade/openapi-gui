@@ -4,7 +4,8 @@ Vue.component('api-method', {
 		return {
             visible: false,
             schemaEditor: undefined,
-            cbName: undefined
+            cbName: undefined,
+            expName: undefined
         }
 	},
     methods: {
@@ -102,6 +103,13 @@ Vue.component('api-method', {
         },
         removeExpression : function(cbname, expname) {
             Vue.delete(this.method.callbacks[cbname],expname);
+        },
+        storeExpressionName : function(oldName) {
+            this.expName = oldName;
+        },
+        renameExpression : function(cbName, newName) {
+            Vue.set(this.method.callbacks[cbName],newName,this.method.callbacks[cbName][this.expName]);
+            Vue.delete(this.method.callbacks[cbName],this.expName);
         },
         tagSetup : function() {
             var simpleTags = [];

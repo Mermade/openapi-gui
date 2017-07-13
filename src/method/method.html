@@ -368,7 +368,7 @@
                                 </div>
                                 <div class="control is-expanded">
                                     <div class="field-body">
-                                        <input class="input" v-model.lazy="expname">
+                                        <input class="input" v-on:focus="storeExpressionName(expname)" v-on:change="renameExpression(cbname,expname)" v-model.lazy="expname">
                                     </div>
                                 </div>
 
