@@ -372,11 +372,18 @@
                                     </div>
                                 </div>
 
-                                <div class="accordion method-container" v-for="(method,key,index) in expression">
-                                    <api-method :method="method" :index="key" :maintags="maintags"></api-method>
+                                <div v-if="Object.keys(expression).length == 0">
+                                    <a v-on:click="addExpressionOperation(expression)" class='button is-primary is-right'>
+                                        <i class='fa fa-fw fa-plus'></i>
+                                        Add Operation
+                                    </a>
                                 </div>
-
                             </div> <!-- expression box -->
+
+                            <div class="accordion method-container" v-for="(method,key,index) in expression">
+                                <api-method :method="method" :index="key" :maintags="maintags"></api-method>
+                            </div>
+
                         </div>
 
                     </div>

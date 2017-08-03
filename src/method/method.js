@@ -111,6 +111,9 @@ Vue.component('api-method', {
             Vue.set(this.method.callbacks[cbName],newName,this.method.callbacks[cbName][this.expName]);
             Vue.delete(this.method.callbacks[cbName],this.expName);
         },
+        addExpressionOperation : function(exp) {
+            Vue.set(exp,'get',{});
+        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {

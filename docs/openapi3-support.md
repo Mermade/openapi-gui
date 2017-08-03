@@ -79,7 +79,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [x] [headers](#header-object)
 - [ ] [securitySchemes](#security-scheme-object)
 - [ ] [links](#link-object)
-- [ ] [callbacks](#callback-object)
+- [x] [callbacks](#callback-object)
 
 ### [Paths](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#paths-object) object
 
@@ -185,7 +185,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 
 ### [Callback](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#callback-object) object
 
-- [ ] [expression](#path-item-object)
+- [x] [expression](#path-item-object)
 
 ### [Example](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#example-object) object
 
