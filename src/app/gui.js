@@ -177,7 +177,7 @@ Vue.component('gui-main', {
                 $('#schemaModal').removeClass('is-active');
             }.bind(this);
             schemaEditorSave = function() {
-                this.parameter.schema = this.schemaEditor.get();
+                this.$root.container.openapi.components.schemas[key] = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
             $('#schemaModal').addClass('is-active');
