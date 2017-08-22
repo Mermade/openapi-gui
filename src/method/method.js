@@ -64,7 +64,7 @@ Vue.component('api-method', {
         },
         addMediaType : function() {
             var rb = this.effectiveRequestBody;
-            if (!rb.content['change/me']) {
+            if (rb && rb.content && !rb.content['change/me']) {
                 Vue.set(rb.content,'change/me',{schema:{}});
             }
         },
