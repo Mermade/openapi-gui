@@ -1,6 +1,6 @@
 # OpenAPI v3 support
 
-Tracking: [v3.0.0-rc2][oa3]
+Tracking: [v3.0.0][oa3]
 
 This document originated at https://github.com/temando/open-api-renderer/blob/master/docs/open-api-v3-support.md
 
@@ -323,5 +323,5 @@ No extension properties are supported at this time.
 
 [cm]: http://spec.commonmark.org/0.27/
 [jsschema]: http://json-schema.org/latest/json-schema-validation.html#rfc.section.6
-[oa3]: https://github.com/OAI/OpenAPI-Specification/blob/3.0.0-rc2/versions/3.0.md
+[oa3]: https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md
 
