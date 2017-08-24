@@ -272,5 +272,21 @@ function app_main() {
 		$('.wizDetails').addClass('hidden');
 		$('#divImportSchema').removeClass('hidden');
 	});
+	$('#btnImportSchema').click(function(){
+		var schemaName = $('#txtSchemaName').val();
+		if (!schemaName) {
+			alert('Schema name is required');
+		}
+		else {
+			var obj = {};
+			try {
+				obj = jsyaml.safeLoad($('#txtSchema').val(),{json:true});
+				Vue.set(openapi.components.schemas,schemaName,obj);
+			}
+			catch (ex) {
+				alert('Error parsing schema'+ex.message);
+			}
+		}
+	});
 }
 
