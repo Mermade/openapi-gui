@@ -671,7 +671,7 @@
 								<ul id="resourceList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
 									<li class='dropdown-submenu' v-for="(path,key) in openapi.paths">
 										<a :href="path.id" target="_self" v-on:click="showResource(key)">{{key}}</a>
-										<ul class='dropdown-menu'>
+										<ul>
 											<li v-for="(m,mkey) in path">
 												<template v-if="'.get.post.put.patch.head.options.delete.trace'.indexOf(mkey)>0">
 													<a :href="m.id" target="_self" v-on:click="showResource(key)">{{mkey}}</a>
@@ -733,7 +733,7 @@
 								<ul id="schemaList" class="menu-list" role="menu" aria-labelledby="dropdownMenu">
 									<li class='dropdown-submenu' v-for="(schema,key) in openapi.components.schemas">
 										<a :href="schema.id" target="_self" v-on:click="showSchema(key)">{{key}}</a>
-										<ul class='dropdown-menu'>
+										<ul>
 											<li v-for="(prop,pkey) in schema.properties">
 												<template v-if="(prop.type == 'object') || prop.$ref">
 													<a :href="prop.id" target="_self" v-on:click="showSchema(key)">{{pkey}}</a>

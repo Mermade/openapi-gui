@@ -56,7 +56,8 @@ Vue.component('gui-main', {
 
 		showResource: function (key) {
 			var target = 'resource_' + key.split('/').join('').split('{').join('').split('}').join('');
-			document.getElementById(target).scrollIntoView();
+			var e = document.getElementById(target);
+			if (e) e.scrollIntoView();
 		},
 
 		removeAll: function () {
