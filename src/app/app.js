@@ -229,6 +229,7 @@ function app_main() {
 		console.log(JSON.stringify(jqxhr));
 	});
 	$('#aValidate').click(function(){
+		$('.wizDetails').addClass('hidden');
 		$('#txtValidation').text('Loading...');
 		$('#txtValidation').removeClass('hidden');
 		var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
@@ -262,6 +263,10 @@ function app_main() {
 			newWindow.document.close();
 		  }
 		});
+	});
+	$('#aCRUD').click(function(){
+		$('.wizDetails').addClass('hidden');
+		$('#divCRUD').removeClass('hidden');
 	});
 }
 

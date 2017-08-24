@@ -723,8 +723,43 @@
 					</ul>
 					<br/>
 					<br/>
-					<textarea id="txtValidation" class="hidden textarea">
+
+					<textarea id="txtValidation" class="hidden wizDetails textarea">
 					</textarea>
+
+					<div id="divCRUD" class="hidden wizDetails box">
+						<div class='level'>
+						<div class='field is-horizontal level-left'>
+							<label class='field-label is-normal label' for="selCRUDSchema"> Schema </label>
+							<div class='field-body'>
+								<div class="select">
+									<select name="selCRUDSchema">
+										<option v-for="(schema,key) in openapi.components.schemas" :value="key">{{key}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class='field is-horizontal level-item'>
+							<label class='field-label is-normal label' for="selCRUDMethods"> Methods </label>
+							<div class='field-body'>
+								<div class="select" >
+									<select name="selCRUDMethods" multiple=true>
+										<option value="get" selected>GET</option>
+										<option value="post">POST</option>
+										<option value="put">PUT</option>
+										<option value="patch">PATCH</option>
+										<option value="delete">DELETE</option>
+										<option value="head">HEAD</option>
+										<option value="options">OPTIONS</option>
+										<option value="trace">TRACE</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="button is-primary">Generate</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 
