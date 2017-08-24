@@ -387,38 +387,38 @@ Vue.component('api-secdef', {
 		},
 		hasImplicit: {
 			get : function() {
-				return this.sd.flow && this.sd.flow.implicit;
+				return this.sd.flows && this.sd.flows.implicit;
 			},
 			set : function(newVal) {
-				if (newVal) Vue.set(this.sd.flow,'implicit',{})
-				else Vue.delete(this.sd.flow,'implicit');
+				if (newVal) Vue.set(this.sd.flows,'implicit',{})
+				else Vue.delete(this.sd.flows,'implicit');
 			}
 		},
 		hasPassword: {
 			get : function() {
-				return this.sd.flow && this.sd.flow.password;
+				return this.sd.flows && this.sd.flows.password;
 			},
 			set : function(newVal) {
-				if (newVal) Vue.set(this.sd.flow,'password',{})
-				else Vue.delete(this.sd.flow,'password');
+				if (newVal) Vue.set(this.sd.flows,'password',{})
+				else Vue.delete(this.sd.flows,'password');
 			}
 		},
 		hasAuthCode: {
 			get : function() {
-				return this.sd.flow && this.sd.flow.authorizationCode;
+				return this.sd.flows && this.sd.flows.authorizationCode;
 			},
 			set : function(newVal) {
-				if (newVal) Vue.set(this.sd.flow,'authorizationCode',{})
-				else Vue.delete(this.sd.flow,'authorizationCode');
+				if (newVal) Vue.set(this.sd.flows,'authorizationCode',{})
+				else Vue.delete(this.sd.flows,'authorizationCode');
 			}
 		},
 		hasClientCred: {
 			get : function() {
-				return this.sd.flow && this.sd.flow.clientCredentials;
+				return this.sd.flows && this.sd.flows.clientCredentials;
 			},
 			set : function(newVal) {
-				if (newVal) Vue.set(this.sd.flow,'clientCredentials',{})
-				else Vue.delete(this.sd.flow,'clientCredentials');
+				if (newVal) Vue.set(this.sd.flows,'clientCredentials',{})
+				else Vue.delete(this.sd.flows,'clientCredentials');
 			}
 		}
 	},

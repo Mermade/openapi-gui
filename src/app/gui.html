@@ -444,7 +444,7 @@
 										<li v-for="(sd, sdname) in openapi.components.securitySchemes">
 											<a :href="'#sec'+sdname">{{sdname}}</a>
 											<ul>
-												<li v-for="(flow,flowName) in sd.flow">{{flowName}}
+												<li v-for="(flow,flowName) in sd.flows">{{flowName}}
 													<ul>
 														<li v-for="(sdesc, sname) in flow.scopes">{{sname}}</li>
 													</ul>
@@ -575,7 +575,7 @@
 											</div>
 										</div>
 
-										<div class="box" v-for="(flow,flowName) in sd.flow">
+										<div class="box" v-for="(flow,flowName) in sd.flows">
 											<div class='field is-horizontal'>
 												<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
 											</div>
