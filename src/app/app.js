@@ -204,5 +204,25 @@ function app_main() {
             }
         }
     });
+	$('#aShinola').click(function(){
+		console.log(typeof openapi);
+		$(document).ajaxError(function(e, jqxhr, settings, thrownError){
+			console.log(JSON.stringify(jqxhr));
+		});
+		var shinolaUrl = 'https://shinola.herokuapp.com/openapi';
+		//var shinolaUrl = 'http://localhost:5678/openapi';
+		$.ajax({
+		  url:shinolaUrl,
+		  type:"POST",
+		  data:JSON.stringify(openapi),
+		  contentType:"application/json; charset=utf-8",
+		  dataType:"text",
+		  success: function(data) {
+			var newWindow = window.open("", "API Documentation"); //, "width=950, height=750");
+			newWindow.document.write(data);
+			newWindow.document.close();
+		  }
+		});
+	});
 }
 
