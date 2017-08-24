@@ -3,7 +3,9 @@ OpenApi-gui
 
 OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenApi definitions.
 
-#### For the OpenAPI 3.x version, check out the [latest branch](https://github.com/Mermade/openapi-gui/tree/buefy).
+#### For the OpenAPI 3.x version, check out the [latest branch](https://github.com/Mermade/openapi-gui/tree/bulma).
+
+Version 3.x [live demo](https://openapi-gui.herokuapp.com)
 
 ![Screenshot](https://mermade.github.io/openapi-gui/img/screenshot.png)
 
