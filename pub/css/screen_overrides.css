@@ -1,0 +1,8 @@
+/* place your custom CSS overrides here */
+
+div .highlight {
+	max-width: 95%;
+	max-height: 350px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
