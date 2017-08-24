@@ -268,5 +268,9 @@ function app_main() {
 		$('.wizDetails').addClass('hidden');
 		$('#divCRUD').removeClass('hidden');
 	});
+	$('#aImportSchema').click(function(){
+		$('.wizDetails').addClass('hidden');
+		$('#divImportSchema').removeClass('hidden');
+	});
 }
 
