@@ -4,15 +4,14 @@ Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
 		return {
-			specVersion: 'master',
 			cgData : cgData
 		}
 	},
 	methods: {
 
 		specLink: function(fragment) {
-			return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.0.md'+(fragment ? fragment : '');
-		},
+            return this.$root.specLink(fragment);
+        },
 
 		markdownPreview: function(selector) {
 			$('#mdPreview').addClass('is-active');

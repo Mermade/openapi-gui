@@ -124,6 +124,53 @@ function preProcessDefinition(openapi) {
     return openapi;
 }
 
+function postProcessPathItem(pi) {
+    for (var o in pi) {
+        var op = pi[o];
+        if (op.externalDocs && !op.externalDocs.url) {
+            Vue.delete(op, 'externalDocs');
+        }
+        if (op.tags) {
+            if (op.tags.length == 0) {
+                Vue.delete(op, 'tags');
+            }
+            else {
+                Vue.set(op, 'tags', op.tags.filter(onlyUnique));
+            }
+        }
+		if (op.callbacks) {
+			for (var c in op.callbacks) {
+				var callback = op.callbacks[c];
+				for (var e in callback) {
+					var exp = callback[e];
+					postProcessPathItem(exp);
+				}
+			}
+		}
+    }
+	return pi;
+}
+
+function postProcessDefinition(openapi) {
+    var def = clone(openapi);
+    for (var p in def.paths) {
+		postProcessPathItem(def.paths[p]);
+    }
+    for (var t in def.tags) {
+        var tag = def.tags[t];
+        if (tag.externalDocs && !tag.externalDocs.url) {
+            Vue.delete(tag, 'externalDocs');
+        }
+    }
+    if (def.externalDocs && !def.externalDocs.url) {
+        Vue.delete(def, 'externalDocs');
+    }
+    if (def.info && def.info.license && !def.info.license.name) {
+        Vue.delete(def.info, 'license');
+    }
+    return def;
+}
+
 function onlyUnique(value, index, self) {
     return self.indexOf(value) === index;
 }
@@ -159,56 +206,48 @@ function app_main() {
             container: {
                 openapi: openapi
             },
-            importschema : importschema
+            importschema : importschema,
+			specVersion: 'master'
         },
         el: '#main-container',
 		validations: {},
         methods : {
+			specLink : function(fragment) {
+				return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.0.md'+(fragment ? fragment : '');
+			},
             save : function() {
                 if (window.localStorage) {
                     window.localStorage.setItem('openapi3', JSON.stringify(this.container.openapi));
                 }
             },
             postProcessDefinition : function() {
-                var def = clone(this.container.openapi);
-                for (var p in def.paths) {
-                    var path = def.paths[p];
-                    for (var o in path) {
-                        var op = path[o];
-                        if (op.externalDocs && !op.externalDocs.url) {
-                            Vue.delete(op, 'externalDocs');
-                        }
-                        if (op.tags) {
-                            if (op.tags.length == 0) {
-                                Vue.delete(op, 'tags');
-                            }
-                            else {
-                                Vue.set(op, 'tags', op.tags.filter(onlyUnique));
-                            }
-                        }
-                    }
-                }
-                for (var t in def.tags) {
-                    var tag = def.tags[t];
-                    if (tag.externalDocs && !tag.externalDocs.url) {
-                        Vue.delete(tag, 'externalDocs');
-                    }
-                }
-				if (def.externalDocs && !def.externalDocs.url) {
-					Vue.delete(def, 'externalDocs');
-				}
-				if (def.info && def.info.license && !def.info.license.name) {
-					Vue.delete(def.info, 'license');
-				}
-                return def;
-            }
+				return postProcessDefinition(this.container.openapi);
+			}
         }
     });
-	$('#aShinola').click(function(){
-		console.log(typeof openapi);
-		$(document).ajaxError(function(e, jqxhr, settings, thrownError){
-			console.log(JSON.stringify(jqxhr));
+	$(document).ajaxError(function(e, jqxhr, settings, thrownError){
+		console.log(JSON.stringify(jqxhr));
+	});
+	$('#aValidate').click(function(){
+		$('#txtValidation').text('Loading...');
+		$('#txtValidation').removeClass('hidden');
+		var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
+		//var convertUrl = 'http://localhost:3001/api/v1/validate';
+		var data = new FormData();
+		data.append('source',JSON.stringify(postProcessDefinition(openapi)));
+		$.ajax({
+		  url:convertUrl,
+		  type:"POST",
+		  contentType: false,
+		  processData: false,
+		  data:data,
+		  dataType:"json",
+		  success: function(data) {
+			$('#txtValidation').text(JSON.stringify(data,null,2));
+		  }
 		});
+	});
+	$('#aShinola').click(function(){
 		var shinolaUrl = 'https://shinola.herokuapp.com/openapi';
 		//var shinolaUrl = 'http://localhost:5678/openapi';
 		$.ajax({

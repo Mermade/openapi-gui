@@ -10,7 +10,7 @@ Vue.component('api-method', {
 	},
     methods: {
 		specLink: function(fragment) {
-			return this.$parent.$parent.specLink(fragment);
+			return this.$root.specLink(fragment);
 		},
 		markdownPreview: function() {
 			this.$parent.$parent.markdownPreview('#'+this.descId);
@@ -112,7 +112,9 @@ Vue.component('api-method', {
             Vue.delete(this.method.callbacks[cbName],this.expName);
         },
         addExpressionOperation : function(exp) {
-            Vue.set(exp,'get',{});
+			if (!exp.get) {
+				Vue.set(exp,'get',{parameters:[],responses:{default:{description:'Default response'}}});
+			}
         },
         tagSetup : function() {
             var simpleTags = [];
