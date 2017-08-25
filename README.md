@@ -38,5 +38,5 @@ You only need to `npm install` the Node.js modules if you wish to use the `Arapa
 TODO
 ----
 
-* See the [list](/todo.md)
+* See the [list](/docs/TODO.md)
 
