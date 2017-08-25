@@ -2,11 +2,12 @@
 <head><title>OpenAPI-GUI rescue utility</title>
 <script type='text/javascript' src='js/jquery.min.js'></script>
 </head>
-<h1>OpenAPI-GUI rescue utility</h1>
+<h1><a href="/index.html">OpenAPI-GUI</a> rescue utility</h1>
 <h2>This page attempts to fix problems with OpenAPI-GUI not starting</h2>
 <h3>Current stored definition. Copy and paste this to save it</h3>
 <textarea id="txtDef" placeholder="None"></textarea>
 <button id="btnReset">Remove</button>
+<button id="btnUpdate">Update</button>
 <h3><a href="https://github.com/mermade/openapi-gui/issues">Report a bug</a></h3>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -16,6 +17,9 @@
 		$('#btnReset').click(function(){
 			window.localStorage.setItem('openapi3','');
 			$('#txtDef').val('');
+		});
+		$('#btnUpdate').click(function(){
+			window.localStorage.setItem('openapi3',$('#txtDef').val());
 		});
 	});
 </script>

@@ -46,6 +46,7 @@
     </div>
 	<div class="message-body">
       <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress is-success" value="0" max="100">0 %</progress>
+	  <p>In case OpenAPI-GUI does not start, please use the <a href="/rescue.html">rescue utility</a></p>
     </div>
   </article>
   </div>
@@ -84,12 +85,12 @@
 
         // Set up the chain of events...
         $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
-          $('#loading').hide();
 		  if (screen && screen.orientation) {
 		  	screen.orientation.lock('landscape');
 		  }
           $(function() { $.support.transition = false; });
           app_main();
+          $('#loading').hide();
         });
 
         // And finally: Make the actual ajax calls:
