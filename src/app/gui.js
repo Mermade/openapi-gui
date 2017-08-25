@@ -241,8 +241,30 @@ Vue.component('gui-main', {
 				schema = preProcessDefinition(schema);
 				Vue.set(this.$root.container, 'openapi', schema);
 			}
+			else if (schema.swagger && schema.swagger === '2.0') {
+				var component = this;
+				var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
+				//var convertUrl = 'http://localhost:3001/api/v1/convert';
+				var data = new FormData();
+				data.append('source',JSON.stringify(schema));
+				$.ajax({
+				  url:convertUrl,
+				  type:"POST",
+				  contentType: false,
+				  processData: false,
+				  data:data,
+				  dataType:"json",
+				  success: function(schema) {
+					if (schema.openapi && schema.openapi.startsWith('3.0.')) {
+						component.showAlert('Definition successfully converted');
+						schema = preProcessDefinition(schema);
+						Vue.set(component.$root.container, 'openapi', schema);
+					}
+				  }
+				});
+			}
 			else {
-				this.showAlert('OpenAPI version must be 3.0.x');
+				this.showAlert('OpenAPI version must be 2.0 or 3.0.x');
 			}
 		},
 
