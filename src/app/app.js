@@ -71,7 +71,6 @@ function preProcessDefinition(openapi) {
         var tag = openapi.tags[t];
         if (!tag.externalDocs) tag.externalDocs = {};
     }
-    if (!openapi.security) openapi.security = [];
 	if (!openapi.info) {
 		openapi.info = {version:"1.0.0",title:"Untitled"};
 	}
@@ -84,6 +83,8 @@ function preProcessDefinition(openapi) {
 	if (!openapi.externalDocs) {
 		openapi.externalDocs = {};
 	}
+    if (!openapi.security) openapi.security = [];
+	if (!openapi.servers) openapi.servers = [];
 	if (!openapi.paths) {
 		openapi.paths = {};
 	}
@@ -95,6 +96,9 @@ function preProcessDefinition(openapi) {
     }
     if (!openapi.components.callbacks) {
         openapi.components.callbacks = {};
+    }
+    if (!openapi.components.schemas) {
+        openapi.components.schemas = {};
     }
     for (var p in openapi.paths) {
         var path = openapi.paths[p];

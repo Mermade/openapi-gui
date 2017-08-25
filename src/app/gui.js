@@ -69,6 +69,11 @@ Vue.component('gui-main', {
 			});
 		},
 
+		petstore: function () {
+			Vue.set(this.importschema,'text',JSON.stringify(petstore,null,2));
+			Vue.set(this.$root.container,'openapi',preProcessDefinition(petstore));
+		},
+
 		addTag: function () {
 			if (!this.openapi.tags) {
 				Vue.set(this.openapi, 'tags', []);
