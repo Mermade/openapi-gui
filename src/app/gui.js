@@ -236,7 +236,7 @@ Vue.component('gui-main', {
 				this.importschema.text = JSON.stringify(emptyOpenAPI, null, 2);
 			}
 
-			if (schema.openapi.startsWith('3.0.')) {
+			if (schema.openapi && schema.openapi.startsWith('3.0.')) {
 				if (window.localStorage) window.localStorage.setItem('openapi3', JSON.stringify(schema));
 				schema = preProcessDefinition(schema);
 				Vue.set(this.$root.container, 'openapi', schema);
