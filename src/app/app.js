@@ -103,25 +103,28 @@ function preProcessDefinition(openapi) {
     for (var p in openapi.paths) {
         var path = openapi.paths[p];
         for (var o in path) {
-            var op = path[o];
-            if (!op.tags) op.tags = [];
-            if (path.parameters && path.parameters.length > 0) {
-                if (!op.parameters) op.parameters = [];
-                for (var pp in path.parameters) {
-                    var shared = path.parameters[pp];
-                    var seen = false;
-                    for (var cp in op.parameters) {
-                        var child = op.parameters[cp];
-                        if (child && child.name == shared.name && child.in == shared.in) {
-                            seen = true;
-                            break;
-                        }
-                    }
-                    if (!seen) {
-                        op.parameters.push(shared); // TODO resolve whether we should clone it?
-                    }
-                }
-            }
+			if ('get.post.put.patch.delete.options.head.trace'.indexOf(o)>=0) {
+      	     var op = path[o];
+       	     if (!op.tags) op.tags = [];
+       	     if (!op.parameters) op.parameters = [];
+			 if (!op.externalDocs) op.externalDocs = {};
+       	     if (path.parameters && path.parameters.length > 0) {
+       	         for (var pp in path.parameters) {
+       	             var shared = path.parameters[pp];
+       	             var seen = false;
+       	             for (var cp in op.parameters) {
+       	                 var child = op.parameters[cp];
+       	                 if (child && child.name == shared.name && child.in == shared.in) {
+       	                     seen = true;
+       	                     break;
+       	                 }
+       	             }
+       	             if (!seen) {
+       	                 op.parameters.push(shared); // TODO resolve whether we should clone it?
+       	             }
+       	         }
+       	     }
+       	 }
         }
 		delete path.parameters; // other non-HTTP verb properties are excluded from the nav menu
     }

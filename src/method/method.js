@@ -188,11 +188,12 @@ Vue.component('api-method', {
             }
         }
     },
-    beforeMount : function() {
+    beforeUpdate : function() {
         if (!this.method.externalDocs) {
             Vue.set(this.method, 'externalDocs', {});
         }
     },
+	beforeMount : this.beforeUpdate,
 	template: '#template-method'
 });
 
