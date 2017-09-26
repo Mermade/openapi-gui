@@ -17,7 +17,7 @@
   "author": "Mike Ralphson",
   "license": "BSD-3-Clause",
   "optionalDependencies": {
-    "express": "^4.13.3",
+    "express": "^4.15.5",
     "compression": "^1.6.2",
     "ejs": "^2.5.1"
   }

@@ -1,3 +1,5 @@
+* Enable external `$ref`s from github raw links (GitHub browser).
+
 * ~~Finish server parameters~~
 * ~~Finish parameter enums~~
 * Rework tags-input
