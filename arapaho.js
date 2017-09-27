@@ -11,7 +11,7 @@ app.get('/', function (req, res) {
 app.use("/",  express.static(__dirname));
 
 var myport = process.env.PORT || 3000;
-if (process.argv.length>2) myport = process.argv[2];
+//if (process.argv.length>2) myport = process.argv[2];
 
 var server = app.listen(myport, function () {
   var host = server.address().address;
