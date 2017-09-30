@@ -41,12 +41,12 @@
   <div class="container is-fluid">
   <article class="message">
     <div class="message-header">
-	    <p>Loading</p>
-	    <button class="delete"></button>
+        <p>Loading</p>
+        <button class="delete"></button>
     </div>
-	<div class="message-body">
+    <div class="message-body">
       <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress is-success" value="0" max="100">0 %</progress>
-	  <p>In case OpenAPI-GUI does not start, please use the <a href="/rescue.html">rescue utility</a></p>
+      <p>In case OpenAPI-GUI does not start, please use the <a href="/rescue.html">rescue utility</a></p>
     </div>
   </article>
   </div>
@@ -57,26 +57,26 @@
   </div>
   <script>
       var def = [];
-	  var cgData = {	
-	  	clients : [],
-		servers : []
-	  };
+      var cgData = {    
+          clients : [],
+        servers : []
+      };
       function resolveDef(index) {
         $('#progress').attr('value', parseInt($('#progress').attr('value'))+16.66);
         def[index].resolve();
       }
       $(document).ready(function(){
 
-		$.ajax('http://generator.swagger.io/api/gen/clients',{
-			success: function(data) {
-				cgData.clients = data;
-			}
-		});
-		$.ajax('http://generator.swagger.io/api/gen/servers',{
-			success: function(data) {
-				cgData.servers = data;
-			}
-		});
+        $.ajax('http://generator.swagger.io/api/gen/clients',{
+            success: function(data) {
+                cgData.clients = data;
+            }
+        });
+        $.ajax('http://generator.swagger.io/api/gen/servers',{
+            success: function(data) {
+                cgData.servers = data;
+            }
+        });
 
         // Create the Deferred instances that can be handed to $.when()
         for (t=0;t<8;t++) {
@@ -85,9 +85,9 @@
 
         // Set up the chain of events...
         $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
-		  if (screen && screen.orientation) {
-		  	screen.orientation.lock('landscape');
-		  }
+          if (screen && screen.orientation) {
+              screen.orientation.lock('landscape');
+          }
           $(function() { $.support.transition = false; });
           app_main();
           $('#loading').hide();
@@ -102,26 +102,26 @@
         $('#template-yaml').load('src/api-yaml/output.html', function() { resolveDef(5); });
         $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
 
-		// def(7) is our chance to load a spec from a querystring parameter
-		var loadUrl = getParameterByName('url');
-		if (loadUrl) {
-			$.ajax(loadUrl,{
-				success: function(data) {
-					try {
-						openapi = preProcessDefinition(data);
-					}
-					catch (ex) {
-						alert(ex);
-					}
-				},
-				complete: function() {
-					resolveDef(7);
-				}
-			});
-		}
-		else {
-			resolveDef(7);
-		}
+        // def(7) is our chance to load a spec from a querystring parameter
+        var loadUrl = getParameterByName('url');
+        if (loadUrl) {
+            $.ajax(loadUrl,{
+                success: function(data) {
+                    try {
+                        openapi = preProcessDefinition(data);
+                    }
+                    catch (ex) {
+                        alert(ex);
+                    }
+                },
+                complete: function() {
+                    resolveDef(7);
+                }
+            });
+        }
+        else {
+            resolveDef(7);
+        }
 
       });
   </script>
