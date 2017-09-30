@@ -1,4 +1,5 @@
 * Enable external `$ref`s from github raw links (GitHub browser).
+  * https://scotch.io/tutorials/create-a-github-file-explorer-using-vue-js
 
 * ~~Finish server parameters~~
 * ~~Finish parameter enums~~
