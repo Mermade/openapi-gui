@@ -13,13 +13,15 @@ Description
 
 Select an existing OpenApi 2.0 or 3.0.x definition to upload, or create a new definition and start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path, Operation and Parameter will be created.
 
+You can load an existing definition by appending a `?url=` query parameter to the initial start page.
+
 Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting one of the "Export" tabs. When finished, download the output to save it locally or copy it your clipboard. OpenApi-gui only stores one definition at a time, and this is in your browser's local-storage. Make sure you save your JSON/YAML output locally.
 
 Before performing a destructive action, OpenApi-Gui saves the current state of the definition. At all other times you must remember to select Save manually.
 
 ### Technology
 
-OpenApi-gui runs entirely client-side using a number of Javascript frameworks including [jQuery](https://jquery.com/), [Bulma](http://bulma.io/), and [Vue.JS](https://vuejs.org/).
+OpenApi-gui runs entirely client-side using a number of Javascript frameworks including [Vue.JS](https://vuejs.org/), [jQuery](https://jquery.com/) and [Bulma](http://bulma.io/) for CSS.
 
 To get the app up and running just browse to [the live Heroku version](https://openapi-gui.herokuapp.com), deploy to Heroku using the button below, or clone the repo and load `index.html` into a browser / host it yourself - couldn't be simpler.
 
