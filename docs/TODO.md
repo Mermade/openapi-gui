@@ -1,3 +1,5 @@
+* Loading via a ?url= parameter does not invoke Swagger 2.0 conversion
+
 * Enable external `$ref`s from github raw links (GitHub browser).
   * https://scotch.io/tutorials/create-a-github-file-explorer-using-vue-js
 
