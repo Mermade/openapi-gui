@@ -67,6 +67,7 @@ function deref(obj,defs) {
 }
 
 function preProcessDefinition(openapi) {
+    if (!openapi) openapi = {};
     for (var t in openapi.tags) {
         var tag = openapi.tags[t];
         if (!tag.externalDocs) tag.externalDocs = {};
@@ -176,6 +177,24 @@ function postProcessDefinition(openapi) {
         Vue.delete(def.info, 'license');
     }
     return def;
+}
+
+function convertOpenApi2(schema,callback) {
+    var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
+    //var convertUrl = 'http://localhost:3001/api/v1/convert';
+    var data = new FormData();
+    data.append('source',JSON.stringify(schema));
+    $.ajax({
+        url:convertUrl,
+        type:"POST",
+        contentType: false,
+        processData: false,
+        data:data,
+        dataType:"json",
+        success: function(schema) {
+            callback(schema);
+        }
+    });
 }
 
 function onlyUnique(value, index, self) {

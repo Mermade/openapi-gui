@@ -57,8 +57,8 @@
   </div>
   <script>
       var def = [];
-      var cgData = {    
-          clients : [],
+      var cgData = {
+        clients : [],
         servers : []
       };
       function resolveDef(index) {
@@ -104,18 +104,31 @@
 
         // def(7) is our chance to load a spec from a querystring parameter
         var loadUrl = getParameterByName('url');
+        var resolveNow = true;
         if (loadUrl) {
             $.ajax(loadUrl,{
                 success: function(data) {
                     try {
-                        openapi = preProcessDefinition(data);
+                        if (typeof data === 'string') {
+                            data = jsyaml.safeLoad(data);
+                        }
+                        if (data.swagger && (data.swagger === '2.0')) {
+                            resolveNow = false;
+                            convertOpenApi2(data,function(schema){
+                                openapi = preProcessDefinition(schema);
+                                resolveDef(7);
+                            });
+                        }
+                        else {
+                           openapi = preProcessDefinition(data);
+                        }
                     }
                     catch (ex) {
                         alert(ex);
                     }
                 },
                 complete: function() {
-                    resolveDef(7);
+                    if (resolveNow) resolveDef(7);
                 }
             });
         }
