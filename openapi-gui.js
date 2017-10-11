@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var express = require('express');
 var compression = require('compression');
 
@@ -6,16 +8,16 @@ app.use(compression());
 app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname+'/index.html');
+    res.sendFile(__dirname + '/index.html');
 });
-app.use("/",  express.static(__dirname));
+app.use("/", express.static(__dirname));
 
 var myport = process.env.PORT || 3000;
 //if (process.argv.length>2) myport = process.argv[2];
 
 var server = app.listen(myport, function () {
-  var host = server.address().address;
-  var port = server.address().port;
+    var host = server.address().address;
+    var port = server.address().port;
 
-  console.log('Arapaho server listening at http://%s:%s', host, port);
+    console.log('OpenAPI GUI server listening at http://%s:%s', host, port);
 });
