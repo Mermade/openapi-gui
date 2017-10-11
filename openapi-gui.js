@@ -17,5 +17,5 @@ var server = app.listen(myport, function () {
   var host = server.address().address;
   var port = server.address().port;
 
-  console.log('Arapaho server listening at http://%s:%s', host, port);
+  console.log('OpenAPI GUI server listening at http://%s:%s', host, port);
 });
