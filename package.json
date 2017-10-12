@@ -1,24 +1,25 @@
 {
-  "name": "arapaho",
-  "version": "1.0.0",
-  "description": "Micro HTTP server",
-  "main": "arapaho.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node arapaho.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Mermade/arapaho.git"
-  },
-  "keywords": [
-    "http"
-  ],
-  "author": "Mike Ralphson",
-  "license": "BSD-3-Clause",
-  "optionalDependencies": {
-    "express": "^4.15.5",
-    "compression": "^1.6.2",
-    "ejs": "^2.5.1"
-  }
+    "name": "openapi-gui",
+    "version": "1.0.0",
+    "description": "Micro HTTP server",
+    "main": "openapi-gui.js",
+    "bin": { "openapi-gui" : "./openapi-gui.js"},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node openapi-gui.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Mermade/arapaho.git"
+    },
+    "keywords": [
+        "http"
+    ],
+    "author": "Mike Ralphson",
+    "license": "BSD-3-Clause",
+    "optionalDependencies": {
+        "express": "^4.15.5",
+        "compression": "^1.6.2",
+        "ejs": "^2.5.1"
+    }
 }
