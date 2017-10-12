@@ -1,9 +1,11 @@
 {
     "name": "openapi-gui",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "GUI / visual editor for creating and editing OpenApi / Swagger definitions",
     "main": "openapi-gui.js",
-    "bin": { "openapi-gui" : "./openapi-gui.js"},
+    "bin": {
+        "openapi-gui": "./openapi-gui.js"
+    },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node openapi-gui.js"
