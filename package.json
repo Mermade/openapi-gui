@@ -1,7 +1,7 @@
 {
     "name": "openapi-gui",
     "version": "1.0.0",
-    "description": "Micro HTTP server",
+    "description": "GUI / visual editor for creating and editing OpenApi / Swagger definitions",
     "main": "openapi-gui.js",
     "bin": { "openapi-gui" : "./openapi-gui.js"},
     "scripts": {
@@ -10,10 +10,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/Mermade/arapaho.git"
+        "url": "git+https://github.com/Mermade/openapi-gui.git"
     },
     "keywords": [
-        "http"
+        "openapi",
+        "openapi3",
+        "swagger",
+        "editor",
+        "gui",
+        "visual"
     ],
     "author": "Mike Ralphson",
     "license": "BSD-3-Clause",
