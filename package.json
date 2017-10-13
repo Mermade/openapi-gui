@@ -23,7 +23,7 @@
         "visual"
     ],
     "author": "Mike Ralphson",
-    "license": "BSD-3-Clause",
+    "license": "MIT",
     "optionalDependencies": {
         "express": "^4.15.5",
         "compression": "^1.6.2",
