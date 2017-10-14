@@ -61,6 +61,7 @@
         clients : [],
         servers : []
       };
+      var intelligentBackend = false;
       function resolveDef(index) {
         $('#progress').attr('value', parseInt($('#progress').attr('value'))+16.66);
         def[index].resolve();
@@ -94,7 +95,11 @@
         });
 
         // And finally: Make the actual ajax calls:
-        $('#template-gui-main').load('src/app/gui.html', function() { resolveDef(0); });
+        $('#template-gui-main').load('src/app/gui.html', function(data,status,jqXHR) {
+        if (jqXHR.getResponseHeader('X-OpenAPI-GUI')) {
+            intelligentBackend = true;
+        }
+        resolveDef(0); });
         $('#template-resource').load('src/resource/resource.html', function() { resolveDef(1); });
         $('#template-method').load('src/method/method.html', function() { resolveDef(2); });
         $('#template-parameter').load('src/parameter/parameter.html', function() { resolveDef(3); });

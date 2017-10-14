@@ -180,8 +180,9 @@ function postProcessDefinition(openapi) {
 }
 
 function convertOpenApi2(schema,callback) {
-    var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
-    //var convertUrl = 'http://localhost:3001/api/v1/convert';
+    var convertUrl;
+    if (intelligentBackend) convertUrl = '/api/v1/convert';
+    else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
     var data = new FormData();
     data.append('source',JSON.stringify(schema));
     $.ajax({
@@ -258,8 +259,9 @@ function app_main() {
 		$('.wizDetails').addClass('hidden');
 		$('#txtValidation').text('Loading...');
 		$('#txtValidation').removeClass('hidden');
-		var convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
-		//var convertUrl = 'http://localhost:3001/api/v1/validate';
+        var convertUrl;
+        if (intelligentBackend) convertUrl = '/api/v1/validate';
+        else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
 		var data = new FormData();
 		data.append('source',JSON.stringify(postProcessDefinition(openapi)));
 		$.ajax({
