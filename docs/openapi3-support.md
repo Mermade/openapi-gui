@@ -33,7 +33,7 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 - [ ] [components](#components-object)
 - [ ] [security](#security-requirement-object)
 - [ ] [tags](#tag-object)
-- [ ] [externalDocs](#external-documentation-object)
+- [x] [externalDocs](#external-documentation-object)
 
 ### [Info](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#info-object) object
 
@@ -106,20 +106,20 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] tags
 - [x] summary
 - [x] description
-- [ ] [externalDocs](#external-documentation-object)
+- [x] [externalDocs](#external-documentation-object)
 - [x] operationId
 - [x] [parameters](#parameter-object)
 - [x] [requestBody](#request-body-object)
 - [x] [responses](#responses-object)
-- [ ] [callbacks](#callback-object)
+- [x] [callbacks](#callback-object)
 - [x] deprecated
 - [ ] [security](#security-scheme-object)
 - [ ] [servers](#server-object)
 
 ### [External Documentation](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#external-documentation-object) object
 
-- [ ] description
-- [ ] url
+- [x] description
+- [x] url
 
 ### [Parameter](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#parameter-object) object
 
