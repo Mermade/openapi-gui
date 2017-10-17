@@ -7,7 +7,7 @@ OpenApi-gui is a GUI for creating and editing OpenApi (Swagger) JSON/YAML defini
 
 Version 3.x [live demo](https://openapi-gui.herokuapp.com)
 
-![Screenshot](https://mermade.github.io/openapi-gui/img/screenshot.png)
+![Screenshot](https://mikeralphson.github.io/openapi-gui/img/screenshot.png)
 
 This project was initially a fork of [Daryl Kuhn's IODoctor](https://github.com/darrylkuhn/iodoctor/tree/angular-port), which in turn was inspired by [IODoctor by Brandon West](https://github.com/brandonmwest/iodoctor) which was written in Ruby.
 
