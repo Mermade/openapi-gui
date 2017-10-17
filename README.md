@@ -25,7 +25,7 @@ Before performing a destructive action, OpenApi-Gui saves the current state of t
 
 OpenApi-gui runs entirely client-side using a number of Javascript frameworks including [Vue.JS](https://vuejs.org/), [jQuery](https://jquery.com/) and [Bulma](http://bulma.io/) for CSS.
 
-To get the app up and running just browse to [the live Heroku version](https://openapi-gui.herokuapp.com), deploy to Heroku using the button below, deploy a clone to GitHub pages, or clone the repo and point a browser at `index.html` or host it yourself - couldn't be simpler.
+To get the app up and running just browse to [the live Heroku version](https://openapi-gui.herokuapp.com), deploy to Heroku using the button below, deploy a clone to GitHub pages, or clone the repo and point a browser at `index.html` or host it yourself - couldn't be simpler. More [technical information here](docs/technical.md).
 
 You only need to `npm install` the Node.js modules if you wish to use the `openapi-gui` embedded web server (i.e. not if you are running your own web-server), otherwise they are only there for PaaS deployments.
 
@@ -42,5 +42,5 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 TODO
 ----
 
-* See the [list](/docs/TODO.md)
+* See the [TODO list](/docs/TODO.md) and the current status of [OpenAPI 3.0 specification support](docs/openapi3-support.md).
 
