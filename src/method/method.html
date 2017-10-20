@@ -397,6 +397,27 @@
 
             </div>
 
+            <div class="method-pane method-pane-security hidden container is-fluid">
+                <div class="level">
+                    <label class="label" for="chkDefault">Use default security</label>
+                    <input id="chkDefault" class="checkbox" type="checkbox" v-model="secDefault"/>
+                    <label class="label" for="chkNone">Disable security</label>
+                    <input id="chkNone" class="checkbox" type="checkbox" v-model="secNone"/>
+                    <label class="label" for="chkCustom">Use custom security</label>
+                    <input id="chkCustom" class="checkbox" type="checkbox" v-model="secCustom"/>
+                </div>
+                <div v-if="secCustom">
+                    <h4 class="none"><strong>Selected security schemes</strong></h4>
+                    <ul>
+                        <li v-for="(scheme,index) in method.security">
+                            <span class="icon" data-balloon="Remove security scheme from operation"><a v-on:click="removeSecScheme(index)"><i class="fa fa-trash"></i></a></span>
+                            <span><strong>{{Object.keys(scheme)[0]}}</strong></span>
+                            <span>{{Object.values(scheme)[0]}}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
             <div class="method-pane method-pane-links hidden container is-fluid">
                 <div class="card" v-if="!method.links || Object.keys(method.links).length == 0">
                     <div class="card-content">

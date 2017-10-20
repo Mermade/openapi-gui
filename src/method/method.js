@@ -116,6 +116,10 @@ Vue.component('api-method', {
 				Vue.set(exp,'get',{parameters:[],responses:{default:{description:'Default response'}}});
 			}
         },
+        removeSecScheme : function(index) {
+            this.method.security.splice(index,1);
+            Vue.set(this.method,'security',this.method.security);
+        },
         tagSetup : function() {
             var simpleTags = [];
             for (var t in this.maintags) {
@@ -185,6 +189,66 @@ Vue.component('api-method', {
                 if (!this.method.requestBody) return null;
                 if (!this.method.requestBody.$ref) return this.method.requestBody;
                 return deref(this.method.requestBody, this.$root.container.openapi);
+            }
+        },
+        secDefault : {
+            get : function() {
+                return (!this.method.security);
+            },
+            set : function(newVal) {
+                if (newVal) {
+                    Vue.delete(this.method, 'security');
+                }
+                else {
+                    Vue.set(this.method, 'security', []); // disable, works like radio buttons
+                }
+            }
+        },
+        secNone : {
+            get : function() {
+                return (this.method.security && this.method.security.length === 0);
+            },
+            set : function(newVal) {
+                if (newVal) {
+                    Vue.set(this.method, 'security', []);
+                }
+                else {
+                    Vue.delete(this.method, 'security'); // default, works like radio buttons
+                }
+            }
+        },
+        secCustom : {
+            get : function() {
+                return (this.method.security && this.method.security.length > 0);
+            },
+            set : function(newVal) {
+                if (newVal) {
+                    var newSec = clone(this.$root.container.openapi.security);
+                    if (!newSec || newSec.length === 0) {
+                        newSec = [];
+                        for (s in this.$root.container.openapi.components.securitySchemes) {
+                            var scheme = this.$root.container.openapi.components.securitySchemes[s];
+                            var scopes = [];
+                            if (scheme.type === 'oauth2') {
+                                for (var f in scheme.flows) {
+                                    var flow = scheme.flows[f];
+                                    if (flow.scopes) {
+                                        for (sc in flow.scopes) {
+                                            if (scopes.indexOf(s) < 0) scopes.push(sc);
+                                        }
+                                    }
+                                }
+                            }
+                            var entry = {};
+                            entry[s] = scopes;
+                            newSec.push(entry);
+                        }
+                    }
+                    Vue.set(this.method, 'security', newSec);
+                }
+                else {
+                    Vue.delete(this.method, 'security'); // default, works like radio buttons
+                }
             }
         }
     },

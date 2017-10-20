@@ -8,6 +8,8 @@
 * ~~Finish parameter enums~~
 * Rework tags-input
 * ~~Editing of requestBody schemas / content-types~~
+* ~~Operation-level security~~
+* Scope editor for operation-level security
 * Editing of requestBody examples
 * Add validation on form fields
   * License name is required if license url is filled in (thus the object is present)

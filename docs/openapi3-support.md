@@ -31,7 +31,7 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 - [x] [servers](#servers-object)
 - [ ] [paths](#paths-object)
 - [ ] [components](#components-object)
-- [ ] [security](#security-requirement-object)
+- [x] [security](#security-requirement-object)
 - [ ] [tags](#tag-object)
 - [x] [externalDocs](#external-documentation-object)
 
@@ -77,7 +77,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] [examples](#example-object)
 - [x] [requestBodies](#request-body-object)
 - [x] [headers](#header-object)
-- [ ] [securitySchemes](#security-scheme-object)
+- [x] [securitySchemes](#security-scheme-object)
 - [ ] [links](#link-object)
 - [x] [callbacks](#callback-object)
 
