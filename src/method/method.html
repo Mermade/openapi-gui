@@ -27,49 +27,55 @@
 
             <ul id="method-tabs" class='tabs is-boxed tab-container'>
                 <li class="tabItem method-tab is-active tabItem-method-main">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('main',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('main',$event)">
                         <span class="icon is-small"><i class="fa fa-cog"></i></span>
                         <span>Main</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-description">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('description',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('description',$event)">
                         <span class="icon is-small"><i class="fa fa-comment"></i></span>
                         <span>Description</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-docs">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('docs',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('docs',$event)">
                         <span class="icon is-small"><i class="fa fa-book"></i></span>
                         <span>Docs</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-parameters">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('parameters',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('parameters',$event)">
                         <span class="icon is-small"><i class="fa fa-list"></i></span>
                         <span>Parameters</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-requestbodies">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('requestbodies',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('requestbodies',$event)">
                         <span class="icon is-small"><i class="fa fa-question"></i></span>
                         <span>Request Body</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-responses">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('responses',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('responses',$event)">
                         <span class="icon is-small"><i class="fa fa-thumbs-o-up"></i></span>
                         <span>Responses</span>
                     </a>
                 </li>
+                <li class="tabItem method-tab tabItem-method-security">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('security',$event)">
+                        <span class="icon is-small"><i class="fa fa-lock"></i></span>
+                        <span>Security</span>
+                    </a>
+                </li>
                 <li class="tabItem method-tab tabItem-method-links">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('links',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('links',$event)">
                         <span class="icon is-small"><i class="fa fa-link"></i></span>
                         <span>Links</span>
                     </a>
                 </li>
                 <li class="tabItem method-tab tabItem-method-callbacks">
-                    <a class="tabSelect" href="#about" v-on:click="selectTab('callbacks',$event)">
+                    <a class="tabSelect" href="#" v-on:click="selectTab('callbacks',$event)">
                         <span class="icon is-small"><i class="fa fa-chevron-circle-left"></i></span>
                         <span>Callbacks</span>
                     </a>
