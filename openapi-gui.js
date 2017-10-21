@@ -2,15 +2,30 @@
 
 'use strict';
 
-var express = require('express');
-var compression = require('compression');
+const util = require('util');
 
-var ourVersion = require('./package.json').version;
+const express = require('express');
+const compression = require('compression');
+
+const ourVersion = require('./package.json').version;
+var definition = {openapi:"3.0.0",info:{title:"API",version:"1.0.0"}};
 
 var api = require('openapi-webconverter/api.js').api;
 var app = api.app;
 app.use(compression());
 app.set('view engine', 'ejs');
+
+app.post('/store', function(req, res) {
+    try {
+        definition = JSON.parse(req.body.source);
+    }
+    catch (ex) {}
+    res.send('OK');
+});
+
+app.get('/serve', function(req, res) {
+    res.send(JSON.stringify(definition,null,2));
+});
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
