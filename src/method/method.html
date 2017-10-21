@@ -406,7 +406,7 @@
                     <label class="label" for="chkCustom">Use custom security</label>
                     <input id="chkCustom" class="radio" type="radio" value="custom" v-model="secType"/>
                 </div>
-                <div v-if="secCustom">
+                <div v-if="secType === 'custom'">
                     <h4 class="none"><strong>Selected security schemes</strong></h4>
                     <ul>
                         <li v-for="(scheme,index) in method.security">
