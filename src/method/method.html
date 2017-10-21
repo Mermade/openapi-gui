@@ -400,11 +400,11 @@
             <div class="method-pane method-pane-security hidden container is-fluid">
                 <div class="level">
                     <label class="label" for="chkDefault">Use default security</label>
-                    <input id="chkDefault" class="checkbox" type="checkbox" v-model="secDefault"/>
+                    <input id="chkDefault" class="radio" type="radio" value="default" v-model="secType"/>
                     <label class="label" for="chkNone">Disable security</label>
-                    <input id="chkNone" class="checkbox" type="checkbox" v-model="secNone"/>
+                    <input id="chkNone" class="radio" type="radio" value="none" v-model="secType"/>
                     <label class="label" for="chkCustom">Use custom security</label>
-                    <input id="chkCustom" class="checkbox" type="checkbox" v-model="secCustom"/>
+                    <input id="chkCustom" class="radio" type="radio" value="custom" v-model="secType"/>
                 </div>
                 <div v-if="secCustom">
                     <h4 class="none"><strong>Selected security schemes</strong></h4>

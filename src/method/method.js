@@ -191,38 +191,20 @@ Vue.component('api-method', {
                 return deref(this.method.requestBody, this.$root.container.openapi);
             }
         },
-        secDefault : {
+        secType :  {
             get : function() {
-                return (!this.method.security);
+                if (!this.method.security) return 'default';
+                if (this.method.security && this.method.security.length === 0) return 'none';
+                return 'custom';
             },
             set : function(newVal) {
-                if (newVal) {
+                if (newVal == 'default') {
                     Vue.delete(this.method, 'security');
                 }
-                else {
-                    Vue.set(this.method, 'security', []); // disable, works like radio buttons
-                }
-            }
-        },
-        secNone : {
-            get : function() {
-                return (this.method.security && this.method.security.length === 0);
-            },
-            set : function(newVal) {
-                if (newVal) {
+                else if (newVal == 'none') {
                     Vue.set(this.method, 'security', []);
                 }
                 else {
-                    Vue.delete(this.method, 'security'); // default, works like radio buttons
-                }
-            }
-        },
-        secCustom : {
-            get : function() {
-                return (this.method.security && this.method.security.length > 0);
-            },
-            set : function(newVal) {
-                if (newVal) {
                     var newSec = clone(this.$root.container.openapi.security);
                     if (!newSec || newSec.length === 0) {
                         newSec = [];
@@ -245,9 +227,6 @@ Vue.component('api-method', {
                         }
                     }
                     Vue.set(this.method, 'security', newSec);
-                }
-                else {
-                    Vue.delete(this.method, 'security'); // default, works like radio buttons
                 }
             }
         }
