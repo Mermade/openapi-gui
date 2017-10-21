@@ -15,6 +15,7 @@ var app = api.app;
 app.use(compression());
 app.set('view engine', 'ejs');
 
+// extract into URSA: Undo/Redo Server API, use API-chaining
 app.post('/store', function(req, res) {
     try {
         definition = JSON.parse(req.body.source);
