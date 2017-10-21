@@ -12,19 +12,23 @@ var definition = {openapi:"3.0.0",info:{title:"API",version:"1.0.0"}};
 
 var api = require('openapi-webconverter/api.js').api;
 var app = api.app;
+var upload = api.upload;
 app.use(compression());
 app.set('view engine', 'ejs');
 
 // extract into URSA: Undo/Redo Server API, use API-chaining
-app.post('/store', function(req, res) {
+app.post('/store', upload.single('filename'), function(req, res) {
     try {
         definition = JSON.parse(req.body.source);
     }
-    catch (ex) {}
+    catch (ex) {
+        console.warn(ex.message);
+    }
     res.send('OK');
 });
 
 app.get('/serve', function(req, res) {
+    res.set('Content-Type','application/json');
     res.send(JSON.stringify(definition,null,2));
 });
 

@@ -30,6 +30,6 @@
         "ejs": "^2.5.1"
     },
     "dependencies": {
-        "openapi-webconverter": "^1.3.0"
+        "openapi-webconverter": "^1.3.2"
     }
 }

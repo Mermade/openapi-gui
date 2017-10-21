@@ -36,7 +36,7 @@ function deref(obj,defs) {
             if ((typeof o == 'object') && (o["$ref"])) {
                 var ptr = o["$ref"];
                 //console.log('  '+ptr+' @ '+path);
-                var target = (ptr.indexOf('#/components/') == 0) ? defs : result;
+                var target = (ptr.indexOf('#/components/') === 0) ? defs : result;
                 try {
                     var def = new JSONPointer(ptr.substr(1)).get(target);
                     changes++;
@@ -139,7 +139,7 @@ function postProcessPathItem(pi) {
             Vue.delete(op, 'externalDocs');
         }
         if (op.tags) {
-            if (op.tags.length == 0) {
+            if (op.tags.length === 0) {
                 Vue.delete(op, 'tags');
             }
             else {
@@ -245,6 +245,19 @@ function app_main() {
             save : function() {
                 if (window.localStorage) {
                     window.localStorage.setItem('openapi3', JSON.stringify(this.container.openapi));
+                }
+                if (window.intelligentBackend) {
+                    var data = new FormData();
+                    data.append('source',JSON.stringify(this.container.openapi));
+                    $.ajax({
+                        url:'/store',
+                        type:"POST",
+                        contentType: false,
+                        processData: false,
+                        data:data,
+                        success: function(result) {
+                        }
+                    });
                 }
             },
             postProcessDefinition : function() {
