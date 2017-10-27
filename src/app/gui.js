@@ -324,7 +324,10 @@ Vue.component('gui-main', {
 			if (window.localStorage) {
 				Vue.set(this.$root.container, 'openapi', JSON.parse(window.localStorage.getItem('openapi3')));
 			}
-		}
+		},
+
+        redo: function() {
+        }
 
 	},
 	validations: {
