@@ -1,6 +1,6 @@
 {
     "name": "openapi-gui",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "description": "GUI / visual editor for creating and editing OpenApi / Swagger definitions",
     "main": "openapi-gui.js",
     "bin": {
