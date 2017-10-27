@@ -32,6 +32,6 @@
         "shins": "^2.0.1-5"
     },
     "dependencies": {
-        "openapi-webconverter": "^1.3.6"
+        "openapi-webconverter": "^1.3.7"
     }
 }
