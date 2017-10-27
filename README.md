@@ -34,7 +34,7 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 ### Limitations
 
 * OpenApi-gui will de-reference shared parameters.
-* The definition must be self-contained with no external `$ref`s.
+* The definition must be self-contained with no external `$ref`s. **This is likely to be resolved (ho-ho) soon**.
 * Editing a response / example / body schema will dereference it.
 * OpenApi-gui will not always preserve vendor-extensions, e.g. if a parameter is deleted and recreated.
 * OpenApi-gui will not preserve comments from definitions imported in YAML format.
