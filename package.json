@@ -29,7 +29,7 @@
         "compression": "^1.6.2",
         "ejs": "^2.5.1",
         "widdershins": "^2.2.5",
-		"shins": "^2.0.1-5"
+        "shins": "^2.0.1-5"
     },
     "dependencies": {
         "openapi-webconverter": "^1.3.2"
