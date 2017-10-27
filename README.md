@@ -31,6 +31,16 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+#### Running with Docker
+
+If you don't have a local Node development environment, or if you would prefer to run OpenApi-gui in a Docker container, you can do in with a few simple steps.
+
+1. Clone the repository.
+2. Run `make` to build the Docker image (`mermade/openapi-gui`)
+3. Run `make start` to run the server on port 8080.
+4. Navigate to `http://localhost:8080` in your favorite browser.
+5. When you're done, shut down the server by running `make stop`.
+
 ### Limitations
 
 * OpenApi-gui will de-reference shared parameters.
