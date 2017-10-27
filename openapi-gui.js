@@ -10,7 +10,7 @@ const widdershins = require('widdershins');
 const shins = require('shins');
 
 const ourVersion = require('./package.json').version;
-var definition = {openapi:"3.0.0",info:{title:"API",version:"1.0.0"}};
+var definition = {openapi:"3.0.0",info:{title:"API",version:"1.0.0"},paths:{}};
 
 // nice stack traces
 process.on('unhandledRejection', r => console.log(r));
