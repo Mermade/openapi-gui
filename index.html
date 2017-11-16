@@ -88,7 +88,10 @@
         // Set up the chain of events...
         $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
           if (screen && screen.orientation) {
-              screen.orientation.lock('landscape');
+              try {
+                screen.orientation.lock('landscape');
+              }
+              catch (ex) {};
           }
           $(function() { $.support.transition = false; });
           app_main();
