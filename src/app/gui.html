@@ -159,7 +159,7 @@
 					<br>
 					<br>
 					<h3 class="subtitle">Converting from Swagger / OpenAPI 2.0</h3>
-					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://openapi-converter.herokuapp.com/">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
+					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://mermade.org.uk/openapi-converter">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
@@ -717,7 +717,7 @@
 					<h1 class="title">Wizards (Work-In-Progress)</h1>
 					<h2 class="subtitle">These functions may be experimental, or have only a rudimentary UI</h2>
 					<ul>
-						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="http://openapi-converter.herokuapp.com/">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
+						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
 						<li><a id="aShinola">Generate documentation</a> using <a href="https://github.com/mermade/shinola">shinola</a> (online <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> pipeline)</li>
 						<li v-if="window.intelligentBackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> </li>
 						<li v-if="window.intelligentBackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> </li>

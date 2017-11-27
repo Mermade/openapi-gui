@@ -182,7 +182,7 @@ function postProcessDefinition(openapi) {
 function convertOpenApi2(schema,callback) {
     var convertUrl;
     if (window.intelligentBackend) convertUrl = '/api/v1/convert';
-    else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
+    else convertUrl = 'https://mermade.org.uk/openapi-converter/api/v1/convert';
     var data = new FormData();
     data.append('source',JSON.stringify(schema));
     $.ajax({
@@ -274,7 +274,7 @@ function app_main() {
 		$('#txtValidation').removeClass('hidden');
         var convertUrl;
         if (window.intelligentBackend) convertUrl = '/api/v1/validate';
-        else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
+        else convertUrl = 'https://mermade.org.uk/openapi-converter/api/v1/validate';
 		var data = new FormData();
 		data.append('source',JSON.stringify(postProcessDefinition(openapi)));
 		$.ajax({
