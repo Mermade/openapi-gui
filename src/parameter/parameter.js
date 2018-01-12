@@ -22,7 +22,7 @@ Vue.component('api-parameter', {
             set : function(newVal) {
                 if (newVal == 'array') {
                     var items = {};
-                    items.schema = this.parameter.schema;
+                    items = clone(this.parameter.schema);
                     Vue.set(this.parameter.schema, 'items', items);
                 }
                 else {
