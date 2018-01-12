@@ -23,13 +23,13 @@ Vue.component('api-parameter', {
                 if (newVal == 'array') {
                     var items = {};
                     items.schema = this.parameter.schema;
-                    Vue.set(this.parameter, 'items', items);
+                    Vue.set(this.parameter.schema, 'items', items);
                 }
                 else {
                     Vue.set(this.parameter, 'schema', this.parameter.items.schema);
-                    Vue.delete(this.parameter, 'items');
+                    Vue.delete(this.parameter.schema, 'items');
                 }
-                this.parameter.type = newVal;
+                this.parameter.schema.type = newVal;
             }
         },
 
@@ -56,9 +56,9 @@ Vue.component('api-parameter', {
 
         effectiveFormats : {
             get : function() {
-                if (this.parameter.type == 'integer') return ['int32','int64'];
-                if (this.parameter.type == 'number') return ['float','double'];
-                if (this.parameter.type == 'string') return ['date','date-time','byte','binary','password'];
+                if (this.parameter.schema.type == 'integer') return ['int32','int64'];
+                if (this.parameter.schema.type == 'number') return ['float','double'];
+                if (this.parameter.schema.type == 'string') return ['date','date-time','byte','binary','password'];
                 return [];
             },
             set : function(newVal) {}
