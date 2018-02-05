@@ -312,8 +312,7 @@ Vue.component('gui-main', {
 		},
 
 		scrollTop: function () {
-			var elem = document.getElementById('scrollTop');
-			elem.scrollIntoView();
+            window.scrollTo(0,0);
 		},
 
 		save: function () {
