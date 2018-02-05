@@ -31,6 +31,8 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
+To run in a Docker container, see the [wiki](https://github.com/Mermade/openapi-gui/wiki/Docker).
+
 ### Limitations
 
 * OpenAPI-GUI will de-reference shared parameters.
