@@ -133,11 +133,13 @@
                     </div>
                 </div>
                 <div class='field is-horizontal'>
-                    <label class='field-label is-normal'> Tags </label>
-                    <div class='field-body'>
-                        <select :id="tagId" class="select" multiple v-model='vtags'>
-                            <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
-                        </select>
+				    <div class="field-label is-normal">
+                  	  <label class='label'> Tags </label>
+					</div>
+                    <div class="field-body">
+                    <b-taginput horizontal=true v-model="vtags" icon="label"
+                        placeholder="Add a tag"
+                        type="is-success" :allowNew=true></b-taginput>
                     </div>
                 </div>
             </div>

@@ -227,6 +227,11 @@ var schemaEditorSave = function() {};
 var schemaEditorClose = function() {};
 
 function app_main() {
+    Vue.use(Buefy, { defaultIconPack: 'fa' });
+    Vue.component(Buefy.default.Input.name, Buefy.default.Input);
+    Vue.component(Buefy.default.Autocomplete.name, Buefy.default.Autocomplete);
+    Vue.component(Buefy.default.Tag.name, Buefy.default.Tag);
+    Vue.component(Buefy.default.Taginput.name, Buefy.default.Taginput);
     Vue.use(window.vuelidate.default);
     var vm = new Vue({
         data: {
