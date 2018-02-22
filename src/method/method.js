@@ -145,6 +145,15 @@ Vue.component('api-method', {
                 this.method.tags = newVal;
             }
         },
+        mtags : {
+            get: function() {
+                var result = [];
+                for (var i=0;i<this.maintags.length;i++) {
+                    result.push(this.maintags[i].name);
+                }
+                return result;
+            }
+        },
         effectiveRequestBody : {
             get : function() {
                 if (!this.method.requestBody) return null;

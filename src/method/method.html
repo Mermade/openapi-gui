@@ -137,9 +137,12 @@
                   	  <label class='label'> Tags </label>
 					</div>
                     <div class="field-body">
+                    <b-field>
                     <b-taginput horizontal=true v-model="vtags" icon="label"
                         placeholder="Add a tag"
-                        type="is-success" :allowNew=true></b-taginput>
+                        autocomplete :data="mtags" allow-new=true
+                        type="is-success"></b-taginput>
+                    </b-field>
                     </div>
                 </div>
             </div>
