@@ -2,7 +2,7 @@ function clone(obj) {
     return JSON.parse(JSON.stringify(obj));
 }
 
-function getParameterByName(name, url) {
+function getUrlParameterByName(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -62,6 +62,37 @@ function deref(obj,defs) {
                 }
             }
         });
+    }
+    return result;
+}
+
+function processExtensions(extensions) {
+    result = {};
+    for (var e=0;e<extensions.length;e++) {
+        var ext = extensions[e];
+        delete ext.openapiExtensionFormat;
+        delete ext.info;
+        ext = deref(ext,ext);
+        delete ext.components;
+        for (var namespace in ext) {
+            for (var si in ext[namespace]) {
+                var se = ext[namespace][si];
+                var targets = ['*'];
+                if (se.oas3 && se.oas3.usage && se.oas3.usage === 'restricted') {
+                    targets = se.oas3.objectTypes;
+                }
+                var definition = {};
+                definition.propertyName = si;
+                definition.schema = se.schema;
+                definition.example = se.example;
+                definition.externalDocs = se.externalDocs;
+                for (var t=0;t<targets.length;t++) {
+                    var target = targets[t];
+                    if (!result[target]) result[target] = [];
+                    result[target].push(definition);
+                }
+            }
+        }
     }
     return result;
 }
@@ -222,6 +253,9 @@ openapi = preProcessDefinition(openapi);
 var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
 
+var semoasa = processExtensions(extensions);
+console.log(JSON.stringify(semoasa,null,2));
+
 // or we could wrap jsoneditor in a Vue.js component?
 var schemaEditorSave = function() {};
 var schemaEditorClose = function() {};
@@ -239,19 +273,23 @@ function app_main() {
                 openapi: openapi
             },
             importschema : importschema,
-			specVersion: 'master'
+			specVersion: 'master',
+            settings: {
+                intelligentbackend: window.intelligentBackend,
+                semoasa: semoasa
+            }
         },
         el: '#main-container',
 		validations: {},
         methods : {
 			specLink : function(fragment) {
-				return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.0.md'+(fragment ? fragment : '');
+				return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.1.md'+(fragment ? fragment : '');
 			},
             save : function() {
                 if (window.localStorage) {
                     window.localStorage.setItem('openapi3', JSON.stringify(this.container.openapi));
                 }
-                if (window.intelligentBackend) {
+                if (this.settings.intelligentbackend) {
                     var data = new FormData();
                     data.append('source',JSON.stringify(this.container.openapi));
                     $.ajax({

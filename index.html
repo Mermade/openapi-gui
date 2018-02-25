@@ -2,7 +2,7 @@
 <html lang="en" class="has-navbar-fixed-top">
 
 <head>
-  <title>OpenAPI-GUI v3.0.0</title>
+  <title>OpenAPI-GUI v3.0.1</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf8">
   <link href="css/font-awesome.min.css" rel="stylesheet">
@@ -19,7 +19,8 @@
   <script type='text/javascript' src="js/jsonpatch.js"></script>
   <script type='text/javascript' src="js/jsoneditor.min.js"></script>
   <script type='text/javascript' src="data/static.js"></script>
-  <script type='text/javascript' src="js/vue.min.js"></script>
+  <!-- <script type='text/javascript' src="js/vue.min.js"></script> -->
+  <script type='text/javascript' src='https://vuejs.org/js/vue.js'></script>
   <script type='text/javascript' src="js/vuelidate.min.js"></script>
   <script type='text/javascript' src="js/validators.min.js"></script>
   <script type='text/javascript' src="js/buefy.min.js"></script>
@@ -29,6 +30,7 @@
   <script src="src/method/method.js"></script>
   <script src="src/parameter/parameter.js"></script>
   <script src="src/items/items.js"></script>
+  <script src="src/extension/extension.js"></script>
   <script src="src/app/gui.js"></script>
 
   <script src="src/api-definition/api-definition.js"></script>
@@ -48,14 +50,14 @@
     </div>
     <div class="message-body">
       <strong>Please wait!</strong> OpenAPI-GUI v3 is loading... <progress id="progress" class="progress is-success" value="0" max="100">0 %</progress>
-      <p>In case OpenAPI-GUI does not start, please use the <a href="/rescue.html">rescue utility</a>.</p>
+      <p>In case OpenAPI-GUI does not start, please use the <a href="/rescue.html">rescue utility</a> or check the console.</p>
     </div>
   </article>
   </div>
   </div>
 
   <div id="main-container">
-    <gui-main :openapi='container.openapi' :importschema='importschema'></gui-main>
+    <gui-main :openapi='container.openapi' :importschema='importschema' :settings='settings'></gui-main>
   </div>
   <script>
       var def = [];
@@ -63,9 +65,8 @@
         clients : [],
         servers : []
       };
-      window.intelligentBackend = false;
       function resolveDef(index) {
-        $('#progress').attr('value', parseInt($('#progress').attr('value'))+16.66);
+        $('#progress').attr('value', parseInt($('#progress').attr('value'))+11.11);
         def[index].resolve();
       }
       $(document).ready(function(){
@@ -82,12 +83,12 @@
         });
 
         // Create the Deferred instances that can be handed to $.when()
-        for (t=0;t<8;t++) {
+        for (t=0;t<=9;t++) {
           def.push($.Deferred());
         }
 
         // Set up the chain of events...
-        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
+        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7], def[8], def[9]).then(function() {
           if (screen && screen.orientation) {
               try {
                 screen.orientation.lock('landscape');
@@ -111,9 +112,11 @@
         $('#template-definition').load('src/api-definition/output.html', function() { resolveDef(4); });
         $('#template-yaml').load('src/api-yaml/output.html', function() { resolveDef(5); });
         $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
+        $('#template-extension').load('src/extension/extension.html', function() { resolveDef(7); });
+        $('#template-property').load('src/extension/property.html', function() { resolveDef(8); });
 
-        // def(7) is our chance to load a spec from a querystring parameter
-        var loadUrl = getParameterByName('url');
+        // def(9) is our chance to load a spec from a querystring parameter
+        var loadUrl = getUrlParameterByName('url');
         var resolveNow = true;
         if (loadUrl) {
             $.ajax(loadUrl,{
@@ -126,7 +129,7 @@
                             resolveNow = false;
                             convertOpenApi2(data,function(schema){
                                 openapi = preProcessDefinition(schema);
-                                resolveDef(7);
+                                resolveDef(9);
                             });
                         }
                         else {
@@ -138,12 +141,12 @@
                     }
                 },
                 complete: function() {
-                    if (resolveNow) resolveDef(7);
+                    if (resolveNow) resolveDef(9);
                 }
             });
         }
         else {
-            resolveDef(7);
+            resolveDef(9);
         }
 
       });
@@ -156,6 +159,8 @@
     <div id="template-definition"></div>
     <div id="template-yaml"></div>
     <div id="template-items"></div>
+    <div id="template-extension"></div>
+    <div id="template-property"></div>
   </div>
   <div class="modal fade" id="schemaModal">
     <div class="card">

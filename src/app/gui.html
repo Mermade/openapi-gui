@@ -162,7 +162,7 @@
 					<br>
 					<br>
 					<h3 class="subtitle">Converting from Swagger / OpenAPI 2.0</h3>
-					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://mermade.org.uk/openapi-converter">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
+					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!settings.intelligentbackend" href="https://mermade.org.uk/openapi-converter">this online tool</a><span v-if="settings.intelligentbackend">a built-in tool</span>.
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
@@ -215,6 +215,8 @@
 								</div>
 							</div>
 
+                            <div class="box">
+
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Contact Name </label>
 								<div class='field-body field control has-icons-left'>
@@ -238,6 +240,9 @@
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
+                            <api-extension :semoasa="settings.semoasa" attach="ContactObject">
+                            </api-extension>
+							</div>
 
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Terms of Service URL </label>
@@ -246,6 +251,7 @@
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
+                            <div class="box">
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> License Name </label>
 								<div class='field-body field control'>
@@ -270,6 +276,10 @@
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
+                            <api-extension :semoasa="settings.semoasa" attach="LicenseObject">
+                            </api-extension>
+                            </div>
+                            <div class="box">
 							<div class='field is-horizontal'>
 								<div class="field-label is-normal">
 									<label class='label'> External Docs </label>
@@ -286,6 +296,12 @@
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
+							</div>
+
+                            <api-extension :semoasa="settings.semoasa" attach="OpenAPIObject">
+                            </api-extension>
+                            <api-extension :semoasa="settings.semoasa" attach="InfoObject">
+                            </api-extension>
 
 						</form>
 					</div>
@@ -720,17 +736,17 @@
 					<h1 class="title">Wizards (Work-In-Progress)</h1>
 					<h2 class="subtitle">These functions may be experimental, or have only a rudimentary UI</h2>
 					<ul>
-						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
+						<li><a id="aValidate">Validate definition</a> using <span v-if="!settings.intelligentbackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="settings.intelligentbackend">built-in validator</span></li>
 						<li><a id="aShinola">Generate documentation</a> using <a href="https://github.com/mermade/shinola">shinola</a> (online <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> pipeline)</li>
-						<li v-if="window.intelligentBackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> </li>
-						<li v-if="window.intelligentBackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> </li>
+						<li v-if="settings.intelligentbackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> </li>
+						<li v-if="settings.intelligentbackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> </li>
 
 						<li><a id="aCRUD">Create CRUD operations</a> from definition</li>
 						<li><a id="aImportSchema">Import schema</a></li>
 						<li>Create server SDK - {{cgData.servers.length}} languages - <a href="https://github.com/swagger-api/swagger-codegen/issues/4669">waiting for swagger-codegen</a></li>
 						<li>Create client SDK - {{cgData.clients.length}} languages - <strong>ditto</strong></li>
 						<li>Generate link definition from sample</li>
-						<li v-if="window.intelligentBackend">Serve <a href="/serve">definition</a> for external use</li>
+						<li v-if="settings.intelligentbackend">Serve <a href="/serve">definition</a> for external use</li>
 					</ul>
 					<br/>
 					<br/>

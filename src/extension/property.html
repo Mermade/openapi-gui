@@ -1,0 +1,26 @@
+  <div class="field is-horizontal extension-property">
+    <div class="field-label">
+        <label v-if="title" :for="linkId">{{title}}</label>
+        <label v-else :for="linkId">{{property}}</label>
+    </div>
+    <div class="field-body field control">
+    <textarea v-if="type == 'string'" :id="linkId" v-model="formData[linkId]"></textarea>
+    <input v-else-if="format == 'date'" type="date" :id="linkId" v-model="formData[linkId]">
+    <input v-else-if="type == 'integer'" type="number" :id="linkId" v-model="formData[linkId]">
+    <input v-else-if="type == 'number'" type="number" :id="linkId" v-model="formData[linkId]">
+    <template v-else-if="type == 'boolean'" v-for="option in ['true','false']">
+      <input type="radio" :id="linkId + option" v-model="formData[linkId]" :value="option">
+      <label :for="linkId + option">{{option}}</label>
+    </template>
+    <template v-else-if="type == 'object'">
+        <div class="box">
+            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :property="p" :format="prop.format" :title="prop.title"></api-property>
+        </div>
+    </template>
+    <template v-else-if="type == 'array'">
+        <div class="box">
+            <api-property linkId="1236" :schema="schema.items" :type="schema.items.type" property="0" :format="schema.items.format" :title="schema.items.title"></api-property>
+        </div>
+    </template>
+    </div>
+  </div>

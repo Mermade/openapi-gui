@@ -1,7 +1,7 @@
 const { required } = window.validators;
 
 Vue.component('gui-main', {
-	props: ['openapi', 'importschema'],
+	props: ['openapi', 'importschema', 'settings'],
 	data: function () {
 		return {
 			cgData : cgData
