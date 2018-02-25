@@ -4,7 +4,7 @@
             <h1 class="subtitle">{{t}} Extensions</h1>
             <div v-for="(property,p) in target" v-bind="property" :prop="p">
                 <div>
-                    <api-property :schema="property.schema" :property="property.propertyName" id="1234" :type="property.schema.type" :format="property.schema.format" :title="property.schema.title">
+                    <api-property :schema="property.schema" :property="property.propertyName" id="1234" :type="property.schema.type" :format="property.schema.format" :title="property.schema.title" :description="property.description">
                     </api-property>
                 </div>
             </div>

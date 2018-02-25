@@ -83,6 +83,7 @@ function processExtensions(extensions) {
                 }
                 var definition = {};
                 definition.propertyName = si;
+                definition.description = se.description;
                 definition.schema = se.schema;
                 definition.example = se.example;
                 definition.externalDocs = se.externalDocs;

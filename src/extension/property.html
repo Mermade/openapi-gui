@@ -1,7 +1,12 @@
   <div class="field is-horizontal extension-property">
     <div class="field-label">
-        <label v-if="title" :for="linkId">{{title}}</label>
+        <span v-if="isarray" class="icon">
+            <i class="fa fa-plus"></i>&nbsp;
+            <i class="fa fa-minus"></i>
+        </span>
+        <label v-else-if="title" :for="linkId">{{title}}</label>
         <label v-else :for="linkId">{{property}}</label>
+	    <span v-if="description" class="icon" :data-balloon="description" data-balloon-length="large"><i class='fa fa-question'></i></span>
     </div>
     <div class="field-body field control">
     <textarea v-if="type == 'string'" :id="linkId" v-model="formData[linkId]"></textarea>
@@ -10,16 +15,16 @@
     <input v-else-if="type == 'number'" type="number" :id="linkId" v-model="formData[linkId]">
     <template v-else-if="type == 'boolean'" v-for="option in ['true','false']">
       <input type="radio" :id="linkId + option" v-model="formData[linkId]" :value="option">
-      <label :for="linkId + option">{{option}}</label>
+      <label :for="linkId + option">{{option}}</label>&nbsp;
     </template>
     <template v-else-if="type == 'object'">
         <div class="box">
-            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :property="p" :format="prop.format" :title="prop.title"></api-property>
+            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :property="p" :format="prop.format" :title="prop.title" :description="prop.description"></api-property>
         </div>
     </template>
     <template v-else-if="type == 'array'">
         <div class="box">
-            <api-property linkId="1236" :schema="schema.items" :type="schema.items.type" property="0" :format="schema.items.format" :title="schema.items.title"></api-property>
+            <api-property linkId="1236" :schema="schema.items" :type="schema.items.type" property="0" :format="schema.items.format" :title="schema.items.title" :description="schema.items.description" isarray=true></api-property>
         </div>
     </template>
     </div>
