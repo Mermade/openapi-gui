@@ -159,6 +159,11 @@ var jsonSchemaDraft4 = {
 },
 "default": {}};
 
+var namespaces = [
+    { namespace: "guru.apis", enabled: false },
+    { namespace: "info.smart-api", enabled: true }
+];
+
 var extensions = [
 {
   "openapiExtensionFormat": "0.1.0",
@@ -479,6 +484,55 @@ var extensions = [
         "name": "APIs.guru",
         "url": "https://apis.guru/"
       }
+    }
+  }
+},
+{
+  "openapiExtensionFormat": "0.1.0",
+  "info.smart-api": {
+    "x-id": {
+      "description": "A property of the `contact` and `tag` objects, `x-id` holds the unique id for the item. You SHOULD use a URI to specify the concept.",
+      "schema": {
+        "title": "Unique Id",
+        "type": "string"
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "ContactObject",
+          "TagObject"
+        ]
+      }
+    },
+    "x-externalResources": {
+        "description": "A list of external resources pertinent to the API.",
+        "schema": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "x-url": {
+                        "type": "string",
+                        "description": "URL for the target description"
+                    },
+                    "x-type": {
+                        "type": "string",
+                        "enum": ["api documentation","website","developer forum","mailing list","social media","publication"]
+                    },
+                    "x-description": {
+                        "type": "string",
+                        "description": "A short description of the target documentation",
+                        "format": "commonmark"
+                    }
+                }
+            }
+        },
+        "oas3": {
+            "usage": "restricted",
+            "objectTypes": [
+                "OpenAPIObject"
+            ]
+        }
     }
   }
 }

@@ -7,9 +7,10 @@
         <label class="label has-icons-left" v-else-if="title" :for="linkId">{{title}}</label>
         <label class="label has-icons-left" v-else :for="linkId">{{property}}</label>
         <p class="help" v-if="summary">{{summary}}</p>
+		<span v-if="format == 'commonmark'" class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview('#txtExtDocDesc')"><i class='fa fa-check-circle'></i></a></span>
     </div>
     <div class="field-body">
-    <textarea v-if="format == 'markdown'" class="textarea" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example"></textarea>
+    <textarea v-if="format == 'commonmark'" class="textarea" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example"></textarea>
     <template v-else-if="schema.enum">
         <div class="control select">
         <select v-model="formData[linkId]">
@@ -17,7 +18,7 @@
         </select>
         </div>
     </template>
-    <input v-else-if="type == 'string'" class="input is-expanded" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example">
+    <input v-else-if="type == 'string'" class="input is-expanded has-icons-left" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example">
     <input v-else-if="format == 'date'" class="input" type="date" :id="linkId" v-model="formData[linkId]">
     <input v-else-if="type == 'integer'" class="input" type="number" :id="linkId" v-model="formData[linkId]">
     <input v-else-if="type == 'number'" class="input" type="number" :id="linkId" v-model="formData[linkId]">

@@ -75,6 +75,10 @@ function processExtensions(extensions) {
         ext = deref(ext,ext);
         delete ext.components;
         for (var namespace in ext) {
+            var ns = namespaces.find(function(e,i,a){
+                return e.namespace == namespace;
+            });
+            if (ns && ns.enabled) {
             for (var si in ext[namespace]) {
                 var se = ext[namespace][si];
                 var targets = ['*'];
@@ -93,6 +97,7 @@ function processExtensions(extensions) {
                     if (!result[target]) result[target] = [];
                     result[target].push(definition);
                 }
+            }
             }
         }
     }
@@ -278,7 +283,9 @@ function app_main() {
 			specVersion: 'master',
             settings: {
                 intelligentbackend: window.intelligentBackend,
-                semoasa: semoasa
+                semoasa: semoasa,
+                extensions: [],
+                currenttab: 'main'
             }
         },
         el: '#main-container',
