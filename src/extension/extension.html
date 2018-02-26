@@ -2,12 +2,14 @@
     <div v-for="(target,t) in semoasa" v-bind="target" :obj="t">
         <div v-if="t === attach" class="box boxsep">
             <h1 class="subtitle">{{t}} Extensions</h1>
+            <form class="control">
             <div v-for="(property,p) in target" v-bind="property" :prop="p">
                 <div>
                     <api-property :schema="property.schema" :property="property.propertyName" id="1234" :type="property.schema.type" :format="property.schema.format" :title="property.schema.title" :description="property.description">
                     </api-property>
                 </div>
             </div>
+            </form>
         </div>
     </div>
 </div>
