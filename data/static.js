@@ -161,7 +161,8 @@ var jsonSchemaDraft4 = {
 
 var namespaces = [
     { namespace: "guru.apis", enabled: false },
-    { namespace: "info.smart-api", enabled: true }
+    { namespace: "info.smart-api", enabled: false },
+    { namespace: "ly.redoc", enabled: true }
 ];
 
 var extensions = [
@@ -279,6 +280,7 @@ var extensions = [
       },
       "schema": {
         "type": "object",
+        "title": "Logo",
         "properties": {
           "url": {
             "type": "string",
@@ -491,6 +493,7 @@ var extensions = [
   "openapiExtensionFormat": "0.1.0",
   "info.smart-api": {
     "x-id": {
+      "summary": "The unique id for the item",
       "description": "A property of the `contact` and `tag` objects, `x-id` holds the unique id for the item. You SHOULD use a URI to specify the concept.",
       "schema": {
         "title": "Unique Id",
@@ -505,21 +508,26 @@ var extensions = [
       }
     },
     "x-externalResources": {
-        "description": "A list of external resources pertinent to the API.",
+        "summary": "A list of external resources pertinent to the API.",
+        "description": "Allows referencing external resources for extended documentation.",
         "schema": {
+            "title": "External Resources",
             "type": "array",
             "items": {
                 "type": "object",
                 "properties": {
                     "x-url": {
                         "type": "string",
+                        "title": "URL",
                         "description": "URL for the target description"
                     },
                     "x-type": {
+                        "title": "Type",
                         "type": "string",
                         "enum": ["api documentation","website","developer forum","mailing list","social media","publication"]
                     },
                     "x-description": {
+                        "title": "Description",
                         "type": "string",
                         "description": "A short description of the target documentation",
                         "format": "commonmark"
@@ -533,6 +541,121 @@ var extensions = [
                 "OpenAPIObject"
             ]
         }
+    }
+  }
+},
+{
+  "openapiExtensionFormat": "0.1.0",
+  "ly.redoc": {
+    "x-ignoredHeaderParameters": {
+      "summary": "Specify header names which are ignored by ReDoc",
+      "description": "x-ignoredHeaderParameters is used to specify header parameter names which are ignored by ReDoc",
+      "schema": {
+        "title": "Ignored headers",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "OpenAPIObject"
+        ]
+      }
+    },
+    "x-tagGroups": {
+      "summary": "Group tags in the side menu",
+      "description": "x-tagGroups is used to group tags in the side menu. If you are going to use x-tagGroups, please make sure you add all tags to a group, since a tag that is not in a group, will not be displayed at all!",
+      "schema": {
+        "title": "Tag Groups",
+        "type": "object",
+        "properties": {
+            "name": {
+                "type": "string",
+                "description": "The group name"
+            },
+            "tags": {
+                "type": "array",
+                "description": "List of tags to include in this group",
+                "items": {
+                    "type": "string"
+                }
+            }
+        }
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "OpenAPIObject"
+        ]
+      }
+    },
+    "x-traitTag": {
+      "summary": "Is the tag a trait",
+      "description": "In OpenAPI operations can have multiple tags. This property distinguish between tags that are used to group operations (default) from tags that are used to mark operation with certain trait (true value). Tags that have x-traitTag set to true are listed in side-menu but don't have any subitems (operations). Tag description is rendered as well. This is useful for handling out common things like Pagination, Rate-Limits, etc.",
+      "schema": {
+        "type": "boolean",
+        "title": "Trait Tag",
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "TagObject"
+        ]
+      }
+    },
+    "x-displayName": {
+      "summary": "The text that is used for this tag in the menu and in section headings",
+      "description": "Define the text that is used for this tag in the menu and in section headings",
+      "schema": {
+        "type": "string",
+        "title": "Display Name"
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "TagObject"
+        ]
+      }
+    },
+    "x-logo": {
+      "summary": "A logo for the API.",
+      "description": "A property of the `info` object, the `x-logo` structure holds an absolute URL to the API logo and an optional background colour in HTML hex notation.\n",
+      "externalDocs": {
+        "$ref": "#/components/externalDocs/apis-guru"
+      },
+      "provider": {
+        "$ref": "#/components/providers/apis-guru"
+      },
+      "schema": {
+        "type": "object",
+        "title": "Logo",
+        "properties": {
+          "url": {
+            "type": "string",
+            "format": "uri-ref"
+          },
+          "backgroundColor": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ]
+      },
+      "oas2": {
+        "usage": "restricted",
+        "objectTypes": [
+          "InfoObject"
+        ]
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "InfoObject"
+        ]
+      }
     }
   }
 }

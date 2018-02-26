@@ -79,6 +79,9 @@ function processExtensions(extensions) {
                 return e.namespace == namespace;
             });
             if (ns && ns.enabled) {
+
+            var rns = namespace.split('.').reverse().join('.');
+
             for (var si in ext[namespace]) {
                 var se = ext[namespace][si];
                 var targets = ['*'];
@@ -95,8 +98,8 @@ function processExtensions(extensions) {
                 for (var t=0;t<targets.length;t++) {
                     var target = targets[t];
                     if (!result[target]) result[target] = {namespaces:[],exts:[]};
-                    if (result[target].namespaces.indexOf(namespace)<0) {
-                        result[target].namespaces.push(namespace);
+                    if (result[target].namespaces.indexOf(rns)<0) {
+                        result[target].namespaces.push(rns);
                     }
                     result[target].exts.push(definition);
                 }
