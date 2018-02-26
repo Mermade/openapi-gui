@@ -10,6 +10,13 @@
     </div>
     <div class="field-body">
     <textarea v-if="format == 'markdown'" class="textarea" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example"></textarea>
+    <template v-else-if="schema.enum">
+        <div class="control select">
+        <select v-model="formData[linkId]">
+            <option v-for="e in schema.enum" :value="e">{{e}}</option>
+        </select>
+        </div>
+    </template>
     <input v-else-if="type == 'string'" class="input is-expanded" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example">
     <input v-else-if="format == 'date'" class="input" type="date" :id="linkId" v-model="formData[linkId]">
     <input v-else-if="type == 'integer'" class="input" type="number" :id="linkId" v-model="formData[linkId]">
