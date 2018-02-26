@@ -1,7 +1,7 @@
 Vue.component('api-property', {
   name:'api-property',
-  props:['schema','type','format','property','title','description','isarray',
-    'linkId'],
+  props:['schema','type','format','property','title','summary','description',
+    'isarray','linkId'],
   inject:['formData'],
   template: '#template-property'
 });

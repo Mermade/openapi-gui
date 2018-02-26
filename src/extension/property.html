@@ -6,6 +6,7 @@
         </span>
         <label class="label has-icons-left" v-else-if="title" :for="linkId">{{title}}</label>
         <label class="label has-icons-left" v-else :for="linkId">{{property}}</label>
+        <p class="help" v-if="summary">{{summary}}</p>
     </div>
     <div class="field-body">
     <textarea v-if="format == 'markdown'" class="textarea" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example"></textarea>
@@ -13,10 +14,6 @@
     <input v-else-if="format == 'date'" class="input" type="date" :id="linkId" v-model="formData[linkId]">
     <input v-else-if="type == 'integer'" class="input" type="number" :id="linkId" v-model="formData[linkId]">
     <input v-else-if="type == 'number'" class="input" type="number" :id="linkId" v-model="formData[linkId]">
-    <!--<template v-else-if="type == 'boolean'" v-for="option in ['true','false']">
-      <input type="radio" :id="linkId + option" v-model="formData[linkId]" :value="option">
-      <label :for="linkId + option">{{option}}</label>&nbsp;
-    </template> -->
     <input v-else-if="type == 'boolean'" type="checkbox" class="checkbox" :id="linkId" v-model="formData[linkId]">
     <template v-else-if="type == 'object'">
         <div class="box" style="flex: 1 0 auto;">
