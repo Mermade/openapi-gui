@@ -294,6 +294,16 @@ function app_main() {
         el: '#main-container',
 		validations: {},
         methods : {
+		    markdownPreview: function(selector,text) {
+			    $('#mdPreview').addClass('is-active');
+			    var str = text ? text : $(selector).val();
+			    var md = window.markdownit();
+			    var result = md.render(str);
+			    $('#mdPreviewText').html(result);
+			    $('#mdPreviewClose').click(function(){
+				    $('#mdPreview').removeClass('is-active');
+			    });
+		    },
 			specLink : function(fragment) {
 				return 'https://github.com/OAI/OpenAPI-Specification/blob/'+this.specVersion+'/versions/3.0.1.md'+(fragment ? fragment : '');
 			},

@@ -3,7 +3,12 @@ Vue.component('api-property', {
   props:['schema','type','format','property','title','summary','description',
     'isarray','linkId'],
   inject:['formData'],
-  template: '#template-property'
+  template: '#template-property',
+  methods: {
+	markdownPreview: function(id,text) {
+      this.$root.markdownPreview(id,text);
+	},
+  }
 });
 
 Vue.component('api-extension', {

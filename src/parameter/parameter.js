@@ -85,7 +85,7 @@ Vue.component('api-parameter', {
 	},
     methods : {
 		markdownPreview: function() {
-			this.$parent.$parent.$parent.markdownPreview('#'+this.descId);
+			this.$root.markdownPreview('#'+this.descId);
 		},
         toggleBody : function() {
             this.visible = !this.visible;

@@ -13,7 +13,7 @@ Vue.component('api-method', {
 			return this.$root.specLink(fragment);
 		},
 		markdownPreview: function() {
-			this.$parent.$parent.markdownPreview('#'+this.descId);
+			this.$root.markdownPreview('#'+this.descId);
 		},
         toggleBody : function() {
             this.visible = !this.visible;

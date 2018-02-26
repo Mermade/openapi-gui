@@ -13,16 +13,9 @@ Vue.component('gui-main', {
             return this.$root.specLink(fragment);
         },
 
-		markdownPreview: function(selector) {
-			$('#mdPreview').addClass('is-active');
-			var str = $(selector).val();
-			var md = window.markdownit();
-			var result = md.render(str);
-			$('#mdPreviewText').html(result);
-			$('#mdPreviewClose').click(function(){
-				$('#mdPreview').removeClass('is-active');
-			});
-		},
+        markdownPreview: function(id,text) {
+            this.$root.markdownPreview(id,text);
+        },
 
 		enableLicenseSelect: function() {
 			if ($('#drpLicense').hasClass('hidden')) {

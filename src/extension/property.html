@@ -7,7 +7,7 @@
         <label class="label has-icons-left" v-else-if="title" :for="linkId">{{title}}</label>
         <label class="label has-icons-left" v-else :for="linkId">{{property}}</label>
         <p class="help" v-if="summary">{{summary}}</p>
-		<span v-if="format == 'commonmark'" class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview('#txtExtDocDesc')"><i class='fa fa-check-circle'></i></a></span>
+		<span v-if="format == 'commonmark'" class="icon" data-balloon="Preview markdown"><a v-on:click="markdownPreview('',formData[linkId])"><i class='fa fa-check-circle'></i></a></span>
     </div>
     <div class="field-body">
     <textarea v-if="format == 'commonmark'" class="textarea" :id="linkId" v-model="formData[linkId]" :placeholder="schema.example"></textarea>
@@ -25,12 +25,12 @@
     <input v-else-if="type == 'boolean'" type="checkbox" class="checkbox" :id="linkId" v-model="formData[linkId]">
     <template v-else-if="type == 'object'">
         <div class="box" style="flex: 1 0 auto;">
-            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :key="p" :property="p" :format="prop.format" :title="prop.title" :description="prop.description"></api-property>
+            <api-property v-for="(prop,p) in schema.properties" link-id="1235" :schema="prop" :type="prop.type" :key="p" :property="p" :format="prop.format" :title="prop.title" :description="prop.description"></api-property>
         </div>
     </template>
     <template v-else-if="type == 'array'">
         <div class="control box" style="flex: 1 0 auto;">
-            <api-property linkId="1236" :schema="schema.items" :type="schema.items.type" property="0" :format="schema.items.format" :title="schema.items.title" :description="schema.items.description" isarray=true></api-property>
+            <api-property link-id="1236" :schema="schema.items" :type="schema.items.type" property="0" :format="schema.items.format" :title="schema.items.title" :description="schema.items.description" isarray=true></api-property>
         </div>
     </template>
 	<span v-if="description" class="icon is-left" :data-balloon="description" data-balloon-length="large"><i class='fa fa-question'></i></span>
