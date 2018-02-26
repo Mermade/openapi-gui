@@ -25,7 +25,7 @@
     <input v-else-if="type == 'boolean'" type="checkbox" class="checkbox" :id="linkId" v-model="formData[linkId]">
     <template v-else-if="type == 'object'">
         <div class="box" style="flex: 1 0 auto;">
-            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :property="p" :format="prop.format" :title="prop.title" :description="prop.description"></api-property>
+            <api-property v-for="(prop,p) in schema.properties" linkId="1235" :schema="prop" :type="prop.type" :key="p" :property="p" :format="prop.format" :title="prop.title" :description="prop.description"></api-property>
         </div>
     </template>
     <template v-else-if="type == 'array'">

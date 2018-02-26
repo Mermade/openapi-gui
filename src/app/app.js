@@ -94,8 +94,11 @@ function processExtensions(extensions) {
                 definition.externalDocs = se.externalDocs;
                 for (var t=0;t<targets.length;t++) {
                     var target = targets[t];
-                    if (!result[target]) result[target] = [];
-                    result[target].push(definition);
+                    if (!result[target]) result[target] = {namespaces:[],exts:[]};
+                    if (result[target].namespaces.indexOf(namespace)<0) {
+                        result[target].namespaces.push(namespace);
+                    }
+                    result[target].exts.push(definition);
                 }
             }
             }
@@ -261,7 +264,6 @@ var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
 
 var semoasa = processExtensions(extensions);
-console.log(JSON.stringify(semoasa,null,2));
 
 // or we could wrap jsoneditor in a Vue.js component?
 var schemaEditorSave = function() {};
@@ -269,6 +271,7 @@ var schemaEditorClose = function() {};
 
 function app_main() {
     Vue.use(Buefy, { defaultIconPack: 'fa' });
+    Vue.component(Buefy.default.Field.name, Buefy.default.Field);
     Vue.component(Buefy.default.Input.name, Buefy.default.Input);
     Vue.component(Buefy.default.Autocomplete.name, Buefy.default.Autocomplete);
     Vue.component(Buefy.default.Tag.name, Buefy.default.Tag);
