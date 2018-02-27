@@ -1,5 +1,5 @@
 Vue.component('api-method', {
-	props: ['method', 'index', 'maintags'],
+	props: ['method', 'index', 'maintags', 'settings'],
 	data: function() {
 		return {
             visible: false,

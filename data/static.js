@@ -593,7 +593,7 @@ var extensions = [
     },
     "x-traitTag": {
       "summary": "Is the tag a trait",
-      "description": "In OpenAPI operations can have multiple tags. This property distinguish between tags that are used to group operations (default) from tags that are used to mark operation with certain trait (true value). Tags that have x-traitTag set to true are listed in side-menu but don't have any subitems (operations). Tag description is rendered as well. This is useful for handling out common things like Pagination, Rate-Limits, etc.",
+      "description": "In OpenAPI operations can have multiple tags. This property distinguishes between tags that are used to group operations (default) from tags that are used to mark operation with certain trait (true value). Tags that have x-traitTag set to true are listed in side-menu but don't have any subitems (operations). Tag description is rendered as well. This is useful for handling out common things like Pagination, Rate-Limits, etc.",
       "schema": {
         "type": "boolean",
         "title": "Trait Tag",
@@ -616,6 +616,59 @@ var extensions = [
         "usage": "restricted",
         "objectTypes": [
           "TagObject"
+        ]
+      }
+    },
+    "x-code-samples": {
+      "summary": "A list of code samples associated with the operation",
+      "description": "`x-code-samples` are rendered on the right panel of ReDoc",
+      "schema": {
+        "type": "array",
+        "title": "Code Samples",
+        "items": {
+            "type": "object",
+            "properties": {
+                "lang": {
+                    "type": "string",
+                    "enum": [
+                        "ActionScript",
+                        "C",
+                        "C#",
+                        "C++",
+                        "CSS",
+                        "Clojure",
+                        "CoffeeScript",
+                        "Go",
+                        "HTML",
+                        "Haskell",
+                        "Java",
+                        "JavaScript",
+                        "Lua",
+                        "Matlab",
+                        "Objective-C",
+                        "PHP",
+                        "Perl",
+                        "Python",
+                        "R",
+                        "Ruby",
+                        "Scala",
+                        "Shell",
+                        "Swift",
+                        "TeX",
+                        "Vim script"
+                    ]
+                },
+                "source": {
+                    "type": "string",
+                    "format": "commonmark"
+                }
+            }
+        }
+      },
+      "oas3": {
+        "usage": "restricted",
+        "objectTypes": [
+          "OperationObject"
         ]
       }
     },

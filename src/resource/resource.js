@@ -1,5 +1,5 @@
 Vue.component('api-resource', {
-	props: ['openapi', 'path', 'index', 'maintags'],
+	props: ['openapi', 'path', 'index', 'maintags', 'settings'],
     computed: {
         pathEntry : {
             get : function() {

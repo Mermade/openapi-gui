@@ -300,6 +300,7 @@ function app_main() {
 		    markdownPreview: function(selector,text) {
 			    $('#mdPreview').addClass('is-active');
 			    var str = text ? text : $(selector).val();
+                if (!str) str = '';
 			    var md = window.markdownit();
 			    var result = md.render(str);
 			    $('#mdPreviewText').html(result);

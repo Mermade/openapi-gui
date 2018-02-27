@@ -719,7 +719,7 @@
 									</footer>
 								</div>
 								<div class="resource" v-for="(path,key,index) in openapi.paths">
-									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags'></api-resource>
+									<api-resource :openapi='openapi' :path='path' :index='key' :maintags='openapi.tags' :settings='settings'></api-resource>
 								</div>
 							</form>
 						</div>
