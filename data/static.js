@@ -676,10 +676,10 @@ var extensions = [
       "summary": "A logo for the API.",
       "description": "A property of the `info` object, the `x-logo` structure holds an absolute URL to the API logo and an optional background colour in HTML hex notation.\n",
       "externalDocs": {
-        "$ref": "#/components/externalDocs/apis-guru"
+        "$ref": "#/components/externalDocs/redoc"
       },
       "provider": {
-        "$ref": "#/components/providers/apis-guru"
+        "$ref": "#/components/providers/redoc"
       },
       "schema": {
         "type": "object",
@@ -708,6 +708,20 @@ var extensions = [
         "objectTypes": [
           "InfoObject"
         ]
+      }
+    }
+  },
+  "components": {
+    "externalDocs": {
+      "redoc": {
+        "description": "ReDoc",
+        "url": "https://github.com/Rebilly/ReDoc/blob/master/docs/redoc-vendor-extensions.md"
+      }
+    },
+    "providers": {
+      "redoc": {
+        "name": "ReDoc",
+        "url": "https://redoc.ly/"
       }
     }
   }

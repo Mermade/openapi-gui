@@ -183,6 +183,8 @@
 				<api-items v-if="parameter.schema.type == 'array'" :parent="parameter" :child='parameter.schema.items' :level='1'>
 				</api-items>
 
+                <api-extension :semoasa="settings.semoasa" attach="ParameterObject"></api-extension>
+
 			</div>
 		</div>
 	</div>

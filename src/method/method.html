@@ -183,7 +183,7 @@
                     </footer>
                 </div>
                 <div class="sortable-params" v-for="(parameter,index) in method.parameters">
-                    <api-parameter :parameter="parameter" :index='index'></api-parameter>
+                    <api-parameter :parameter="parameter" :index='index' :settings="settings"></api-parameter>
                 </div>
             </div>
 

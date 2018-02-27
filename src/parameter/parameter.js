@@ -1,5 +1,5 @@
 Vue.component('api-parameter', {
-	props: ['parameter', 'index'],
+	props: ['parameter', 'index', 'settings'],
     computed: {
 
         hashUid : function() {

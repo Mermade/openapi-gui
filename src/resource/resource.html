@@ -39,6 +39,7 @@
                 <label class="label">Description</label>
                 <textarea class="textarea" v-model="path.description"></textarea>
             </div>
+            <api-extension :semoasa="settings.semoasa" attach="PathItemObject"></api-extension>
         </div>
         <footer class="card-footer">
             <p class="card-footer-item">
