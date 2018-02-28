@@ -34,9 +34,10 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 #### CLI options
 
 ```
--p, --port          specify the port to run on, defaults to $PORT or 3000
--l, --launch        start a web-browser pointing to the GUI
 -d, --definition    serve the given OAS definition
+-l, --launch        start a web-browser pointing to the GUI
+-p, --port          specify the port to run on, defaults to $PORT or 3000
+-w, --write         enable writing back to the source definition (in yaml)
 ```
 
 To run in a Docker container, see the [wiki](https://github.com/Mermade/openapi-gui/wiki/Docker).
