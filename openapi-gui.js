@@ -2,10 +2,14 @@
 
 'use strict';
 
+const fs = require('fs');
 const util = require('util');
 
 const express = require('express');
 const compression = require('compression');
+const argv = require('tiny-opts-parser')(process.argv);
+const opn = require('opn');
+const yaml = require('js-yaml');
 const widdershins = require('widdershins');
 const shins = require('shins');
 
@@ -88,12 +92,23 @@ app.use("/", express.static(__dirname, {
     }
 }));
 
-var myport = process.env.PORT || 3000;
-//if (process.argv.length>2) myport = process.argv[2];
+let myport = process.env.PORT || argv.p || argv.port || 3000;
 
-var server = app.listen(myport, function () {
-    var host = server.address().address;
-    var port = server.address().port;
+let server = app.listen(myport, function () {
+    let host = server.address().address;
+    let port = server.address().port;
 
     console.log('OpenAPI GUI server listening at http://%s:%s', host, port);
+    if (argv.l || argv.launch) {
+        let path = '';
+        if (argv.d || argv.definition) {
+            path = '/?url=%2fserve';
+            let defName = (argv.d || argv.definition);
+            console.log('Serving',defName);
+            definition = yaml.safeLoad(fs.readFileSync(defName,'utf8'),{json:true});
+        }
+        console.log('Launching...');
+        opn('http://'+(host === '::' ? 'localhost' : host)+':'+port+path);
+    }
 });
+
