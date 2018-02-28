@@ -28,8 +28,14 @@ app.set('view engine', 'ejs');
 app.post('/store', upload.single('filename'), function(req, res) {
     try {
         definition = JSON.parse(req.body.source);
-        if (writeBack) {
-            let s = yaml.safeDump(definition,{lineWidth:-1});
+        if (writeBack && defName) {
+            let s;
+            if (defName.indexOf('.json')>=0) {
+                s = JSON.stringify(definition,null,2);
+            }
+            else {
+               s = yaml.safeDump(definition,{lineWidth:-1});
+            }
             fs.writeFile(defName,s,'utf8',function(err){});
         }
     }
