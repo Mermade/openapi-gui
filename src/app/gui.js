@@ -308,6 +308,14 @@ Vue.component('gui-main', {
             window.scrollTo(0,0);
 		},
 
+        settings: function() {
+			$('#settings').addClass('is-active');
+        },
+
+        settingsClose: function(save) {
+            $('#settings').removeClass('is-active');
+        },
+
 		save: function () {
 			this.$root.save();
 		},

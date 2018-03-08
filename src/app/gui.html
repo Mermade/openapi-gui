@@ -68,6 +68,27 @@
 		<button id="confirmClose" class="modal-close"></button>
 	</div>
 
+    <div class="modal" id="settings">
+		<div class="modal-background"></div>
+		<div class="modal-content">
+			<div class="card">
+				<div class="card-content">
+					<p class="title" id="settingsTitle">Settings</p>
+					<p class="subtitle" id="settingsSubtitle"></p>
+				</div>
+				<footer class="card-footer">
+					<p class="card-footer-item">
+					<a id="settingsOk"><span class="button is-primary" v-on:click="settingsClose(true)">Save</span></a>
+					</p>
+					<p class="card-footer-item">
+					<a id="settingsCancel"><span class="button is-warning" v-on:click="settingsClose(false)">Cancel</span></a>
+					</p>
+				</footer>
+			</div>
+		</div>
+		<button id="settingsClose" class="modal-close" v-on:click="settingsClose(false)"></button>
+    </div>
+
 	<div class='container is-fluid' role='main'>
 		<div class='none'>
 
