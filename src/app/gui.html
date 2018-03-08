@@ -82,7 +82,7 @@
 								<label class='field-label is-normal label'> {{ns.namespace}} </label>
   								<span class="control field-body">
                                     <b-switch v-model="ns.enabled">
-                                        {{ ns.enabled }}
+                                        {{ ns.enabled ? 'Enabled' : 'Disabled' }}
                                     </b-switch>
 								</span>
 							</div>
