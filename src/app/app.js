@@ -275,6 +275,7 @@ var schemaEditorClose = function() {};
 function app_main() {
     Vue.use(Buefy, { defaultIconPack: 'fa' });
     Vue.component(Buefy.default.Field.name, Buefy.default.Field);
+    Vue.component(Buefy.default.Switch.name, Buefy.default.Switch);
     Vue.component(Buefy.default.Input.name, Buefy.default.Input);
     Vue.component(Buefy.default.Autocomplete.name, Buefy.default.Autocomplete);
     Vue.component(Buefy.default.Tag.name, Buefy.default.Tag);
@@ -290,6 +291,7 @@ function app_main() {
             settings: {
                 intelligentbackend: window.intelligentBackend,
                 semoasa: semoasa,
+                namespaces: namespaces,
                 extensions: [],
                 currenttab: 'main'
             }

@@ -308,7 +308,7 @@ Vue.component('gui-main', {
             window.scrollTo(0,0);
 		},
 
-        settings: function() {
+        settingsOpen: function() {
 			$('#settings').addClass('is-active');
         },
 
