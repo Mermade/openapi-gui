@@ -313,6 +313,10 @@ Vue.component('gui-main', {
         },
 
         settingsClose: function(save) {
+            if (save) {
+                var newSemoasa = processExtensions(extensions);
+                Vue.set(this.$root.settings,'semoasa',newSemoasa);
+            }
             $('#settings').removeClass('is-active');
         },
 
