@@ -12,7 +12,7 @@
   <link href="css/jsoneditor.min.css" rel="stylesheet" type="text/css">
   <link href="css/app.css" rel="stylesheet">
 
-  <script type='text/javascript' src='js/jquery.min.js'></script>
+  <script type='text/javascript' src='js/zepto.min.js'></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.5/clipboard.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
   <script type='text/javascript' src="js/js-yaml.min.js"></script>
@@ -65,30 +65,89 @@
         clients : [],
         servers : []
       };
-      function resolveDef(index) {
-        $('#progress').attr('value', parseInt($('#progress').attr('value'))+11.11);
-        def[index].resolve();
-      }
+
       $(document).ready(function(){
 
-        $.ajax('http://generator.swagger.io/api/gen/clients',{
+        $.ajax({
+            url: 'http://generator.swagger.io/api/gen/clients',
             success: function(data) {
                 cgData.clients = data;
             }
         });
-        $.ajax('http://generator.swagger.io/api/gen/servers',{
+        $.ajax({
+            url: 'http://generator.swagger.io/api/gen/servers',
             success: function(data) {
                 cgData.servers = data;
             }
         });
 
-        // Create the Deferred instances that can be handed to $.when()
-        for (t=0;t<=9;t++) {
-          def.push($.Deferred());
+        function loadIt(targetId,url) {
+            var p = new Promise(function(resolve,reject){
+                $(targetId).load(url, function(data, status, xhr) {
+                    $('#progress').attr('value', parseInt($('#progress').attr('value'))+(100/def.length));
+                    if (xhr.getResponseHeader('X-OpenAPI-GUI')) {
+                        window.intelligentBackend = true;
+                    }
+                    resolve(data);
+                });
+            });
+            def.push(p);
+            return p;
         }
 
-        // Set up the chain of events...
-        $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7], def[8], def[9]).then(function() {
+        function loadDefinition(url) {
+            return new Promise(function(resolve,reject){
+                var resolveNow = true;
+                $.ajax({
+                    url: url,
+                    success: function(data) {
+                        try {
+                            if (typeof data === 'string') {
+                                data = jsyaml.safeLoad(data);
+                            }
+                            if (data.swagger && (data.swagger === '2.0')) {
+                                resolveNow = false;
+                                convertOpenApi2(data,function(schema){
+                                    openapi = preProcessDefinition(schema);
+                                    resolve();
+                                });
+                            }
+                            else {
+                                openapi = preProcessDefinition(data);
+                            }
+                        }
+                        catch (ex) {
+                            alert(ex);
+                        }
+                    },
+                    error: function(xhr, type) {
+                        console.log('error',type);
+                        reject(type);
+                    },
+                    complete: function() {
+                        if (resolveNow) resolve();
+                    }
+                });
+            });
+        }
+
+        loadIt('#template-gui-main','src/app/gui.html');
+        loadIt('#template-resource','src/resource/resource.html');
+        loadIt('#template-method','src/method/method.html');
+        loadIt('#template-parameter','src/parameter/parameter.html');
+        loadIt('#template-definition','src/api-definition/output.html');
+        loadIt('#template-yaml','src/api-yaml/output.html');
+        loadIt('#template-items','src/items/items.html');
+        loadIt('#template-extension','src/extension/extension.html');
+        loadIt('#template-property','src/extension/property.html');
+
+        var loadUrl = getUrlParameterByName('url');
+        if (loadUrl) {
+           def.push(loadDefinition(loadUrl));
+        }
+ 
+        // when all promises have been resolved...
+        Promise.all(def).then(function() {
           if (screen && screen.orientation) {
               try {
                 screen.orientation.lock('landscape');
@@ -97,57 +156,8 @@
           }
           $(function() { $.support.transition = false; });
           app_main();
-          $('#loading').hide();
+          $('#loading').addClass('hidden');
         });
-
-        // And finally: Make the actual ajax calls:
-        $('#template-gui-main').load('src/app/gui.html', function(data,status,jqXHR) {
-        if (jqXHR.getResponseHeader('X-OpenAPI-GUI')) {
-            window.intelligentBackend = true;
-        }
-        resolveDef(0); });
-        $('#template-resource').load('src/resource/resource.html', function() { resolveDef(1); });
-        $('#template-method').load('src/method/method.html', function() { resolveDef(2); });
-        $('#template-parameter').load('src/parameter/parameter.html', function() { resolveDef(3); });
-        $('#template-definition').load('src/api-definition/output.html', function() { resolveDef(4); });
-        $('#template-yaml').load('src/api-yaml/output.html', function() { resolveDef(5); });
-        $('#template-items').load('src/items/items.html', function() { resolveDef(6); });
-        $('#template-extension').load('src/extension/extension.html', function() { resolveDef(7); });
-        $('#template-property').load('src/extension/property.html', function() { resolveDef(8); });
-
-        // def(9) is our chance to load a spec from a querystring parameter
-        var loadUrl = getUrlParameterByName('url');
-        var resolveNow = true;
-        if (loadUrl) {
-            $.ajax(loadUrl,{
-                success: function(data) {
-                    try {
-                        if (typeof data === 'string') {
-                            data = jsyaml.safeLoad(data);
-                        }
-                        if (data.swagger && (data.swagger === '2.0')) {
-                            resolveNow = false;
-                            convertOpenApi2(data,function(schema){
-                                openapi = preProcessDefinition(schema);
-                                resolveDef(9);
-                            });
-                        }
-                        else {
-                           openapi = preProcessDefinition(data);
-                        }
-                    }
-                    catch (ex) {
-                        alert(ex);
-                    }
-                },
-                complete: function() {
-                    if (resolveNow) resolveDef(9);
-                }
-            });
-        }
-        else {
-            resolveDef(9);
-        }
 
       });
   </script>

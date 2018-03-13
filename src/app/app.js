@@ -336,9 +336,9 @@ function app_main() {
 			}
         }
     });
-	$(document).ajaxError(function(e, jqxhr, settings, thrownError){
+	/*$(document).ajaxError(function(e, jqxhr, settings, thrownError){
 		console.log(JSON.stringify(jqxhr));
-	});
+	});*/
 	$('#aValidate').click(function(){
 		$('.wizDetails').addClass('hidden');
 		$('#txtValidation').text('Loading...');
