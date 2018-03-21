@@ -148,8 +148,10 @@ Vue.component('api-method', {
         mtags : {
             get: function() {
                 var result = [];
-                for (var i=0;i<this.maintags.length;i++) {
-                    result.push(this.maintags[i].name);
+                if (this.maintags) {
+                    for (var i=0;i<this.maintags.length;i++) {
+                        result.push(this.maintags[i].name);
+                    }
                 }
                 return result;
             }
