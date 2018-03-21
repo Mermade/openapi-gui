@@ -70,12 +70,12 @@
       }
       $(document).ready(function(){
 
-        $.ajax('http://generator.swagger.io/api/gen/clients',{
+        $.ajax('https://generator.swagger.io/api/gen/clients',{
             success: function(data) {
                 cgData.clients = data;
             }
         });
-        $.ajax('http://generator.swagger.io/api/gen/servers',{
+        $.ajax('https://generator.swagger.io/api/gen/servers',{
             success: function(data) {
                 cgData.servers = data;
             }
