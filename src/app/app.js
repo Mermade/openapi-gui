@@ -1,5 +1,12 @@
 function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
+    try {
+      return JSON.parse(JSON.stringify(obj));
+    }
+    catch (ex) {
+        console.log(ex.message);
+        console.log(typeof obj);
+        return obj;
+    }
 }
 
 function getParameterByName(name, url) {
