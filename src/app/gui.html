@@ -816,7 +816,7 @@
 										<a v-bind:href="specLink('#schemasObject')">OpenAPI Specification Schemas Object</a>
 										</p>
 										<p class="subtitle">
-											There are no shared schemas defined yet for this definition.
+											There are no shared schemas defined yet in this document.
 										</p>
 									</div>
 									<footer class="card-footer">
@@ -843,7 +843,7 @@
 						                </a>
 										</span>
 										<span class='level-item field-body field control'>
-											<input class="input" placeholder="Required" v-model.lazy="key"><!--wip-->
+											<input class="input" placeholder="Required" v-on:focus="storeSchemaName(key)" v-on:change="renameSchema(key)" v-model.lazy="key">
 										</span>
 										</div>
 									</div>

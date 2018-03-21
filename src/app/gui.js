@@ -4,7 +4,8 @@ Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
 		return {
-			cgData : cgData
+			cgData : cgData,
+            currentSchema: ''
 		}
 	},
 	methods: {
@@ -191,6 +192,15 @@ Vue.component('gui-main', {
 		removeSchema: function(key) {
 			Vue.delete(this.openapi.components.schemas, key);
 		},
+
+        storeSchemaName: function(key) {
+            this.currentSchema = key;
+        },
+
+        renameSchema: function(key) {
+			Vue.set(this.openapi.components.schemas, key, this.openapi.components.schemas[this.currentSchema]);
+			Vue.delete(this.openapi.components.schemas, this.currentSchema);
+        },
 
 		showAlert: function (text, callback) {
 			$('#alertText').text(text);
