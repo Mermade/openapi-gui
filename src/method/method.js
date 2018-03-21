@@ -47,6 +47,13 @@ Vue.component('api-method', {
             this.$root.save();
             this.method.parameters.splice(index,1);
         },
+        addRequestBody : function() {
+            if (!this.method.requestBody) {
+                var rb = {};
+                rb.content = { '*/*': { required: false, schema: {} } };
+                Vue.set(this.method,'requestBody',rb);
+            }
+        },
         addResponse : function() {
             var status = 200;
             while (this.method.responses[status]) {
