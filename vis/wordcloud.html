@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>OpenAPI Word Cloud</title>
+    <script src="../js/d3.js" charset="utf-8"></script>
+    <script src="../js/d3.layout.cloud.js"></script>
+    <script src="../js/d3.wordcloud.js"></script>
+    <script src="../data/static.js"></script>
+  </head>
+  <body style="text-align: center">
+    <h1>OpenAPI Word Cloud</h1>
+    <div id='wordcloud'></div>
+    <script>
+
+      var omit = [ 'the','a','of','and','this','is','be','by','to','an' ];
+
+      function recurse(obj,callback) {
+        if (typeof obj === 'object') {
+          for (var p in obj){
+            callback(obj[p],p);
+            recurse(obj[p],callback);
+          }
+        }
+      }
+
+      function extractWords() {
+        var openapi = JSON.parse(window.localStorage.getItem('openapi3'));
+        if (!openapi) openapi = petstore;
+
+        var words = [];
+
+        recurse(openapi,function(obj,key){
+            if ((typeof obj === 'string') && ((key === 'description') || (key === 'summary') || (key === 'title'))) {
+                var sentence = obj.split('\n').join(' ').split(' ');
+                for (var w of sentence) {
+                    w = w.toLowerCase().replace(',','').replace('.','');
+                    if (w && (omit.indexOf(w)<0)) {
+                      var word = words.find(function(e,i,a){
+                        return e.text === w;
+                      });
+                      if (word) {
+                        word.size++;
+                      }
+                      else {
+                        words.push({ text: w, size: 1 });
+                      }
+                    }
+                }
+            }
+        });
+
+        words = words.sort(function(a,b){
+            if (a.size < b.size) return +1;
+            if (a.size > b.size) return -1;
+            return 0;
+        });
+
+        return words;
+      }
+
+      var words = extractWords();
+      d3.wordcloud()
+        .size([500, 300])
+        .fill(d3.scale.ordinal().range(["#884400", "#448800", "#888800", "#444400"]))
+        .words(words)
+        .onwordclick(function(d, i) {
+          if (d.href) { window.location = d.href; }
+        })
+        .start();
+    </script>
+  </body>
+</html>
+
