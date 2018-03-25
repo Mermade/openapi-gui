@@ -1,36 +1,45 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>OpenAPI Word Cloud</title>
+    <title>OpenAPI Tree Diagram</title>
     <script src="../js/vega.min.js"></script>
-    <script src="../js/wordcloud.vg.js"></script>
+    <script src="../js/tree.vg.js"></script>
     <script src="../data/static.js"></script>
   </head>
   <body style="text-align: center">
-    <h1>OpenAPI Word Cloud</h1>
+    <h1>OpenAPI Tree Diagram</h1>
     <div id='vis'></div>
     <script>
 
-      function recurse(obj,callback) {
+      function recurse(obj,parent,callback) {
         if (typeof obj === 'object') {
           for (var p in obj){
-            callback(obj[p],p);
-            recurse(obj[p],callback);
+            callback(obj[p],p,obj);
+            recurse(obj[p],obj,callback);
           }
         }
       }
 
-      function extractWords() {
+      function extractTree() {
         var openapi = JSON.parse(window.localStorage.getItem('openapi3'));
         if (!openapi) openapi = petstore;
 
-        wordcloudVega.data[0].values = [];
+        var id = 1;
+        delete treeVega.data[0].url;
+        treeVega.data[0].values = [];
+        treeVega.data[0].values.push({id:1,name:'openapi'});
 
-        recurse(openapi,function(obj,key){
-            if ((typeof obj === 'string') && ((key === 'description') || (key === 'summary') || (key === 'title'))) {
-                wordcloudVega.data[0].values.push(obj);
+        recurse(openapi,{},function(obj,key,parent){
+            if (typeof obj === 'object') {
+              obj['x-id']=++id;
+              var entry = { id:id, name:key };
+              if (parent) entry.parent = parent['x-id']||1;
+              treeVega.data[0].values.push(entry);
             }
         });
+
+        console.log(treeVega.data[0].values);
+
       }
 
     var view;
@@ -43,8 +52,8 @@
         .run();
     }
 
-    extractWords();
-    render(wordcloudVega);
+    extractTree();
+    render(treeVega);
 
     </script>
   </body>
