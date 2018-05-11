@@ -40,7 +40,15 @@ You only need to `npm install` the Node.js modules if you wish to use the `opena
 -w, --write         enable writing back to the source definition
 ```
 
-To run in a Docker container, see the [wiki](https://github.com/Mermade/openapi-gui/wiki/Docker).
+#### Running with Docker
+
+If you don't have a local Node development environment, or if you would prefer to run OpenAPI-GUI in a Docker container, you can do in with a few simple steps:
+
+1. Clone the repository.
+2. Run `docker build -t mermade/openapi-gui .` to build the Docker image (`mermade/openapi-gui`)
+3. Run `docker run --name openapi-gui -p 8080:3000 -d mermade/openapi-gui` to run the server on port 8080.
+4. Navigate to `http://localhost:8080` in your favorite browser.
+5. When you're done, shut down the server by running `docker stop openapi-gui && docker rm openapi-gui`
 
 ### Limitations
 
