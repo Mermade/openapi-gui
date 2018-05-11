@@ -120,6 +120,7 @@ Vue.component('api-parameter', {
                 this.parameter.schema = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
+            $('#schemaModalTitle').text('Schema Editor - '+this.parameter.name);
             $('#schemaModal').addClass('is-active');
         },
         addEnum : function() {

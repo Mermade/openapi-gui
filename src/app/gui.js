@@ -186,6 +186,7 @@ Vue.component('gui-main', {
                 this.$root.container.openapi.components.schemas[key] = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
+            $('#schemaModalTitle').text('Schema Editor - '+key);
             $('#schemaModal').addClass('is-active');
 		},
 
