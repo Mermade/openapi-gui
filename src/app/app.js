@@ -1,5 +1,12 @@
 function clone(obj) {
-    return JSON.parse(JSON.stringify(obj));
+    try {
+      return JSON.parse(JSON.stringify(obj));
+    }
+    catch (ex) {
+        console.log(ex.message);
+        console.log(typeof obj);
+        return obj;
+    }
 }
 
 function getParameterByName(name, url) {
@@ -182,7 +189,7 @@ function postProcessDefinition(openapi) {
 function convertOpenApi2(schema,callback) {
     var convertUrl;
     if (window.intelligentBackend) convertUrl = '/api/v1/convert';
-    else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/convert';
+    else convertUrl = 'https://mermade.org.uk/openapi-converter/api/v1/convert';
     var data = new FormData();
     data.append('source',JSON.stringify(schema));
     $.ajax({
@@ -227,6 +234,11 @@ var schemaEditorSave = function() {};
 var schemaEditorClose = function() {};
 
 function app_main() {
+    Vue.use(Buefy, { defaultIconPack: 'fa' });
+    Vue.component(Buefy.default.Input.name, Buefy.default.Input);
+    Vue.component(Buefy.default.Autocomplete.name, Buefy.default.Autocomplete);
+    Vue.component(Buefy.default.Tag.name, Buefy.default.Tag);
+    Vue.component(Buefy.default.Taginput.name, Buefy.default.Taginput);
     Vue.use(window.vuelidate.default);
     var vm = new Vue({
         data: {
@@ -274,7 +286,7 @@ function app_main() {
 		$('#txtValidation').removeClass('hidden');
         var convertUrl;
         if (window.intelligentBackend) convertUrl = '/api/v1/validate';
-        else convertUrl = 'https://openapi-converter.herokuapp.com/api/v1/validate';
+        else convertUrl = 'https://mermade.org.uk/openapi-converter/api/v1/validate';
 		var data = new FormData();
 		data.append('source',JSON.stringify(postProcessDefinition(openapi)));
 		$.ajax({

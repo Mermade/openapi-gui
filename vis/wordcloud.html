@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>OpenAPI Word Cloud</title>
+    <script src="../js/vega.min.js"></script>
+    <script src="../js/wordcloud.vg.js"></script>
+    <script src="../data/static.js"></script>
+  </head>
+  <body style="text-align: center">
+    <h1>OpenAPI Word Cloud</h1>
+    <div id='vis'></div>
+    <script>
+
+      function recurse(obj,callback) {
+        if (typeof obj === 'object') {
+          for (var p in obj){
+            callback(obj[p],p);
+            recurse(obj[p],callback);
+          }
+        }
+      }
+
+      function extractWords() {
+        var openapi = JSON.parse(window.localStorage.getItem('openapi3'));
+        if (!openapi) openapi = petstore;
+
+        wordcloudVega.data[0].values = [];
+
+        recurse(openapi,function(obj,key){
+            if ((typeof obj === 'string') && ((key === 'description') || (key === 'summary') || (key === 'title'))) {
+                wordcloudVega.data[0].values.push(obj);
+            }
+        });
+      }
+
+    var view;
+
+    function render(spec) {
+      view = new vega.View(vega.parse(spec))
+        .renderer('canvas') // set renderer (canvas or svg)
+        .initialize('#vis') // initialize view within parent DOM container
+        .hover()            // enable hover encode set processing
+        .run();
+    }
+
+    extractWords();
+    render(wordcloudVega);
+
+    </script>
+  </body>
+</html>
+

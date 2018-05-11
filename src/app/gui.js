@@ -4,7 +4,8 @@ Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
 	data: function () {
 		return {
-			cgData : cgData
+			cgData : cgData,
+            currentSchema: ''
 		}
 	},
 	methods: {
@@ -185,12 +186,22 @@ Vue.component('gui-main', {
                 this.$root.container.openapi.components.schemas[key] = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
+            $('#schemaModalTitle').text('Schema Editor - '+key);
             $('#schemaModal').addClass('is-active');
 		},
 
 		removeSchema: function(key) {
 			Vue.delete(this.openapi.components.schemas, key);
 		},
+
+        storeSchemaName: function(key) {
+            this.currentSchema = key;
+        },
+
+        renameSchema: function(key) {
+			Vue.set(this.openapi.components.schemas, key, this.openapi.components.schemas[this.currentSchema]);
+			Vue.delete(this.openapi.components.schemas, this.currentSchema);
+        },
 
 		showAlert: function (text, callback) {
 			$('#alertText').text(text);
@@ -312,8 +323,7 @@ Vue.component('gui-main', {
 		},
 
 		scrollTop: function () {
-			var elem = document.getElementById('scrollTop');
-			elem.scrollIntoView();
+            window.scrollTo(0,0);
 		},
 
 		save: function () {

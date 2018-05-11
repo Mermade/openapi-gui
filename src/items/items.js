@@ -15,11 +15,9 @@ Vue.component('api-items', {
                     var items = {};
                     items.type = 'string';
                     Vue.set(this.child, 'items', items);
-                    Vue.set(this.child, 'collectionFormat', 'csv');
                 }
                 else {
                     Vue.delete(this.child, 'items');
-                    Vue.delete(this.child, 'collectionFormat');
                     Vue.delete(this.child, 'uniqueItems');
                     Vue.delete(this.child, 'minItems');
                     Vue.delete(this.child, 'maxItems');

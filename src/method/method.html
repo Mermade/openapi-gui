@@ -133,11 +133,16 @@
                     </div>
                 </div>
                 <div class='field is-horizontal'>
-                    <label class='field-label is-normal'> Tags </label>
-                    <div class='field-body'>
-                        <select :id="tagId" class="select" multiple v-model='vtags'>
-                            <option v-for="tag in maintags" :value='tag.name'>{{tag.name}}</option>
-                        </select>
+				    <div class="field-label is-normal">
+                  	  <label class='label'> Tags </label>
+					</div>
+                    <div class="field-body">
+                    <b-field>
+                    <b-taginput horizontal=true v-model="vtags" icon="label"
+                        placeholder="Add a tag"
+                        autocomplete :data="mtags" allow-new=true
+                        type="is-success"></b-taginput>
+                    </b-field>
                     </div>
                 </div>
             </div>
@@ -188,7 +193,7 @@
                         <a v-bind:href="specLink('#requestBodyObject')">OpenAPI Specification requestBody Object</a>
                         </p>
                         <p class="subtitle">
-                            There is no requestBody defined.
+                            There is no requestBody defined. RequestBodies on GET and DELETE operations SHALL be ignored.
                         </p>
                     </div>
                     <footer class="card-footer">

@@ -6,7 +6,7 @@
 
 * ~~Finish server parameters~~
 * ~~Finish parameter enums~~
-* Rework tags-input
+* ~~Rework tags-input~~
 * ~~Editing of requestBody schemas / content-types~~
 * ~~Operation-level security~~
 * Scope editor for operation-level security
@@ -30,10 +30,10 @@
     * openIdConnectUrl for openIdConnect
 * markdown previews
   * ~~operation.description markdown preview~~
+  * ~~externalDocs.description markdown preview~~
   * response.description markdown preview
   * tag.description markdown preview
-  * externalDocs.description markdown preview
   * requestBody.description markdown preview
-* Callbacks
+* ~~Callbacks~~
 * Links
 * Handle circular `$ref`s in responses / examples / body schemas

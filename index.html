@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="has-navbar-fixed-top">
 
 <head>
   <title>OpenAPI-GUI v3.0.0</title>
@@ -7,7 +7,7 @@
   <meta charset="utf8">
   <link href="css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.3/css/bulma.min.css">
+  <link href="css/buefy.min.css" rel="stylesheet">
   <link href="css/balloon.min.css" rel="stylesheet">
   <link href="css/jsoneditor.min.css" rel="stylesheet" type="text/css">
   <link href="css/app.css" rel="stylesheet">
@@ -22,6 +22,7 @@
   <script type='text/javascript' src="js/vue.min.js"></script>
   <script type='text/javascript' src="js/vuelidate.min.js"></script>
   <script type='text/javascript' src="js/validators.min.js"></script>
+  <script type='text/javascript' src="js/buefy.min.js"></script>
   <script type='text/javascript' src="js/markdown-it.min.js"></script>
 
   <script src="src/resource/resource.js"></script>
@@ -69,12 +70,12 @@
       }
       $(document).ready(function(){
 
-        $.ajax('http://generator.swagger.io/api/gen/clients',{
+        $.ajax('https://generator.swagger.io/api/gen/clients',{
             success: function(data) {
                 cgData.clients = data;
             }
         });
-        $.ajax('http://generator.swagger.io/api/gen/servers',{
+        $.ajax('https://generator.swagger.io/api/gen/servers',{
             success: function(data) {
                 cgData.servers = data;
             }
@@ -88,7 +89,10 @@
         // Set up the chain of events...
         $.when(def[0], def[1], def[2], def[3], def[4], def[5], def[6], def[7]).then(function() {
           if (screen && screen.orientation) {
-              screen.orientation.lock('landscape');
+              try {
+                screen.orientation.lock('landscape');
+              }
+              catch (ex) {};
           }
           $(function() { $.support.transition = false; });
           app_main();
@@ -157,7 +161,7 @@
     <div class="card">
       <div class="card-header">
         <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>-->
-        <h3 class="title">Schema Editor</h3>
+        <h3 class="title" id="schemaModalTitle">Schema Editor</h3>
       </div>
       <div class="card-content">
         <div id="schemaContainer">

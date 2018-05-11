@@ -135,7 +135,7 @@
 						</datalist>
 					</div>
 				</div>
-				<div v-if="parameter.type == 'string'">
+				<div v-if="parameter.schema.type == 'string'">
 					<div class='field is-horizontal'>
 						<label class='label field-label is-normal'> Min. Length </label>
 						<div class='field-body'>
@@ -151,7 +151,7 @@
 						</div>
 					</div>
 				</div>
-				<div v-if="parameter.type == 'integer' || parameter.type == 'number'">
+				<div v-if="parameter.schema.type == 'integer' || parameter.schema.type == 'number'">
 					<div class='field is-horizontal'>
 						<label class='label field-label is-normal'> Minimum </label>
 						<div class='field-body'>
@@ -180,7 +180,7 @@
 					</div>
 				</div>
 
-				<api-items v-if="parameter.type == 'array'" :parent="parameter" :child='parameter.items' :level='1'>
+				<api-items v-if="parameter.schema.type == 'array'" :parent="parameter" :child='parameter.schema.items' :level='1'>
 				</api-items>
 
 			</div>

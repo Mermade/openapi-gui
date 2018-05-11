@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>OpenAPI Tree Diagram</title>
+    <script src="../js/vega.min.js"></script>
+    <script src="../js/tree.vg.js"></script>
+    <script src="../data/static.js"></script>
+  </head>
+  <body style="text-align: center">
+    <h1>OpenAPI Tree Diagram</h1>
+    <div id='vis'></div>
+    <script>
+
+      function recurse(obj,parent,callback) {
+        if (typeof obj === 'object') {
+          for (var p in obj){
+            callback(obj[p],p,obj);
+            recurse(obj[p],obj,callback);
+          }
+        }
+      }
+
+      function extractTree() {
+        var openapi = JSON.parse(window.localStorage.getItem('openapi3'));
+        if (!openapi) openapi = petstore;
+
+        var id = 1;
+        delete treeVega.data[0].url;
+        treeVega.data[0].values = [];
+        treeVega.data[0].values.push({id:1,name:'openapi'});
+
+        recurse(openapi,{},function(obj,key,parent){
+            if (typeof obj === 'object') {
+              obj['x-id']=++id;
+              var entry = { id:id, name:key };
+              if (parent) entry.parent = parent['x-id']||1;
+              treeVega.data[0].values.push(entry);
+            }
+        });
+
+        console.log(treeVega.data[0].values);
+
+      }
+
+    var view;
+
+    function render(spec) {
+      view = new vega.View(vega.parse(spec))
+        .renderer('canvas') // set renderer (canvas or svg)
+        .initialize('#vis') // initialize view within parent DOM container
+        .hover()            // enable hover encode set processing
+        .run();
+    }
+
+    extractTree();
+    render(treeVega);
+
+    </script>
+  </body>
+</html>
+

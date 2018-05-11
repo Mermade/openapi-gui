@@ -2,35 +2,6 @@ body {
   padding-bottom: 40px;
 }
 
-/*.resource > .header {
-    margin-bottom: 10px
-}*/
-
-/*.sidebar-nav {
-    padding: 9px 0;
-    min-height: 300px;
-}*/
-
-/*.resource > .header > .control-group > label {
-    width: auto;
-    text-align: left;
-    font-size:19.5px;
-    padding-right: 10px;
-}
-
-.resource > .header > .control-group > .controls  {
-    margin-left: 10px;
-}
-
-.resource > .header > .control-group > .controls > .input > input {
-    font-size:19.5px;
-}*/
-
-/*input:required {
-  border: 1px solid #000000;
-  border-radius: 5px;
-}*/
-
 .resource {
   clear: both;
   padding-bottom:10px;
@@ -50,34 +21,34 @@ body {
 }
 
 .accordion-heading  {
-	display:table;
+  display:table;
   vertical-align: middle;
-	width:100%;
+  width:100%;
 }
 
 .accordion-heading > .accordion-handle {
-    display:table-cell;
-    padding: 10px;
-    vertical-align: middle;
+  display:table-cell;
+  padding: 10px;
+  vertical-align: middle;
 }
 
 .accordion-heading > .accordion-toggle {
-    display:table-cell;
-    padding: 10px;
-    width:100%;
-    vertical-align: middle;
+  display:table-cell;
+  padding: 10px;
+  width:100%;
+  vertical-align: middle;
 }
 
 .accordion-heading > .accordion-buttons {
-    display:table-cell;
-    padding-right: 5px;
-    vertical-align: middle;
-    float: right;
+  display:table-cell;
+  padding-right: 5px;
+  vertical-align: middle;
+  float: right;
 }
 
 .block-container {
-    display: block;
-    white-space:nowrap;
+  display: block;
+  white-space:nowrap;
 }
 
 .tab-container {
@@ -88,13 +59,9 @@ body {
   padding-left: 15px;
 }
 
-#topnav {
-  position: sticky;
-  top: 0;
-}
-
-.navbar .brand {
-  font-size: 14px;
+.navbar-brand {
+  font-size: 18px;
+  font-weight: bold;
 }
 
 summary:focus {
@@ -121,7 +88,7 @@ summary:focus {
 }
 
 .box {
-  background: rgba(0, 0, 0, 0.01);
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .boxsep {
@@ -131,4 +98,12 @@ summary:focus {
 #schemaContainer {
   width: 400px;
   height: 400px;
+}
+
+a {
+  color: #8ad000; /* OAI green1, 2 is #45512c, 3 is #8ad000 */
+}
+
+.tabs li.is-active a {
+  color: #629b34; /* OAI green1 */
 }

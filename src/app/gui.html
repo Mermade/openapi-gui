@@ -1,17 +1,20 @@
 <div class='component-gui'>
-	<div class='nav has-shadow' id='topnav'>
-		<div class='nav-left'>
-			<div class="nav-item">
-				<span class='brand'><a href="https://github.com/mermade/openapi-gui">OpenApi-GUI v3</a></span>
-			</div>
+	<div class='navbar is-fixed-top has-shadow success' id='topnav'>
+		<div class="navbar-brand">
+			<span class='navbar-item'><a href="https://github.com/mermade/openapi-gui">OpenAPI-GUI v3</a></span>
+            <button class="button navbar-burger">
+                <span>Mobile menu A</span>
+                <span>Mobile menu B</span>
+                <span>Mobile menu C</span>
+            </button>
 		</div>
-		<div class="nav-right">
-			<div class='nav-item'>
+		<div class="navbar-end">
+			<div class='navbar-item'>
 				<a class="btn" v-on:click="scrollTop()"><i class='fa fa-white fa-arrow-up'></i> Top</a>
 				<a class="btn" v-on:click="settings()"><i class='fa fa-white fa-cog'></i> Settings</a>
 				<a class="btn" v-on:click="save()"><i class='fa fa-white fa-save'></i> Save</a>
 				<a class="btn" v-on:click="undo()"><i class='fa fa-white fa-undo'></i> Undo</a>
-				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenApi-Gui%20Visual%20editor%20for%20%23OpenApi%203.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
+				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenAPI-GUI%20Visual%20editor%20for%20%23OpenAPI%203.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
 				<a class="btn" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='fa fa-twitter'></i> Follow</a>
 				<a class='btn' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='fa fa-github'></i> GitHub</a>
 			</div>
@@ -141,25 +144,25 @@
 			<div class='tab-content'>
 
 				<div class="tab-pane hidden container is-fluid" id="about">
-					<h1 class="title">What is OpenApi-gui?</h1>
-					OpenApi-gui is a GUI for creating and updating <a v-bind:href="specLink()">
-					OpenApi 3.0.x</a> definitions.<br>
+					<h1 class="title">What is OpenAPI-GUI?</h1>
+					OpenAPI-GUI is a GUI for creating and updating <a v-bind:href="specLink()">
+					OpenAPI 3.0.x</a> definitions.<br>
 					<br>
-					<h2 class="subtitle">How does OpenApi-gui work?</h2>
+					<h2 class="subtitle">How does OpenAPI-GUI work?</h2>
 					Upload an existing definition, or create a new one (select the red 'trash-can' button on the Upload tab to remove all Paths) and start adding
 					Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path,
 					Operation and Parameter will be created.
 					<br>
-					<br> By default when OpenApi-gui starts, it loads the OpenApi Petstore sample.
+					<br> By default when OpenAPI-GUI starts, it loads the OpenAPI Petstore sample.
 					<br>
 					<br> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
-					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenApi-gui saves data
+					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenAPI-GUI saves data
 					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 					<br>
 					<br>
 					<h3 class="subtitle">Converting from Swagger / OpenAPI 2.0</h3>
-					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://openapi-converter.herokuapp.com/">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
+					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://mermade.org.uk/openapi-converter">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
@@ -717,14 +720,19 @@
 					<h1 class="title">Wizards (Work-In-Progress)</h1>
 					<h2 class="subtitle">These functions may be experimental, or have only a rudimentary UI</h2>
 					<ul>
-						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="http://openapi-converter.herokuapp.com/">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
+						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
 						<li><a id="aShinola">Generate documentation</a> using <a href="https://github.com/mermade/shinola">shinola</a> (online <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> pipeline)</li>
+						<li v-if="window.intelligentBackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> </li>
+						<li v-if="window.intelligentBackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> </li>
+
 						<li><a id="aCRUD">Create CRUD operations</a> from definition</li>
 						<li><a id="aImportSchema">Import schema</a></li>
 						<li>Create server SDK - {{cgData.servers.length}} languages - <a href="https://github.com/swagger-api/swagger-codegen/issues/4669">waiting for swagger-codegen</a></li>
 						<li>Create client SDK - {{cgData.clients.length}} languages - <strong>ditto</strong></li>
-						<li>Generate link definition from sample</li>
 						<li v-if="window.intelligentBackend">Serve <a href="/serve">definition</a> for external use</li>
+						<li>OpenAPI <a href="vis/wordcloud.html" target="_blank">WordCloud</a> visualisation</li>
+						<li>OpenAPI <a href="vis/tree.html" target="_blank">Tree</a> visualisation</li>
+						<li>Generate link definition from sample</li>
 					</ul>
 					<br/>
 					<br/>
@@ -810,7 +818,7 @@
 										<a v-bind:href="specLink('#schemasObject')">OpenAPI Specification Schemas Object</a>
 										</p>
 										<p class="subtitle">
-											There are no shared schemas defined yet for this definition.
+											There are no shared schemas defined yet in this document.
 										</p>
 									</div>
 									<footer class="card-footer">
@@ -837,7 +845,7 @@
 						                </a>
 										</span>
 										<span class='level-item field-body field control'>
-											<input class="input" placeholder="Required" v-model.lazy="key"><!--wip-->
+											<input class="input" placeholder="Required" v-on:focus="storeSchemaName(key)" v-on:change="renameSchema(key)" v-model.lazy="key">
 										</span>
 										</div>
 									</div>
