@@ -50,6 +50,10 @@ If you don't have a local Node development environment, or if you would prefer t
 4. Navigate to `http://localhost:8080` in your favorite browser.
 5. When you're done, shut down the server by running `docker stop openapi-gui && docker rm openapi-gui`
 
+Or you can pull the pre-built Docker image:
+
+* `docker pull mermade/openapi-gui`
+
 ### Limitations
 
 * OpenAPI-GUI will de-reference shared parameters.
