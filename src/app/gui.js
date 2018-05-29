@@ -322,15 +322,19 @@ Vue.component('gui-main', {
 			$('#download-yaml').attr('download', 'openapi.yaml');
 		},
 
-		scrollTop: function () {
+		scrollTop: function() {
             window.scrollTo(0,0);
 		},
 
-		save: function () {
+        settings: function() {
+            // TODO
+        },
+
+		save: function() {
 			this.$root.save();
 		},
 
-		undo: function () {
+		undo: function() {
 			if (window.localStorage) {
 				Vue.set(this.$root.container, 'openapi', JSON.parse(window.localStorage.getItem('openapi3')));
 			}
