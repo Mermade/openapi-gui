@@ -106,8 +106,8 @@ Vue.component('gui-main', {
 		},
 
 		renameSecurityDefinition: function (oldName, newName) {
-			Vue.set(this.openapi.securityDefinitions, newName, this.openapi.securityDefinitions[oldName]);
-			Vue.delete(this.openapi.securityDefinitions, oldName);
+			Vue.set(this.openapi.components.securitySchemes, newName, this.openapi.components.securitySchemes[oldName]);
+			Vue.delete(this.openapi.components.securitySchemes, oldName);
 		},
 
 		filterSecurityDefinition: function(security, sdname) {
