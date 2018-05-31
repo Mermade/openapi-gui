@@ -102,7 +102,7 @@ var jsonSchemaDraft4 = {
     "additionalProperties": {
         "anyOf": [
             { "type": "boolean",
-              "format": "checkbox" 
+              "format": "checkbox"
             },
             { "$ref": "#" }
         ],
@@ -157,5 +157,11 @@ var jsonSchemaDraft4 = {
     "exclusiveMaximum": [ "maximum" ],
     "exclusiveMinimum": [ "minimum" ]
 },
-"default": {}}
+"default": {}};
+
+if (typeof module !== 'undefined') {
+  module.exports = {
+    petstore: petstore
+  };
+}
 

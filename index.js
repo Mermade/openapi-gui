@@ -11,7 +11,9 @@ const widdershins = require('widdershins');
 const shins = require('shins');
 
 const ourVersion = require('./package.json').version;
-let definition = {openapi:"3.0.0",info:{title:"API",version:"1.0.0"},paths:{}};
+const petstore = require('./data/static.js').petstore;
+
+let definition = petstore;
 let writeBack = false;
 let defName;
 
