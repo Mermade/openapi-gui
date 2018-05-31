@@ -28,8 +28,8 @@
         "express": "^4.15.5",
         "compression": "^1.6.2",
         "ejs": "^2.5.1",
-        "widdershins": "^2.2.5",
-        "shins": "^2.0.1-5"
+        "widdershins": "^3.4.2",
+        "shins": "^2.2.1-5"
     },
     "dependencies": {
         "js-yaml": "^3.10.0",

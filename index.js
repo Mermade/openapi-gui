@@ -55,18 +55,15 @@ app.get('/serve', function(req, res) {
 const getWiddershinsOptions = function() {
 	let options = {}; // defaults shown
 	options.codeSamples = true;
-	//options.language_tabs = [];
 	////options.loadedFrom = sourceUrl;
 	////options.user_templates = './user_templates';
-	options.templateCallback = function(templateName,stage,data) { return data };
-	options.theme = 'ocean';
+	options.theme = 'darkula';
 	options.search = true;
 	options.sample = true; // set false by --raw
-	options.schema = true; // set false by --noschema
 	options.discovery = false;
 	options.includes = [];
-	options.aggressive = false;
 	options.language_tabs = [{ 'http': 'HTTP' }, { 'javascript': 'JavaScript' }, { 'javascript--nodejs': 'Node.JS' }, { 'python': 'Python' }];
+    options.headings = 2;
 	return options;
 }
 
@@ -81,7 +78,7 @@ const getShinsOptions = function() {
 app.get('/markdown', function(req, res) {
 	widdershins.convert(definition, getWiddershinsOptions(), function(err,str){
 		res.set('Content-Type', 'text/plain');
-		res.send(str);
+		res.send(err||str);
 	});
 });
 
@@ -89,7 +86,7 @@ app.get('/shins', function(req, res) {
 	widdershins.convert(definition, getWiddershinsOptions(), function(err,str){
 		shins.render(str, getShinsOptions(), function(err, html) {
 			res.set('Content-Type', 'text/html');
-			res.send(html);
+			res.send(err||html);
 		});
 	});
 });
