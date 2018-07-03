@@ -104,24 +104,24 @@
 				<div class='field is-horizontal' v-if="!isComplex()">
 					<label class='label field-label is-normal'> Default Value </label>
 					<div class='field-body'>
-						<input v-model="parameter.default">
+						<input v-model="parameter.schema.default">
 					</div>
 					<a class='button is-success pull-right' v-on:click="addEnum()">
 						<i class='icon-plus icon-white'></i> Add Enum
 					</a>
 				</div>
-				<div class='box' v-if="!isComplex() && parameter.enum && parameter.enum.length">
-					<div v-for="(evalue,eindex) in parameter.enum">
+				<div class='box' v-if="!isComplex() && parameter.schema && parameter.schema.enum && parameter.schema.enum.length">
+					<div v-for="(evalue,eindex) in parameter.schema.enum">
 						<div class='field is-horizontal'>
 							<div class="control">
-								<a class="icon" data-balloon="Add Enum value" v-on:click="addVEnum(variable)"><i class='fa fa-plus'></i></a>
+								<a class="icon" data-balloon="Add Enum value" v-on:click="addEnum()"><i class='fa fa-plus'></i></a>
 							</div>
 							<div class="control">
 								<a class="icon" data-balloon="Remove Enum value" v-on:click="removeEnum(eindex)"><i class='fa fa-trash'></i></a>
 							</div>
 							<label class='label field-label is-normal'> Enum Value </label>
 							<div class='field-body'>
-								<input class="input" v-model="parameter.enum[eindex]">
+								<input class="input" v-model="parameter.schema.enum[eindex]">
 							</div>
 						</div>
 					</div>

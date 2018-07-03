@@ -124,13 +124,16 @@ Vue.component('api-parameter', {
             $('#schemaModal').addClass('is-active');
         },
         addEnum : function() {
-            if (!this.parameter.enum) {
-                Vue.set(this.parameter, 'enum', []);
+            if (!this.parameter.schema) {
+                Vue.set(this.parameter, 'schema', {});
             }
-            this.parameter.enum.push('newValue');
+            if (!this.parameter.schema.enum) {
+                Vue.set(this.parameter.schema, 'enum', []);
+            }
+            this.parameter.schema.enum.push('newValue');
         },
         removeEnum : function(index) {
-            this.parameter.enum.splice(index, 1);
+            this.parameter.schema.enum.splice(index, 1);
         }
     },
 	template: '#template-parameter',
