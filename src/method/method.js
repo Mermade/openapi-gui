@@ -254,6 +254,9 @@ Vue.component('api-response', {
             Vue.set(this.method.responses,newStatus,clone(this.method.responses[this.status]));
         },
         addMediaType: function() {
+            if (!this.response.content) {
+                Vue.set(this.response,'content',{});
+            }
             if (!this.response.content['change/me']) {
                 Vue.set(this.response.content,'change/me',{schema:{}});
             }

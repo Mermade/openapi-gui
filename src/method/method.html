@@ -286,6 +286,21 @@
                             </div>
                         </div>
 						<div class="box">
+                          <div class="card" v-if="!response.content || Object.keys(response.content).length == 0">
+                            <div class="card-content">
+                              <p class="title">
+                                <a v-bind:href="specLink('#mediaTypeObject')">OpenAPI Specification MediaType Object</a>
+                              </p>
+                              <p class="subtitle">
+                                There are no media-types defined (they are optional).
+                              </p>
+                            </div>
+                            <footer class="card-footer">
+                              <p class="card-footer-item">
+                                <a v-on:click="addMediaType()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create MediaType</span></a>
+                              </p>
+                            </footer>
+                          </div>
                             <api-mediatype v-for="(content, mediatype) in response.content"
                                 :content="content" :key="mediatype" :mediatype="mediatype" :container="response" inline-template>
                                 <div class="box">
