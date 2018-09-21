@@ -242,6 +242,17 @@ Vue.component('api-response', {
                 Vue.set(this.method.responses,'default',{description:'Default response'});
             }
         },
+        duplicateResponse: function () {
+            let newStatus = 'default';
+            if (this.method.responses.default) {
+                newStatus = 200;
+                while (this.method.responses[newStatus.toString()]) {
+                    newStatus++;
+                }
+                newStatus = newStatus.toString();
+            }
+            Vue.set(this.method.responses,newStatus,clone(this.method.responses[this.status]));
+        },
         addMediaType: function() {
             if (!this.response.content['change/me']) {
                 Vue.set(this.response.content,'change/me',{schema:{}});
