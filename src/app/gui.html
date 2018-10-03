@@ -513,6 +513,11 @@
 												<input class="input" placeholder="Required" v-model="sd.scheme">
 											</div>
 										</div>
+										<div v-if="sd.scheme == 'bearer'" class='field is-horizontal'>
+											<label class='field-label is-normal label'> Bearer Format </label>
+											<div class='field-body field control'>
+												<input class="input" v-model="sd.bearerFormat">
+											</div>
 									</div>
 
 									<div v-if="sd.type == 'openIdConnect'" class='animate-if'>

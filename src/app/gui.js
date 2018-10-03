@@ -382,6 +382,7 @@ Vue.component('api-secdef', {
 				}
 				if (newVal != 'http') {
 					Vue.delete(this.sd, 'scheme');
+                    Vue.delete(this.sd, 'bearerFormat');
 				}
 			}
 		},
