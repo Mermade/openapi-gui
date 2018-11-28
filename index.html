@@ -68,6 +68,25 @@
         $('#progress').attr('value', parseInt($('#progress').attr('value'))+16.66);
         def[index].resolve();
       }
+      var zoom_level=100;
+      function zoom_page(step) {
+        // Zoom by steps in or out
+        if (zoom_level>=120 && step>0 || zoom_level<=80 && step<0) return;
+
+        // Set / reset zoom
+        if (step==0) zoom_level=100;
+        else zoom_level=zoom_level+step;
+
+        // Set page zoom via CSS
+        $('body').css({
+          transform: 'scale('+(zoom_level/100)+')', // set zoom
+          transformOrigin: '50% 0' // set transform scale base
+        });
+
+        // Adjust page to zoom width
+        if (zoom_level>100) $('body').css({ width: (zoom_level*1.2)+'%' });
+        else $('body').css({ width: '100%' });
+      }
       $(document).ready(function(){
 
         $.ajax('https://generator.swagger.io/api/gen/clients',{
@@ -96,6 +115,7 @@
           }
           $(function() { $.support.transition = false; });
           app_main();
+          if ($(window).width()<1920) zoom_page(-14.0);
           $('#loading').hide();
         });
 
