@@ -280,6 +280,48 @@ function app_main() {
 	$(document).ajaxError(function(e, jqxhr, settings, thrownError){
 		console.log(JSON.stringify(jqxhr));
 	});
+    $('#aCGServer').click(function(){
+		$('.wizDetails').addClass('hidden');
+        $('#divCGServer').removeClass('hidden');
+    });
+    $('#aCGClient').click(function(){
+		$('.wizDetails').addClass('hidden');
+        $('#divCGClient').removeClass('hidden');
+    });
+    $('#btnGenServer').click(function(){
+        var payload = { }; // options: {}
+        payload.spec = postProcessDefinition(openapi);
+        var lang = $('#selCGServer :selected').text();
+        $.ajax({
+            url:'http://api.openapi-generator.tech/api/gen/servers/'+lang,
+            type:"POST",
+            data:JSON.stringify(payload),
+            contentType:"application/json; charset=utf-8",
+            success: function(data,status,jqXHR){
+                var link = data.link;
+                link = link.replace('localhost:8080','api.openapi-generator.tech');
+                $('#aDownloadServer').attr('href',link);
+                $('#aDownloadServer').removeClass('hidden');
+            }
+        });
+    });
+    $('#btnGenClient').click(function(){
+        var payload = { }; // options: {}
+        payload.spec = postProcessDefinition(openapi);
+        var lang = $('#selCGClient :selected').text();
+        $.ajax({
+            url:'http://api.openapi-generator.tech/api/gen/clients/'+lang,
+            type:"POST",
+            data:JSON.stringify(payload),
+            contentType:"application/json; charset=utf-8",
+            success: function(data,status,jqXHR){
+                var link = data.link;
+                link = link.replace('localhost:8080','api.openapi-generator.tech');
+                $('#aDownloadClient').attr('href',link);
+                $('#aDownloadClient').removeClass('hidden');
+            }
+        });
+    });
 	$('#aValidate').click(function(){
 		$('.wizDetails').addClass('hidden');
 		$('#txtValidation').text('Loading...');

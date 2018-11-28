@@ -727,8 +727,8 @@
 
 						<li><a id="aCRUD">Create CRUD operations</a> from definition</li>
 						<li><a id="aImportSchema">Import schema</a></li>
-						<li>Create server SDK - {{cgData.servers.length}} languages - Feature in progress</li>
-						<li>Create client SDK - {{cgData.clients.length}} languages - <strong>ditto</strong></li>
+						<li><a id="aCGServer">Create server SDK</a> - {{cgData.servers.length}} languages</li>
+						<li><a id="aCGClient">Create client SDK</a> - {{cgData.clients.length}} languages</li>
 						<li v-if="window.intelligentBackend">Serve <a href="/serve">definition</a> for external use</li>
 						<li>OpenAPI <a href="vis/wordcloud.html" target="_blank">WordCloud</a> visualisation</li>
 						<li>OpenAPI <a href="vis/tree.html" target="_blank">Tree</a> visualisation</li>
@@ -752,6 +752,28 @@
 						</div>
 						<div id="btnImportSchema" class="button is-primary">Update</div>
 					</div>
+
+                    <div id="divCGServer" class="hidden wizDetails box">
+						<div class="select">
+					    	<select id="selCGServer">
+								<option v-for="lang in cgData.servers" :value="lang">{{lang}}</option>
+							</select>
+						</div>
+						<div id="btnGenServer" class="button is-primary">Generate</div>
+                        <a class="hidden" id="aDownloadServer">Download!</a>
+                    </div>
+                    <div id="divCGClient" class="hidden wizDetails box">
+						<div class="select">
+					    	<select id="selCGClient">
+								<option v-for="lang in cgData.clients" :value="lang">{{lang}}</option>
+							</select>
+						</div>
+						<div id="btnGenClient" class="button is-primary">Generate</div>
+                        <a class="hidden" id="aDownloadClient">Download!</a>
+                    </div>
+
+					<div id="divCRUD" class="hidden wizDetails box">
+						<div class='level'>
 
 					<div id="divCRUD" class="hidden wizDetails box">
 						<div class='level'>
