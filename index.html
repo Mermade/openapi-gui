@@ -78,14 +78,14 @@
         else zoom_level=zoom_level+step;
 
         // Set page zoom via CSS
-        $('body').css({
+        $('html').css({
           transform: 'scale('+(zoom_level/100)+')', // set zoom
           transformOrigin: '50% 0' // set transform scale base
         });
 
         // Adjust page to zoom width
         if (zoom_level>100) $('body').css({ width: (zoom_level*1.2)+'%' });
-        else $('body').css({ width: '100%' });
+        else $('html').css({ width: '100%' });
       }
       $(document).ready(function(){
 
