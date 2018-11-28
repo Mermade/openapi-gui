@@ -293,7 +293,7 @@ function app_main() {
         payload.spec = postProcessDefinition(openapi);
         var lang = $('#selCGServer :selected').text();
         $.ajax({
-            url:'http://api.openapi-generator.tech/api/gen/servers/'+lang,
+            url:'https://api.openapi-generator.tech/api/gen/servers/'+lang,
             type:"POST",
             data:JSON.stringify(payload),
             contentType:"application/json; charset=utf-8",
@@ -310,7 +310,7 @@ function app_main() {
         payload.spec = postProcessDefinition(openapi);
         var lang = $('#selCGClient :selected').text();
         $.ajax({
-            url:'http://api.openapi-generator.tech/api/gen/clients/'+lang,
+            url:'https://api.openapi-generator.tech/api/gen/clients/'+lang,
             type:"POST",
             data:JSON.stringify(payload),
             contentType:"application/json; charset=utf-8",

@@ -89,12 +89,12 @@
       }
       $(document).ready(function(){
 
-        $.ajax('http://api.openapi-generator.tech/api/gen/clients',{
+        $.ajax('https://api.openapi-generator.tech/api/gen/clients',{
             success: function(data) {
                 cgData.clients = data;
             }
         });
-        $.ajax('http://api.openapi-generator.tech/api/gen/servers',{
+        $.ajax('https://api.openapi-generator.tech/api/gen/servers',{
             success: function(data) {
                 cgData.servers = data;
             }
