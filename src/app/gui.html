@@ -2,11 +2,11 @@
 	<div class='navbar is-fixed-top has-shadow success' id='topnav'>
 		<div class="navbar-brand">
 			<span class='navbar-item'><a href="https://github.com/mermade/openapi-gui">OpenAPI-GUI v3</a></span>
-            <button class="button navbar-burger">
-                <span>Mobile menu A</span>
-                <span>Mobile menu B</span>
-                <span>Mobile menu C</span>
-            </button>
+			<button class="button navbar-burger">
+				<span>Mobile menu A</span>
+				<span>Mobile menu B</span>
+				<span>Mobile menu C</span>
+			</button>
 		</div>
 		<div class="navbar-end">
 			<div class='navbar-item'>
@@ -14,8 +14,10 @@
 				<a class="btn" v-on:click="settings()"><i class='fa fa-white fa-cog'></i> Settings</a>
 				<a class="btn" v-on:click="save()"><i class='fa fa-white fa-save'></i> Save</a>
 				<a class="btn" v-on:click="undo()"><i class='fa fa-white fa-undo'></i> Undo</a>
-				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenAPI-GUI%20Visual%20editor%20for%20%23OpenAPI%203.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i class='fa fa-white fa-twitter'></i></a>
-				<a class="btn" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='fa fa-twitter'></i> Follow</a>
+				<a class="btn" target="_blank" href="https://twitter.com/share?source=tweetbutton&text=OpenAPI-GUI%20Visual%20editor%20for%20%23OpenAPI%203.0.x%20Via%20%40PermittedSoc&url=https%3A%2F%2Fgithub.com%2FMermade%2Fopenapi-gui"><i
+					 class='fa fa-white fa-twitter'></i></a>
+				<a class="btn" target="_blank" href="https://twitter.com/intent/follow?screen_name=PermittedSoc"><i class='fa fa-twitter'></i>
+					Follow</a>
 				<a class='btn' target="_blank" href="https://github.com/mermade/openapi-gui"><i class='fa fa-github'></i> GitHub</a>
 			</div>
 		</div>
@@ -57,10 +59,10 @@
 				</div>
 				<footer class="card-footer">
 					<p class="card-footer-item">
-					<a id="confirmOk"><span class="button is-primary">Confirm</span></a>
+						<a id="confirmOk"><span class="button is-primary">Confirm</span></a>
 					</p>
 					<p class="card-footer-item">
-					<a id="confirmCancel"><span class="button is-warning">Cancel</span></a>
+						<a id="confirmCancel"><span class="button is-warning">Cancel</span></a>
 					</p>
 				</footer>
 			</div>
@@ -146,23 +148,29 @@
 				<div class="tab-pane hidden container is-fluid" id="about">
 					<h1 class="title">What is OpenAPI-GUI?</h1>
 					OpenAPI-GUI is a GUI for creating and updating <a v-bind:href="specLink()">
-					OpenAPI 3.0.x</a> definitions.<br>
+						OpenAPI 3.0.x</a> definitions.<br>
 					<br>
 					<h2 class="subtitle">How does OpenAPI-GUI work?</h2>
-					Upload an existing definition, or create a new one (select the red 'trash-can' button on the Upload tab to remove all Paths) and start adding
-					Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path,
+					Upload an existing definition, or create a new one (select the red 'trash-can' button on the Upload tab to remove
+					all Paths) and start adding
+					Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each
+					Path,
 					Operation and Parameter will be created.
 					<br>
 					<br> By default when OpenAPI-GUI starts, it loads the OpenAPI Petstore sample.
 					<br>
-					<br> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting the
-					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenAPI-GUI saves data
-					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save" button
+					<br> Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting
+					the
+					"Export" tabs. When finished, click "Download" or Copy" to copy the output to your clipboard. OpenAPI-GUI saves
+					data
+					only to your browser's local-storage. Data is saved before destructive edits (deletions) and when the "Save"
+					button
 					is pressed. "Undo" will return to the last-saved state. Make sure you save your JSON/YAML output when finished.
 					<br>
 					<br>
 					<h3 class="subtitle">Converting from Swagger / OpenAPI 2.0</h3>
-					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://mermade.org.uk/openapi-converter">this online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
+					Swagger / OpenAPI 2.0 definitions are converted using <a v-if="!window.intelligentBackend" href="https://mermade.org.uk/openapi-converter">this
+						online tool</a><span v-if="window.intelligentBackend">a built-in tool</span>.
 				</div>
 
 				<div class="tab-pane hidden container is-fluid" id="input">
@@ -191,13 +199,15 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Title </label>
 								<div class='field-body field control'>
-									<input class="input" placeholder="Required" v-model="openapi.info.title" @input="$v.openapi.info.title.$touch()" v-bind:class="{ 'is-danger': !$v.openapi.info.title.required }">
+									<input class="input" placeholder="Required" v-model="openapi.info.title" @input="$v.openapi.info.title.$touch()"
+									 v-bind:class="{ 'is-danger': !$v.openapi.info.title.required }">
 								</div>
 							</div>
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Version </label>
 								<div class='field-body field control'>
-									<input class="input" placeholder="Required" v-model="openapi.info.version" @input="$v.openapi.info.version.$touch()" v-bind:class="{ 'is-danger': !$v.openapi.info.version.required }">
+									<input class="input" placeholder="Required" v-model="openapi.info.version" @input="$v.openapi.info.version.$touch()"
+									 v-bind:class="{ 'is-danger': !$v.openapi.info.version.required }">
 								</div>
 							</div>
 
@@ -225,7 +235,7 @@
 
 							<div class="field is-horizontal">
 								<label class='field-label is-normal label'> Contact Email </label>
-  								<span class="control field-body has-icons-left">
+								<span class="control field-body has-icons-left">
 									<input class="input" type="email" v-model="openapi.info.contact.email">
 									<span class="icon is-small is-left"><i class="fa fa-envelope"></i></span>
 								</span>
@@ -260,7 +270,7 @@
 										</select>
 									</div>
 									<span class="icon" data-balloon="Choose license"><a v-on:click="enableLicenseSelect()" class='none'><i class='fa fa-caret-down'></i></a></span>
-										<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
+									<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
 								</div>
 							</div>
 							<div class='field is-horizontal'>
@@ -297,7 +307,7 @@
 							<div class="card" v-if="!openapi.servers || openapi.servers.length==0">
 								<div class="card-content">
 									<p class="title">
-									<a v-bind:href="specLink('#serverObject')">OpenAPI Specification Servers Object</a>
+										<a v-bind:href="specLink('#serverObject')">OpenAPI Specification Servers Object</a>
 									</p>
 									<p class="subtitle">
 										There are no servers defined. This means the API paths will be relative to the host and path
@@ -306,7 +316,7 @@
 								</div>
 								<footer class="card-footer">
 									<p class="card-footer-item">
-									<a v-on:click="addServer()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Server</span></a>
+										<a v-on:click="addServer()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Server</span></a>
 									</p>
 								</footer>
 							</div>
@@ -335,7 +345,8 @@
 											<br>
 										</div>
 									</div>
-									<api-srvvar v-for="(variable,index) in server.variables" :name="index" :key="index" :variable="variable" :server="server" inline-template>
+									<api-srvvar v-for="(variable,index) in server.variables" :name="index" :key="index" :variable="variable"
+									 :server="server" inline-template>
 										<div class="box">
 											<div class="field is-horizontal is-grouped">
 												<label class='field-label is-normal label'> Name </label>
@@ -365,7 +376,8 @@
 														<a v-on:click="addVEnum()" class='button is-primary'><i class='fa fa-fw fa-plus'></i>Add Enum Value</a>
 													</div>
 												</div>
-												<api-venum v-for="(evalue,eindex) in variable.enum" :variable="variable" :eindex="eindex" :key="eindex" inline-template>
+												<api-venum v-for="(evalue,eindex) in variable.enum" :variable="variable" :eindex="eindex" :key="eindex"
+												 inline-template>
 													<div class='field is-horizontal level is-grouped'>
 														<div class="control">
 															<a class="icon" data-balloon="Add Enum value" v-on:click="addVEnum(variable)"><i class='fa fa-plus'></i></a>
@@ -442,7 +454,8 @@
 					<div class="container is-fluid">
 						<form class="columns" id="frmSecurity">
 							<div class="column is-2 box">
-								<a class="button is-primary" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i>&nbsp;Add Security Scheme</a>
+								<a class="button is-primary" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i>&nbsp;Add Security
+									Scheme</a>
 								<br>
 								<div class="menu">
 									<ul class="menu-list">
@@ -460,201 +473,203 @@
 								</div>
 							</div>
 							<div class="column is-10">
-							<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes"
-								:key="sdname" :sd='sd' :sdname='sdname' :openapi='openapi' inline-template>
-								<div class="container is-fluid box">
-									<a :name="'sec'+sdname"></a>
-									<div class="field is-grouped">
-										<div class="control">
-											<label class="field-label is-normal label">&nbsp;</label>
-											<a class="icon" data-balloon="Add securityScheme" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i></a>
-										</div>
-										<div class="control">
-											<label class="field-label is-normal label">&nbsp;</label>
-											<a class="icon" data-balloon="Remove securityScheme" v-on:click="removeSecurityDefinition(sdname)"><i class='fa fa-trash'></i></a>
-										</div>
-										<div class="control is-expanded">
-											<label class='field-label is-normal label'> Name </label>
-											<div class='field-body'>
-												<input class="input" v-model.lazy="secname">
+								<api-secdef v-for="(sd, sdname) in openapi.components.securitySchemes" :key="sdname" :sd='sd' :sdname='sdname'
+								 :openapi='openapi' inline-template>
+									<div class="container is-fluid box">
+										<a :name="'sec'+sdname"></a>
+										<div class="field is-grouped">
+											<div class="control">
+												<label class="field-label is-normal label">&nbsp;</label>
+												<a class="icon" data-balloon="Add securityScheme" v-on:click="addSecurityDefinition()"><i class='fa fa-plus'></i></a>
 											</div>
-										</div>
-										<!--<div class="control">
+											<div class="control">
+												<label class="field-label is-normal label">&nbsp;</label>
+												<a class="icon" data-balloon="Remove securityScheme" v-on:click="removeSecurityDefinition(sdname)"><i class='fa fa-trash'></i></a>
+											</div>
+											<div class="control is-expanded">
+												<label class='field-label is-normal label'> Name </label>
+												<div class='field-body'>
+													<input class="input" v-model.lazy="secname">
+												</div>
+											</div>
+											<!--<div class="control">
 											<label class="field-label is-normal label">&nbsp;</label>
 											<div class="field-body">
 												<a v-on:click="removeSecurityDefinition(sdname)" class='button is-danger'><i class='fa fa-fw fa-trash'></i>Delete</a>
 											</div>
 										</div>-->
-										<div class='control'>
-											<label class='field-label is-normal label' for="selSdType"> Type </label>
-											<div class='field-body'>
-												<div class="select">
-													<select name="selSdType" v-model="type">
-														<option value="apiKey">API Key</option>
-														<option value="oauth2">oAuth2</option>
-														<option value="http">HTTP Authentication</option>
-														<option value="openIdConnect">OpenIdConnect</option>
-													</select>
-												</div>
-											</div>
-										</div>
-										<div class='control'>
-											<label class='field-label is-normal label'> Apply&nbsp;to&nbsp;all&nbsp;paths </label>
-											<div class='field-body field control'>
-												<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
-											</div>
-										</div>
-									</div>
-
-									<div v-if="sd.type == 'http'" class='animate-if'>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Scheme </label>
-											<div class='field-body field control'>
-												<input class="input" placeholder="Required" v-model="sd.scheme">
-											</div>
-										</div>
-									</div>
-
-									<div v-if="sd.type == 'openIdConnect'" class='animate-if'>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> OpenIdConnect URL </label>
-											<div class='field-body field control has-icons-left'>
-												<input class="input" placeholder="Required" v-model="sd.openIdConnectUrl">
-												<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
-											</div>
-										</div>
-									</div>
-
-									<div v-if="sd.type == 'apiKey'" class='animate-if'>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Parameter Name </label>
-											<div class='field-body field control'>
-												<input class="input" v-model="sd.name">
-											</div>
-										</div>
-										<div class='field is-horizontal'>
-											<label class='field-label is-normal label'> Location </label>
-											<div class='field-body field control'>
-												<div class="select">
-													<select class="none" name="selLocation" v-model="sd.in">
-														<option value="header">Header</option>
-														<option value="query">Query</option>
-														<option value="cookie">Cookie</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div v-if="sd.type == 'oauth2'" class='animate-if'>
-										<div class="field control level box">
-											<div class="level-left">
-												<div class="level-item field is-horizontal">
-													<label class="field-label is-normal label">Flows:</label>
-													<div class='field-body field control'>&nbsp;</div>
-												</div>
-												<div class='level-item field is-horizontal'>
-													<label class='field-label is-normal label'>Implicit</label>
-													<div class='field-body field control'>
-														<input type='checkbox' class="checkbox" v-model='hasImplicit'>
+											<div class='control'>
+												<label class='field-label is-normal label' for="selSdType"> Type </label>
+												<div class='field-body'>
+													<div class="select">
+														<select name="selSdType" v-model="type">
+															<option value="apiKey">API Key</option>
+															<option value="oauth2">oAuth2</option>
+															<option value="http">HTTP Authentication</option>
+															<option value="openIdConnect">OpenIdConnect</option>
+														</select>
 													</div>
 												</div>
-												<div class='level-item field is-horizontal'>
-													<label class='field-label is-normal label'>Password</label>
-													<div class='field-body field control'>
-														<input type='checkbox' class="checkbox" v-model='hasPassword'>
-													</div>
+											</div>
+											<div class='control'>
+												<label class='field-label is-normal label'> Apply&nbsp;to&nbsp;all&nbsp;paths </label>
+												<div class='field-body field control'>
+													<input type='checkbox' :value='sdname' v-model='appliesToAllPaths'>
 												</div>
-												<div class='level-item field is-horizontal'>
-													<label class='field-label is-normal label'>clientCredentials</label>
-													<div class='field-body field control'>
-														<input type='checkbox' class="checkbox" v-model='hasClientCred'>
-													</div>
-												</div>
-												<div class='level-item field is-horizontal'>
-													<label class='field-label is-normal label'>authorizationCode</label>
-													<div class='field-body field control'>
-														<input type='checkbox' class="checkbox" v-model='hasAuthCode'>
-													</div>
-												</div>
-												<div class="level-item"></div> <!-- last level-item is wrongly positioned -->
 											</div>
 										</div>
 
-										<div class="box" v-for="(flow,flowName) in sd.flows">
+										<div v-if="sd.type == 'http'" class='animate-if'>
 											<div class='field is-horizontal'>
-												<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
+												<label class='field-label is-normal label'> Scheme </label>
+												<div class='field-body field control'>
+													<input class="input" placeholder="Required" v-model="sd.scheme">
+												</div>
 											</div>
+										</div>
 
+										<div v-if="sd.type == 'openIdConnect'" class='animate-if'>
 											<div class='field is-horizontal'>
-												<label class='field-label is-normal label'> Authorization URL </label>
+												<label class='field-label is-normal label'> OpenIdConnect URL </label>
 												<div class='field-body field control has-icons-left'>
-													<input type="url" class="input" v-model="flow.authorizationUrl">
+													<input class="input" placeholder="Required" v-model="sd.openIdConnectUrl">
 													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 												</div>
 											</div>
-											<div class='field is-horizontal'>
-												<label class='field-label is-normal label'> Token URL </label>
-												<div class='field-body field control has-icons-left'>
-													<input type="url" class="input" v-model="flow.tokenUrl">
-													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
-												</div>
-											</div>
-											<div class='field is-horizontal'>
-												<label class='field-label is-normal label'> Refresh URL </label>
-												<div class='field-body field control has-icons-left'>
-													<input type="url" class="input" v-model="flow.refreshUrl">
-													<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
-												</div>
-											</div>
-											<div class='box'>
-												<div class="card" v-if="Object.keys(flow.scopes).length==0">
-													<div class="card-content">
-														<p class="title">
-														<a v-bind:href="specLink('#scopesObject')">OpenAPI Specification Scopes Object</a>
-														</p>
-														<p class="subtitle">
-															There are no scopes defined yet for this oAuth2 flow.
-														</p>
-													</div>
-													<footer class="card-footer">
-														<p class="card-footer-item">
-														<a v-on:click="addScope(flow)"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Scope</span></a>
-														</p>
-													</footer>
-												</div>
+										</div>
 
-												<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname" :flow="flow" inline-template>
-													<div class="box">
-														<div class='field is-horizontal level is-grouped'>
-															<div class="control">
-																<a class="icon" data-balloon="Add scope" v-on:click="addScope(flow)"><i class='fa fa-plus'></i></a>
-															</div>
-															<div class="control">
-																<a class="icon" data-balloon="Duplicate scope" v-on:click="duplicateScope(flow)"><i class='fa fa-copy'></i></a>
-															</div>
-															<div class="control">
-																<a class="icon" data-balloon="Remove scope" v-on:click="removeScope(flow,sname)"><i class='fa fa-trash'></i></a>
-															</div>
-															<label class='field-label is-normal label'> Scope Name </label>
-															<div class='field-body field control'>
-																<input class="input" v-model.lazy="scopename">
-															</div>
-														</div>
-														<div class='field is-horizontal'>
-															<label class='field-label is-normal label'> Description </label>
-															<div class='field-body field control'>
-																<input class="input" v-model="flow.scopes[sname]">
-															</div>
+										<div v-if="sd.type == 'apiKey'" class='animate-if'>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Parameter Name </label>
+												<div class='field-body field control'>
+													<input class="input" v-model="sd.name">
+												</div>
+											</div>
+											<div class='field is-horizontal'>
+												<label class='field-label is-normal label'> Location </label>
+												<div class='field-body field control'>
+													<div class="select">
+														<select class="none" name="selLocation" v-model="sd.in">
+															<option value="header">Header</option>
+															<option value="query">Query</option>
+															<option value="cookie">Cookie</option>
+														</select>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div v-if="sd.type == 'oauth2'" class='animate-if'>
+											<div class="field control level box">
+												<div class="level-left">
+													<div class="level-item field is-horizontal">
+														<label class="field-label is-normal label">Flows:</label>
+														<div class='field-body field control'>&nbsp;</div>
+													</div>
+													<div class='level-item field is-horizontal'>
+														<label class='field-label is-normal label'>Implicit</label>
+														<div class='field-body field control'>
+															<input type='checkbox' class="checkbox" v-model='hasImplicit'>
 														</div>
 													</div>
-												</api-scope>
+													<div class='level-item field is-horizontal'>
+														<label class='field-label is-normal label'>Password</label>
+														<div class='field-body field control'>
+															<input type='checkbox' class="checkbox" v-model='hasPassword'>
+														</div>
+													</div>
+													<div class='level-item field is-horizontal'>
+														<label class='field-label is-normal label'>clientCredentials</label>
+														<div class='field-body field control'>
+															<input type='checkbox' class="checkbox" v-model='hasClientCred'>
+														</div>
+													</div>
+													<div class='level-item field is-horizontal'>
+														<label class='field-label is-normal label'>authorizationCode</label>
+														<div class='field-body field control'>
+															<input type='checkbox' class="checkbox" v-model='hasAuthCode'>
+														</div>
+													</div>
+													<div class="level-item"></div> <!-- last level-item is wrongly positioned -->
+												</div>
+											</div>
+
+											<div class="box" v-for="(flow,flowName) in sd.flows">
+												<div class='field is-horizontal'>
+													<label class='field-label is-normal label'> Flow: {{ flowName }} </label>
+												</div>
+
+												<div class='field is-horizontal'>
+													<label class='field-label is-normal label'> Authorization URL </label>
+													<div class='field-body field control has-icons-left'>
+														<input type="url" class="input" v-model="flow.authorizationUrl">
+														<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
+													</div>
+												</div>
+												<div class='field is-horizontal'>
+													<label class='field-label is-normal label'> Token URL </label>
+													<div class='field-body field control has-icons-left'>
+														<input type="url" class="input" v-model="flow.tokenUrl">
+														<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
+													</div>
+												</div>
+												<div class='field is-horizontal'>
+													<label class='field-label is-normal label'> Refresh URL </label>
+													<div class='field-body field control has-icons-left'>
+														<input type="url" class="input" v-model="flow.refreshUrl">
+														<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
+													</div>
+												</div>
+												<div class='box'>
+													<div class="card" v-if="Object.keys(flow.scopes).length==0">
+														<div class="card-content">
+															<p class="title">
+																<a v-bind:href="specLink('#scopesObject')">OpenAPI Specification Scopes Object</a>
+															</p>
+															<p class="subtitle">
+																There are no scopes defined yet for this oAuth2 flow.
+															</p>
+														</div>
+														<footer class="card-footer">
+															<p class="card-footer-item">
+																<a v-on:click="addScope(flow)"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create
+																		Scope</span></a>
+															</p>
+														</footer>
+													</div>
+
+													<api-scope v-for="(sdesc, sname) in flow.scopes" :sd="sd" :sdname="sdname" :sname="sname" :key="sname"
+													 :flow="flow" inline-template>
+														<div class="box">
+															<div class='field is-horizontal level is-grouped'>
+																<div class="control">
+																	<a class="icon" data-balloon="Add scope" v-on:click="addScope(flow)"><i class='fa fa-plus'></i></a>
+																</div>
+																<div class="control">
+																	<a class="icon" data-balloon="Duplicate scope" v-on:click="duplicateScope(flow)"><i class='fa fa-copy'></i></a>
+																</div>
+																<div class="control">
+																	<a class="icon" data-balloon="Remove scope" v-on:click="removeScope(flow,sname)"><i class='fa fa-trash'></i></a>
+																</div>
+																<label class='field-label is-normal label'> Scope Name </label>
+																<div class='field-body field control'>
+																	<input class="input" v-model.lazy="scopename">
+																</div>
+															</div>
+															<div class='field is-horizontal'>
+																<label class='field-label is-normal label'> Description </label>
+																<div class='field-body field control'>
+																	<input class="input" v-model="flow.scopes[sname]">
+																</div>
+															</div>
+														</div>
+													</api-scope>
+												</div>
+
 											</div>
 
 										</div>
-
 									</div>
-								</div>
-							</api-secdef>
+								</api-secdef>
 							</div>
 						</form>
 					</div>
@@ -693,7 +708,7 @@
 								<div class="card" v-if="Object.keys(openapi.paths).length==0">
 									<div class="card-content">
 										<p class="title">
-										<a v-bind:href="specLink('#pathsObject')">OpenAPI Specification Paths Object</a>
+											<a v-bind:href="specLink('#pathsObject')">OpenAPI Specification Paths Object</a>
 										</p>
 										<p class="subtitle">
 											There are no paths defined yet for this definition.
@@ -701,7 +716,7 @@
 									</div>
 									<footer class="card-footer">
 										<p class="card-footer-item">
-										<a v-on:click="addResource()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Path</span></a>
+											<a v-on:click="addResource()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Path</span></a>
 										</p>
 									</footer>
 								</div>
@@ -720,10 +735,16 @@
 					<h1 class="title">Wizards (Work-In-Progress)</h1>
 					<h2 class="subtitle">These functions may be experimental, or have only a rudimentary UI</h2>
 					<ul>
-						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a> (online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in validator</span></li>
-						<li><a id="aShinola">Generate documentation</a> using <a href="https://github.com/mermade/shinola">shinola</a> (online <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> pipeline)</li>
-						<li v-if="window.intelligentBackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a> </li>
-						<li v-if="window.intelligentBackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a> </li>
+						<li><a id="aValidate">Validate definition</a> using <span v-if="!window.intelligentBackend"><a href="https://mermade.org.uk/openapi-converter">OpenAPI-converter</a>
+								(online version of <a href="https://github.com/mermade/swagger2openapi">swagger2openapi</a>)</span><span v-if="window.intelligentBackend">built-in
+								validator</span></li>
+						<li><a id="aShinola">Generate documentation</a> using <a href="https://github.com/mermade/shinola">shinola</a>
+							(online <a href="https://github.com/mermade/widdershins">widdershins</a> and <a href="https://github.com/mermade/shins">shins</a>
+							pipeline)</li>
+						<li v-if="window.intelligentBackend"><a id="aShins" href="/shins">Preview documentation</a> using <a href="https://github.com/mermade/widdershins">widdershins</a>
+							and <a href="https://github.com/mermade/shins">shins</a> </li>
+						<li v-if="window.intelligentBackend"><a id="aWiddershins" href="/markdown">Dump markdown</a> using <a href="https://github.com/mermade/widdershins">widdershins</a>
+						</li>
 
 						<li><a id="aCRUD">Create CRUD operations</a> from definition</li>
 						<li><a id="aImportSchema">Import schema</a></li>
@@ -734,8 +755,8 @@
 						<li>OpenAPI <a href="vis/tree.html" target="_blank">Tree</a> visualisation</li>
 						<li>Generate link definition from sample</li>
 					</ul>
-					<br/>
-					<br/>
+					<br />
+					<br />
 
 					<textarea id="txtValidation" class="hidden wizDetails textarea">
 					</textarea>
@@ -743,7 +764,7 @@
 					<div id="divImportSchema" class="hidden wizDetails">
 						<textarea id="txtSchema" class="textarea" placeholder="Schema (JSON or YAML)">
 						</textarea>
-						<br/>
+						<br />
 						<div class='field is-horizontal'>
 							<label class='field-label is-normal label'> Schema Name </label>
 							<div class='field-body field control'>
@@ -753,61 +774,64 @@
 						<div id="btnImportSchema" class="button is-primary">Update</div>
 					</div>
 
-                    <div id="divCGServer" class="hidden wizDetails box">
+					<div id="divCGServer" class="hidden wizDetails box">
 						<div class="select">
-					    	<select id="selCGServer">
+							<select id="selCGServer">
 								<option v-for="lang in cgData.servers" :value="lang">{{lang}}</option>
 							</select>
 						</div>
 						<div id="btnGenServer" class="button is-primary">Generate</div>
-                        <a class="hidden" id="aDownloadServer">Download!</a>
-                    </div>
-                    <div id="divCGClient" class="hidden wizDetails box">
+						<a class="hidden" id="aDownloadServer">Download!</a>
+					</div>
+					<div id="divCGClient" class="hidden wizDetails box">
 						<div class="select">
-					    	<select id="selCGClient">
+							<select id="selCGClient">
 								<option v-for="lang in cgData.clients" :value="lang">{{lang}}</option>
 							</select>
 						</div>
 						<div id="btnGenClient" class="button is-primary">Generate</div>
-                        <a class="hidden" id="aDownloadClient">Download!</a>
-                    </div>
-
-					<div id="divCRUD" class="hidden wizDetails box">
-						<div class='level'>
-
-					<div id="divCRUD" class="hidden wizDetails box">
-						<div class='level'>
-						<div class='field is-horizontal level-left'>
-							<label class='field-label is-normal label' for="selCRUDSchema"> Schema </label>
-							<div class='field-body'>
-								<div class="select">
-									<select name="selCRUDSchema">
-										<option v-for="(schema,key) in openapi.components.schemas" :value="key">{{key}}</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class='field is-horizontal level-item'>
-							<label class='field-label is-normal label' for="selCRUDMethods"> Methods </label>
-							<div class='field-body'>
-								<div class="select" >
-									<select name="selCRUDMethods" multiple=true>
-										<option value="get" selected>GET</option>
-										<option value="post">POST</option>
-										<option value="put">PUT</option>
-										<option value="patch">PATCH</option>
-										<option value="delete">DELETE</option>
-										<option value="head">HEAD</option>
-										<option value="options">OPTIONS</option>
-										<option value="trace">TRACE</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="button is-primary">Generate</div>
-						</div>
+						<a class="hidden" id="aDownloadClient">Download!</a>
 					</div>
 
+					<div id="divCRUD" class="hidden wizDetails box">
+						<div class='level'>
+
+							<div id="divCRUD" class="hidden wizDetails box">
+								<div class='level'>
+									<div class='field is-horizontal level-left'>
+										<label class='field-label is-normal label' for="selCRUDSchema"> Schema </label>
+										<div class='field-body'>
+											<div class="select">
+												<select name="selCRUDSchema">
+													<option v-for="(schema,key) in openapi.components.schemas" :value="key">{{key}}</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class='field is-horizontal level-item'>
+										<label class='field-label is-normal label' for="selCRUDMethods"> Methods </label>
+										<div class='field-body'>
+											<div class="select">
+												<select name="selCRUDMethods" multiple=true>
+													<option value="get" selected>GET</option>
+													<option value="post">POST</option>
+													<option value="put">PUT</option>
+													<option value="patch">PATCH</option>
+													<option value="delete">DELETE</option>
+													<option value="head">HEAD</option>
+													<option value="options">OPTIONS</option>
+													<option value="trace">TRACE</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="button is-primary">Generate</div>
+									<!--</div>-->
+								</div>
+
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -837,7 +861,7 @@
 								<div class="card" v-if="Object.keys(openapi.components.schemas).length==0">
 									<div class="card-content">
 										<p class="title">
-										<a v-bind:href="specLink('#schemasObject')">OpenAPI Specification Schemas Object</a>
+											<a v-bind:href="specLink('#schemasObject')">OpenAPI Specification Schemas Object</a>
 										</p>
 										<p class="subtitle">
 											There are no shared schemas defined yet in this document.
@@ -845,30 +869,31 @@
 									</div>
 									<footer class="card-footer">
 										<p class="card-footer-item">
-										<a v-on:click="addSchema()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Schema</span></a>
+											<a v-on:click="addSchema()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Schema</span></a>
 										</p>
 									</footer>
 								</div>
 								<div class="schema" v-for="(schema,key) in openapi.components.schemas">
 									<div class="box boxsep">
 										<div class="level">
-							            <span class="level-left"><span><b>Schema:</b></span>
-						                <a class='icon' data-balloon="Add schema" v-on:click="addSchema()">
-      						              <i class="fa fa-fw fa-plus"></i>
-      						            </a>
-						                <a class='icon' data-balloon="Duplicate schema" v-on:click="duplicateSchema(key)">
-						                    <i class="fa fa-fw fa-copy"></i>
-						                </a>
-						                <a class='icon' data-balloon="Edit shared schema" v-on:click="editSchema(key)">
-						                    <i class='fa fa-fw fa-edit'></i>
-						                </a>
-						                <a class='icon is-danger' data-balloon="Remove schema" v-on:click="removeSchema(key)">
-						                    <i class="fa fa-fw fa-trash"></i>
-						                </a>
-										</span>
-										<span class='level-item field-body field control'>
-											<input class="input" placeholder="Required" v-on:focus="storeSchemaName(key)" v-on:change="renameSchema(key)" v-model.lazy="key">
-										</span>
+											<span class="level-left"><span><b>Schema:</b></span>
+												<a class='icon' data-balloon="Add schema" v-on:click="addSchema()">
+													<i class="fa fa-fw fa-plus"></i>
+												</a>
+												<a class='icon' data-balloon="Duplicate schema" v-on:click="duplicateSchema(key)">
+													<i class="fa fa-fw fa-copy"></i>
+												</a>
+												<a class='icon' data-balloon="Edit shared schema" v-on:click="editSchema(key)">
+													<i class='fa fa-fw fa-edit'></i>
+												</a>
+												<a class='icon is-danger' data-balloon="Remove schema" v-on:click="removeSchema(key)">
+													<i class="fa fa-fw fa-trash"></i>
+												</a>
+											</span>
+											<span class='level-item field-body field control'>
+												<input class="input" placeholder="Required" v-on:focus="storeSchemaName(key)" v-on:change="renameSchema(key)"
+												 v-model.lazy="key">
+											</span>
 										</div>
 									</div>
 								</div>
