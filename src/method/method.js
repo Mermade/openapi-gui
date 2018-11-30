@@ -221,6 +221,21 @@ Vue.component('api-method', {
 
 Vue.component('api-response', {
     props: ["response", "status", "method"],
+    beforeMount : function() {
+        if (this.method.responses[this.status].$ref) {
+            var ptr = this.method.responses[this.status].$ref.substr(1); // remove #
+            try {
+                var def = new JSONPointer(ptr).get(this.$root.container.openapi);
+                for (var p in def) {
+                    this.response[p] = def[p];
+                }
+                delete this.response.$ref;
+            }
+            catch (ex) {
+                this.$root.showAlert('Could not find $ref '+this.method.responses[this.status].$ref);
+            }
+        }
+    },
     computed: {
         statusCode: {
             get: function () {
