@@ -1,4 +1,4 @@
-FROM node:boron-alpine
+FROM node:dubnium-alpine
 
 WORKDIR /usr/src/app
 
