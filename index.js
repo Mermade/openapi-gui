@@ -6,7 +6,7 @@ const util = require('util');
 const express = require('express');
 const compression = require('compression');
 const opn = require('opn');
-const yaml = require('js-yaml');
+const yaml = require('yaml');
 const widdershins = require('widdershins');
 const shins = require('shins');
 
@@ -36,7 +36,7 @@ app.post('/store', upload.single('filename'), function(req, res) {
                 s = JSON.stringify(definition,null,2);
             }
             else {
-               s = yaml.safeDump(definition,{lineWidth:-1});
+               s = yaml.stringify(definition);
             }
             fs.writeFile(defName,s,'utf8',function(err){});
         }
@@ -113,7 +113,7 @@ function server(myport, argv) {
             if (defName) {
                 path = '/?url=%2fserve';
                 console.log('Serving',defName);
-                definition = yaml.safeLoad(fs.readFileSync(defName,'utf8'),{json:true});
+                definition = yaml.parse(fs.readFileSync(defName,'utf8'));
             }
             console.log('Launching...');
             opn('http://'+(host === '::' ? 'localhost' : host)+':'+port+path);
