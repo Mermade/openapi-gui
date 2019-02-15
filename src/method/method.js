@@ -63,6 +63,10 @@ Vue.component('api-method', {
             response.description = 'Description';
             Vue.set(this.method.responses, status, response);
         },
+        renameResponse : function(status, newVal) {
+            Vue.set(this.method.responses,newVal,this.method.responses[status]);
+            Vue.delete(this.method.responses,status);
+        },
         addMediaType : function() {
             var rb = this.effectiveRequestBody;
             if (rb && rb.content && !rb.content['change/me']) {
