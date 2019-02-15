@@ -107,3 +107,9 @@ a {
 .tabs li.is-active a {
   color: #629b34; /* OAI green1 */
 }
+
+.componentSchema {
+  position:fixed;
+  margin-top:220px;
+}
+

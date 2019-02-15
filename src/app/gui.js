@@ -187,6 +187,7 @@ Vue.component('gui-main', {
                 schemaEditorClose();
             }.bind(this);
             $('#schemaModalTitle').text('Schema Editor - '+key);
+            $('#schemaModalCard').addClass('componentSchema'); // css fix
             $('#schemaModal').addClass('is-active');
 		},
 
