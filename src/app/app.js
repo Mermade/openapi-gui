@@ -32,7 +32,7 @@ function recurse(obj,path,cache,callback) {
     }
 }
 
-function deref(obj,defs) {
+function deref(obj,defs,shallow) {
     var result = clone(obj);
     var changes = 1;
     while (changes>0) {
@@ -47,17 +47,19 @@ function deref(obj,defs) {
                 try {
                     var def = new JSONPointer(ptr.substr(1)).get(target);
                     changes++;
-                    // rewrite local $refs
-                    recurse(def,'#/',cache,function(o,dpath){
-                        if (o["$ref"]) {
-                            var newPtr = o["$ref"];
-                            if ((ptr+'/').indexOf(newPtr+'/')>=0) {
-                                var fixPtr = (newPtr+'/').replace(ptr+'/',path);
-                                fixPtr = fixPtr.substr(0,fixPtr.length-1);
-                                o["$ref"] = fixPtr;
+                    if (!shallow) {
+                        // rewrite local $refs
+                        recurse(def,'#/',cache,function(o,dpath){
+                            if (o["$ref"]) {
+                                var newPtr = o["$ref"];
+                                if ((ptr+'/').indexOf(newPtr+'/')>=0) {
+                                    var fixPtr = (newPtr+'/').replace(ptr+'/',path);
+                                    fixPtr = fixPtr.substr(0,fixPtr.length-1);
+                                    o["$ref"] = fixPtr;
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
                     for (var p in def) {
                         o[p] = def[p];
                     }
@@ -239,6 +241,7 @@ function app_main() {
     Vue.component(Buefy.default.Autocomplete.name, Buefy.default.Autocomplete);
     Vue.component(Buefy.default.Tag.name, Buefy.default.Tag);
     Vue.component(Buefy.default.Taginput.name, Buefy.default.Taginput);
+    Vue.component(Buefy.Toast.name, Buefy.Toast);
     Vue.use(window.vuelidate.default);
     var vm = new Vue({
         data: {

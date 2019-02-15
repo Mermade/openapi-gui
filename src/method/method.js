@@ -175,7 +175,7 @@ Vue.component('api-method', {
             get : function() {
                 if (!this.method.requestBody) return null;
                 if (!this.method.requestBody.$ref) return this.method.requestBody;
-                return deref(this.method.requestBody, this.$root.container.openapi);
+                return deref(this.method.requestBody, this.$root.container.openapi, true);
             }
         },
         secType :  {
@@ -307,7 +307,6 @@ Vue.component('api-mediatype', {
         },
 		schemaTooltip : {
 			get : function() {
-                // TODO for a $ref'd requestBody, $ref'd schemas may appear inline - set depth on deref?
 				if (!this.content.schema || !this.content.schema.$ref) {
 					return 'Edit inline schema';
 				}
@@ -316,7 +315,24 @@ Vue.component('api-mediatype', {
 					return 'Edit shared schema ('+schemaName+')';
 				}
 			}
-		}
+		},
+        selectedSchema: {
+            get : function() {
+                var ref = this.content.schema ? this.content.schema.$ref : '';
+                if (ref) {
+                    return ref.replace('#/components/schemas/','');
+                }
+                return undefined;
+            },
+            set : function(newVal) {
+                Vue.set(this.content,'schema',{ $ref: '#/components/schemas/'+newVal });
+                $('#'+this._uid).addClass('hidden');
+                Buefy.Toast.open({
+                    message: 'Schema '+newVal+' attached',
+                    type: 'is-success'
+                })
+            }
+        }
     },
     methods: {
         addMediaType: function () {
@@ -357,6 +373,9 @@ Vue.component('api-mediatype', {
             if (Object.keys(this.container.content).length==0) {
                 Vue.set(this.container.content,'application/json',{schema:{}});
             }
+        },
+        attachSchema : function(mediatype) {
+            $('#'+this._uid).removeClass('hidden');
         }
     },
     data: function () {
