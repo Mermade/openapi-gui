@@ -198,7 +198,7 @@
                     </div>
                     <footer class="card-footer">
                         <p class="card-footer-item">
-                        <a v-on:click="addRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create Request Body</span></a>
+                        <a v-on:click="addRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-plus"></i>Create requestBody</span></a>
                         </p>
                     </footer>
                 </div>
@@ -221,6 +221,9 @@
                             <div class='field-body'>
                                 <input type="checkbox" class="checkbox" v-model="effectiveRequestBody.required">
                             </div>
+                        </div>
+                        <div class="control">
+                            <a v-on:click="removeRequestBody()"><span class="button is-primary"><i class="fa fa-fw fa-trash"></i>Remove requestBody</span></a>
                         </div>
                     </div>
 

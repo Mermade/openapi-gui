@@ -54,6 +54,10 @@ Vue.component('api-method', {
                 Vue.set(this.method,'requestBody',rb);
             }
         },
+        removeRequestBody : function() {
+            this.$root.save();
+            Vue.delete(this.method,'requestBody');
+        },
         addResponse : function() {
             var status = 200;
             while (this.method.responses[status]) {
