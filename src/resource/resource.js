@@ -34,7 +34,7 @@ Vue.component('api-resource', {
         },
         duplicateResource : function (index) {
             if (!this.openapi.paths['newPath']) {
-                Vue.set(this.openapi.paths,'/newPath',this.openapi.paths[index]);
+                Vue.set(this.openapi.paths,'/newPath',clone(this.openapi.paths[index]));
             }
         },
 		removePath: function (target) {
