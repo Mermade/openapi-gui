@@ -175,7 +175,8 @@ Vue.component('api-method', {
             get : function() {
                 if (!this.method.requestBody) return null;
                 if (!this.method.requestBody.$ref) return this.method.requestBody;
-                return deref(this.method.requestBody, this.$root.container.openapi, true);
+
+                return new JSONPointer(this.method.requestBody.$ref).get(this.$root.container.openapi);
             }
         },
         secType :  {
@@ -345,7 +346,7 @@ Vue.component('api-mediatype', {
             }
         },
         editMediaType: function (mediatype) {
-            var initial = deref(this.container.content[mediatype].schema,this.$root.container.openapi);
+            var initial = dereference(this.container.content[mediatype].schema,this.$root.container.openapi);
             var editorOptions = {};
             var element = document.getElementById('schemaContainer');
             try {

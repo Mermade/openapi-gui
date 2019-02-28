@@ -174,7 +174,8 @@ Vue.component('gui-main', {
 		},
 
 		editSchema: function(key) {
-            var initial = deref(this.$root.container.openapi.components.schemas[key], this.$root.container.openapi);
+            var initial = dereference(this.$root.container.openapi.components.schemas[key], this.$root.container.openapi);
+            initial = reref(initial);
             var editorOptions = {};
             var element = document.getElementById('schemaContainer');
             this.schemaEditor = new JSONEditor(element, editorOptions, initial);

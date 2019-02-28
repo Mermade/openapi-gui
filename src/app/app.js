@@ -19,62 +19,6 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-function recurse(obj,path,cache,callback) {
-    if (typeof obj == 'object') {
-        callback(obj,path);
-        for (var p in obj){
-            if (cache.indexOf(obj[p])<0) {
-                //cache.push(obj[p]);
-                recurse(obj[p],path+p+'/',cache,callback);
-                //cache.pop();
-            }
-        }
-    }
-}
-
-function deref(obj,defs,shallow) {
-    var result = clone(obj);
-    var changes = 1;
-    while (changes>0) {
-        changes = 0;
-        var cache = [];
-        recurse(result,'#/',cache,function(o,path){
-            cache.push(o);
-            if ((typeof o == 'object') && (o["$ref"])) {
-                var ptr = o["$ref"];
-                //console.log('  '+ptr+' @ '+path);
-                var target = (ptr.indexOf('#/components/') === 0) ? defs : result;
-                try {
-                    var def = new JSONPointer(ptr.substr(1)).get(target);
-                    changes++;
-                    if (!shallow) {
-                        // rewrite local $refs
-                        recurse(def,'#/',cache,function(o,dpath){
-                            if (o["$ref"]) {
-                                var newPtr = o["$ref"];
-                                if ((ptr+'/').indexOf(newPtr+'/')>=0) {
-                                    var fixPtr = (newPtr+'/').replace(ptr+'/',path);
-                                    fixPtr = fixPtr.substr(0,fixPtr.length-1);
-                                    o["$ref"] = fixPtr;
-                                }
-                            }
-                        });
-                    }
-                    for (var p in def) {
-                        o[p] = def[p];
-                    }
-                    delete o["$ref"];
-                }
-                catch (ex) {
-                    console.log(ex.message);
-                    console.log('Could not find $ref '+o["$ref"]);
-                }
-            }
-        });
-    }
-    return result;
-}
-
 function preProcessDefinition(openapi) {
     if (!openapi) openapi = {};
     for (var t in openapi.tags) {

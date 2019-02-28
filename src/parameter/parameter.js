@@ -108,7 +108,7 @@ Vue.component('api-parameter', {
             if (!this.parameter.schema) {
                 Vue.set(this.parameter, 'schema', {});
             }
-            var initial = deref(this.parameter.schema, this.$root.container.openapi);
+            var initial = dereference(this.parameter.schema, this.$root.container.openapi);
             var editorOptions = {};
             var element = document.getElementById('schemaContainer');
             this.schemaEditor = new JSONEditor(element, editorOptions, initial);
