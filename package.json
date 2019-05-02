@@ -9,8 +9,8 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node openapi-gui.js",
-        "docker": "docker build -t openapi-gui .",
-        "publish": "docker push openapi-gui"
+        "docker": "docker build -t mermade/openapi-gui .",
+        "publish": "docker push mermade/openapi-gui"
     },
     "repository": {
         "type": "git",
