@@ -379,7 +379,7 @@ Vue.component('api-secdef', {
 					Vue.delete(this.sd, 'name');
 				}
 				if (newVal != 'oauth2') {
-					Vue.delete(this.sd, 'flow');
+					Vue.delete(this.sd, 'flows');
 				}
 				if (newVal != 'http') {
 					Vue.delete(this.sd, 'scheme');
