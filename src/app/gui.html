@@ -526,7 +526,7 @@
 													<input class="input" placeholder="Required" v-model="sd.scheme">
 												</div>
 											</div>
-											<div v-if="sd.scheme.toLowerCase() == 'bearer'" class='field is-horizontal'>
+											<div v-if="sd.scheme && sd.scheme.toLowerCase() == 'bearer'" class='field is-horizontal'>
 												<label class='field-label is-normal label'> Bearer Format </label>
 												<div class='field-body field control'>
 													<input class="input" v-model="sd.bearerFormat">
