@@ -77,6 +77,11 @@ Vue.component('api-method', {
                 Vue.set(rb.content,'change/me',{schema:{}});
             }
         },
+        renameMediaType: function(oldName, newName) {
+            var rb = this.effectiveRequestBody;
+            Vue.set(rb.content, newName, rb.content[oldName]);
+            Vue.delete(rb.content, oldName);
+        },
         addCallback : function() {
             if (!this.method.callbacks) {
                 Vue.set(this.method,'callbacks',{});
