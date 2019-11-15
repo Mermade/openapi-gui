@@ -60,12 +60,23 @@ Vue.component('gui-main', {
 			if (e) e.scrollIntoView();
 		},
 
-		removeAll: function () {
+		removePaths: function () {
 			var self = this;
 			this.showConfirm('Are you sure?','This action will remove all paths, operations and parameters. Undo will be available.', function (result) {
 				if (result) {
 					self.$root.save();
 					self.openapi.paths = {};
+				}
+			});
+		},
+
+		removeAll: function () {
+			var self = this;
+			this.showConfirm('Are you sure?','This action will remove properties from the document. Undo will be available.', function (result) {
+				if (result) {
+					self.$root.save();
+					var schema = { openapi: self.openapi.openapi, info: { title: self.openapi.info.title, version: self.openapi.info.version}, paths: {} };
+			        Vue.set(self.$root.container,'openapi',preProcessDefinition(schema));
 				}
 			});
 		},
