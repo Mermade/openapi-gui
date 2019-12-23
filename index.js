@@ -116,7 +116,11 @@ function server(myport, argv) {
                 definition = yaml.parse(fs.readFileSync(defName,'utf8'));
             }
             console.log('Launching...');
-            opn('http://'+(host === '::' ? 'localhost' : host)+':'+port+path);
+            let url = 'http://'+(host === '::' ? 'localhost' : host)+':'+port+path;
+            opn(url)
+            .catch(function(ex){
+                console.error('Could not open',url);
+            });
         }
     });
 }
