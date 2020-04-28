@@ -30,8 +30,8 @@
         "express": "^4.15.5",
         "compression": "^1.6.2",
         "ejs": "^2.5.1",
-        "widdershins": "^3.6.6",
-        "shins": "^2.3.2-3"
+        "widdershins": "^4.0.1",
+        "shins": "^2.4.1-0"
     },
     "dependencies": {
         "openapi-webconverter": "^1.3.17",
