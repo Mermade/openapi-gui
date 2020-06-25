@@ -49,7 +49,7 @@ Vue.component('api-method', {
         },
         addRequestBody : function() {
             if (!this.method.requestBody) {
-                var rb = {};
+                var rb = { required: false };
                 rb.content = { '*/*': { schema: {} } };
                 Vue.set(this.method,'requestBody',rb);
             }
