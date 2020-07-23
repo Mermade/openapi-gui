@@ -60,6 +60,12 @@ Vue.component('gui-main', {
 			if (e) e.scrollIntoView();
 		},
 
+		showSchema: function (key) {
+			var target = 'schema_' + key;
+			var e = document.getElementById(target);
+			if (e) e.scrollIntoView();
+		},
+
 		removePaths: function () {
 			var self = this;
 			this.showConfirm('Are you sure?','This action will remove all paths, operations and parameters. Undo will be available.', function (result) {
