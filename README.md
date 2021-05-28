@@ -15,7 +15,7 @@ Description
 
 Select an existing OpenAPI 2.0 or 3.0.x definition to upload, or create a new definition and start adding Paths, Operations, and Parameters. When an existing definition is used, it is parsed and forms for editing each Path, Operation and Parameter will be created.
 
-You can load an existing definition by appending a `?url=` query parameter to the initial start page.
+You can load an existing definition by appending a `?url=` query parameter to the initial start page with the value being the URL to the definition you wish to load. When using Docker, you can set the value of the `url` query parameter to `%2fserve` to pick up the definition you passed in on the Docker commandline.
 
 Click an item from the menu on the left to begin editing. View the JSON/YAML output at any time by selecting one of the "Export" tabs. When finished, download the output to save it locally or copy it your clipboard. OpenAPI-GUI only stores one definition at a time, and this is in your browser's local-storage. Make sure you save your JSON/YAML output locally.
 
