@@ -8,23 +8,23 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 
 ## General
 
-### [Data Types](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#dataTypes)
+### [Data Types](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#dataTypes)
 
 - [x] Primitive data types, `integer`, `number`, `string` and `boolean`.
 - [ ] Any `format` will be displayed.
 
-### [Rich Text Formatting](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#rich-text-formatting)
+### [Rich Text Formatting](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#rich-text-formatting)
 
 - [ ] All `description` fields support [CommonMark][cm].
 
-### [Relative References in URLs](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#relative-references-in-urls)
+### [Relative References in URLs](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#relative-references-in-urls)
 
 - [ ] Relative references are resolved using the URLs defined in the Server Object as a Base URI.
 - [x] Relative references used in `$ref` are processed as per JSON Reference.
 
 ## Schema
 
-### [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#openapi-object) object
+### [OpenAPI](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#openapi-object) object
 
 - [ ] openapi
 - [x] [info](#info-object)
@@ -35,7 +35,7 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 - [ ] [tags](#tag-object)
 - [x] [externalDocs](#external-documentation-object)
 
-### [Info](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#info-object) object
+### [Info](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#info-object) object
 
 - [x] title
 - [x] description
@@ -44,30 +44,30 @@ This document outlines this project's support for visualising the [OpenAPI V3][o
 - [x] [license](#license-object)
 - [x] version
 
-### [Contact](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#contact-object)
+### [Contact](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#contact-object)
 
 - [x] name
 - [x] url
 - [x] email
 
-### [License](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#license-object) object
+### [License](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#license-object) object
 
 - [x] name
 - [x] url
 
-### [Server](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#server-object) object
+### [Server](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#server-object) object
 
 - [x] url
 - [x] description
 - [x] [variables](#server-variable-object)
 
-### [Server Variable](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#server-variable-object) object
+### [Server Variable](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#server-variable-object) object
 
 - [x] enum
 - [x] default
 - [x] description
 
-### [Components](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#components-object) object
+### [Components](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#components-object) object
 
 This is supported by default as all `$ref` are dereferenced before the definition is visualised. As per spec, Components have _no impact_ on visualising the API reference, they are simply a placeholder for reusable objects.
 
@@ -81,11 +81,11 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] [links](#link-object)
 - [x] [callbacks](#callback-object)
 
-### [Paths](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#paths-object) object
+### [Paths](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#paths-object) object
 
 - [ ] [pathItem](#path-item-object)
 
-### [Path Item](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#path-item-object) object
+### [Path Item](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#path-item-object) object
 
 - [ ] $ref
 - [x] summary
@@ -101,7 +101,7 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] [servers](#server-object)
 - [x] [parameters](#parameter-object)
 
-### [Operation](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#operation-object) object
+### [Operation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#operation-object) object
 
 - [ ] tags
 - [x] summary
@@ -116,12 +116,12 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] [security](#security-scheme-object)
 - [ ] [servers](#server-object)
 
-### [External Documentation](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#external-documentation-object) object
+### [External Documentation](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#external-documentation-object) object
 
 - [x] description
 - [x] url
 
-### [Parameter](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#parameter-object) object
+### [Parameter](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#parameter-object) object
 
 - [x] name
 - [x] in
@@ -151,20 +151,20 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] examples
 - [ ] content
 
-### [Request Body](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#request-body-object) object
+### [Request Body](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#request-body-object) object
 
 - [x] description
 - [x] [content](#media-type-object)
 - [x] required
 
-### [Media Type](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#media-type-object) object
+### [Media Type](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#media-type-object) object
 
 - [x] [schema](#schema-object)
 - [ ] [example](#example-object)
 - [ ] [examples](#example-object)
 - [ ] [encoding](#encoding-object)
 
-### [Encoding](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#encoding-object) object
+### [Encoding](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#encoding-object) object
 
 - [ ] contentType
 - [ ] [headers](#header-object)
@@ -172,29 +172,29 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] explode
 - [ ] allowReserved
 
-### [Responses](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#responses-object) object
+### [Responses](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#responses-object) object
 
 - [x] [response](#response-object)
 
-### [Response](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#response-object) object
+### [Response](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#response-object) object
 
 - [x] description
 - [x] [headers](#header-object)
 - [x] [content](#media-type-object)
 - [ ] [links](#link-object)
 
-### [Callback](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#callback-object) object
+### [Callback](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#callback-object) object
 
 - [x] [expression](#path-item-object)
 
-### [Example](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#example-object) object
+### [Example](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#example-object) object
 
 - [ ] summary
 - [ ] description
 - [ ] value
 - [ ] externalValue
 
-### [Link](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#link-object) object
+### [Link](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#link-object) object
 
 - [ ] operationRef
 - [ ] operationId
@@ -203,21 +203,21 @@ This is supported by default as all `$ref` are dereferenced before the definitio
 - [ ] description
 - [ ] [server](#server-object)
 
-### [Header](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#header-object) object
+### [Header](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#header-object) object
 
 See [parameter](#parameter-object) object.
 
-### [Tag](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#tag-object) object
+### [Tag](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#tag-object) object
 
 - [x] name
 - [x] description
 - [x] [externalDocs](#external-documentation-object)
 
-### [Reference](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#reference-object) object
+### [Reference](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#reference-object) object
 
 - [ ] $ref
 
-### [Schema](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#schema-object) object
+### [Schema](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#schema-object) object
 
 The `Schema` object describes several properties that are shared from JSON Schema, deviations from JSON Schema, or in addition to JSON Schema. The following descibes this project's support for these properties.
 
@@ -269,12 +269,12 @@ The OpenAPI specification also supports several additional properties from JSON 
 - [ ] example
 - [ ] deprecated
 
-### [Discriminator](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#discriminator-object) object
+### [Discriminator](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#discriminator-object) object
 
 - [ ] propertyName
 - [ ] mapping
 
-### [XML](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#xml-object) object
+### [XML](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#xml-object) object
 
 - [ ] name
 - [ ] namespace
@@ -282,7 +282,7 @@ The OpenAPI specification also supports several additional properties from JSON 
 - [ ] attribute
 - [ ] wrapped
 
-### [Security Scheme](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#security-scheme-object) object
+### [Security Scheme](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#security-scheme-object) object
 
 - [x] type
   - [x] apiKey
@@ -297,27 +297,27 @@ The OpenAPI specification also supports several additional properties from JSON 
 - [x] [flows](#oauth-flows-object)
 - [x] openIdConnectUrl
 
-### [OAuth Flows](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#oauth-flows-object) object
+### [OAuth Flows](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#oauth-flows-object) object
 
 - [x] [implict](#oauth-flow-object)
 - [x] [password](#oauth-flow-object)
 - [x] [clientCredentials](#oauth-flow-object)
 - [x] [authorizationCode](#oauth-flow-object)
 
-### [OAuth Flow](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#oauth-flow-object) object
+### [OAuth Flow](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#oauth-flow-object) object
 
 - [x] authorizationUrl
 - [x] tokenUrl
 - [x] refreshUrl
 - [x] scopes
 
-### [Security Requirement](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#security-requirement-object) object
+### [Security Requirement](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#security-requirement-object) object
 
 - [x] oauth2
 - [x] openIdConnect
 - [x] "other"
 
-### [Specification Extensions](https://github.com/OAI/OpenAPI-Specification/blob/OpenAPI.next/versions/3.0.md#specification-extensions)
+### [Specification Extensions](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.3.md#specification-extensions)
 
 No extension properties are supported at this time.
 
