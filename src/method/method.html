@@ -244,7 +244,7 @@
                                     <span class="icon" data-balloon="Re-use shared schema"><a v-on:click="attachSchema()"><i class="fa fa-fw fa-recycle"></i></a></span>
                                     <span :id="_uid" class="select hidden">
                                         <select v-model="selectedSchema">
-								        <option v-for="(schemaVal,schema) in $root.container.openapi.components.schemas" :value="schema">{{schema}}</option>
+                                            <option v-for="(schemaVal,schema) in $root.container.openapi.components.schemas" :value="schema">{{schema}}</option>
                                         </select>
                                     </span>
                                 </div>
@@ -324,6 +324,14 @@
                                         </div>
                                         <div class="control">
                                             <span class="icon" :data-balloon="schemaTooltip"><a v-on:click="editMediaType(mediatype)"><i class="fa fa-fw fa-edit"></i></a></span>
+                                        </div>
+                                        <div class="control">
+                                            <span class="icon" data-balloon="Re-use shared schema"><a v-on:click="attachSchema()"><i class="fa fa-fw fa-recycle"></i></a></span>
+                                            <span :id="_uid" class="select hidden">
+                                                <select v-model="selectedSchema">
+                                                    <option v-for="(schemaVal,schema) in $root.container.openapi.components.schemas" :value="schema">{{schema}}</option>
+                                                </select>
+                                            </span>
                                         </div>
                                         <div class="control">
                                             <span class="icon" data-balloon="Remove media-type"><a v-on:click="removeMediaType()"><i class="fa fa-fw fa-trash"></i></a></span>
