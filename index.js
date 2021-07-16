@@ -5,7 +5,7 @@ const util = require('util');
 
 const express = require('express');
 const compression = require('compression');
-const opn = require('opn');
+const open = require('open');
 const yaml = require('yaml');
 const widdershins = require('widdershins');
 const shins = require('shins');
@@ -55,8 +55,8 @@ app.get('/serve', function(req, res) {
 const getWiddershinsOptions = function() {
 	let options = {}; // defaults shown
 	options.codeSamples = true;
-	////options.loadedFrom = sourceUrl;
-	////options.user_templates = './user_templates';
+	//options.loadedFrom = sourceUrl;
+	//options.user_templates = './user_templates';
 	options.theme = 'darkula';
 	options.search = true;
 	options.sample = true; // set false by --raw
@@ -81,6 +81,8 @@ app.get('/markdown', function(req, res) {
 		res.send(err||str);
 	});
 });
+
+// TODO redirect /shins to /slate, use reslate or slate v3
 
 app.get('/shins', function(req, res) {
 	widdershins.convert(definition, getWiddershinsOptions(), function(err,str){
@@ -117,7 +119,7 @@ function server(myport, argv) {
             }
             console.log('Launching...');
             let url = 'http://'+(host === '::' ? 'localhost' : host)+':'+port+path;
-            opn(url)
+            open(url)
             .catch(function(ex){
                 console.error('Could not open',url);
             });
