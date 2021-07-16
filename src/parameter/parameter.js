@@ -122,6 +122,9 @@ Vue.component('api-parameter', {
             }.bind(this);
             $('#schemaModalTitle').text('Schema Editor - '+this.parameter.name);
             $('#schemaModal').addClass('is-active');
+            $([document.documentElement, document.body]).animate({
+                scrollTop: $("#schemaModalCard").offset().top
+            }, 500);
         },
         addEnum : function() {
             if (!this.parameter.schema) {

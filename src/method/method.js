@@ -367,6 +367,9 @@ Vue.component('api-mediatype', {
                     schemaEditorClose();
                 }.bind(this);
                 $('#schemaModal').addClass('is-active');
+                $([document.documentElement, document.body]).animate({
+                    scrollTop: $("#schemaModalCard").offset().top
+                }, 500);
             }
             catch (ex) {
                 this.$parent.$parent.showAlert('The editor could not be instantiated (circular schemas are not yet supported): '+ex.message);
