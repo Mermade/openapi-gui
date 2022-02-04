@@ -3,7 +3,7 @@ OpenAPI-GUI
 
 OpenAPI-GUI is a GUI for creating and editing OpenAPI version 3.0.x JSON/YAML definitions. In its current form it is most useful as a tool for starting off and editing simple OpenAPI definitions. Imported OpenAPI 2.0 definitions are automatically converted to v3.0.
 
-![Screenshot](https://github.com/Mermade/openapi-gui/blob/master/img/screenshot.png?raw=true)
+![Screenshot](https://raw.githubusercontent.com/Mermade/openapi-gui/main/img/screenshot.png)
 
 For the previous Swagger / OpenAPI 2.0-only version see [here](https://mikeralphson.github.io/openapi-gui). That version is currently **unmaintained** apart from security fixes.
 
