@@ -31,7 +31,7 @@
         "ejs": "^3.1.9",
         "express": "^4.18.2",
         "shins": "2.6",
-        "widdershins": "^2.3.0"
+        "widdershins": "^4.0.1"
     },
     "dependencies": {
         "open": "^8.4.2",
