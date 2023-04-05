@@ -1,3 +1,8 @@
+/*
+ * This code runs in the browser and has no direct access to Node.js
+ * libraries or the backend code in index.js
+ */
+
 function clone(obj) {
     try {
       return JSON.parse(JSON.stringify(obj));
@@ -343,22 +348,6 @@ function app_main() {
 		  dataType:"json",
 		  success: function(data) {
 			$('#txtValidation').text(JSON.stringify(data,null,2));
-		  }
-		});
-	});
-	$('#aShinola').click(function(){
-		var shinolaUrl = 'https://shinola.herokuapp.com/openapi';
-		//var shinolaUrl = 'http://localhost:5678/openapi';
-		$.ajax({
-		  url:shinolaUrl,
-		  type:"POST",
-		  data:JSON.stringify(openapi),
-		  contentType:"application/json; charset=utf-8",
-		  dataType:"text",
-		  success: function(data) {
-			var newWindow = window.open("", "API Documentation"); //, "width=950, height=750");
-			newWindow.document.write(data);
-			newWindow.document.close();
 		  }
 		});
 	});

@@ -1,3 +1,7 @@
+/*
+ * This code runs on the backend, and has no direct access to the frontend
+ * code or the browser context
+ */
 'use strict';
 
 const fs = require('fs');
