@@ -84,7 +84,7 @@
 				<li class="tabItem" id="tabItem-input" v-on:click="selectTab('input',$event)">
 					<a class="tabSelect" href='#input' id="input-tab">
 						<span class="icon is-small"><i class='fa fa-upload'></i></span>
-						<span>Upload</span>
+						<span>Import</span>
 					</a>
 				</li>
 				<li class="tabItem" id="tabItem-upload">
@@ -309,7 +309,7 @@
 						</form>
 					</div>
 				</div>
-
+<!-- Upload Tab -->
 				<div class="tab-pane hidden" id="upload">
 					<div class="container is-fluid">
 						<form class="plain-form form-horizontal" id="frmUpload">
@@ -317,14 +317,14 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Postman API Key </label>
 								<div class='field-body field control'>
-									<input class="input" placeholder="Required" v-model="config.pmanAPIKey" @input="$v.config.pmanAPIKey.$touch()"
+									<input class="input" placeholder="Required" v-model="openapi.info.title" @input="$v.openapi.info.title.$touch()"
 									 v-bind:class="{ 'is-danger': !$v.openapi.info.title.required }" required>
 								</div>
 							</div>
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Postman workspace ID </label>
 								<div class='field-body field control'>
-									<input class="input" placeholder="Required" v-model="config.pmanWorkspaceID" @input="$v.config.pmanWorkspaceID.$touch()"
+									<input class="input" placeholder="Required" v-model="openapi.info.version" @input="$v.openapi.info.version.$touch()"
 									 v-bind:class="{ 'is-danger': !$v.openapi.info.version.required }">
 								</div>
 							</div>
@@ -349,7 +349,10 @@
 									<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
 								</div>
 							</div>
-
+							<div class="container">
+								<a class='button is-primary' id="load-definition" v-on:click="uploadToPostman()">
+									<i class='fa fa-fw fa-upload'></i>Upload to Postman
+								</a>
 
 						</form>
 					</div>

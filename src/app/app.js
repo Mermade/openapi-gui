@@ -232,6 +232,7 @@ if (typeof openapi === 'undefined') {
 }
 
 openapi = preProcessDefinition(openapi);
+config = {"pmanAPIKey":"XXX","pmanWorkspaceID":"YYYY"}
 
 var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
@@ -252,6 +253,7 @@ function app_main() {
         data: {
             container: {
                 openapi: openapi
+                ,config:config
             },
             importschema : importschema,
 			specVersion: 'master'

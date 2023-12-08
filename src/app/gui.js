@@ -250,7 +250,7 @@ Vue.component('gui-main', {
 			});
 		},
 
-		uploadSchema: function () {
+		uploadToPostman: function () {
 			var def = this.$root.postProcessDefinition();
 			alert("We're uploading from gui.js: " + JSON.stringify(def).substring(100));
 		},
