@@ -3,5 +3,10 @@ Vue.component('api-definition', {
 	data: function() {
 		return {}
 	},
-	template: '#template-definition'
+	template: '#template-definition',
+	methods: {
+		uploadSchema: function ($event) {
+			this.$parent.uploadSchema($event);
+		}
+	}
 });

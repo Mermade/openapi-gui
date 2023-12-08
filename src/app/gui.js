@@ -200,6 +200,7 @@ Vue.component('gui-main', {
                 $('#schemaModal').removeClass('is-active');
             }.bind(this);
             schemaEditorSave = function() {
+				alert("Saving");
                 this.$root.container.openapi.components.schemas[key] = this.schemaEditor.get();
                 schemaEditorClose();
             }.bind(this);
@@ -217,6 +218,7 @@ Vue.component('gui-main', {
         },
 
         renameSchema: function(key) {
+			
 			Vue.set(this.openapi.components.schemas, key, this.openapi.components.schemas[this.currentSchema]);
 			Vue.delete(this.openapi.components.schemas, this.currentSchema);
         },
@@ -246,6 +248,11 @@ Vue.component('gui-main', {
 				if (callback) callback(true);
 				$('#confirm').removeClass('is-active');
 			});
+		},
+
+		uploadSchema: function () {
+			var def = this.$root.postProcessDefinition();
+			alert("We're uploading from gui.js: " + JSON.stringify(def).substring(100));
 		},
 
 		loadSchema: function () {
@@ -299,6 +306,7 @@ Vue.component('gui-main', {
 		},
 
 		renderOutput: function ($event) {
+			
 			this.selectTab('output',$event);
 			// Pretty print has an issue correctly rendering output when we modify
 			// the content in an already "prettified" element. This hack creates a
@@ -306,6 +314,7 @@ Vue.component('gui-main', {
 			$('#json-output').html('<pre class="prettyprint"><code id="pretty-json"></code></pre>');
 			var def = this.$root.postProcessDefinition();
 			output = JSON.stringify(def, null, 4);
+			//alert(output);
 			$('#pretty-json').html(output);
 			clippy = new Clipboard('#copy-json');
 			setTimeout(function(){

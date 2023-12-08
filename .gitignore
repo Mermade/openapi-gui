@@ -3,6 +3,9 @@ js/vue.js
 js/jsoneditor.js
 test/
 test.html
-
+*.vscode
+.DS_Store
+.gitignore
+*workspace
 # Vim
 .*.swp
