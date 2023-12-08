@@ -87,6 +87,12 @@
 						<span>Upload</span>
 					</a>
 				</li>
+				<li class="tabItem" id="tabItem-upload">
+					<a class="tabSelect" href='#upload' id="upload-tab" v-on:click="selectTab('upload',$event)">
+						<span class="icon is-small"><i class='fa fa-header'></i></span>
+						<span>Upload</span>
+					</a>
+				</li>
 				<li class="tabItem" id="tabItem-header">
 					<a class="tabSelect" href='#header' id="header-tab" v-on:click="selectTab('header',$event)">
 						<span class="icon is-small"><i class='fa fa-header'></i></span>
@@ -299,6 +305,51 @@
 									<span class="icon is-small is-left"><i class="fa fa-link"></i></span>
 								</div>
 							</div>
+
+						</form>
+					</div>
+				</div>
+
+				<div class="tab-pane hidden" id="upload">
+					<div class="container is-fluid">
+						<form class="plain-form form-horizontal" id="frmUpload">
+
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Postman API Key </label>
+								<div class='field-body field control'>
+									<input class="input" placeholder="Required" v-model="openapi.info.title" @input="$v.openapi.info.title.$touch()"
+									 v-bind:class="{ 'is-danger': !$v.openapi.info.title.required }">
+								</div>
+							</div>
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> Postman workspace ID </label>
+								<div class='field-body field control'>
+									<input class="input" placeholder="Required" v-model="openapi.info.version" @input="$v.openapi.info.version.$touch()"
+									 v-bind:class="{ 'is-danger': !$v.openapi.info.version.required }">
+								</div>
+							</div>
+
+
+
+						
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label'> License Name </label>
+								<div class='field-body field control'>
+									<input class="input" id="txtLicense" v-model="openapi.info.license.name">
+									<div class="select hidden" id="drpLicense">
+										<select id="selLicense" v-model="openapi.info.license.name">
+											<option value="MIT">MIT License</option>
+											<option value="Apache-2.0">Apache 2.0 License</option>
+											<option value="CC BY-SA 4.0">Creative Commons Attribution Share-alike</option>
+											<option value="CC NC-SA 4.0">Creative Commons No-Commercial Share-alike</option>
+											<option value="">Custom license</option>
+										</select>
+									</div>
+									<span class="icon" data-balloon="Choose license"><a v-on:click="enableLicenseSelect()" class='none'><i class='fa fa-caret-down'></i></a></span>
+									<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
+								</div>
+							</div>
+
 
 						</form>
 					</div>
