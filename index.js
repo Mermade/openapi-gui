@@ -6,13 +6,15 @@
 
 const fs = require('fs');
 const util = require('util');
-
+//const http = require('http');
 const express = require('express');
 const compression = require('compression');
 const open = require('open');
 const yaml = require('yaml');
 const widdershins = require('widdershins');
 const shins = require('shins');
+
+
 
 const ourVersion = require('./package.json').version;
 const petstore = require('./data/static.js').petstore;
@@ -26,6 +28,7 @@ process.on('unhandledRejection', r => console.log(r));
 
 let api = require('openapi-webconverter/api.js').api;
 let app = api.app;
+
 let upload = api.upload;
 app.use(compression());
 app.set('view engine', 'ejs');

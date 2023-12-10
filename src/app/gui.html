@@ -317,10 +317,14 @@
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Postman API Key </label>
 								<div class='field-body field control'>
-									<input class="input" placeholder="Required" v-model="config.pmanAPIKey" @input="$v.config.pmanAPIKey.$touch()">
+									<input :type="config.passwordFieldType" class="input" placeholder="Required" v-model="config.pmanAPIKey" @input="$v.config.pmanAPIKey.$touch()">
 									 <!-- v-bind:class="{ 'is-danger': ($v.config.pmanAPIKey == '') }" > -->
 								</div>
+								<a class='button is-primary'  id="show-key" v-on:click="switchVisibility()">
+									<i class='fa fa-fw fa-upload'></i>{{ config.passwordFieldCaption }}
+								</a>
 							</div>
+							
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> Postman workspace ID </label>
 								<div class='field-body field control'>
@@ -328,11 +332,21 @@
 									 <!-- v-bind:class="{ 'is-danger': !$v.config.pmanWorkspaceID == '' }"> -->
 								</div>
 							</div>
+
+							<div class='field is-horizontal'>
+								<label class='field-label is-normal label hidden' id="drpLinkedAPIIDLabel"> Postman API ID </label>
+								<div class='field-body field control hidden' id="drpLinkedAPIID" readonly="readonly">
+									<input class="input"  disabled="true" v-model="config.pmanLinkedAPIID" @input="$v.config.pmanLinkedAPIID.$touch()">
+								</div>
+								
+							</div>
+							<div class='field is-horizontal'>
+							<label class='field-label is-normal label hidden' id="drpLinkedAPISchemaIDLabel"> Postman API Schema ID </label>
+								<div class='field-body field control hidden' id="drpLinkedAPISchemaID" readonly="readonly">
+									<input class="input"  disabled="true" v-model="config.pmanLinkedAPISchemaID" @input="$v.config.pmanLinkedAPISchemaID.$touch()">
+								</div>
+								</div>
 							
-
-
-
-						
 							<div class='field is-horizontal'>
 								<label class='field-label is-normal label'> License Name </label>
 								<div class='field-body field control'>
@@ -350,8 +364,9 @@
 									<span class="icon" data-balloon="License help"><a href="https://choosealicense.com" target="_blank"><i class='fa fa-question'></i></a></span>
 								</div>
 							</div>
-							<a class='button is-primary' id="load-definition" v-on:click="uploadToPostman()">
-								<i class='fa fa-fw fa-upload'></i>Upload to Postman
+							
+							<a :label="config.uploadCaption" class='button is-primary' id="upload-postman"  v-on:click="uploadToPostman()" v-model="config.uploadCaption">
+								<i class='fa fa-fw fa-upload'></i>{{ config.uploadCaption }}
 							</a>
 
 

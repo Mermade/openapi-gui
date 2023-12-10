@@ -175,6 +175,12 @@ function postProcessPathItem(pi) {
 
 function postProcessDefinition(openapi) {
     var def = clone(openapi);
+    if(config.pmanLinkedAPIID) {
+        def.info['x-linked-api-id'] = config.pmanLinkedAPIID;
+    }
+    if(config.pmanLinkedAPISchemaID) {
+        def.info['x-linked-api-schema-id'] = config.pmanLinkedAPISchemaID;
+    }
     for (var p in def.paths) {
 		postProcessPathItem(def.paths[p]);
     }
@@ -232,7 +238,7 @@ if (typeof openapi === 'undefined') {
 }
 
 openapi = preProcessDefinition(openapi);
-config = {"pmanAPIKey":"XXX","pmanWorkspaceID":"YYYY"}
+config = {"pmanAPIKey":"XXX","pmanWorkspaceID":"d412f6c2-7884-4ed2-82da-900dcbbef70d", "passwordFieldType":"text", "uploadCaption":"Upload to Postman","pmanLinkedAPIID":null}
 
 var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
@@ -254,6 +260,7 @@ function app_main() {
             container: {
                 openapi: openapi
                 ,config:config
+                ,uploadCaption:"Upload to Postman"
             },
             importschema : importschema,
 			specVersion: 'master'

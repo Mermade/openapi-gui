@@ -1,4 +1,7 @@
+//const { idText } = require("typescript");
+
 const { required } = window.validators;
+
 
 Vue.component('gui-main', {
 	props: ['openapi', 'importschema'],
@@ -23,6 +26,125 @@ Vue.component('gui-main', {
 			$('#mdPreviewClose').click(function(){
 				$('#mdPreview').removeClass('is-active');
 			});
+		},
+		 enableLinkedAPIID() {
+			if(config.pmanLinkedAPIID) {
+				$('#drpLinkedAPIID').removeClass('hidden');
+				$('#drpLinkedAPIIDLabel').removeClass('hidden');
+			}
+			else {
+				$('#drpLinkedAPIID').addClass('hidden');
+				$('#drpLinkedAPIIDLabel').addClass('hidden');
+			}
+		},
+
+		executePostmanAPI(url,method, data) {
+			let apiConfig = { 
+				method: method,
+				maxBodyLength: Infinity,
+				url: url,
+				headers: { 
+				  'Content-Type': 'application/json', 
+				  'Accept': 'application/vnd.api.v10+json', 
+				  'x-api-key': config.pmanAPIKey
+				}
+				};
+				if(typeof data !== 'undefined' && data !== null) {
+					apiConfig.data = data;
+				}
+			  return axios.request(apiConfig);
+		},
+
+		getPostmanAPI(apiID){
+			let url = 'https://api.getpostman.com/apis/' + config.pmanLinkedAPIID + '?include=schemas,collections';
+			return this.executePostmanAPI(url,'get',null);
+			       
+		},
+		
+		createPostmanAPI(schema) {
+			/*
+			//Does the API exist? 
+			  - No: Create it
+			//Does the API Schema exist??
+			  - No: Create it
+			  - Yes: Update it
+			*/
+			
+			this.switchUploadCaption();
+			
+			const apiName = schema.info.title;
+			const apiDescription = schema.info.description;
+			const apiSummary = 'Uploaded from openAPI Gui';	
+			let data = JSON.stringify({
+			"name": apiName,
+			"summary": apiSummary,
+			"description": apiDescription
+			});
+
+		this.executePostmanAPI('https://api.getpostman.com/apis?workspaceId=' + config.pmanWorkspaceID,'post',data)
+		.then((response) => {
+			console.log(JSON.stringify(response.data));
+			alert("API has been Created: " + response.data.id);
+			var openapi = this.openapi;
+			config.pmanLinkedAPIID = response.data.id;
+			var openapi = this.openapi;
+			//config.uploadEnabled = true;
+			//config.uploadCaption = 'Upload to Postman'
+			this.createPostmanAPISchema()
+		  })
+		  .catch((error) => {
+			console.log(error);
+			alert("Error: " + error);
+		  });
+		
+		},
+		
+		createPostmanAPISchema() {
+			
+			
+			let def = this.$root.postProcessDefinition();
+			let data = {};
+			data.type = 'openapi:3';
+			data.files = [];
+			data.files[0] = {
+				'path':'index.json',
+				'content':JSON.stringify(def)
+			}
+			this.executePostmanAPI('https://api.getpostman.com/apis/' + config.pmanLinkedAPIID + '/schemas', 'post',data)
+			.then((response) => {
+				config['pmanLinkedAPISchemaID'] = response.data.id;
+				this.enableLinkedAPIID();
+				this.switchUploadCaption();
+			  })
+			  .catch((error) => {
+				console.log(error);
+				alert("Error: " + error);
+				this.switchUploadCaption();
+			  });
+			  
+		},
+		switchUploadCaption(){
+			config.uploadCaption = (config.uploadCaption == 'Upload to Postman' ? 'Uploading' : 'Upload to Postman');
+		},
+		
+
+		enableLinkedAPIID: function () {
+			if(config.pmanLinkedAPIID) {
+				$('#drpLinkedAPIID').removeClass('hidden');
+				$('#drpLinkedAPIIDLabel').removeClass('hidden');
+			}
+			else {
+				$('#drpLinkedAPIID').addClass('hidden');
+				$('#drpLinkedAPIIDLabel').addClass('hidden');
+			}
+			if(config.pmanLinkedAPISchemaID) {
+				$('#drpLinkedAPISchemaID').removeClass('hidden');
+				$('#drpLinkedAPISchemaIDLabel').removeClass('hidden');
+			}
+			else {
+				$('#drpLinkedAPISchemaID').addClass('hidden');
+				$('#drpLinkedAPISchemaIDLabel').addClass('hidden');
+			}
 		},
 
 		enableLicenseSelect: function() {
@@ -250,10 +372,56 @@ Vue.component('gui-main', {
 			});
 		},
 
-		uploadToPostman: function () {
-			var def = this.$root.postProcessDefinition();
-			alert("We're uploading from gui.js: " + JSON.stringify(def).substring(100));
+		updatePostmanAPISchema(apiID,schemaID,schema){
+			url = 'https://api.getpostman.com/apis/' + apiID + '/schemas/'+schemaID+'/files/index.json';
+			let data = {
+				'content':JSON.stringify(schema)
+			};
+			this.executePostmanAPI(url, 'put',data)
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((err) =>  {
+				console.log(err);
+			});
 		},
+
+		uploadToPostman: function () {
+			this.switchUploadCaption();
+			var def = this.$root.postProcessDefinition();
+			if(typeof config.pmanLinkedAPIID === 'undefined' || config.pmanLinkedAPIID == null){
+				this.createPostmanAPI(def);
+				return;
+			}
+			this.getPostmanAPI(config.pmanLinkedAPIID)
+			.then((response) => {
+				console.log(response);
+				if(response.data.hasOwnProperty('schemas')){
+					let schemaID = response.data.schemas[0].id;
+			
+					this.updatePostmanAPISchema(config.pmanLinkedAPIID,schemaID,def);
+				}
+				//this.updatePostmanAPISchema
+			})
+			.catch((err) =>  {
+				console.log(err);
+				if(err.response.status == 404){
+					this.createPostmanAPI(def);
+				}
+
+			});
+			
+			//this.createPostmanAPI(def);
+			
+			
+		},
+
+		switchVisibility: function() {
+			config.passwordFieldType = (config.passwordFieldType =='text' ? 'password' : 'text');
+			config.passwordFieldCaption = (config.passwordFieldType == 'text' ? 'Hide API Key': 'Show API Key')
+			
+		},
+		
 
 		loadSchema: function () {
 			var schema;
@@ -276,7 +444,12 @@ Vue.component('gui-main', {
 				schema = emptyOpenAPI;
 				this.importschema.text = JSON.stringify(emptyOpenAPI, null, 2);
 			}
-
+			if(schema.info && schema.info.hasOwnProperty('x-linked-api-id') && schema.info['x-linked-api-id']){
+				config.pmanLinkedAPIID = schema.info.x-linked-api-id;
+			}
+			if(schema.info && schema.info.hasOwnProperty('x-linked-api-schema-id') && schema.info['x-linked-api-schema-id']){
+				config.pmanLinkedAPISchemaID = schema.info.x-linked-api-schema-id;
+			}
 			if (schema.openapi && schema.openapi.startsWith('3.0.')) {
 				if (window.localStorage) window.localStorage.setItem('openapi3', JSON.stringify(schema));
 				schema = preProcessDefinition(schema);
@@ -303,6 +476,7 @@ Vue.component('gui-main', {
 			$('.tab-pane').addClass('hidden');
 			$('#'+name).removeClass('hidden');
 			$event.preventDefault();
+			this.enableLinkedAPIID();
 		},
 
 		renderOutput: function ($event) {
@@ -325,6 +499,7 @@ Vue.component('gui-main', {
 			var data = "text/json;charset=utf-8," + encodeURIComponent(output);
 			$('#download-output').attr('href', 'data:' + data);
 			$('#download-output').attr('download', 'openapi.json');
+			this.enableLinkedAPIID();
 		},
 
 		renderOutputYaml: function ($event) {
@@ -392,6 +567,15 @@ Vue.component('api-secdef', {
 			},
 			set : function(newVal) {
 				this.$parent.renameSecurityDefinition(this.sdname, newVal);
+			}
+		},
+		uploading: {
+			get : function () {
+				
+			},
+
+			set : function(newVal) {
+				this.uploading = newVal;
 			}
 		},
 		type : {
