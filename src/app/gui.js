@@ -70,7 +70,7 @@ Vue.component('gui-main', {
 			  - Yes: Update it
 			*/
 			
-			this.switchUploadCaption();
+			//this.switchUploadCaption();
 			
 			const apiName = schema.info.title;
 			const apiDescription = schema.info.description;
@@ -88,8 +88,6 @@ Vue.component('gui-main', {
 			var openapi = this.openapi;
 			config.pmanLinkedAPIID = response.data.id;
 			var openapi = this.openapi;
-			//config.uploadEnabled = true;
-			//config.uploadCaption = 'Upload to Postman'
 			this.createPostmanAPISchema()
 		  })
 		  .catch((error) => {
@@ -115,12 +113,11 @@ Vue.component('gui-main', {
 				config['pmanLinkedAPISchemaID'] = response.data.id;
 				def = this.$root.postProcessDefinition();
 				this.updatePostmanAPISchema(config.pmanLinkedAPIID,config.pmanLinkedAPISchemaID,def);
-				this.enableLinkedAPIID();
-				this.switchUploadCaption();
 			  })
 			  .catch((error) => {
 				console.log(error);
 				alert("Error: " + error);
+				this.enableLinkedAPIID();
 				this.switchUploadCaption();
 			  });
 			  
@@ -131,23 +128,30 @@ Vue.component('gui-main', {
 		
 
 		enableLinkedAPIID: function () {
-			if(config.pmanLinkedAPIID) {
+			const schema = this.$root.postProcessDefinition();
+			if(schema.hasOwnProperty('info') && schema.info.hasOwnProperty('x-linked-api-id'))
+			{
+				config.pmanLinkedAPIID = schema.info['x-linked-api-id'];
 				$('#drpLinkedAPIID').removeClass('hidden');
 				$('#drpLinkedAPIIDLabel').removeClass('hidden');
 			}
 			else {
+				config.pmanLinkedAPIID = null;
 				$('#drpLinkedAPIID').addClass('hidden');
 				$('#drpLinkedAPIIDLabel').addClass('hidden');
 			}
-			if(config.pmanLinkedAPISchemaID) {
+			if(schema.hasOwnProperty('info') && schema.info.hasOwnProperty('x-linked-api-schema-id'))
+			{
+				config.pmanLinkedAPISchemaID = schema.info['x-linked-api-schema-id'];
 				$('#drpLinkedAPISchemaID').removeClass('hidden');
 				$('#drpLinkedAPISchemaIDLabel').removeClass('hidden');
 			}
 			else {
+				config.pmanLinkedAPISchemaID = null;
 				$('#drpLinkedAPISchemaID').addClass('hidden');
 				$('#drpLinkedAPISchemaIDLabel').addClass('hidden');
 			}
-		},
+			},
 
 		enableLicenseSelect: function() {
 			if ($('#drpLicense').hasClass('hidden')) {
@@ -381,9 +385,12 @@ Vue.component('gui-main', {
 			};
 			this.executePostmanAPI(url, 'put',data)
 			.then((response) => {
-				console.log(response);
+				this.enableLinkedAPIID();
+				this.switchUploadCaption();
 			})
 			.catch((err) =>  {
+				this.enableLinkedAPIID();
+				this.switchUploadCaption();
 				console.log(err);
 			});
 		},
@@ -397,13 +404,11 @@ Vue.component('gui-main', {
 			}
 			this.getPostmanAPI(config.pmanLinkedAPIID)
 			.then((response) => {
-				console.log(response);
 				if(response.data.hasOwnProperty('schemas')){
 					let schemaID = response.data.schemas[0].id;
-			
-					this.updatePostmanAPISchema(config.pmanLinkedAPIID,schemaID,def);
+					this.updatePostmanAPISchema(config.pmanLinkedAPIID,schemaID,def)
 				}
-				//this.updatePostmanAPISchema
+				
 			})
 			.catch((err) =>  {
 				console.log(err);
@@ -447,10 +452,10 @@ Vue.component('gui-main', {
 				this.importschema.text = JSON.stringify(emptyOpenAPI, null, 2);
 			}
 			if(schema.info && schema.info.hasOwnProperty('x-linked-api-id') && schema.info['x-linked-api-id']){
-				config.pmanLinkedAPIID = schema.info.x-linked-api-id;
+				config.pmanLinkedAPIID = schema.info['x-linked-api-id']
 			}
 			if(schema.info && schema.info.hasOwnProperty('x-linked-api-schema-id') && schema.info['x-linked-api-schema-id']){
-				config.pmanLinkedAPISchemaID = schema.info.x-linked-api-schema-id;
+				config.pmanLinkedAPISchemaID = schema.info['x-linked-api-schema-id'];
 			}
 			if (schema.openapi && schema.openapi.startsWith('3.0.')) {
 				if (window.localStorage) window.localStorage.setItem('openapi3', JSON.stringify(schema));
@@ -477,8 +482,12 @@ Vue.component('gui-main', {
 			$('#tabItem-'+name).addClass('is-active');
 			$('.tab-pane').addClass('hidden');
 			$('#'+name).removeClass('hidden');
+			if(name == 'upload') {
+				this.enableLinkedAPIID();
+				this.switchVisibility();
+			}
 			$event.preventDefault();
-			this.enableLinkedAPIID();
+			
 		},
 
 		renderOutput: function ($event) {

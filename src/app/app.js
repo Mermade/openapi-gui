@@ -238,13 +238,15 @@ if (typeof openapi === 'undefined') {
 }
 
 openapi = preProcessDefinition(openapi);
-config = {"pmanAPIKey":"XXX","pmanWorkspaceID":"d412f6c2-7884-4ed2-82da-900dcbbef70d", "passwordFieldType":"text", "uploadCaption":"Upload to Postman","pmanLinkedAPIID":null}
+config = {"pmanAPIKey":"","pmanWorkspaceID":"d412f6c2-7884-4ed2-82da-900dcbbef70d", "passwordFieldType":"text", "uploadCaption":"Upload to Postman","pmanLinkedAPIID":null}
 
 var importschema = {};
 importschema.text = JSON.stringify(openapi, null, 2);
 
 // or we could wrap jsoneditor in a Vue.js component?
-var schemaEditorSave = function() {};
+var schemaEditorSave = function() {
+    console.log("Saving...");
+};
 var schemaEditorClose = function() {};
 
 function app_main() {
