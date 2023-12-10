@@ -113,6 +113,8 @@ Vue.component('gui-main', {
 			this.executePostmanAPI('https://api.getpostman.com/apis/' + config.pmanLinkedAPIID + '/schemas', 'post',data)
 			.then((response) => {
 				config['pmanLinkedAPISchemaID'] = response.data.id;
+				def = this.$root.postProcessDefinition();
+				this.updatePostmanAPISchema(config.pmanLinkedAPIID,config.pmanLinkedAPISchemaID,def);
 				this.enableLinkedAPIID();
 				this.switchUploadCaption();
 			  })
